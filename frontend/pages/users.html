@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/users.css">
+        <title>AD User Search</title>
+
+    </head>
+    <body>
+            <label for="name">Search Callers Name:</label>
+            <input type="text" id="name" name="name">
+            <table>
+                <caption>Found Users</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">OU</th>
+                  </tr>
+                </thead>
+                <tbody id="users">
+                </tbody>
+            </table>
+    </body>
+
+    <script src="../lib/users/users.js"></script>
+    <script src="../lib/users/listeners.js"></script>
+</html>
