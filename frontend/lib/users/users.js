@@ -51,15 +51,34 @@ async function lookUpUsers(input) {
 }
 */
 
+
+for (let i=0; i<10; i++){
+  document.getElementById("users").innerHTML += `
+    <tr onclick="pullUpUser(this)">
+      <td data-label="Name">Dustin Meyer</td>
+      <td data-label="Username">dmeyer20</td>
+      <td data-label="OU">University of Rochester</td>
+    </tr>
+        `
+}
+
 async function lookUpUsers(input) {
 
+  document.getElementById("loading").style.display = "flex"
+
   document.getElementById("users").innerHTML = ""
-  console.log(input)
+
+  if (input == ""){
+    document.getElementById("loading").style.display = "none"
+    return
+  }
 
   const response = fetch(`http://localhost:8080/users/search/${input}`)
     .then(response => response.json()) // Parse the JSON response from the server
     .then(data => {
+      console.log(data)
       if (data == null) {
+        document.getElementById("loading").style.display = "none"
         document.getElementById("users").innerHTML += `
           <tr>
             <td data-label="Name">No Users Found</td>
@@ -69,6 +88,7 @@ async function lookUpUsers(input) {
           `
         return
       }  
+      document.getElementById("loading").style.display = "none"
       for (let i = 0; i < data.length; i++) {
 
         splitdata = data[i].split("|")
@@ -84,11 +104,10 @@ async function lookUpUsers(input) {
 
     })
     .catch(error=> {
+      document.getElementById("loading").style.display = "none"
       //alert("Server not running. Please start server located here: File_path")
       throw new Error("Server not running")
     })
-
-
 }
 
 
@@ -96,4 +115,6 @@ async function lookUpUsers(input) {
 function pullUpUser(row) {
   const username = row.children[1].innerHTML
   console.log(username)
+  localStorage.setItem("username", username)
+  window.location.href = "../Pages/userinformation.html"
 }

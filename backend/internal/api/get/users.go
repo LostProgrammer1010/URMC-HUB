@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 )
 
 func UsersSearch(w http.ResponseWriter, r *http.Request) {
@@ -16,6 +17,8 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	if !checkMethod(r) {
 		return
 	}
+
+	time.Sleep(1 * time.Second)
 
 	search := strings.Split(r.URL.Path, "/")[3]
 

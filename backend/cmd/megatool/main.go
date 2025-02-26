@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	// Route Handling
 	// utils.Login() //Must Login before starting the server
 	router := routes.NewRouter()

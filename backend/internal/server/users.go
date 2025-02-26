@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/go-ldap/ldap/v3"
 )
@@ -30,7 +31,12 @@ func SearchUsers(search string) (matches []string) {
 
 	for _, entry := range results.Entries {
 
-		matches = append(matches, fmt.Sprintf("%s | %s | %s", entry.GetAttributeValue("sAMAccountName"), entry.GetAttributeValue("name"), entry.GetAttributeValue("distinguishedName")))
+		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
+		ou = strings.ReplaceAll(ou, "DC=", "")
+		username := entry.GetAttributeValue("sAMAccountName")
+		fullName := entry.GetAttributeValue("name")
+
+		matches = append(matches, fmt.Sprintf("%s | %s | %s", username, fullName, ou))
 	}
 
 	err = l.Unbind()
