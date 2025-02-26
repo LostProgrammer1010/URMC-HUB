@@ -193,7 +193,6 @@ function filterSearch() {
 
 // Copies based on buttons pressed
 function copyToClipboard(button) {
-<<<<<<< HEAD
     const name = button.innerHTML
     console.log(copyLink[name])
     const copyNotification = document.createElement("p")
@@ -215,28 +214,12 @@ function copyToClipboard(button) {
 
     setTimeout(function () {
         copyNotification.remove()
-=======
-    navigator.clipboard
-        .writeText(copyLink[button.children[0].innerHTML])
-        .then(function () {
-            button.children[2].innerHTML = "Copied";
-        })
-        .catch(function () {
-            button.children[2].innerHTML = "Failed to Copy";
-        });
-
-    setTimeout(function () {
-        button.children[2].innerHTML = "Click to Copy";
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     }, 1000);
 }
 
 // When pressing enter on the input field it will bring you to first link shown
 function goToFirstLink(event) {
-<<<<<<< HEAD
     console.log(event)
-=======
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     event.preventDefault();
     const filter = document.getElementById("filter");
     let links = document.getElementById("links");
@@ -252,12 +235,9 @@ function goToFirstLink(event) {
     filterSearch();
 }
 
-<<<<<<< HEAD
 buttonContainer = document.getElementById("top-container")
 for (const key of copyLink.keys()) {
     buttonContainer.innerHTML += ` <button onclick="copyToClipboard(this)">${key}</button>`
     
 
 }
-=======
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
