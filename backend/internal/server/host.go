@@ -6,8 +6,15 @@ import (
 	"net/http"
 )
 
+<<<<<<< HEAD:backend/internal/server/host.go
 func Start() {
 	//Must Login before starting the server
+=======
+func main() {
+
+	// Route Handling
+	// utils.Login() //Must Login before starting the server
+>>>>>>> 3117f38 (Loading animation | New Folder structure | Replace POST request with GET):backend/cmd/megatool/main.go
 	router := routes.NewRouter()
 
 	port := 8080

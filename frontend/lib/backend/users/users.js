@@ -51,6 +51,17 @@ async function lookUpUsers(input) {
 }
 */
 
+
+for (let i=0; i<10; i++){
+  document.getElementById("users").innerHTML += `
+    <tr onclick="pullUpUser(this)">
+      <td data-label="Name">Dustin Meyer</td>
+      <td data-label="Username">dmeyer20</td>
+      <td data-label="OU">University of Rochester</td>
+    </tr>
+        `
+}
+
 async function lookUpUsers(input) {
 
   document.getElementById("loading").style.display = "flex"

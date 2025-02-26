@@ -3,7 +3,11 @@ package AD
 import (
 	"fmt"
 	"log"
+<<<<<<< HEAD:backend/internal/AD/groups.go
 	"time"
+=======
+	"strings"
+>>>>>>> 3117f38 (Loading animation | New Folder structure | Replace POST request with GET):backend/internal/server/users.go
 
 	"github.com/go-ldap/ldap/v3"
 )
@@ -32,6 +36,7 @@ func GroupsSearch(search string) (matches []string) {
 
 	for _, entry := range results.Entries {
 
+<<<<<<< HEAD:backend/internal/AD/groups.go
 		for _, attribute := range entry.Attributes {
 			fmt.Println(attribute.Name, attribute.Values)
 			time.Sleep(3 * time.Second)
@@ -40,6 +45,14 @@ func GroupsSearch(search string) (matches []string) {
 
 		}
 
+=======
+		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
+		ou = strings.ReplaceAll(ou, "DC=", "")
+		username := entry.GetAttributeValue("sAMAccountName")
+		fullName := entry.GetAttributeValue("name")
+
+		matches = append(matches, fmt.Sprintf("%s | %s | %s", username, fullName, ou))
+>>>>>>> 3117f38 (Loading animation | New Folder structure | Replace POST request with GET):backend/internal/server/users.go
 	}
 
 	err = l.Unbind()
