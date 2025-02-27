@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 75px;
+
     letter-spacing: .05rem;
     color: white
 }
