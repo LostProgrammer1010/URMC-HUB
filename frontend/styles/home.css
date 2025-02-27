@@ -30,7 +30,7 @@ body {
     flex-direction: column;
     position: relative;
     width: 350px;
-    height: 150px;
+    height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
@@ -47,24 +47,33 @@ body {
 }
 
 #links a:hover {
-    outline: 1px solid white;
+    outline: 4px solid rgba(255,255,255,0.2);
 }
 
+
+#links a:focus div,
 #links a:hover div {
-    outline: 1px solid white;
+    transform: translateY(-5px);
 }
 
 .link div {
     position: absolute;
+    display: flex;
     order: 0;
+    align-items: center;
     overflow: hidden;
     border-radius: 20px;
+    background: #272727;
     top: -70px;
     width: 85%;
+    height: 200px;
+    box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
+    transition: ease .5s;
 }
 
 body .link img {
     width: 100%;   /* Scale the image to fit the width of the container */
+    object-position: center;
     object-fit: fill;  /* Ensures the image covers the div area without distortion */
 }
 
@@ -76,6 +85,8 @@ body .link img {
 
 .link p {
     order: 2;
+    font-size: 15px;
+    margin-top: -5px;
     text-align: center;
 }
 
