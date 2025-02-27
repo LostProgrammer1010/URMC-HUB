@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/home.css">
+        <link rel="stylesheet" href="../styles/global/navbar.css">
+        <title>HDBookMarks</title>
+        <link
+        rel="icon"
+        href="../assets/URMC.ico"
+        type="image/x-icon"
+      />
+  
+
+    </head>
+    <body>
+        <nav>
+            <a href="home.html" id="nav-home">
+                <img src="../assets/URMC.ico" alt="URMC LOGO">
+                URMC HDBookMarks
+            </a>
+        </nav>
+        <form id="search-container" onsubmit="goToFirstLink(event)">
+            <label for="filter" id="title">Search</label>
+            <input type="text" id="filter" name="filter"  onkeyup="filterSearch()">
+        </form>
+
+        <div id="links">
+        </div>
+    </body>
+
+    <script src="../lib/static/hdbookmarks.js"></script>
+    
+</html>

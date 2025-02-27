@@ -1,0 +1,38 @@
+/*Nav bar*/
+body {
+    padding: 0px;
+    font-family: Roboto;
+    background: #121212;
+    /*font-family: "Open Sans", sans-serif;*/
+}
+
+
+body nav {
+    position: fixed;
+    backdrop-filter: blur(10px);
+    background: rgba(13, 110, 253, 0.8);
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    height: 40px;
+    color: white;
+    z-index: 20;
+}
+
+body nav a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+body nav a:visited {
+    text-decoration: none;
+    color: white
+}
+
+#nav-home {
+    display: flex;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}

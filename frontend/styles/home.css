@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Main Page */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    letter-spacing: .05rem;
+    color: white
+}
+
+/* Links*/
+#links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+
+}
+
+#links .link {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 350px;
+    height: 150px;
+    padding-top: 10rem;
+    border-radius: 20px;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    background: #272727;
+    margin-top: 4rem;
+    padding: 10rem 1rem 0rem 1rem;
+}
+
+#links a:visited {
+    text-decoration: none;
+    color: white
+}
+
+#links a:hover {
+    outline: 1px solid white;
+}
+
+#links a:hover div {
+    outline: 1px solid white;
+}
+
+.link div {
+    position: absolute;
+    order: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    top: -70px;
+    width: 85%;
+}
+
+body .link img {
+    width: 100%;   /* Scale the image to fit the width of the container */
+    object-fit: fill;  /* Ensures the image covers the div area without distortion */
+}
+
+.link h1{
+    order: 1;
+    font-size: 25px;
+    text-align: center;
+}
+
+.link p {
+    order: 2;
+    text-align: center;
+}
+
+/* Input */
+
+#search-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#search-container input {
+    padding: .7rem;
+    width: 250px;
+    background: none;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    outline: 1px solid white;
+}
+
+
+#search-container label {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    pointer-events: none; /* Makes sure the label doesn't interfere with input focus */
+    font-size: 14px;
+    color: white;
+    background: #121212;
+}
