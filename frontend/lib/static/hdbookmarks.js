@@ -1,7 +1,6 @@
 
 
 // Items that would copy to clipboard
-<<<<<<< HEAD
 const copyLink = new Map([
     ["Haiku Server & Path", `Server = ercd-sproxy.urmc.rochester.edu Path = soapproxies-haiku`],
     ["Dimensions Tenant Url", "https://univofrochester.prd.mykronos.com"],
@@ -11,19 +10,6 @@ const copyLink = new Map([
     ["eRecord Training Request Url", "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training"], 
     ["Cadence Build Request", "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence"],
   ]);
-=======
-const copyLink = {
-    "Haiku Server and Path": 
-    `Server = ercd-sproxy.urmc.rochester.edu 
-    Path = soapproxies-haiku`,
-    "Dimensions Tenant URL": "https://univofrochester.prd.mykronos.com",
-    "SCCM Computer Name": "SYSMGMTADMIN",
-    "Pager Number": "+15852209506",
-    "PACS Access URL": "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0",
-    "eRecord Training Request URL": "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training", 
-    "Cadance Build Request": "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence",
-  };
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 
   // New way of storing links for HDBooksmarks (Name, Link, Picture, Description)
 all_links = [
@@ -38,11 +24,7 @@ all_links = [
     ["URMC App Status","https://apps.mc.rochester.edu/Sysstat/", "URMC_System_Status.png", "Provide status of application own by URMC"],
     ["UIT Alerts", "https://tech.rochester.edu/alerts/", "UIT_Alerts.png", "Active Alerts from UIT"],
     ["Desktop Triage", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014551", "Desktop_Triage.png", "SN KB that provides insight as to where CTS tickets should go"],
-<<<<<<< HEAD
     ["On-Call Schedules", "https://apps.mc.rochester.edu/Staff2/ISD", "Staff_System.png", "Request time off"],
-=======
-    ["On-Call Schedules/Vacation Calendar", "https://apps.mc.rochester.edu/Staff2/ISD", "Staff_System.png", "Request time off"],
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     ["Exec Management Triage Sheet", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0011376", "Executive_Management.png", "Lists which techs are responsible for which Exec"],
     ["Help Desk SharePoint", "https://uofr.sharepoint.com/sites/ISDServiceDesk/SitePages/CollabHome.aspx", "ISD_SharePoint.png", ""],
     ["Major Incident Script/Level 1", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010422", "L1A.png", "Instructions to create L1A"],
@@ -54,20 +36,28 @@ all_links = [
     ["DOH Quick Sheet", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015713", "NYS_DOH.png", "CLICK HERE FOR ALL Department of Health Calls"],
     ["Mac Password KB", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010262", "MAC_Password.png", ""],
 <<<<<<< HEAD
+<<<<<<< HEAD
     ["Clear Disk Space", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
 =======
     ["Clear disk space\User Profiles", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    ["Clear Disk Space", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
+>>>>>>> 812b99d (Updates to home page)
     ["NEC Desk Phone Guide", "https://tech.rochester.edu/wp-content/uploads/8_12_24_32_Quick_Reference_Guide.pdf", "NEC_PDF.png", "Helpful PDF guide to onsite deskphones"],
     ["Keywords Guide", "file:\\NTSDRIVE05\Cust_Serv\Help Desk Info\Help Desk PC Setup Docs\Home Grown Tools\Bookmarks\Assests\Copy of eRecord Key Words Guide.xlsm", "Keyword_Guide_eRecord.png", "Download of the keywords guide"],
     ["In Patient", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/erecord-clinical-leaders-list.pdf", "In_Patient.png", "eRecord Super Users"],
     ["AMB", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/ambulatory-lead-smes.xlsx", "AMB_Excel.png", "eRecord Super Users download"],
     ["Old LMS", "file://NTSDRIVE05/ISD_share/Cust_Serv/Help Desk Info/Training Daily Completions", "Old_lms.png", "Excel file containing all LMS prior 2024"],
 <<<<<<< HEAD
+<<<<<<< HEAD
     ["eRecord Training", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
 =======
     ["eRecord Training [Sumtotal]", "https://urmc.sumtotal.host/", "LMS_page.png", ""],
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    ["eRecord Training", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
+>>>>>>> 812b99d (Updates to home page)
     ["Chart Correction Guide", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014549", "eRecord_Corrections.png", ""],
     ["Gardner's Guide to eRecord", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015320", "Common_eRecord_Issues.png", "Common eRecord issues"],
     ["Name Change Script", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010766", "Name_Change_Script.png", "SN KB for Name changes"],
@@ -81,10 +71,14 @@ all_links = [
     ["Guest Account System", "https://myidentity.rochester.edu/guest/", "Create_Guest_Account_System.png", "Create sponsored accounts"],
     ["DUO Enrollment Portal", "https://www.rochester.edu/it/security/duo/enrollment/index.php?domain=urmc-sh", "DUO_Enrollment.png", "Customer Facing DUO Management *MUST BE ONSITE*"],
 <<<<<<< HEAD
+<<<<<<< HEAD
     ["Director", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
 =======
     ["Director\Citrix Remote Viewer", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    ["Director", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
+>>>>>>> 812b99d (Updates to home page)
     ["Exe Tools for HD", "file://NTSDRIVE05/ISD_Share/Cust_Serv/Help Desk Info/Tools/Tools", "HD_Tools.png", "Multiple tools for use for the HelpDesk"],
     ["BitLocker Script", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010842", "BitLocker.png", ""],
     ["BitLocker Console", "https://mbamsql.urmc-sh.rochester.edu/Reports/", "BitLocker_Console.png", "NEED FIRST 8 CHAR OF KEY ID"],

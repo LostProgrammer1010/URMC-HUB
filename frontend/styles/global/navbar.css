@@ -40,15 +40,21 @@ body nav a {
 =======
 /*Nav bar*/
 body {
-    padding: 0px;
+    padding: px;
     font-family: Roboto;
     background: #121212;
+    margin-top: 75px;
     /*font-family: "Open Sans", sans-serif;*/
 }
 
 
 body nav {
     position: fixed;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
     backdrop-filter: blur(10px);
     background: rgba(13, 110, 253, 0.8);
     width: 100%;
