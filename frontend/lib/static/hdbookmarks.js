@@ -26,7 +26,7 @@ all_links = [
     ["URMC App Status","https://apps.mc.rochester.edu/Sysstat/", "URMC_System_Status.png", "Provide status of application own by URMC"],
     ["UIT Alerts", "https://tech.rochester.edu/alerts/", "UIT_Alerts.png", "Active Alerts from UIT"],
     ["Desktop Triage", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014551", "Desktop_Triage.png", "SN KB that provides insight as to where CTS tickets should go"],
-    ["On-Call Schedules/Vacation Calendar", "https://apps.mc.rochester.edu/Staff2/ISD", "Staff_System.png", "Request time off"],
+    ["On-Call Schedules", "https://apps.mc.rochester.edu/Staff2/ISD", "Staff_System.png", "Request time off"],
     ["Exec Management Triage Sheet", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0011376", "Executive_Management.png", "Lists which techs are responsible for which Exec"],
     ["Help Desk SharePoint", "https://uofr.sharepoint.com/sites/ISDServiceDesk/SitePages/CollabHome.aspx", "ISD_SharePoint.png", ""],
     ["Major Incident Script/Level 1", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010422", "L1A.png", "Instructions to create L1A"],
@@ -69,7 +69,7 @@ all_links = [
     ["Pharos", "http://its-pharos-wp01.ur.rochester.edu/uniprint/packages.asp", "Pharos.png", "These are special downloaded printers"],
     ["Drop Box", "https://rochester.account.box.com/login", "Box.png", ""],
     ["Microsoft OneDrive Login", "https://onedrive.live.com/login/", "Onedrive.png", ""],
-    ["312 Rec Form", "https://sharepoint19.mc.rochester.edu/sites/URMFGALL/resourcesandreferences/Forms/Capital%20Forms/312%20Requisition%20Form.pdf#search=312", "312Form.png", ""],
+    ["312 Rec Form", "https://sharepoint19.mc.rochester.edu/sites/URMFGALL/resourcesandreferences/Forms/Capital%20Forms/312%20Requisition%20Form.pdf#search=312", "312Form.png", "Form for purchases in request"],
     ["Request Imaging Access", "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0", "Imaging_Request.png", ""],
     ["WebMSO", "https://webmso.urmc-sh.rochester.edu/privinq/msopi.aspx#Scroll", "WebMSO.png", ""],
     ["Tech Recycling", "https://tech.rochester.edu/services/it-equipment-recovery-program/", "Recycle_Program.png", ""],
@@ -108,15 +108,28 @@ function filterSearch() {
         // Go through each element in links and checks to if they have input inside of it
         all_links.forEach(element => {
             if (regex.test(element[0].toLowerCase()) || regex.test(element[3].toLowerCase())) {
-                build += `
-<a class="link" href="${element[1]}" target="_blank" tabindex="0">
-    <div>
-        <img src="../assets/${element[2]}" loading="lazy"/>
-    </div>
-    <h1>${element[0]} </h1>
-    <p>${element[3]}</p>
-</a>
- ` 
+                if (element[3] != "") {
+                    build += `
+                    <a class="link" href="${element[1]}" target="_blank" tabindex="0">
+                        <div>
+                            <img src="../assets/${element[2]}" loading="lazy"/>
+                        </div>
+                        <h1>${element[0]} </h1>
+                        <p>${element[3]}</p>
+                    </a>
+                     ` 
+                }
+                else {
+                    build += `
+                    <a class="link" href="${element[1]}" target="_blank" tabindex="0">
+                        <div>
+                            <img src="../assets/${element[2]}" loading="lazy"/>
+                        </div>
+                        <h1>${element[0]} </h1>
+                    </a>
+                     ` 
+                }
+
             }
             
         });
