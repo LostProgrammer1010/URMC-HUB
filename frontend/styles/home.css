@@ -8,7 +8,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
 
+=======
+    margin-top: 75px;
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     letter-spacing: .05rem;
     color: white
 }
@@ -19,10 +23,16 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     column-gap: 20px;
     row-gap: 30px;
     flex-wrap: wrap;
     padding-top: 20px;
+=======
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 
 }
 
@@ -30,12 +40,20 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+<<<<<<< HEAD
     width: 325px;
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
 
+=======
+    width: 350px;
+    height: 150px;
+    padding-top: 10rem;
+    border-radius: 20px;
+    align-items: center;
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     text-decoration: none;
     color: white;
     background: #272727;
@@ -49,6 +67,7 @@ body {
 }
 
 #links a:hover {
+<<<<<<< HEAD
     outline: 4px solid rgba(255,255,255,0.2);
 }
 
@@ -56,10 +75,18 @@ body {
 #links a:focus div,
 #links a:hover div {
     transform: translateY(-5px);
+=======
+    outline: 1px solid white;
+}
+
+#links a:hover div {
+    outline: 1px solid white;
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 }
 
 .link div {
     position: absolute;
+<<<<<<< HEAD
     display: flex;
     order: 0;
     align-items: center;
@@ -71,11 +98,21 @@ body {
     height: 200px;
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
+=======
+    order: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    top: -70px;
+    width: 85%;
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 }
 
 body .link img {
     width: 100%;   /* Scale the image to fit the width of the container */
+<<<<<<< HEAD
     object-position: center;
+=======
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     object-fit: fill;  /* Ensures the image covers the div area without distortion */
 }
 
@@ -87,14 +124,20 @@ body .link img {
 
 .link p {
     order: 2;
+<<<<<<< HEAD
     font-size: 15px;
     margin-top: -5px;
+=======
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     text-align: center;
 }
 
 /* Input */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 #search-container {
     position: relative;
     margin-bottom: 1rem;
@@ -119,6 +162,7 @@ body .link img {
     font-size: 14px;
     color: white;
     background: #121212;
+<<<<<<< HEAD
 }
 
 /*Copy button*/
@@ -177,3 +221,6 @@ body .link img {
     transition-duration: 0.7s, 0.15s;
     transition-timing-function: ease;
   }
+=======
+}
+>>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
