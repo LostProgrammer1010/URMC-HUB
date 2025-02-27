@@ -53,7 +53,7 @@ body {
 
 =======
     width: 350px;
-    height: 150px;
+    height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
@@ -72,6 +72,7 @@ body {
 
 #links a:hover {
 <<<<<<< HEAD
+<<<<<<< HEAD
     outline: 4px solid rgba(255,255,255,0.2);
 }
 
@@ -81,15 +82,25 @@ body {
     transform: translateY(-5px);
 =======
     outline: 1px solid white;
+=======
+    outline: 4px solid rgba(255,255,255,0.2);
+>>>>>>> ad2be78 (update to links on home page)
 }
 
+
+#links a:focus div,
 #links a:hover div {
+<<<<<<< HEAD
     outline: 1px solid white;
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    transform: translateY(-5px);
+>>>>>>> ad2be78 (update to links on home page)
 }
 
 .link div {
     position: absolute;
+<<<<<<< HEAD
 <<<<<<< HEAD
     display: flex;
     order: 0;
@@ -103,20 +114,35 @@ body {
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
 =======
+=======
+    display: flex;
+>>>>>>> ad2be78 (update to links on home page)
     order: 0;
+    align-items: center;
     overflow: hidden;
     border-radius: 20px;
+    background: #272727;
     top: -70px;
     width: 85%;
+<<<<<<< HEAD
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    height: 200px;
+    box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
+    transition: ease .5s;
+>>>>>>> ad2be78 (update to links on home page)
 }
 
 body .link img {
     width: 100%;   /* Scale the image to fit the width of the container */
 <<<<<<< HEAD
+<<<<<<< HEAD
     object-position: center;
 =======
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    object-position: center;
+>>>>>>> ad2be78 (update to links on home page)
     object-fit: fill;  /* Ensures the image covers the div area without distortion */
 }
 
@@ -129,10 +155,15 @@ body .link img {
 .link p {
     order: 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size: 15px;
     margin-top: -5px;
 =======
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    font-size: 15px;
+    margin-top: -5px;
+>>>>>>> ad2be78 (update to links on home page)
     text-align: center;
 }
 

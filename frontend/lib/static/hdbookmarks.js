@@ -35,29 +35,13 @@ all_links = [
     ["Important Phone Numbers", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014676", "Important_Numbers.png", ""],
     ["DOH Quick Sheet", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015713", "NYS_DOH.png", "CLICK HERE FOR ALL Department of Health Calls"],
     ["Mac Password KB", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010262", "MAC_Password.png", ""],
-<<<<<<< HEAD
-<<<<<<< HEAD
     ["Clear Disk Space", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
-=======
-    ["Clear disk space\User Profiles", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    ["Clear Disk Space", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015613", "Remove_Old_Profile.png", "SN KB for clearing disk space properly"],
->>>>>>> 812b99d (Updates to home page)
     ["NEC Desk Phone Guide", "https://tech.rochester.edu/wp-content/uploads/8_12_24_32_Quick_Reference_Guide.pdf", "NEC_PDF.png", "Helpful PDF guide to onsite deskphones"],
     ["Keywords Guide", "file:\\NTSDRIVE05\Cust_Serv\Help Desk Info\Help Desk PC Setup Docs\Home Grown Tools\Bookmarks\Assests\Copy of eRecord Key Words Guide.xlsm", "Keyword_Guide_eRecord.png", "Download of the keywords guide"],
     ["In Patient", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/erecord-clinical-leaders-list.pdf", "In_Patient.png", "eRecord Super Users"],
     ["AMB", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/ambulatory-lead-smes.xlsx", "AMB_Excel.png", "eRecord Super Users download"],
     ["Old LMS", "file://NTSDRIVE05/ISD_share/Cust_Serv/Help Desk Info/Training Daily Completions", "Old_lms.png", "Excel file containing all LMS prior 2024"],
-<<<<<<< HEAD
-<<<<<<< HEAD
     ["eRecord Training", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
-=======
-    ["eRecord Training [Sumtotal]", "https://urmc.sumtotal.host/", "LMS_page.png", ""],
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    ["eRecord Training", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
->>>>>>> 812b99d (Updates to home page)
     ["Chart Correction Guide", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014549", "eRecord_Corrections.png", ""],
     ["Gardner's Guide to eRecord", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015320", "Common_eRecord_Issues.png", "Common eRecord issues"],
     ["Name Change Script", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010766", "Name_Change_Script.png", "SN KB for Name changes"],
@@ -70,15 +54,7 @@ all_links = [
     ["Duo Admin", "https://www.rochester.edu/it/security/duo/helpdesk/?domain=urmc", "DUO.png", "Manage DUO accounts"],
     ["Guest Account System", "https://myidentity.rochester.edu/guest/", "Create_Guest_Account_System.png", "Create sponsored accounts"],
     ["DUO Enrollment Portal", "https://www.rochester.edu/it/security/duo/enrollment/index.php?domain=urmc-sh", "DUO_Enrollment.png", "Customer Facing DUO Management *MUST BE ONSITE*"],
-<<<<<<< HEAD
-<<<<<<< HEAD
     ["Director", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
-=======
-    ["Director\Citrix Remote Viewer", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    ["Director", "https://director.urmc-sh.rochester.edu", "Director.png", "Allows shadowing of any Citrix instance"],
->>>>>>> 812b99d (Updates to home page)
     ["Exe Tools for HD", "file://NTSDRIVE05/ISD_Share/Cust_Serv/Help Desk Info/Tools/Tools", "HD_Tools.png", "Multiple tools for use for the HelpDesk"],
     ["BitLocker Script", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010842", "BitLocker.png", ""],
     ["BitLocker Console", "https://mbamsql.urmc-sh.rochester.edu/Reports/", "BitLocker_Console.png", "NEED FIRST 8 CHAR OF KEY ID"],
@@ -91,11 +67,7 @@ all_links = [
     ["Pharos", "http://its-pharos-wp01.ur.rochester.edu/uniprint/packages.asp", "Pharos.png", "These are special downloaded printers"],
     ["Drop Box", "https://rochester.account.box.com/login", "Box.png", ""],
     ["Microsoft OneDrive Login", "https://onedrive.live.com/login/", "Onedrive.png", ""],
-<<<<<<< HEAD
     ["312 Rec Form", "https://sharepoint19.mc.rochester.edu/sites/URMFGALL/resourcesandreferences/Forms/Capital%20Forms/312%20Requisition%20Form.pdf#search=312", "312Form.png", "Form for purchases in request"],
-=======
-    ["312 Rec Form", "https://sharepoint19.mc.rochester.edu/sites/URMFGALL/resourcesandreferences/Forms/Capital%20Forms/312%20Requisition%20Form.pdf#search=312", "312Form.png", ""],
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
     ["Request Imaging Access", "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0", "Imaging_Request.png", ""],
     ["WebMSO", "https://webmso.urmc-sh.rochester.edu/privinq/msopi.aspx#Scroll", "WebMSO.png", ""],
     ["Tech Recycling", "https://tech.rochester.edu/services/it-equipment-recovery-program/", "Recycle_Program.png", ""],
