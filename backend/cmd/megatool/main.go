@@ -5,12 +5,13 @@ import (
 	"net/http"
 
 	"backend/internal/routes"
+	"backend/internal/server"
 )
 
 func main() {
 
 	// Route Handling
-	// utils.Login() //Must Login before starting the server
+	server.Login() //Must Login before starting the server
 	router := routes.NewRouter()
 
 	port := 8080

@@ -1,34 +1,41 @@
-/*Nav bar*/
-body {
-    padding: px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*Since navbar will be on every page styling for everypage will be on it*/
+:root {
     font-family: Roboto;
     background: #121212;
-    margin-top: 75px;
+    padding-left: 250px;
+    padding-top: 20px;
     /*font-family: "Open Sans", sans-serif;*/
 }
 
-
+/*Nav bar*/
 body nav {
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-items: center;
-    align-items: center;
-    gap: 20px;
-    flex-direction: row;
+    text-align: center;
+    gap: 10px;
     backdrop-filter: blur(10px);
-    background: rgba(13, 110, 253, 0.8);
-    width: 100%;
+    background: #121212;
+    height: 100vh;
+    width: 250px;
     top: 0px;
     left: 0px;
-    padding: 10px;
-    height: 40px;
+    padding: 20px 0px 0px 0px;
+    box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
+    box-sizing: border-box;
     color: white;
     z-index: 20;
+    font-size: 18px;
 }
 
 body nav a {
+    align-self: center;
     text-decoration: none;
-    font-size: 20px;
+    padding: 10px;
+    color: white;
 }
 
 body nav a:visited {
@@ -42,3 +49,43 @@ body nav a:visited {
     justify-items: center;
     align-items: center;
 }
+
+hr {
+    width: 240px;
+    color: white; 
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+nav button {
+    text-align: left;
+    border: none;
+    text-align: center;
+    background: none;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+}
+
+nav .dropdown {
+    position: relative;
+    
+}
+
+nav .dropdown .content {
+    display: flex;
+    overflow: hidden;
+    max-height: 0px;
+    flex-direction: column;
+    gap: .3rem;
+    padding-left: 1rem;
+    transition: max-height 1s ease; /* Animate max-height */
+    font-size: 15px;
+}
+
+nav .dropdown.open .content {
+    max-height: 200px;
+}
+

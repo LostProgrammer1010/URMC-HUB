@@ -105,7 +105,7 @@ async function lookUpUsers(input) {
     })
     .catch(error=> {
       document.getElementById("loading").style.display = "none"
-      //alert("Server not running. Please start server located here: File_path")
+      alert("Server not running. Please start server located here: File_path")
       throw new Error("Server not running")
     })
 }
