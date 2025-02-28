@@ -38,6 +38,7 @@ A web application that provides useful information to service desk agents. Allow
 ### Frontend
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Nothing changes from the original version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
 
 ### Backend
@@ -45,6 +46,9 @@ Nothing changes from the original version of HDBookMarks. Hosted as static html 
 Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally. Allowing for server to make ldap request on the backend, sending information back to frontend
 =======
 Nothing changes from the orginal version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
+=======
+Nothing changes from the original version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
+>>>>>>> c2ef4a1 (Spelling corrections)
 
 ### Backend
 
@@ -54,6 +58,7 @@ Backend will be a go server. That will prompt for credentials when running the b
 
 ## Features
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ### Active Directory
 #### Users
@@ -66,15 +71,25 @@ Backend will be a go server. That will prompt for credentials when running the b
 - Search for users (Type in username | First and last name to see users that match)
 - Get information about a particalur user (location, AD groups they apart of)
 >>>>>>> fa482fe (Create README.md)
+=======
+### Active Directory
+#### Users
+- Search for users (Type in username | First and last name to see users that match)
+- Get information about a particular user (location, AD groups they apart of)
+>>>>>>> c2ef4a1 (Spelling corrections)
 #### Share Drives
 - Find a share drive based name,server,AD group (Not needed the use of DMD)
 - Get the information about a AD group with one click after find the share drive for access
 #### Groups
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Get all the members of a Group (limitation for groups with larger number of people)
 =======
 - Get all the memebers of a Group (limitation for groups with larger number of people)
 >>>>>>> fa482fe (Create README.md)
+=======
+- Get all the members of a Group (limitation for groups with larger number of people)
+>>>>>>> c2ef4a1 (Spelling corrections)
 - Get information about an AD group
 #### Computers
 - Search for computer by name and pulls all computer that match the search
