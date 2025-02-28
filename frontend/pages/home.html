@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="../styles/home.css">
         <link rel="stylesheet" href="../styles/global/navbar.css">
-        <title>HDBookMarks</title>
+        <title>Service Desk HUB</title>
         <link
         rel="icon"
         href="../assets/URMC.ico"
@@ -12,23 +12,28 @@
 
     </head>
     <body>
-        <nav>
-            <a href="home.html" id="nav-home">
-                <img src="../assets/URMC.ico" alt="URMC LOGO">
-                URMC HDBookMarks
-            </a>
-            <a href="users.html">USERS
-            </a>
-        </nav>
-        <form id="search-container" onsubmit="goToFirstLink(event)">
-            <label for="filter" id="title">Search</label>
-            <input type="text" id="filter" name="filter"  onkeyup="filterSearch()">
-        </form>
+            <form id="search-container" onsubmit="goToFirstLink(event)">
 
+                <label for="filter" id="title">Search</label>
+                <input type="text" id="filter" name="filter"  onkeyup="filterSearch()">
+
+            </form>
+
+
+        <div id="top-container">
+            <button>Cadance Build Request</button>
+            <button>PACS Access URL</button>
+            <button>Haiku Server and Path</button>
+            <button>Dimensions Tenant URL</button>
+            <button>SCCM Computer Name</button>
+            <button>Pager Number</button>
+            <button>eRecord Training Request URL</button>
+        </div>
         <div id="links">
         </div>
     </body>
 
     <script src="../lib/static/hdbookmarks.js"></script>
+    <script src="../lib/static/nav.js"></script>
     
 </html>
