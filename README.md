@@ -9,7 +9,7 @@ A web application that provides useful information to service desk agents. Allow
 
 ### Frontend
 
-Nothing changes from the orginal version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
+Nothing changes from the original version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
 
 ### Backend
 
@@ -18,15 +18,15 @@ Backend will be a go server. That will prompt for credentials when running the b
 
 ## Features
 
-### Active Driectory
+### Active Directory
 #### Users
 - Search for users (Type in username | First and last name to see users that match)
-- Get information about a particalur user (location, AD groups they apart of)
+- Get information about a particular user (location, AD groups they apart of)
 #### Share Drives
 - Find a share drive based name,server,AD group (Not needed the use of DMD)
 - Get the information about a AD group with one click after find the share drive for access
 #### Groups
-- Get all the memebers of a Group (limitation for groups with larger number of people)
+- Get all the members of a Group (limitation for groups with larger number of people)
 - Get information about an AD group
 #### Computers
 - Search for computer by name and pulls all computer that match the search
