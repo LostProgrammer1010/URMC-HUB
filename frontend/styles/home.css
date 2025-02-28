@@ -170,9 +170,13 @@ body .link img {
 /* Input */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+
+>>>>>>> 2490d27 (Update to nav bar)
 #search-container {
     position: relative;
     margin-bottom: 1rem;
@@ -198,6 +202,9 @@ body .link img {
     color: white;
     background: #121212;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2490d27 (Update to nav bar)
 }
 
 /*Copy button*/
@@ -205,8 +212,11 @@ body .link img {
 #top-container {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
     flex-wrap: wrap;
     justify-content: center;
+=======
+>>>>>>> 2490d27 (Update to nav bar)
 
     gap: 20px;
 }
@@ -218,6 +228,7 @@ body .link img {
     background: #121212;
     box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
     color: white;
+<<<<<<< HEAD
     height: 50px;
     border-radius: 10px;
     padding: 5px;
@@ -229,6 +240,13 @@ body .link img {
     margin: 0px;
 }
 
+=======
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+>>>>>>> 2490d27 (Update to nav bar)
 #top-container button:after {
     content: "";
     position: absolute;
@@ -255,7 +273,11 @@ body .link img {
     transition-property: transform, opacity;
     transition-duration: 0.7s, 0.15s;
     transition-timing-function: ease;
+<<<<<<< HEAD
   }
 =======
 }
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+  }
+>>>>>>> 2490d27 (Update to nav bar)

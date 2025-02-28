@@ -200,6 +200,7 @@ function goToFirstLink(event) {
     filter.value = "";
     filterSearch();
 }
+<<<<<<< HEAD
 
 buttonContainer = document.getElementById("top-container")
 for (const key of copyLink.keys()) {
@@ -207,3 +208,5 @@ for (const key of copyLink.keys()) {
     
 
 }
+=======
+>>>>>>> 2490d27 (Update to nav bar)

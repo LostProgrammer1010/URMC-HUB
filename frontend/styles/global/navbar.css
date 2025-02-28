@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2490d27 (Update to nav bar)
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*Since navbar will be on every page styling for everypage will be on it*/
 :root {
+<<<<<<< HEAD
     font-family: Roboto;
     background: #121212;
     padding-left: 250px;
@@ -41,35 +45,47 @@ body nav a {
 /*Nav bar*/
 body {
     padding: px;
+=======
+>>>>>>> 2490d27 (Update to nav bar)
     font-family: Roboto;
     background: #121212;
-    margin-top: 75px;
+    padding-left: 250px;
+    padding-top: 20px;
     /*font-family: "Open Sans", sans-serif;*/
 }
 
-
+/*Nav bar*/
 body nav {
     position: fixed;
     display: flex;
+    flex-direction: column;
     justify-items: center;
-    align-items: center;
-    gap: 20px;
-    flex-direction: row;
+    text-align: center;
+    gap: 10px;
     backdrop-filter: blur(10px);
-    background: rgba(13, 110, 253, 0.8);
-    width: 100%;
+    background: #121212;
+    height: 100vh;
+    width: 250px;
     top: 0px;
     left: 0px;
-    padding: 10px;
-    height: 40px;
+    padding: 20px 0px 0px 0px;
+    box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
+    box-sizing: border-box;
     color: white;
     z-index: 20;
+    font-size: 18px;
 }
 
 body nav a {
+    align-self: center;
     text-decoration: none;
+<<<<<<< HEAD
     font-size: 20px;
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    padding: 10px;
+    color: white;
+>>>>>>> 2490d27 (Update to nav bar)
 }
 
 body nav a:visited {
@@ -83,6 +99,9 @@ body nav a:visited {
     justify-items: center;
     align-items: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2490d27 (Update to nav bar)
 }
 
 hr {
@@ -100,7 +119,11 @@ nav button {
     cursor: pointer;
     width: 100%;
     color: white;
+<<<<<<< HEAD
     padding: 20px 10px;
+=======
+    padding: 10px;
+>>>>>>> 2490d27 (Update to nav bar)
     font-size: 18px;
 }
 
@@ -114,14 +137,21 @@ nav .dropdown .content {
     overflow: hidden;
     max-height: 0px;
     flex-direction: column;
+<<<<<<< HEAD
     background: #080808;
     gap: .3rem;
     padding-left: 1rem;
     transition: max-height 0.5s ease-in-out; /* Animate max-height */
+=======
+    gap: .3rem;
+    padding-left: 1rem;
+    transition: max-height 1s ease; /* Animate max-height */
+>>>>>>> 2490d27 (Update to nav bar)
     font-size: 15px;
 }
 
 nav .dropdown.open .content {
+<<<<<<< HEAD
     max-height: 250px;
 }
 
@@ -147,3 +177,8 @@ nav .dropdown button span.rotate {
 =======
 }
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    max-height: 200px;
+}
+
+>>>>>>> 2490d27 (Update to nav bar)
