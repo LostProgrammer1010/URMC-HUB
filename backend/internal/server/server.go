@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/go-ldap/ldap/v3"
@@ -15,7 +16,7 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	}
 
 	// Bind to the server (Allows for searching)
-	//err = l.Bind(fmt.Sprintf("URMC-sh\\%s", username), password)
+	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", username), password)
 
 	return
 

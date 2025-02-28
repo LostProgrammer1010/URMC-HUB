@@ -191,4 +191,3 @@ function goToFirstLink(event) {
     filter.value = "";
     filterSearch();
 }
-
