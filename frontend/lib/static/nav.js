@@ -31,6 +31,5 @@ document.body.insertAdjacentHTML('afterbegin',
     // nextElementSibling
 function drop(element) {
     const parent = element.parentElement
-
     parent.classList.toggle('open')
 }
