@@ -32,10 +32,14 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	matches := AD.UsersSearch(search)
 =======
 	matches := AD.SearchUsers(search)
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+	matches := AD.UsersSearch(search)
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
 
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")

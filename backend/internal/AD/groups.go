@@ -1,10 +1,16 @@
 package AD
 
 import (
+<<<<<<< HEAD
 	"backend/internal/AD"
 	"fmt"
 	"log"
 	"strings"
+=======
+	"fmt"
+	"log"
+	"time"
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
 
 	"github.com/go-ldap/ldap/v3"
 )

@@ -9,11 +9,16 @@ import (
 )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Finds all users under the URMC domain that match the search
 func UsersSearch(search string) (matches []string) {
 =======
 func SearchUsers(search string) (matches []string) {
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+// Finds all users under the URMC domain that match the search
+func UsersSearch(search string) (matches []string) {
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
 	fmt.Println(search)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
@@ -36,9 +41,13 @@ func SearchUsers(search string) (matches []string) {
 
 	for _, entry := range results.Entries {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		fmt.Println(entry.DN)
 =======
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+		fmt.Println(entry.DN)
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
 
 		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
 		ou = strings.ReplaceAll(ou, "DC=", "")
@@ -56,6 +65,9 @@ func SearchUsers(search string) (matches []string) {
 	return
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
 
 /*
 	Not working
@@ -105,5 +117,8 @@ func URUsersSearch(search string) (matches []string) {
 
 	return
 }
+<<<<<<< HEAD
 =======
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+>>>>>>> 57c1f17 (Printer Queue and Groups backend)
