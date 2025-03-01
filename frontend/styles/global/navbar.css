@@ -6,6 +6,7 @@
     background: #121212;
     padding-left: 250px;
     padding-top: 20px;
+    color: white
     /*font-family: "Open Sans", sans-serif;*/
 }
 
@@ -16,7 +17,6 @@ body nav {
     flex-direction: column;
     justify-items: center;
     text-align: center;
-    gap: 10px;
     backdrop-filter: blur(10px);
     background: #121212;
     height: 100vh;
@@ -34,7 +34,7 @@ body nav {
 body nav a {
     align-self: center;
     text-decoration: none;
-    padding: 10px;
+    padding: 20px 5px;
     color: white;
 }
 
@@ -65,7 +65,7 @@ nav button {
     cursor: pointer;
     width: 100%;
     color: white;
-    padding: 10px;
+    padding: 20px 10px;
     font-size: 18px;
 }
 
@@ -79,13 +79,33 @@ nav .dropdown .content {
     overflow: hidden;
     max-height: 0px;
     flex-direction: column;
+    background: #080808;
     gap: .3rem;
     padding-left: 1rem;
-    transition: max-height 1s ease; /* Animate max-height */
+    transition: max-height 0.5s ease-in-out; /* Animate max-height */
     font-size: 15px;
 }
 
 nav .dropdown.open .content {
-    max-height: 200px;
+    max-height: 250px;
+}
+
+nav .dropdown.open .content a {
+    padding: 20px;
+}
+
+nav .dropdown button span {
+    position: absolute;
+    right: 30px;
+    transform: rotate(0deg);
+    transition: 0.5s ease;
+}
+
+
+nav .dropdown button span.rotate {
+    position: absolute;
+    right: 30px;
+    transform: rotate(90deg);
+    transition: 0.5s ease;
 }
 

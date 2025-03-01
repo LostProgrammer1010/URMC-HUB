@@ -7,6 +7,8 @@ require (
 	golang.org/x/term v0.29.0
 )
 
+require github.com/joho/godotenv v1.5.1
+
 require (
 	github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358 // indirect
 	github.com/go-asn1-ber/asn1-ber v1.5.7 // indirect
