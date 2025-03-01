@@ -2,15 +2,15 @@
 
 // Items that would copy to clipboard
 const copyLink = {
-    "Haiku Server and Path": 
+    "haiku server and path": 
     `Server = ercd-sproxy.urmc.rochester.edu 
     Path = soapproxies-haiku`,
-    "Dimensions Tenant URL": "https://univofrochester.prd.mykronos.com",
-    "SCCM Computer Name": "SYSMGMTADMIN",
-    "Pager Number": "+15852209506",
-    "PACS Access URL": "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0",
-    "eRecord Training Request URL": "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training", 
-    "Cadance Build Request": "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence",
+    "dimensions tenant url": "https://univofrochester.prd.mykronos.com",
+    "sccm computer name": "SYSMGMTADMIN",
+    "pager number": "+15852209506",
+    "pacs access url": "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0",
+    "erecord training request url": "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training", 
+    "cadence build request": "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence",
   };
 
   // New way of storing links for HDBooksmarks (Name, Link, Picture, Description)
@@ -161,17 +161,25 @@ function filterSearch() {
 
 // Copies based on buttons pressed
 function copyToClipboard(button) {
+    const name = button.innerHTML
+    const copyNotification = document.createElement("p")
+
+    if (button.children.length != 0) {
+        return
+    }
     navigator.clipboard
-        .writeText(copyLink[button.children[0].innerHTML])
+        .writeText(copyLink[name.toLowerCase()])
         .then(function () {
-            button.children[2].innerHTML = "Copied";
+            copyNotification.textContent = "Copied"
         })
         .catch(function () {
-            button.children[2].innerHTML = "Failed to Copy";
+            copyNotification.textContent = "Failed to Copy";
         });
 
+        button.appendChild(copyNotification)
+
     setTimeout(function () {
-        button.children[2].innerHTML = "Click to Copy";
+        copyNotification.remove()
     }, 1000);
 }
 

@@ -1,8 +1,8 @@
 package get
 
 import (
+	"backend/internal/AD"
 	"backend/internal/api/option"
-	"backend/internal/server"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -31,7 +31,7 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	matches := server.SearchUsers(search)
+	matches := AD.SearchUsers(search)
 
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
