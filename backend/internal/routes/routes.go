@@ -10,6 +10,9 @@ Routes that will be need
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 All:
 GET all/search/{input}
 
@@ -20,11 +23,15 @@ GET user/{input} - pulls all information about a user
 POST user/group/add/{input} - adds user to group
 POST user/update/{input} - update user information
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 Groups
 GET groups/search/{input} - Find all Groups that match search
 GET group/members/{input} - pulls all the memebers of the ad group
 GET group/{input} - Pulls information about the AD Group
+<<<<<<< HEAD
 =======
 =======
 All:
@@ -49,6 +56,8 @@ GET groups/search/{input} - Find all Groups that match search
 GET group/members/{input} - pulls all the memebers of the ad group
 GET group/{input} - Pulls information about the AD Group
 >>>>>>> 57c1f17 (Printer Queue and Groups backend)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 Computer
 GET computers/search/{Group} - Find all computers that match Search

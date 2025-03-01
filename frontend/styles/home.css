@@ -10,6 +10,7 @@ body {
     align-items: center;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     margin-top: 75px;
@@ -17,6 +18,9 @@ body {
 =======
 
 >>>>>>> 812b99d (Updates to home page)
+=======
+
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     letter-spacing: .05rem;
     color: white
 }
@@ -29,10 +33,14 @@ body {
     align-items: center;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     column-gap: 20px;
     row-gap: 30px;
     flex-wrap: wrap;
     padding-top: 20px;
+<<<<<<< HEAD
 =======
     gap: 30px;
     flex-wrap: wrap;
@@ -44,6 +52,8 @@ body {
     flex-wrap: wrap;
     padding-top: 20px;
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 }
 
@@ -53,12 +63,16 @@ body {
     position: relative;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     width: 325px;
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
 
+<<<<<<< HEAD
 =======
     width: 350px;
 =======
@@ -73,6 +87,8 @@ body {
 =======
 
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     text-decoration: none;
     color: white;
     background: #272727;
@@ -88,6 +104,9 @@ body {
 #links a:hover {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     outline: 4px solid rgba(255,255,255,0.2);
 }
 
@@ -95,6 +114,7 @@ body {
 #links a:focus div,
 #links a:hover div {
     transform: translateY(-5px);
+<<<<<<< HEAD
 =======
     outline: 1px solid white;
 =======
@@ -111,12 +131,17 @@ body {
 =======
     transform: translateY(-5px);
 >>>>>>> ad2be78 (update to links on home page)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 .link div {
     position: absolute;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     display: flex;
     order: 0;
     align-items: center;
@@ -128,6 +153,7 @@ body {
     height: 200px;
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
+<<<<<<< HEAD
 =======
 =======
     display: flex;
@@ -146,10 +172,13 @@ body {
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
 >>>>>>> ad2be78 (update to links on home page)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 body .link img {
     width: 100%;   /* Scale the image to fit the width of the container */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     object-position: center;
@@ -158,6 +187,9 @@ body .link img {
 =======
     object-position: center;
 >>>>>>> ad2be78 (update to links on home page)
+=======
+    object-position: center;
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     object-fit: fill;  /* Ensures the image covers the div area without distortion */
 }
 
@@ -171,6 +203,7 @@ body .link img {
     order: 2;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size: 15px;
     margin-top: -5px;
 =======
@@ -179,11 +212,16 @@ body .link img {
     font-size: 15px;
     margin-top: -5px;
 >>>>>>> ad2be78 (update to links on home page)
+=======
+    font-size: 15px;
+    margin-top: -5px;
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     text-align: center;
 }
 
 /* Input */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -192,6 +230,9 @@ body .link img {
 =======
 
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 #search-container {
     position: relative;
     margin-bottom: 1rem;
@@ -218,8 +259,11 @@ body .link img {
     background: #121212;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 /*Copy button*/
@@ -227,6 +271,7 @@ body .link img {
 #top-container {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     flex-wrap: wrap;
@@ -237,6 +282,10 @@ body .link img {
     flex-wrap: wrap;
     justify-content: center;
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+    flex-wrap: wrap;
+    justify-content: center;
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
     gap: 20px;
 }
@@ -250,6 +299,9 @@ body .link img {
     color: white;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     height: 50px;
     border-radius: 10px;
     padding: 5px;
@@ -261,6 +313,7 @@ body .link img {
     margin: 0px;
 }
 
+<<<<<<< HEAD
 =======
     height: 40px;
 =======
@@ -280,6 +333,8 @@ body .link img {
 }
 
 >>>>>>> d1f630e (Re-structure of files due to import cycling)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 #top-container button:after {
     content: "";
     position: absolute;
@@ -307,6 +362,7 @@ body .link img {
     transition-duration: 0.7s, 0.15s;
     transition-timing-function: ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
 =======
 }
@@ -314,3 +370,6 @@ body .link img {
 =======
   }
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+  }
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c

@@ -6,8 +6,11 @@ A web application that provides useful information to service desk agents. Allow
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> cc2557f (Quick Start added to README)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 ## Quick Start
 
 1. Clone the repo
@@ -34,10 +37,13 @@ A web application that provides useful information to service desk agents. Allow
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> fa482fe (Create README.md)
 =======
 >>>>>>> cc2557f (Quick Start added to README)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 ## Usage
 
@@ -45,11 +51,15 @@ A web application that provides useful information to service desk agents. Allow
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 Nothing changes from the original version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
 
 ### Backend
 
 Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally. Allowing for server to make ldap request on the backend, sending information back to frontend
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 Nothing changes from the orginal version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
@@ -63,17 +73,23 @@ Backend will be a go server. That will prompt for credentials when running the b
 >>>>>>> fa482fe (Create README.md)
 =======
 >>>>>>> cc2557f (Quick Start added to README)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 
 ## Features
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 ### Active Directory
 #### Users
 - Search for people in UR, URMC Domains
 - Search for users (Type in username | First and last name to see users that match)
 - Get information about a particular user (location, AD groups they apart of)
+<<<<<<< HEAD
 =======
 ### Active Driectory
 #### Users
@@ -87,10 +103,13 @@ Backend will be a go server. That will prompt for credentials when running the b
 - Search for users (Type in username | First and last name to see users that match)
 - Get information about a particular user (location, AD groups they apart of)
 >>>>>>> c2ef4a1 (Spelling corrections)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 #### Share Drives
 - Find a share drive based name,server,AD group (Not needed the use of DMD)
 - Get the information about a AD group with one click after find the share drive for access
 #### Groups
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 - Get all the members of a Group (limitation for groups with larger number of people)
@@ -100,6 +119,9 @@ Backend will be a go server. That will prompt for credentials when running the b
 =======
 - Get all the members of a Group (limitation for groups with larger number of people)
 >>>>>>> c2ef4a1 (Spelling corrections)
+=======
+- Get all the members of a Group (limitation for groups with larger number of people)
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 - Get information about an AD group
 #### Computers
 - Search for computer by name and pulls all computer that match the search

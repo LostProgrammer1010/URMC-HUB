@@ -1,12 +1,18 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*Since navbar will be on every page styling for everypage will be on it*/
 :root {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     font-family: Roboto;
     background: #121212;
     padding-left: 250px;
@@ -41,6 +47,7 @@ body nav a {
     text-decoration: none;
     padding: 20px 5px;
     color: white;
+<<<<<<< HEAD
 =======
 /*Nav bar*/
 body {
@@ -90,6 +97,8 @@ body nav a {
 >>>>>>> 8a9ac83 (Updates to sharedrive search)
     color: white;
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 body nav a:visited {
@@ -104,8 +113,11 @@ body nav a:visited {
     align-items: center;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 hr {
@@ -125,6 +137,7 @@ nav button {
     color: white;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding: 20px 10px;
 =======
     padding: 10px;
@@ -132,6 +145,9 @@ nav button {
 =======
     padding: 20px 10px;
 >>>>>>> 8a9ac83 (Updates to sharedrive search)
+=======
+    padding: 20px 10px;
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     font-size: 18px;
 }
 
@@ -147,10 +163,14 @@ nav .dropdown .content {
     flex-direction: column;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     background: #080808;
     gap: .3rem;
     padding-left: 1rem;
     transition: max-height 0.5s ease-in-out; /* Animate max-height */
+<<<<<<< HEAD
 =======
     gap: .3rem;
     padding-left: 1rem;
@@ -162,14 +182,19 @@ nav .dropdown .content {
     padding-left: 1rem;
     transition: max-height 0.5s ease-in-out; /* Animate max-height */
 >>>>>>> 8a9ac83 (Updates to sharedrive search)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     font-size: 15px;
 }
 
 nav .dropdown.open .content {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8a9ac83 (Updates to sharedrive search)
+=======
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     max-height: 250px;
 }
 
@@ -191,6 +216,7 @@ nav .dropdown button span.rotate {
     transform: rotate(90deg);
     transition: 0.5s ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 =======
@@ -203,3 +229,7 @@ nav .dropdown button span.rotate {
 }
 
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+}
+
+>>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
