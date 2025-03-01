@@ -51,17 +51,6 @@ async function lookUpUsers(input) {
 }
 */
 
-
-for (let i=0; i<10; i++){
-  document.getElementById("users").innerHTML += `
-    <tr onclick="pullUpUser(this)">
-      <td data-label="Name">Dustin Meyer</td>
-      <td data-label="Username">dmeyer20</td>
-      <td data-label="OU">University of Rochester</td>
-    </tr>
-        `
-}
-
 async function lookUpUsers(input) {
 
   document.getElementById("loading").style.display = "flex"
@@ -116,5 +105,5 @@ function pullUpUser(row) {
   const username = row.children[1].innerHTML
   console.log(username)
   localStorage.setItem("username", username)
-  window.location.href = "../Pages/userinformation.html"
+  window.location.href = "../pages/user.html"
 }

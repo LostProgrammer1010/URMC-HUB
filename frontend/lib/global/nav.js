@@ -8,18 +8,18 @@ document.body.insertAdjacentHTML('afterbegin',
                 </a>
                 <hr>
                 <div class="dropdown">
-                    <button onClick="drop(this)">LDAP Search</button>
+                    <button onClick="drop(this)">LDAP Search <span>></span></button>
                         <div class="content">
-                                <a href="./users.html">Users</a>
+                                <a href="./searchusers.html">Users</a>
                                 <a href="#">Computers</a>
                                 <a href="#">Group</a>
-                                <a href="#">Share Drives</a>
+                                <a href="./sharedrive.html">Share Drives</a>
                         </div>
                     </div>
                 <hr>
-                <a href="#">System Summary</a>
+                <a href="./systemsummary.html">System Summary</a>
                 <hr>
-                <a href="#">AD Groups</a>
+                <a href="./groupsadd.html">AD Groups</a>
                 <hr>
                 <a href="#">eRecord Group Summaries</a>
                 </div>
@@ -32,4 +32,5 @@ document.body.insertAdjacentHTML('afterbegin',
 function drop(element) {
     const parent = element.parentElement
     parent.classList.toggle('open')
+    element.children[0].classList.toggle('rotate')
 }
