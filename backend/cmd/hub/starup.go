@@ -16,7 +16,11 @@ func AddToStartup() {
 	defer ole.CoUninitialize()
 
 	startupLocation := fmt.Sprintf("C:/Users/%s/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Server.lnk", AD.Username)
+<<<<<<< HEAD
 	binaryFile := fmt.Sprintf("C:/Users/%s/Documents/Go/Service Desk HUB/backend/bin/hub.exe", AD.Username)
+=======
+	binaryFile := fmt.Sprintf("C:/users/%s/Documents/Go/Megatool/backend/bin/megatool.exe", AD.Username)
+>>>>>>> c6133bd (Fixing structure due to import cycling)
 
 	_, e := os.Stat(startupLocation)
 
