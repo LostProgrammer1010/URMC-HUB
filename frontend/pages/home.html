@@ -12,28 +12,22 @@
 
     </head>
     <body>
-            <form id="search-container" onsubmit="goToFirstLink(event)">
+        <script src="../lib/global/nav.js"></script>
+        <form id="search-container" onsubmit="goToFirstLink(event)">
 
-                <label for="filter" id="title">Search</label>
-                <input type="text" id="filter" name="filter"  onkeyup="filterSearch()">
+            <label for="filter" id="title">Search</label>
+            <input type="text" id="filter" name="filter"  onkeyup="filterSearch()">
 
-            </form>
+        </form>
 
 
         <div id="top-container">
-            <button onclick="copyToClipboard(this)">Cadence Build Request</button>
-            <button onclick="copyToClipboard(this)">PACS Access URL</button>
-            <button onclick="copyToClipboard(this)">Haiku Server and Path</button>
-            <button onclick="copyToClipboard(this)">Dimensions Tenant URL</button>
-            <button onclick="copyToClipboard(this)">SCCM Computer Name</button>
-            <button onclick="copyToClipboard(this)">Pager Number</button>
-            <button onclick="copyToClipboard(this)">eRecord Training Request URL</button>
         </div>
         <div id="links">
         </div>
     </body>
 
     <script src="../lib/static/hdbookmarks.js"></script>
-    <script src="../lib/global/nav.js"></script>
+
     
 </html>

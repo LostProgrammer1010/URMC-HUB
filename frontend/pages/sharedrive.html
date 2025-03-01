@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/global/navbar.css">
+        <link rel="stylesheet" href="../styles/users.css">
+
+    </head>
+    <body>
+        <script src="../lib/global/nav.js"></script>
+
+        <label for="name">Search Share Drive:</label>
+        <input type="text" id="name" name="name">
+
+        <table>
+            <caption>Share Drive Found</caption>
+            <thead>
+              <tr>
+                <th scope="col">Server</th>
+                <th scope="col">Name</th>
+                <th scope="col">AD Group</th>
+              </tr>
+            </thead>
+            <tbody id="users">
+            </tbody>
+        </table>
+
+    </body>
+
+    <script src="../lib/backend/share drives/sharedrive.js"></script>
+</html>

@@ -33,6 +33,7 @@ func NewRouter() http.Handler {
 
 	mux.HandleFunc("/groups/search/", get.GroupsSearch)
 	mux.HandleFunc("/users/search/", get.UsersSearch)
+	mux.HandleFunc("/sharedrive/search/", get.SharedriveSearch)
 
 	return mux
 }
