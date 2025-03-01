@@ -4,6 +4,31 @@
 
 A web application that provides useful information to service desk agents. Allowing for faster searching for information rather than having to open multiple application to gather information on a call. 
 
+## Quick Start
+
+1. Clone the repo
+
+2. Install [GoLang](https://go.dev/doc/install) (Required for Beta)
+
+3. Navigate to directory backend/cmd/hub in terminal
+    ```sh
+    cd backend/cmd/hub
+    ```
+4. Build the project in binary directory
+    ```sh
+    go build -o ..\..\bin\
+    ```
+5. Execute the hub.exe in backend/bin
+6. Put in the AD Credentials and Server will start
+![URMC Banner](./README%20Photos/Terminal%20Instruction.png)
+7. Minmize (Runs in background)
+8. Navigate to directory frontend/pages 
+    ```sh
+    cd /frontend/pages
+    ```
+9. Open home.html in web browser
+
+
 
 ## Usage
 
@@ -13,13 +38,14 @@ Nothing changes from the original version of HDBookMarks. Hosted as static html 
 
 ### Backend
 
-Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally.
+Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally. Allowing for server to make ldap request on the backend, sending information back to frontend
 
 
 ## Features
 
 ### Active Directory
 #### Users
+- Search for people in UR, URMC Domains
 - Search for users (Type in username | First and last name to see users that match)
 - Get information about a particular user (location, AD groups they apart of)
 #### Share Drives
