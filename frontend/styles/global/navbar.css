@@ -51,6 +51,7 @@ body {
     background: #121212;
     padding-left: 250px;
     padding-top: 20px;
+    color: white
     /*font-family: "Open Sans", sans-serif;*/
 }
 
@@ -61,7 +62,6 @@ body nav {
     flex-direction: column;
     justify-items: center;
     text-align: center;
-    gap: 10px;
     backdrop-filter: blur(10px);
     background: #121212;
     height: 100vh;
@@ -80,10 +80,14 @@ body nav a {
     align-self: center;
     text-decoration: none;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size: 20px;
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 =======
     padding: 10px;
+=======
+    padding: 20px 5px;
+>>>>>>> 8a9ac83 (Updates to sharedrive search)
     color: white;
 >>>>>>> 2490d27 (Update to nav bar)
 }
@@ -120,10 +124,14 @@ nav button {
     width: 100%;
     color: white;
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding: 20px 10px;
 =======
     padding: 10px;
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+    padding: 20px 10px;
+>>>>>>> 8a9ac83 (Updates to sharedrive search)
     font-size: 18px;
 }
 
@@ -138,6 +146,7 @@ nav .dropdown .content {
     max-height: 0px;
     flex-direction: column;
 <<<<<<< HEAD
+<<<<<<< HEAD
     background: #080808;
     gap: .3rem;
     padding-left: 1rem;
@@ -147,11 +156,20 @@ nav .dropdown .content {
     padding-left: 1rem;
     transition: max-height 1s ease; /* Animate max-height */
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+    background: #080808;
+    gap: .3rem;
+    padding-left: 1rem;
+    transition: max-height 0.5s ease-in-out; /* Animate max-height */
+>>>>>>> 8a9ac83 (Updates to sharedrive search)
     font-size: 15px;
 }
 
 nav .dropdown.open .content {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8a9ac83 (Updates to sharedrive search)
     max-height: 250px;
 }
 
@@ -172,6 +190,7 @@ nav .dropdown button span.rotate {
     right: 30px;
     transform: rotate(90deg);
     transition: 0.5s ease;
+<<<<<<< HEAD
 }
 
 =======
@@ -179,6 +198,8 @@ nav .dropdown button span.rotate {
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
 =======
     max-height: 200px;
+=======
+>>>>>>> 8a9ac83 (Updates to sharedrive search)
 }
 
 >>>>>>> 2490d27 (Update to nav bar)
