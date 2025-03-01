@@ -1,16 +1,9 @@
 package AD
 
 import (
-<<<<<<< HEAD
-	"backend/internal/AD"
 	"fmt"
 	"log"
 	"strings"
-=======
-	"fmt"
-	"log"
-	"time"
->>>>>>> 57c1f17 (Printer Queue and Groups backend)
 
 	"github.com/go-ldap/ldap/v3"
 )
@@ -19,7 +12,7 @@ import (
 func GroupsSearch(search string) (matches []string) {
 	fmt.Println(search)
 
-	l, err := AD.ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
 	defer l.Close()
 

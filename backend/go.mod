@@ -7,7 +7,11 @@ require (
 	golang.org/x/term v0.29.0
 )
 
-require github.com/joho/godotenv v1.5.1
+require (
+	github.com/joho/godotenv v1.5.1 // direct
+	golang.org/x/crypto v0.31.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+)
 
 require (
 	github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358 // indirect
