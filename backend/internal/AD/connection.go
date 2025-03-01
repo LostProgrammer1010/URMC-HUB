@@ -1,6 +1,7 @@
 package AD
 
 import (
+<<<<<<< HEAD
 	"backend/internal/utils"
 	"fmt"
 	"log"
@@ -11,8 +12,17 @@ import (
 	"golang.org/x/term"
 )
 
+<<<<<<<< HEAD:backend/internal/AD/connection.go
 var Username, Password string
 
+=======
+	"fmt"
+	"log"
+
+	"github.com/go-ldap/ldap/v3"
+)
+
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 
 	// Connect to Server
@@ -22,11 +32,19 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	}
 
 	// Bind to the server (Allows for searching)
+<<<<<<< HEAD
 	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", Username), Password)
+=======
+	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", Username), password)
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 
 	return
 
 }
+<<<<<<< HEAD
+========
+var Username, password string
+>>>>>>>> d1f630e (Re-structure of files due to import cycling):backend/internal/AD/login.go
 
 // Prompts for username and password
 func Login() {
@@ -49,7 +67,11 @@ func Login() {
 			continue
 		}
 
+<<<<<<<< HEAD:backend/internal/AD/connection.go
 		if Username == "" || Password == "" {
+========
+		if Username == "" || password == "" {
+>>>>>>>> d1f630e (Re-structure of files due to import cycling):backend/internal/AD/login.go
 			log.Fatal("Server will not start with out credentials")
 		}
 
@@ -60,3 +82,5 @@ func Login() {
 	}
 	utils.ClearTerm()
 }
+=======
+>>>>>>> d1f630e (Re-structure of files due to import cycling)

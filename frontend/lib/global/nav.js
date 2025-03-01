@@ -32,5 +32,8 @@ document.body.insertAdjacentHTML('afterbegin',
 function drop(element) {
     const parent = element.parentElement
     parent.classList.toggle('open')
+<<<<<<< HEAD
     element.children[0].classList.toggle('rotate')
+=======
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 }

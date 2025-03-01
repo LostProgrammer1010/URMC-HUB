@@ -28,6 +28,7 @@ body {
     justify-content: center;
     align-items: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
     column-gap: 20px;
     row-gap: 30px;
     flex-wrap: wrap;
@@ -37,6 +38,12 @@ body {
     flex-wrap: wrap;
     padding: 20px;
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+    column-gap: 20px;
+    row-gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 
 }
 
@@ -44,6 +51,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 325px;
     height: 125px;
@@ -53,11 +61,18 @@ body {
 
 =======
     width: 350px;
+=======
+    width: 325px;
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
+<<<<<<< HEAD
 >>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
+=======
+
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
     text-decoration: none;
     color: white;
     background: #272727;
@@ -213,10 +228,15 @@ body .link img {
     display: flex;
     flex-direction: row;
 <<<<<<< HEAD
+<<<<<<< HEAD
     flex-wrap: wrap;
     justify-content: center;
 =======
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+    flex-wrap: wrap;
+    justify-content: center;
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 
     gap: 20px;
 }
@@ -228,6 +248,7 @@ body .link img {
     background: #121212;
     box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
     color: white;
+<<<<<<< HEAD
 <<<<<<< HEAD
     height: 50px;
     border-radius: 10px;
@@ -242,11 +263,23 @@ body .link img {
 
 =======
     height: 40px;
+=======
+    height: 50px;
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
     border-radius: 10px;
+    padding: 5px;
     text-align: center;
 }
 
+<<<<<<< HEAD
 >>>>>>> 2490d27 (Update to nav bar)
+=======
+#top-container button p {
+    padding-top: 5px;
+    margin: 0px;
+}
+
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 #top-container button:after {
     content: "";
     position: absolute;

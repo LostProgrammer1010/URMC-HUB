@@ -1,6 +1,7 @@
 package AD
 
 import (
+	"backend/internal/AD"
 	"fmt"
 	"log"
 	"strings"
@@ -12,7 +13,7 @@ import (
 func GroupsSearch(search string) (matches []string) {
 	fmt.Println(search)
 
-	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	l, err := AD.ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
 	defer l.Close()
 

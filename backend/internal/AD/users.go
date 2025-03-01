@@ -8,8 +8,12 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
+<<<<<<< HEAD
 // Finds all users under the URMC domain that match the search
 func UsersSearch(search string) (matches []string) {
+=======
+func SearchUsers(search string) (matches []string) {
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 	fmt.Println(search)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
@@ -31,7 +35,10 @@ func UsersSearch(search string) (matches []string) {
 	results, _ := l.Search(searchRequest)
 
 	for _, entry := range results.Entries {
+<<<<<<< HEAD
 		fmt.Println(entry.DN)
+=======
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 
 		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
 		ou = strings.ReplaceAll(ou, "DC=", "")
@@ -48,6 +55,7 @@ func UsersSearch(search string) (matches []string) {
 
 	return
 }
+<<<<<<< HEAD
 
 /*
 	Not working
@@ -97,3 +105,5 @@ func URUsersSearch(search string) (matches []string) {
 
 	return
 }
+=======
+>>>>>>> d1f630e (Re-structure of files due to import cycling)

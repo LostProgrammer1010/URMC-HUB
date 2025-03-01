@@ -4,6 +4,7 @@ import (
 	"backend/internal/routes"
 	"fmt"
 	"net/http"
+<<<<<<< HEAD
 <<<<<<< HEAD:backend/internal/server/host.go
 =======
 
@@ -25,6 +26,12 @@ func main() {
 =======
 	server.Login() //Must Login before starting the server
 >>>>>>> 2490d27 (Update to nav bar):backend/cmd/megatool/main.go
+=======
+)
+
+func Start() {
+	//Must Login before starting the server
+>>>>>>> d1f630e (Re-structure of files due to import cycling)
 	router := routes.NewRouter()
 
 	port := 8080
