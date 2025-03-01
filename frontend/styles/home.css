@@ -19,9 +19,10 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    column-gap: 20px;
+    row-gap: 30px;
     flex-wrap: wrap;
-    padding: 20px;
+    padding-top: 20px;
 
 }
 
@@ -29,11 +30,12 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 350px;
+    width: 325px;
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
+
     text-decoration: none;
     color: white;
     background: #272727;
@@ -65,7 +67,7 @@ body {
     border-radius: 20px;
     background: #272727;
     top: -70px;
-    width: 85%;
+    width: 80%;
     height: 200px;
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
@@ -124,6 +126,8 @@ body .link img {
 #top-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
     gap: 20px;
 }
@@ -135,9 +139,15 @@ body .link img {
     background: #121212;
     box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
     color: white;
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
+    padding: 5px;
     text-align: center;
+}
+
+#top-container button p {
+    padding-top: 5px;
+    margin: 0px;
 }
 
 #top-container button:after {
