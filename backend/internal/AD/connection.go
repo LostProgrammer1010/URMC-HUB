@@ -11,7 +11,7 @@ import (
 	"golang.org/x/term"
 )
 
-var Username, password string
+var Username, Password string
 
 func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 
@@ -22,7 +22,7 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	}
 
 	// Bind to the server (Allows for searching)
-	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", Username), password)
+	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", Username), Password)
 
 	return
 
@@ -38,7 +38,7 @@ func Login() {
 
 		fmt.Println("Enter Password: ")
 		temp, _ := term.ReadPassword(int(os.Stdin.Fd()))
-		password = string(temp[:])
+		Password = string(temp[:])
 
 		l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 
@@ -49,7 +49,7 @@ func Login() {
 			continue
 		}
 
-		if Username == "" || password == "" {
+		if Username == "" || Password == "" {
 			log.Fatal("Server will not start with out credentials")
 		}
 

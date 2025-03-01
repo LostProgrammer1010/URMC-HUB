@@ -10,7 +10,8 @@ import (
 	"time"
 )
 
-func UsersSearch(w http.ResponseWriter, r *http.Request) {
+// Gets Request to Server to return the groups matching the request
+func GroupsSearch(w http.ResponseWriter, r *http.Request) {
 
 	option.EnableCORS(w, r)
 
@@ -19,7 +20,6 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	time.Sleep(1 * time.Second)
-
 	search := strings.Split(r.URL.Path, "/")[3]
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
@@ -31,7 +31,7 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	matches := AD.UsersSearch(search)
+	matches := AD.GroupsSearch(search)
 
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
