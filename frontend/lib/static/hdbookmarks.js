@@ -1,10 +1,6 @@
 
 
 // Items that would copy to clipboard
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
 const copyLink = new Map([
     ["Haiku Server & Path", `Server = ercd-sproxy.urmc.rochester.edu Path = soapproxies-haiku`],
     ["Dimensions Tenant Url", "https://univofrochester.prd.mykronos.com"],
@@ -14,22 +10,6 @@ const copyLink = new Map([
     ["eRecord Training Request Url", "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training"], 
     ["Cadence Build Request", "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence"],
   ]);
-<<<<<<< HEAD
-=======
-const copyLink = {
-    "haiku server and path": 
-    `Server = ercd-sproxy.urmc.rochester.edu 
-    Path = soapproxies-haiku`,
-    "dimensions tenant url": "https://univofrochester.prd.mykronos.com",
-    "sccm computer name": "SYSMGMTADMIN",
-    "pager number": "+15852209506",
-    "pacs access url": "https://urmcprod.service-now.com/sp?id=sc_cat_item&sys_id=78999f871bd5511089d184c3604bcbd0",
-    "erecord training request url": "https://urmcprod.service-now.com/sp?id=sc_cat_item&table=sc_cat_item&sys_id=cb6380f6db42f340646c273605961941&searchTerm=Training", 
-    "cadence build request": "https://urmcprod.service-now.com/sp?id=sc_cat_item_guide&table=sc_cat_item&sys_id=8f132f6a1b8d551065bec9d3604bcbc5&searchTerm=cadence",
-  };
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
 
   // New way of storing links for HDBooksmarks (Name, Link, Picture, Description)
 all_links = [
@@ -180,34 +160,15 @@ function filterSearch() {
 // Copies based on buttons pressed
 function copyToClipboard(button) {
     const name = button.innerHTML
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
     console.log(copyLink[name])
     const copyNotification = document.createElement("p")
 
     
-<<<<<<< HEAD
-=======
-    const copyNotification = document.createElement("p")
-
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
     if (button.children.length != 0) {
         return
     }
     navigator.clipboard
-<<<<<<< HEAD
-<<<<<<< HEAD
         .writeText(copyLink.get(name))
-=======
-        .writeText(copyLink[name.toLowerCase()])
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
-        .writeText(copyLink.get(name))
->>>>>>> 8a9ac83 (Updates to sharedrive search)
         .then(function () {
             copyNotification.textContent = "Copied"
         })
@@ -239,10 +200,6 @@ function goToFirstLink(event) {
     filter.value = "";
     filterSearch();
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
 
 buttonContainer = document.getElementById("top-container")
 for (const key of copyLink.keys()) {
@@ -250,8 +207,3 @@ for (const key of copyLink.keys()) {
     
 
 }
-<<<<<<< HEAD
-=======
->>>>>>> 2490d27 (Update to nav bar)
-=======
->>>>>>> 8a9ac83 (Updates to sharedrive search)
