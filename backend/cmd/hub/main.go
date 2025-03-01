@@ -15,6 +15,7 @@ import (
 func main() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*Tester can setup .env in cmd/hub with username name and password to bypass login*/
 
 	err := godotenv.Load()
@@ -28,6 +29,8 @@ func main() {
 	//AddToStartup() //once application is finished this can be turn on to put application in startup folder
 =======
 	// Route Handling
+=======
+>>>>>>> cc2557f (Quick Start added to README)
 	AD.Login()
 	AddToStartup()
 >>>>>>> c6133bd (Fixing structure due to import cycling)

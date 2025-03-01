@@ -9,6 +9,7 @@ import (
 Routes that will be need
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 All:
 GET all/search/{input}
 
@@ -24,6 +25,11 @@ GET groups/search/{input} - Find all Groups that match search
 GET group/members/{input} - pulls all the memebers of the ad group
 GET group/{input} - Pulls information about the AD Group
 =======
+=======
+All:
+GET all/search/{input}
+
+>>>>>>> cc2557f (Quick Start added to README)
 Users:
 GET users/search/{username} - Finds all users that match search
 GET user/{username} - pulls all information about a user

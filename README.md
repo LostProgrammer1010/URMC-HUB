@@ -5,6 +5,9 @@
 A web application that provides useful information to service desk agents. Allowing for faster searching for information rather than having to open multiple application to gather information on a call. 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cc2557f (Quick Start added to README)
 ## Quick Start
 
 1. Clone the repo
@@ -30,8 +33,11 @@ A web application that provides useful information to service desk agents. Allow
 9. Open home.html in web browser
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> fa482fe (Create README.md)
+=======
+>>>>>>> cc2557f (Quick Start added to README)
 
 ## Usage
 
@@ -44,6 +50,7 @@ Nothing changes from the original version of HDBookMarks. Hosted as static html 
 ### Backend
 
 Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally. Allowing for server to make ldap request on the backend, sending information back to frontend
+<<<<<<< HEAD
 =======
 Nothing changes from the orginal version of HDBookMarks. Hosted as static html files on share drive and will just need to be open to view the application.
 =======
@@ -54,6 +61,8 @@ Nothing changes from the original version of HDBookMarks. Hosted as static html 
 
 Backend will be a go server. That will prompt for credentials when running the binary exe, once the credential are verified the server will start. Then all the communication between the frontend and backend will work normally.
 >>>>>>> fa482fe (Create README.md)
+=======
+>>>>>>> cc2557f (Quick Start added to README)
 
 
 ## Features
@@ -74,6 +83,7 @@ Backend will be a go server. That will prompt for credentials when running the b
 =======
 ### Active Directory
 #### Users
+- Search for people in UR, URMC Domains
 - Search for users (Type in username | First and last name to see users that match)
 - Get information about a particular user (location, AD groups they apart of)
 >>>>>>> c2ef4a1 (Spelling corrections)
