@@ -7,7 +7,6 @@ import (
 
 func main() {
 
-	// Route Handling
 	AD.Login()
 	AddToStartup()
 	server.Start()

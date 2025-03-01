@@ -8,6 +8,9 @@ import (
 /*
 Routes that will be need
 
+All:
+GET all/search/{input}
+
 Users:
 GET users/search/{username} - Finds all users that match search
 GET user/{username} - pulls all information about a user
