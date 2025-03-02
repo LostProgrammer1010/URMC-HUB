@@ -96,48 +96,5 @@ table {
     }
   }
 
-  /* Loading */
-
-.loading {
-  display: none;
-  position: relative;
-  gap: 20px;
-  justify-self: center;
-  margin-top: 50px;
-}
-
-.loading .circle {
-  background-color: white;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-  animation: loading 2s infinite;
-}
-
-.loading #one {
-  animation-delay: 0s;
-  left: -40px;
-}
-.loading #two {
-  animation-delay: .2s;
-}
-.loading #three {
-  animation-delay: .4s;
-  left: 40px;
-}
-
-
-@keyframes loading {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(30px);
-    width: 25px;
-    height: 8px;
-    border-radius: 25px;
-  }
-
-}
 
 

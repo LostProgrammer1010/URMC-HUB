@@ -1,9 +1,6 @@
 package main
 
-import (
-	"backend/internal/AD"
-	"backend/internal/server"
-)
+import "backend/internal/server"
 
 func main() {
 
@@ -14,8 +11,10 @@ func main() {
 	//AD.Username = os.Getenv("username")
 	//AD.Password = os.Getenv("password")
 
-	AD.Login()
-	AddToStartup() //once application is finished this can be turn on to put application in startup folder
+	//AD.Login()
+	//AddToStartup() //once application is finished this can be turn on to put application in startup folder
 	server.Start()
+
+	//post.FindShareDrive("NTSDRIVE05")
 
 }

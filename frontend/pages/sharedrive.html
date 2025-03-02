@@ -1,7 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="../styles/global/navbar.css">
-        <link rel="stylesheet" href="../styles/users.css">
+        <link rel="stylesheet" href="../styles/sharedrive.css">
+        <link rel="stylesheet" href="../styles/loading.css">
 
     </head>
     <body>
@@ -9,19 +10,25 @@
 
         <label for="name">Search Share Drive:</label>
         <input type="text" id="name" name="name">
+        <button onclick="prevPage()" id="prevBtn"><</button><p id="page-info"></p><button onclick="nextPage()" id="nextBtn">></button>
 
         <table>
             <caption>Share Drive Found</caption>
             <thead>
               <tr>
-                <th scope="col">Server</th>
-                <th scope="col">Name</th>
                 <th scope="col">AD Group</th>
+                <th scope="col">//Server//Name</th>
               </tr>
             </thead>
-            <tbody id="users">
+            
+            <tbody id="sharedrives">
             </tbody>
         </table>
+        <div class="loading" id="loading">
+          <div class="circle" id="one"></div>
+          <div class="circle" id="two"></div>
+          <div class="circle" id="three"></div>
+        </div>
 
     </body>
 
