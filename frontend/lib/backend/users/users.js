@@ -1,3 +1,7 @@
+let currentPage = 1
+const rowsPerPage = 10
+var pagingdata;
+
 
 async function lookUpUsers(input) {
 
@@ -13,31 +17,10 @@ async function lookUpUsers(input) {
   const response = fetch(`http://localhost:8080/users/search/${input}`)
     .then(response => response.json()) // Parse the JSON response from the server
     .then(data => {
-      console.log(data)
-      if (data == null) {
-        document.getElementById("loading").style.display = "none"
-        document.getElementById("users").innerHTML += `
-          <tr>
-            <td data-label="Name">No Users Found</td>
-            <td data-label="Username">No Users Found</td>
-            <td data-label="OU">No Users Found</td>
-          </tr>
-          `
-        return
-      }  
-      document.getElementById("loading").style.display = "none"
-      for (let i = 0; i < data.length; i++) {
+      pagingdata = data
+      currentPage = 1
 
-        splitdata = data[i].split("|")
-
-        document.getElementById("users").innerHTML += `
-          <tr onclick="pullUpUser(this)">
-            <td data-label="Name">${splitdata[1]}</td>
-            <td data-label="Username">${splitdata[0]}</td>
-            <td data-label="OU">${splitdata[2]}</td>
-          </tr>
-          `
-      }
+      displayTable(currentPage)
 
     })
     .catch(error=> {
@@ -47,11 +30,67 @@ async function lookUpUsers(input) {
     })
 }
 
-
-
 function pullUpUser(row) {
   const username = row.children[1].innerHTML
   console.log(username)
   localStorage.setItem("username", username)
   window.location.href = "../pages/user.html"
 }
+
+function displayTable(page) {
+  document.getElementById("loading").style.display = "none"
+  const tableBody = document.getElementById("users");
+  tableBody.innerHTML = "";
+
+  const start = (page - 1) * rowsPerPage;
+  const end = start + rowsPerPage;
+
+  
+  
+  if (pagingdata == null) {
+    tableBody.innerHTML += `
+      <tr>
+        <td data-label="Name">No Users Found</td>
+        <td data-label="Username">No Users Found</td>
+        <td data-label="OU">No Users Found</td>
+      </tr>
+      `
+    return
+  }  
+  const paginatedData = pagingdata.slice(start, end);
+
+
+  paginatedData.forEach(element => {
+    splitdata = element.split("|")
+
+    document.getElementById("users").innerHTML += `
+      <tr onclick="pullUpUser(this)">
+        <td data-label="Name">${splitdata[1]}</td>
+        <td data-label="Username">${splitdata[0]}</td>
+        <td data-label="OU">${splitdata[2]}</td>
+      </tr>
+      `
+  });
+
+  // Update page info
+  document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(pagingdata.length / rowsPerPage)}`;
+
+  // Enable/Disable buttons based on page number
+  document.getElementById("prevBtn").disabled = currentPage === 1;
+  document.getElementById("nextBtn").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+      currentPage--;
+      displayTable(currentPage);
+  }
+}
+
+function nextPage() {
+  if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
+      currentPage++;
+      displayTable(currentPage);
+  }
+}
+
