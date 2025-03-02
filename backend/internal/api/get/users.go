@@ -32,10 +32,6 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	matches := AD.UsersSearch(search)
-<<<<<<< HEAD
-=======
-
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status

@@ -10,10 +10,6 @@ import (
 
 // Finds all users under the URMC domain that match the search
 func UsersSearch(search string) (matches []string) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 	fmt.Println(search)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")

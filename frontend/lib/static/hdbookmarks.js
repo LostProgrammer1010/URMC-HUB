@@ -2,7 +2,7 @@
 
 // Items that would copy to clipboard
 const copyLink = new Map([
-    ["Haiku Server & Path", `Server = ercd-sproxy.urmc.rochester.edu Path = soapproxies-haiku`],
+    ["Haiku Server and Path", `Server = ercd-sproxy.urmc.rochester.edu\nPath = soapproxies-haiku`],
     ["Dimensions Tenant Url", "https://univofrochester.prd.mykronos.com"],
     ["SCCM Computer Name", "SYSMGMTADMIN"],
     ["Pager Number", "+15852209506"],
@@ -137,13 +137,13 @@ function filterSearch() {
     else {
         all_links.forEach(element => {
             build += `
-<a class="link" href="${element[1]}" target="_blank" tabindex="0">
-    <div>
-        <img src="../assets/${element[2]}" loading="lazy"/>
-    </div>
-    <h1>${element[0]} </h1>
-    <p>${element[3]}</p>
-</a>
+                    <a class="link" href="${element[1]}" target="_blank" tabindex="0">
+                        <div>
+                            <img src="../assets/${element[2]}" loading="lazy"/>
+                        </div>
+                        <h1>${element[0]} </h1>
+                        <p>${element[3]}</p>
+                    </a>
  ` 
         });
     }
@@ -160,7 +160,7 @@ function filterSearch() {
 // Copies based on buttons pressed
 function copyToClipboard(button) {
     const name = button.innerHTML
-    console.log(copyLink[name])
+    console.log(name)
     const copyNotification = document.createElement("p")
 
     

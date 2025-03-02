@@ -16,7 +16,7 @@ func AddToStartup() {
 	defer ole.CoUninitialize()
 
 	startupLocation := fmt.Sprintf("C:/Users/%s/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Server.lnk", AD.Username)
-	binaryFile := fmt.Sprintf("C:/Users/%s/Documents/Go/Service Desk HUB/backend/bin/hub.exe", AD.Username)
+	binaryFile := fmt.Sprintf("C:/Users/%s/Documents/Go/URMC-HUB/backend/bin/hub.exe", AD.Username)
 
 	_, e := os.Stat(startupLocation)
 

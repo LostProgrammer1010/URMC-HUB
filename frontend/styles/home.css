@@ -8,19 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    margin-top: 75px;
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-
->>>>>>> 812b99d (Updates to home page)
-=======
-
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     letter-spacing: .05rem;
     color: white
 }
@@ -31,29 +18,14 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     column-gap: 20px;
     row-gap: 30px;
     flex-wrap: wrap;
     padding-top: 20px;
-<<<<<<< HEAD
-=======
-    gap: 30px;
-    flex-wrap: wrap;
-    padding: 20px;
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
     column-gap: 20px;
     row-gap: 30px;
     flex-wrap: wrap;
     padding-top: 20px;
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 
 }
 
@@ -61,34 +33,16 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     width: 325px;
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
-
-<<<<<<< HEAD
-=======
     width: 350px;
-=======
-    width: 325px;
->>>>>>> d1f630e (Re-structure of files due to import cycling)
     height: 125px;
     padding-top: 10rem;
     border-radius: 20px;
     align-items: center;
-<<<<<<< HEAD
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     text-decoration: none;
     color: white;
     background: #272727;
@@ -102,11 +56,6 @@ body {
 }
 
 #links a:hover {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     outline: 4px solid rgba(255,255,255,0.2);
 }
 
@@ -114,34 +63,13 @@ body {
 #links a:focus div,
 #links a:hover div {
     transform: translateY(-5px);
-<<<<<<< HEAD
-=======
-    outline: 1px solid white;
-=======
     outline: 4px solid rgba(255,255,255,0.2);
->>>>>>> ad2be78 (update to links on home page)
 }
 
 
-#links a:focus div,
-#links a:hover div {
-<<<<<<< HEAD
-    outline: 1px solid white;
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    transform: translateY(-5px);
->>>>>>> ad2be78 (update to links on home page)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
-}
 
 .link div {
     position: absolute;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     display: flex;
     order: 0;
     align-items: center;
@@ -153,43 +81,12 @@ body {
     height: 200px;
     box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
     transition: ease .5s;
-<<<<<<< HEAD
-=======
-=======
-    display: flex;
->>>>>>> ad2be78 (update to links on home page)
-    order: 0;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 20px;
-    background: #272727;
-    top: -70px;
-    width: 85%;
-<<<<<<< HEAD
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    height: 200px;
-    box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
-    transition: ease .5s;
->>>>>>> ad2be78 (update to links on home page)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 body .link img {
     width: 100%;   /* Scale the image to fit the width of the container */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     object-position: center;
-=======
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    object-position: center;
->>>>>>> ad2be78 (update to links on home page)
-=======
-    object-position: center;
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
+
     object-fit: fill;  /* Ensures the image covers the div area without distortion */
 }
 
@@ -201,38 +98,16 @@ body .link img {
 
 .link p {
     order: 2;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     font-size: 15px;
     margin-top: -5px;
-=======
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-    font-size: 15px;
-    margin-top: -5px;
->>>>>>> ad2be78 (update to links on home page)
-=======
-    font-size: 15px;
-    margin-top: -5px;
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
+
+
     text-align: center;
 }
 
 /* Input */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-
->>>>>>> 2490d27 (Update to nav bar)
-=======
-
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 #search-container {
     position: relative;
     margin-bottom: 1rem;
@@ -257,13 +132,6 @@ body .link img {
     font-size: 14px;
     color: white;
     background: #121212;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2490d27 (Update to nav bar)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 }
 
 /*Copy button*/
@@ -271,22 +139,8 @@ body .link img {
 #top-container {
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     flex-wrap: wrap;
     justify-content: center;
-=======
->>>>>>> 2490d27 (Update to nav bar)
-=======
-    flex-wrap: wrap;
-    justify-content: center;
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
-    flex-wrap: wrap;
-    justify-content: center;
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
-
     gap: 20px;
 }
 
@@ -297,11 +151,6 @@ body .link img {
     background: #121212;
     box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
     color: white;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
     height: 50px;
     border-radius: 10px;
     padding: 5px;
@@ -313,28 +162,12 @@ body .link img {
     margin: 0px;
 }
 
-<<<<<<< HEAD
-=======
-    height: 40px;
-=======
-    height: 50px;
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-    border-radius: 10px;
-    padding: 5px;
-    text-align: center;
-}
 
-<<<<<<< HEAD
->>>>>>> 2490d27 (Update to nav bar)
-=======
 #top-container button p {
     padding-top: 5px;
     margin: 0px;
 }
 
->>>>>>> d1f630e (Re-structure of files due to import cycling)
-=======
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
 #top-container button:after {
     content: "";
     position: absolute;
@@ -361,15 +194,4 @@ body .link img {
     transition-property: transform, opacity;
     transition-duration: 0.7s, 0.15s;
     transition-timing-function: ease;
-<<<<<<< HEAD
-<<<<<<< HEAD
   }
-=======
-}
->>>>>>> 2e41871 (Creation of bookmarks homepage | Re-work of the searching)
-=======
-  }
->>>>>>> 2490d27 (Update to nav bar)
-=======
-  }
->>>>>>> 31750b93cbd48aac9d9ce17d2f6d7bf66dad7a0c
