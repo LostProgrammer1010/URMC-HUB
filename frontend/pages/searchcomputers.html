@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/computers.css">
+        <link rel="stylesheet" href="../styles/global/navbar.css">
+        <link rel="stylesheet" href="../styles/loading.css">
+        <title>AD User Search</title>
+
+    </head>
+    <body>
+        <script src="../lib/global/nav.js"></script>
+            <label for="name">Search Computer Name:</label>
+            <input type="text" id="name" name="name">
+            <button onclick="prevPage()" id="prevBtn"><</button><span id="page-info"></span><button onclick="nextPage()" id="nextBtn">></button>
+            <table>
+                <caption>Found Computers</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">OU</th>
+                  </tr>
+                </thead>
+                <tbody id="computers">
+                </tbody>
+            </table>
+            <div class="loading" id="loading">
+              <div class="circle" id="one"></div>
+              <div class="circle" id="two"></div>
+              <div class="circle" id="three"></div>
+            </div>
+    </body>
+
+    <script src="../lib/backend/computers/computers.js"></script>
+    <script src="../lib/backend/computers/listeners.js"></script>
+</html>

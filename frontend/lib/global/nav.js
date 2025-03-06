@@ -11,7 +11,7 @@ document.body.insertAdjacentHTML('afterbegin',
                     <button onClick="drop(this)">LDAP Search <span>></span></button>
                         <div class="content">
                                 <a href="./searchusers.html">Users</a>
-                                <a href="#">Computers</a>
+                                <a href="./searchcomputers.html">Computers</a>
                                 <a href="#">Group</a>
                                 <a href="./sharedrive.html">Share Drives</a>
                         </div>
