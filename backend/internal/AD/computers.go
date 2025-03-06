@@ -31,7 +31,6 @@ func ComputersSearch(search string) (matches []string) {
 	results, _ := l.Search(searchRequest)
 
 	for _, entry := range results.Entries {
-		fmt.Println(entry.DN)
 
 		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
 		ou = strings.ReplaceAll(ou, "DC=", "")

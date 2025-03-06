@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
-	"time"
 )
 
 // Gets Request to Server to return the groups matching the request
@@ -19,7 +18,6 @@ func GroupsSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	time.Sleep(1 * time.Second)
 	search := strings.Split(r.URL.Path, "/")[3]
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
