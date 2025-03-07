@@ -9,15 +9,12 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/go-ldap/ldap/v3"
 )
 
-// creating as objects for easier usage
-type AllServerResult struct {
-	Servers []ServerResult `json:"servers"`
-}
-
+// creating as object for easier usage
 type ServerResult struct {
 	Name string `json:"name"`
 	Count int `json:"count"`
@@ -55,24 +52,24 @@ func LockoutInfo(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func LockoutInfoData(user string) (matches []AllServerResult) {
+func LockoutInfoData(user string) (matches []ServerResult) {
 	fmt.Println(user)
 	// maybe implement channels, it's very fast in its current state
 	var servers = [...]string{"AD22PDC01", "AD22PDC02", "AD22PDC03", "AD22PDC04", "AD22PDC05", "AD22SDC01", "AD22SDC02", "AD22SDC03", "AD22SDC04", "AD22SDC05"}
 
-	all := new(AllServerResult)
-
 	for _, server := range servers {
 		
 		l, err := AD.ConnectToServer("LDAP://" + server)
-		fmt.Println(err)
+		if (err != nil) {
+			fmt.Println(err)
+		}
 		defer l.Close()
 
 		searchRequest := ldap.NewSearchRequest(
 			"DC=urmc-sh,DC=rochester,DC=edu",
 			ldap.ScopeWholeSubtree,
 			ldap.NeverDerefAliases,
-			0, // Max search size 1500
+			1, // Max search size 1
 			0, // No timeout for search
 			false,
 			fmt.Sprintf("(&(objectClass=user)(SAMAccountName=%s*))", user), //Filter
@@ -83,19 +80,31 @@ func LockoutInfoData(user string) (matches []AllServerResult) {
 		results, _ := l.Search(searchRequest)
 
 		entry := results.Entries[0]
-		fmt.Println(entry.DN)
+		fmt.Print(server + " | ")
+		fmt.Print(entry.DN + " | ")
 
-		countdata := entry.GetAttributeValue("badPwdCount")
-		count, _ := strconv.Atoi(countdata)
-		time := entry.GetAttributeValue("badPasswordTime")
+		count, _ := strconv.Atoi(entry.GetAttributeValue("badPwdCount"))
+		badpwtime, _ := strconv.Atoi(entry.GetAttributeValue("badPasswordTime"))
 
-		all.Servers = append(all.Servers, ServerResult{server, count, time})
+		// Nanoseconds since 1601-01-01
+		ticks := int64(badpwtime) 
+
+		// Calculate seconds and nanoseconds offset from Unix epoch (1970)
+		seconds := ticks/10000000 - 11644473600
+		nanoseconds := (ticks%10000000)*100
+
+		// Create time.Time object
+		t := time.Unix(seconds, nanoseconds).Local()
+
+		// Format the time as a string
+		formattedTime := t.Format(time.RFC822)
+		fmt.Println(formattedTime)
+		matches = append(matches, ServerResult{server, count, formattedTime})
 
 		err = l.Unbind()
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
-	matches = append(matches, *all)
 	return
 }

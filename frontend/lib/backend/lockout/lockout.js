@@ -17,15 +17,14 @@ function getLockoutInfo() {
       var element = document.getElementById("lockoutResults")
       element.innerHTML = ""
       console.log(data)
-      console.log(data[0].servers[0].name.length)
       // Need to implement padding for heading section (may be fixed with user page)
       element.innerHTML += "Name" + " | " + "Count" + " | " + "Time" + "<br>"
-      for (let index = 0; index < data[0].servers.length; index++) {
-        element.innerHTML += data[0].servers[index].name
+      for (let index = 0; index < data.length; index++) {
+        element.innerHTML += data[index].name
         element.innerHTML += " | "
-        element.innerHTML += data[0].servers[index].count
+        element.innerHTML += data[index].count
         element.innerHTML += " | "
-        element.innerHTML += data[0].servers[index].time
+        element.innerHTML += data[index].time
         element.innerHTML += "<br>"
       }
 
