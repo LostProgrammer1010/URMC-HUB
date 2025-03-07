@@ -34,7 +34,7 @@ body nav {
     z-index: 20;
 }
 
-body button:hover,
+body nav button:hover,
 body nav a:hover {
     background-color: #080808;
 }

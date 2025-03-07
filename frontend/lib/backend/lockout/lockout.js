@@ -1,6 +1,16 @@
+getLockoutInfo()
+
 
 function getLockoutInfo() {
     const username = localStorage.getItem("username")
+
+    const loading = document.getElementById("loading")
+
+    loading.style.display = "flex"
+
+    var element = document.getElementById("lockoutResults")
+
+    element.innerHTML = "";
 
     if (username == null) {
         alert("Page error: You need to search for a user first, re-directing to user search")
@@ -27,12 +37,14 @@ function getLockoutInfo() {
         element.innerHTML += data[index].time
         element.innerHTML += "<br>"
       }
+      loading.style.display = "none"
 
     })
     .catch(error=> {
-      document.getElementById("loading").style.display = "none"
+      loading.style.display = "none"
       alert("Server not running. Please start server located here: File_path")
       alert(error)
       throw new Error("Server not running")
     })
+
 }
