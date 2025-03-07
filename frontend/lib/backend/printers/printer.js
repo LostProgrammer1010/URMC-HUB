@@ -116,6 +116,3 @@ function nextPage() {
         displayTable(currentPage);
     }
 }
-
-// Initial load
-displayTable(currentPage);

@@ -71,9 +71,7 @@ async function lookUpShareDrive(input) {
     if (pagingdata == null) {
       tableBody.innerHTML += `
         <tr>
-          <td data-label="Name">No Users Found</td>
-          <td data-label="Username">No Users Found</td>
-          <td data-label="OU">No Users Found</td>
+          <td data-label="Name">No Share Drive Found</td>
         </tr>
         `
       return
@@ -118,7 +116,5 @@ function nextPage() {
     }
 }
 
-// Initial load
-displayTable(currentPage);
   
 
