@@ -1,9 +1,17 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../styles/global/navbar.css">
-
+        <link rel="stylesheet" href="../styles/global/navbar.css" />
+        <link rel="stylesheet" href="../styles/user.css" />
     </head>
     <body>
         <script src="../lib/global/nav.js"></script>
+        <button onclick="getLockoutInfo()">Password Lockout Info</button>
+        <p id="lockoutResults"></p>
+        <div class="loading" id="loading">
+            <div class="circle" id="one"></div>
+            <div class="circle" id="two"></div>
+            <div class="circle" id="three"></div>
+        </div>
     </body>
+    <script src="../lib/backend/lockout/lockout.js"></script>
 </html>

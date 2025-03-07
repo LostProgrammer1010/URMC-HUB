@@ -41,6 +41,7 @@ func NewRouter() http.Handler {
 	mux.HandleFunc("/users/search/", get.UsersSearch)
 	mux.HandleFunc("/computers/search/", get.ComputersSearch)
 	mux.HandleFunc("/sharedrive/search/", post.ShareDriveSearch)
+	mux.HandleFunc("/lockout/", get.LockoutInfo)
 
 	return mux
 }
