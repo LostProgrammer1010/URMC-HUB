@@ -1,92 +1,110 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-body #edit {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    border: none;
-    background: none;
-    color: white;
-}
-
-body #container {
+.container {
+    display: flex;
+    justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    padding: 50px;
-    display: grid;
-    row-gap: 20px;
-    column-gap: 20px;
-    grid-auto-rows: max-content;
-}
-
-body .header {
-    display: flex;
-    grid-column-start: 1;
-    grid-column-end: 6;
     gap: 20px;
-    height: fit-content;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    overflow: hidden;
-    justify-content: center;
+    padding: 0px 30px;
+    flex-wrap: wrap;
+    height: auto;
+
 }
 
-body .header button {
-    height: 100%;
-    padding: 20px;
+.container .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+    gap: 20px;
+    width: 80%;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
+
+.container .header a {
     color: white;
-    background: none;
-    border: none;
-    font-size: large;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px;
+    font-size: 18px;
     font-weight: bold;
 }
 
-.about {
-    column-width: 100%;
-    grid-column-start: 4;
-    grid-column-end: 6;
-    width: 100%;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-
-}
-
-.information {
-    column-width: 100%;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    width: 100%;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    box-sizing: border-box;
-    justify-content: center;
-    border-radius: 20px;
-}
-
-#full-name {
+.container .information {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 100%;
+    border-radius: 20px;
+    height: fit-content;
+    background: rgba(255,255,255,0.2);
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 20px;
+}
+
+ h1{
+    flex-basis: 100%;
+    text-align: center;
+    padding: 0px;
+}
+
+.container .information div .label {
+    font-weight: bold;
+}
+
+.all-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    padding: 30px;
+    box-sizing: border-box;
+    gap: 40px;
+}
+
+.container .full-name {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    gap: 20px;
+    font-size: 50px;
+    flex-grow: 1;
+    padding: 20px;
+    font-weight: bold;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.information .content {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    justify-content: center;
+    flex-basis: 25%;
     height: fit-content;
+    background: rgba(255,255,255,0.2);
 }
+
+#member-of{
+    height: 300px;
+    background: rgba(255,255,255,0.2);
+    flex-basis: 100%;
+    border-radius: 20px;
+}
+
+#share-drives {
+    height: 300px;
+    background: rgba(255,255,255,0.2);
+    flex-basis: 100%;
+    border-radius: 20px;
+}
+
+#bad-passwords {
+    height: 300px;
+    background: rgba(255,255,255,0.2);
+    flex-basis: 100%;
+    border-radius: 20px;
+}
+

@@ -7,60 +7,96 @@
     <body>
         <script src="../lib/global/nav.js"></script>
 
-        <div id="container">
+        <div class="container">
             <div class="header">
-                <button>Lockout</button>
-                <button>Share Drives</button>
-                <button>AD Groups</button>
+                <a href="#member-of">Groups Member of</a>
+                <a href="#bad-passwords">Bad Passwords</a>
+                <a href="#share-drives">Share Drive</a>
             </div>
-
+            <div class="full-name">
+                <div class="field" id="firstName" contenteditable="false">Dustin</div>
+                <div class="field" id="lastName" contenteditable="false">Meyer</div>
+            </div>
             <div class="information">
-                <div class="content">
-                    <div class="row">
-                        <span>Username: </span><span>dmeyer20</span>
+                <h1>About</h1>
+                <div class="all-info">
+                    <div id="username">
+                        <span class="label">Username: </span>
+                        <span>dmeyer20</span>
                     </div>
-                    <div class="row">
-                        <span>Email: </span><span>dustin_meyer@URMC.rochester.edu</span>
+                    <div id="netID">
+                        <span class="label">NetID: </span>
+                        <span>dmeyer20</span>
                     </div>
-                    <div class="row">
-                        <span>NetID: </span><span>$netID</span>
+                    <div id="urid">
+                        <span class="label">URID: </span>
+                        <span>0631584894</span>
                     </div>
-                    <div class="row">
-                        <span>URID: </span><span>$URID</span>
+                    <div id="email">
+                        <span class="label">Email: </span>
+                        <span>dustin_meyer@URMC.rochester.edu</span>
                     </div>
-                    <div class="row">
-                        <span>OU: </span><span>$OU</span>
+                    <div class="field" id="phone" contenteditable="false">
+                        <span class="label">Phone: </span>
+                        <span>5852753200</span>
                     </div>
-                    <div class="row">
-                        <span>OU: </span><span>$OU</span>
+                    <div class="field" id="department" contenteditable="false">
+                        <span class="label">Department: </span>
+                        <span>ISD</span>
                     </div>
-                    <div class="row">
-                        <span>OU: </span><span>$OU</span>
+                    <div class="field" id="title" contenteditable="false">
+                        <span class="label">Title: </span>
+                        <span>Service Desk Tech I</span>
                     </div>
-                    <div class="row">
-                        <span>OU: </span><span>$OU</span>
+                    <div class="field" id="ou" contenteditable="false">
+                        <span class="label">OU: </span>
+                        <span> </span>
                     </div>
-                    
+                    <div class="field" id="title" contenteditable="false">
+                        <span class="label">Title: </span>
+                        <span>Service Desk Tech I</span>
+                    </div>
+                    <div class="field" id="location" contenteditable="false">
+                        <span class="label">Location: </span>
+                        <span>30 Corporate Woods</span>
+                    </div>
+                    <div class="field" id="lastpasswordset" contenteditable="false">
+                        <span class="label">Last Password Set: </span>
+                        <span>03/20/2025</span>
+                    </div>
+                    <div class="field" id="relationship" contenteditable="false">
+                        <span class="label">Relationship Status: </span>
+                        <span>Active</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="about">
-                <div id="full-name">
-                    <div class="field" id="firstName" contenteditable="false">Dustin</div>
-                    <div class="field" id="lastName" contenteditable="false">Meyer</div>
-                </div>
+            <div id="member-of">
+                <h1>Member of</h1>
+
             </div>
+
+            <div id="share-drives">
+                <h1>Share Drive</h1>
+
+            </div>
+
+            <div id="bad-passwords">
+                <h1>Bad Passwords</h1>
+
+            </div>
+
+
+
         </div>
-
-
-
-
-    
-
 
     </body>
 
     <script src="../lib/backend/users/user.js"></script>
 </html>
 
+
+<!--
+<div class="field" id="fieldName" contenteditable="false"></div>
+-->
 
