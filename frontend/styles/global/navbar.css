@@ -99,7 +99,7 @@ nav .dropdown .content {
 }
 
 nav .dropdown.open .content {
-    max-height: 250px;
+    max-height: 300px;
 }
 
 nav .content a {
