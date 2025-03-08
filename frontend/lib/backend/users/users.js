@@ -6,6 +6,7 @@ var pagingdata;
 
 
 async function getPreviousSearch() {
+  if (localStorage.getItem("usersCurrentPage") == null) return
   currentPage = Number(localStorage.getItem("usersCurrentPage"))
   await lookUpUsers(localStorage.getItem("usersPreviousSearch"))
   inputField.placeholder = `Previous Search "${localStorage.getItem("usersPreviousSearch")}"`
@@ -28,6 +29,7 @@ async function lookUpUsers(input) {
       pagingdata = data
 
 
+      document.getElementById("name").style.outline = ""
       displayTable(currentPage)
 
     })
@@ -88,6 +90,10 @@ function displayTable(page) {
 }
 
 function prevPage() {
+  if (pagingdata == null) {
+    document.getElementById("name").style.outline = "1px solid red"
+    return
+  }
   if (currentPage > 1) {
       currentPage--;
       displayTable(currentPage);
@@ -95,6 +101,10 @@ function prevPage() {
 }
 
 function nextPage() {
+  if (pagingdata == null) {
+    document.getElementById("name").style.outline = "1px solid red"
+    return
+  }
   if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
       currentPage++;
       displayTable(currentPage);
