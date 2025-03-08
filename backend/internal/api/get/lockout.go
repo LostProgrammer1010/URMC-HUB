@@ -97,9 +97,13 @@ func LockoutInfoData(user string) (matches []ServerResult) {
 		t := time.Unix(seconds, nanoseconds).Local()
 
 		// Format the time as a string
-		formattedTime := t.Format(time.RFC822)
+		formattedTime := t.Format("Jan 02 2006 15:04:05")
+		if (t.Format("2006") == "1600") {
+			matches = append(matches, ServerResult{server, count, "No prior attempt"})
+		} else {
+			matches = append(matches, ServerResult{server, count, formattedTime})
+		}
 		fmt.Println(formattedTime)
-		matches = append(matches, ServerResult{server, count, formattedTime})
 
 		err = l.Unbind()
 		if err != nil {
