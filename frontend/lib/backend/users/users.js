@@ -1,9 +1,22 @@
+const inputField = document.getElementById('name');
+
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
 
+async function getPreviousSearch() {
+  currentPage = Number(localStorage.getItem("usersCurrentPage"))
+  await lookUpUsers(localStorage.getItem("usersPreviousSearch"))
+  inputField.value = localStorage.getItem("usersPreviousSearch")
+
+}
+
+getPreviousSearch()
+
+
 async function lookUpUsers(input) {
+  localStorage.setItem("usersPreviousSearch", input)
 
   document.getElementById("loading").style.display = "flex"
 
@@ -18,7 +31,6 @@ async function lookUpUsers(input) {
     .then(response => response.json()) // Parse the JSON response from the server
     .then(data => {
       pagingdata = data
-      currentPage = 1
 
       displayTable(currentPage)
 
@@ -38,6 +50,7 @@ function pullUpUser(row) {
 }
 
 function displayTable(page) {
+  localStorage.setItem("usersCurrentPage", String(currentPage))
   document.getElementById("loading").style.display = "none"
   const tableBody = document.getElementById("users");
   tableBody.innerHTML = "";

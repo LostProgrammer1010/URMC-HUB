@@ -1,10 +1,21 @@
-
+const inputField = document.getElementById('name');
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
 
+async function getPreviousSearch() {
+  currentPage = Number(localStorage.getItem("computerCurrentPage"))
+  await lookUpComputers(localStorage.getItem("computerPreviousSearch"))
+  inputField.value = localStorage.getItem("computerPreviousSearch")
+
+}
+
+getPreviousSearch()
+
 async function lookUpComputers(input) {
+
+  localStorage.setItem("computerPreviousSearch", input)
 
   document.getElementById("loading").style.display = "flex"
 
@@ -19,7 +30,6 @@ async function lookUpComputers(input) {
     .then(response => response.json()) // Parse the JSON response from the server
     .then(data => {
       pagingdata = data
-      currentPage = 1
 
       displayTable(currentPage)
 
@@ -39,6 +49,7 @@ function pullUpComputer(row) {
 }
 
 function displayTable(page) {
+  localStorage.setItem("computerCurrentPage", String(currentPage))
   document.getElementById("loading").style.display = "none"
   const tableBody = document.getElementById("computers");
   tableBody.innerHTML = "";
@@ -92,6 +103,4 @@ function nextPage() {
       displayTable(currentPage);
   }
 }
-
-
 

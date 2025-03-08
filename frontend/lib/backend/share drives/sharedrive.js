@@ -1,29 +1,21 @@
+const inputField = document.getElementById('name');
+
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
 
-const input = document.getElementById('name');
+async function getPreviousSearch() {
+  currentPage = Number(localStorage.getItem("sharedrivesCurrentPage"))
+  await lookUpShareDrive(localStorage.getItem("sharedrivesPreviousSearch"))
+  inputField.value = localStorage.getItem("sharedrivesPreviousSearch")
 
-  // Check for when enter key is pressed to submit information
-document.getElementById('name').addEventListener('keydown', async function(event) {
+}
 
-    if (event.key == 'Enter') {
-      currentPage = 1
-        
-      try {
-        await lookUpShareDrive(input.value);
-      } 
-        catch (error) {
-          console.error(error)
-      }
-    }
-});
-
-
+getPreviousSearch()
 
 async function lookUpShareDrive(input) {
-
+    localStorage.setItem("sharedrivesPreviousSearch", input)
     document.getElementById("loading").style.display = "flex"
   
     document.getElementById("sharedrives").innerHTML = ""
@@ -59,6 +51,7 @@ async function lookUpShareDrive(input) {
  
 
   function displayTable(page) {
+    localStorage.setItem("sharedrivesCurrentPage", String(currentPage))
     document.getElementById("loading").style.display = "none"
     const tableBody = document.getElementById("sharedrives");
     tableBody.innerHTML = "";

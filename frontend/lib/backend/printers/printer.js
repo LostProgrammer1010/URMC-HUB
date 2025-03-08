@@ -1,27 +1,23 @@
+const inputField = document.getElementById('name');
+
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
-const input = document.getElementById('name');
 
-  // Check for when enter key is pressed to submit information
-document.getElementById('name').addEventListener('keydown', async function(event) {
+async function getPreviousSearch() {
+  currentPage = Number(localStorage.getItem("printerCurrentPage"))
+  await lookUpPrinter(localStorage.getItem("printerPreviousSearch"))
+  inputField.value = localStorage.getItem("printerPreviousSearch")
 
-    if (event.key == 'Enter') {
-      currentPage = 1
-        
-      try {
-        await lookUpPrinter(input.value);
-      } 
-        catch (error) {
-          console.error(error)
-      }
-    }
-});
+}
 
-
+getPreviousSearch()
 
 async function lookUpPrinter(input) {
+    localStorage.setItem("printerPreviousSearch", input)
+
+    console.log(localStorage.getItem("printerPreviousSearch"))
 
     document.getElementById("loading").style.display = "flex"
   
@@ -48,7 +44,7 @@ async function lookUpPrinter(input) {
 
         pagingdata = data
 
-        displayTable(1)
+        displayTable(currentPage)
   
       })
       .catch(error=> {
@@ -62,6 +58,7 @@ async function lookUpPrinter(input) {
  
 
   function displayTable(page) {
+    localStorage.setItem("printerCurrentPage", String(currentPage))
     document.getElementById("loading").style.display = "none"
     const tableBody = document.getElementById("printer");
     tableBody.innerHTML = "";
