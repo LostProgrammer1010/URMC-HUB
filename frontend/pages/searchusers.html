@@ -10,7 +10,8 @@
         <script src="../lib/global/nav.js"></script>
             <label for="name">Search Callers Name:</label>
             <input type="text" id="name" name="name">
-            <button onclick="prevPage()" id="prevBtn"><</button><span id="page-info"></span><button onclick="nextPage()" id="nextBtn">></button>
+            <button onclick="searchButton()">Search</button>
+            <button onclick="prevPage()" id="prev-button"><</button><span id="page-info">Page 1 of 1</span><button onclick="nextPage()" id="next-button">></button>
             <table>
                 <caption>Found Users</caption>
                 <thead>
