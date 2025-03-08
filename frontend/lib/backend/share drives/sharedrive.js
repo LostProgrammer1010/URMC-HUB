@@ -37,7 +37,7 @@ async function lookUpShareDrive(input) {
 
         pagingdata = data
 
-        displayTable(1)
+        displayTable(currentPage)
   
       })
       .catch(error=> {
