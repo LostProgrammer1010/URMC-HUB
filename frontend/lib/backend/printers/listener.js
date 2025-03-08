@@ -4,7 +4,6 @@ const input = document.getElementById('name');
 document.getElementById('name').addEventListener('keydown', async function(event) {
 
     if (event.key == 'Enter') {
-      currentPage = 1
         
       try {
         await lookUpPrinter(input.value);
