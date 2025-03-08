@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="../styles/global/navbar.css" />
         <link rel="stylesheet" href="../styles/user.css" />
         <link rel="stylesheet" href="../styles/loading.css">
-        <script src="../lib/backend/lockout/lockout.js" defer></script>
+      
 
     </head>
     <!-- This will be re-worked when user page is made to be pretty -->
@@ -19,58 +19,56 @@
             <div class="full-name">
                 <div class="field" id="name" contenteditable="false">Name</div>
             </div>
+
+
             <div class="information">
-                <h1>About</h1>
-                <div class="all-info">
-                    <div id="username">
-                        <span class="label">Username: </span>
-                        <span></span>
-                    </div>
-                    <div id="netID">
-                        <span class="label">NetID: </span>
-                        <span></span>
-                    </div>
-                    <div id="urid">
-                        <span class="label">URID: </span>
-                        <span></span>
-                    </div>
-                    <div id="email">
-                        <span class="label">Email: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="phone" contenteditable="false">
-                        <span class="label">Phone: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="department" contenteditable="false">
-                        <span class="label">Department: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="title" contenteditable="false">
-                        <span class="label">Title: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="ou" contenteditable="false">
-                        <span class="label">OU: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="title" contenteditable="false">
-                        <span class="label">Title: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="location" contenteditable="false">
-                        <span class="label">Location: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="lastpasswordset" contenteditable="false">
-                        <span class="label">Last Password Set: </span>
-                        <span></span>
-                    </div>
-                    <div class="field" id="relationship" contenteditable="false">
-                        <span class="label">Relationship Status: </span>
-                        <span></span>
-                    </div>
-                </div>
+                <table id="info-table">
+                    <thead>
+                        <tr>
+                            <td colspan="2">About</td>
+                            <td colspan="2">Other information</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="label">Username: </td>
+                            <td class="info" id="username"></td>
+                            <td class="label">Department: </td>
+                            <td class="info" id="department"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">NetID: </td>
+                            <td class="info" id="netID"></td>
+                            <td class="label">Title: </td>
+                            <td class="info" id="title"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">URID:</td>
+                            <td class="info" id="urid"></td>
+                            <td class="label">Phone: </td>
+                            <td class="info" id="phone"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Email:</td>
+                            <td class="info" id="email"></td>
+                            <td class="label">OU:</td>
+                            <td class="info" id="ou"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Relationship Status:</td>
+                            <td class="info" id="relationship"></td>
+                            <td class="label">Location:</td>
+                            <td class="info" id="location"></td>
+                        </tr>
+                        <tr>
+                            <td class="label"></td>
+                            <td class="info" id=""></td>
+                            <td class="label">Password Set:</td>
+                            <td class="info" id="lastpasswordset"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
             <div id="member-of">

@@ -29,6 +29,7 @@ function edit(button) {
 }
 
 function getUserInfo() {
+    const lodaing = document.getElementById("loading")
     if (localStorage.getItem("username") == null) {
       alert("Please search for a user first")
       throw new Error("No username found")
@@ -45,27 +46,27 @@ function getUserInfo() {
             var element = document.getElementById("name")
             element.innerHTML = data.name
             var element = document.getElementById("username")
-            element.children[1].innerHTML = data.username
+            element.innerHTML = data.username
             var element = document.getElementById("netID")
-            element.children[1].innerHTML = data.netID
+            element.innerHTML = data.netID
             var element = document.getElementById("urid")
-            element.children[1].innerHTML = data.URID
+            element.innerHTML = data.URID
             var element = document.getElementById("email")
-            element.children[1].innerHTML = data.email
+            element.innerHTML = data.email
             var element = document.getElementById("phone")
-            element.children[1].innerHTML = data.phone
+            element.innerHTML = data.phone
             var element = document.getElementById("department")
-            element.children[1].innerHTML = data.department
+            element.innerHTML = data.department
             var element = document.getElementById("title")
-            element.children[1].innerHTML = data.title
+            element.innerHTML = data.title
             var element = document.getElementById("ou")
-            element.children[1].innerHTML = data.ou
+            element.innerHTML = data.ou
             var element = document.getElementById("location")
-            element.children[1].innerHTML = data.location
+            element.innerHTML = data.location
             var element = document.getElementById("lastpasswordset")
-            element.children[1].innerHTML = data.lastPasswordSet
+            element.innerHTML = data.lastPasswordSet
             var element = document.getElementById("relationship")
-            element.children[1].innerHTML = data.relationship
+            element.innerHTML = data.relationship
 
             // display lockout results
             var element = document.getElementById("lockoutResults")
@@ -84,10 +85,11 @@ function getUserInfo() {
             loading.style.display = "none"
         })
         .catch((error) => {
-            document.getElementById("loading").style.display = "none"
-            alert(
+            loading.style.display = "none"
+            /*alert(
                 "Server not running. Please start server located here: File_path"
             )
+                */
             alert(error)
             throw new Error("Server not running")
         })
