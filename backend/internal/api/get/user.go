@@ -15,15 +15,32 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-// creating as object for easier usage
 type ServerResult struct {
 	Name string `json:"name"`
 	Count int `json:"count"`
 	Time string `json:"time"`
 }
 
-func LockoutInfo(w http.ResponseWriter, r *http.Request) {
+type UserResult struct {
+	Name string `json:"name"`
+	Username string `json:"username"`
+	NetID string `json:"netID"`
+	URID string `json:"URID"`
+	Email string `json:"email"`
+	Phone string `json:"phone"`
+	Department string `json:"department"`
+	Title string `json:"title"`
+	OU string `json:"ou"`
+	LastPasswordSet string `json:"lastPasswordSet"`
+	Relationship string `json:"relationship"`
+	Description string `json:"description"`
+	Location string `json:"location"`
+	FirstName string `json:"firstname"`
+	SecondName string `json:"lastname"`
+	LockoutInfo []ServerResult `json:"lockoutInfo"`
+}
 
+func UserInfo(w http.ResponseWriter, r *http.Request) {
 	option.EnableCORS(w, r)
 
 	if !checkMethod(r) {
@@ -41,7 +58,7 @@ func LockoutInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	matches := LockoutInfoData(username)
+	matches := UserInfoSearch(username)
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
@@ -51,6 +68,52 @@ func LockoutInfo(w http.ResponseWriter, r *http.Request) {
 	// Write the response to the client
 	w.Write(jsonData)
 
+}
+
+func UserInfoSearch(username string) UserResult {
+
+	l, err := AD.ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	defer l.Close()
+
+	searchRequest := ldap.NewSearchRequest(
+		"DC=urmc-sh,DC=rochester,DC=edu",
+		ldap.ScopeWholeSubtree,
+		ldap.NeverDerefAliases,
+		1, // Max search size 1
+		0, // No timeout for search
+		false,
+		fmt.Sprintf("(&(objectClass=user)(SAMAccountName=%s*))", username), //Filter
+		[]string{"cn", "samaccountname", "uid", "urid", "mail", "telephoneNumber", "department", "title", "distinguishedName", "pwdlastset", "urrolestatus", "description", "physicalDeliveryOfficeName", "givenName", "sn"}, // Attributes
+		nil,
+	)
+
+	results, _ := l.Search(searchRequest)
+
+	entry := results.Entries[0]
+
+	// Capitalization Matters!
+	Name := entry.GetAttributeValue("cn")
+	Username := entry.GetAttributeValue("sAMAccountName")
+	NetID := entry.GetAttributeValue("uid")
+	URID := entry.GetAttributeValue("URID")
+	Email := entry.GetAttributeValue("mail")
+	Phone := entry.GetAttributeValue("telephoneNumber")
+	Department := entry.GetAttributeValue("department")
+	Title := entry.GetAttributeValue("title")
+	OU := entry.GetAttributeValue("distinguishedName")
+	LastPasswordSet := entry.GetAttributeValue("pwdLastSet")
+	Relationship := entry.GetAttributeValue("URRoleStatus")
+	Description := entry.GetAttributeValue("description")
+	Location := entry.GetAttributeValue("physicalDeliveryOfficeName")
+	FirstName := entry.GetAttributeValue("givenName")
+	SecondName := entry.GetAttributeValue("sn")
+	LockoutInfo := LockoutInfoData(username)
+
+	return UserResult{Name, Username, NetID, URID, Email, Phone, Department, Title, OU, LastPasswordSet, Relationship, Description, Location, FirstName, SecondName, LockoutInfo}
 }
 
 func LockoutInfoData(user string) (matches []ServerResult) {
