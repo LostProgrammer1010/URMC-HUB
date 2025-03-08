@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/computers.css">
+        <link rel="stylesheet" href="../styles/global/navbar.css">
+        <link rel="stylesheet" href="../styles/loading.css">
+        <title>AD User Search</title>
+
+    </head>
+    <body>
+        <script src="../lib/global/nav.js"></script>
+            <label for="name">Search Printers Name:</label>
+            <input type="text" id="name" name="name">
+            <button onclick="prevPage()" id="prevBtn"><</button><span id="page-info"></span><button onclick="nextPage()" id="nextBtn">></button>
+            <table>
+                <caption>Found Printers</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Printer</th>
+                    <th scope="col">IP</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Processor</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="printer">
+                </tbody>
+            </table>
+            <div class="loading" id="loading">
+              <div class="circle" id="one"></div>
+              <div class="circle" id="two"></div>
+              <div class="circle" id="three"></div>
+            </div>
+    </body>
+
+    <script src="../lib/backend/printers/printer.js"></script>
+    <script src="../lib/backend/printers/listener.js"></script>
+</html>

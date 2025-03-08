@@ -1,34 +1,96 @@
 function allowDrop(ev) {
-    ev.preventDefault();
-  }
-  
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.preventDefault()
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id)
     ev.target.classList.toggle("drag-animation")
-  }
-  
-  function dropelement(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-  }
+}
 
+function dropelement(ev) {
+    ev.preventDefault()
+    var data = ev.dataTransfer.getData("text")
+    ev.target.appendChild(document.getElementById(data))
+}
 
-  function edit(button) {
+function edit(button) {
     let fields = document.getElementsByClassName("field")
 
-    
-    for (let i=0; i < fields.length; i++){
-
+    for (let i = 0; i < fields.length; i++) {
         if (fields[i].getAttribute("contenteditable") == "false") {
             button.innerHTML = "Save"
-            fields[i].setAttribute("contenteditable", "true");
-        }
-        else {
+            fields[i].setAttribute("contenteditable", "true")
+        } else {
             button.innerHTML = "Edit"
-            fields[i].setAttribute("contenteditable", "false");
+            fields[i].setAttribute("contenteditable", "false")
         }
         fields[i].classList.toggle("edit")
     }
+}
 
-  }
+function getUserInfo() {
+    if (localStorage.getItem("username") == null) {
+      alert("Please search for a user first")
+      throw new Error("No username found")
+    }
+    const response = fetch(
+        `http://localhost:8080/user/${localStorage.getItem("username")}`
+    )
+        .then((response) => response.json()) // Parse the JSON response from the server
+        .then((data) => {
+            pagingdata = data
+
+            console.log(data)
+
+            var element = document.getElementById("name")
+            element.innerHTML = data.name
+            var element = document.getElementById("username")
+            element.children[1].innerHTML = data.username
+            var element = document.getElementById("netID")
+            element.children[1].innerHTML = data.netID
+            var element = document.getElementById("urid")
+            element.children[1].innerHTML = data.URID
+            var element = document.getElementById("email")
+            element.children[1].innerHTML = data.email
+            var element = document.getElementById("phone")
+            element.children[1].innerHTML = data.phone
+            var element = document.getElementById("department")
+            element.children[1].innerHTML = data.department
+            var element = document.getElementById("title")
+            element.children[1].innerHTML = data.title
+            var element = document.getElementById("ou")
+            element.children[1].innerHTML = data.ou
+            var element = document.getElementById("location")
+            element.children[1].innerHTML = data.location
+            var element = document.getElementById("lastpasswordset")
+            element.children[1].innerHTML = data.lastPasswordSet
+            var element = document.getElementById("relationship")
+            element.children[1].innerHTML = data.relationship
+
+            // display lockout results
+            var element = document.getElementById("lockoutResults")
+            element.innerHTML = ""
+            // Need to implement padding for heading section (may be fixed with user page)
+            element.innerHTML +=
+                "Name" + " | " + "Count" + " | " + "Time" + "<br>"
+            for (let index = 0; index < data.lockoutInfo.length; index++) {
+                element.innerHTML += data.lockoutInfo[index].name
+                element.innerHTML += " | "
+                element.innerHTML += data.lockoutInfo[index].count
+                element.innerHTML += " | "
+                element.innerHTML += data.lockoutInfo[index].time
+                element.innerHTML += "<br>"
+            }
+            loading.style.display = "none"
+        })
+        .catch((error) => {
+            document.getElementById("loading").style.display = "none"
+            alert(
+                "Server not running. Please start server located here: File_path"
+            )
+            alert(error)
+            throw new Error("Server not running")
+        })
+}
+
+getUserInfo()

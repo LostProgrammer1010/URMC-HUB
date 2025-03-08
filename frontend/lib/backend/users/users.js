@@ -1,44 +1,54 @@
+const inputField = document.getElementById('name');
+
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
 
+async function getPreviousSearch() {
+  if (localStorage.getItem("usersCurrentPage") == null) return
+  currentPage = Number(localStorage.getItem("usersCurrentPage"))
+  await lookUpUsers(localStorage.getItem("usersPreviousSearch"))
+  inputField.placeholder = `Previous Search "${localStorage.getItem("usersPreviousSearch")}"`
+
+}
+
+getPreviousSearch()
+
+
 async function lookUpUsers(input) {
+  localStorage.setItem("usersPreviousSearch", input)
 
-  document.getElementById("loading").style.display = "flex"
+  const loading = document.getElementById("loading")
 
-  document.getElementById("users").innerHTML = ""
+  loading.style.display = "flex"
 
-  if (input == ""){
-    document.getElementById("loading").style.display = "none"
-    return
-  }
-
-  const response = fetch(`http://localhost:8080/users/search/${input}`)
-    .then(response => response.json()) // Parse the JSON response from the server
+  fetch(`http://localhost:8080/users/search/${input}`)
+    .then(response => response.json()) 
     .then(data => {
       pagingdata = data
-      currentPage = 1
 
+
+      document.getElementById("name").style.outline = ""
       displayTable(currentPage)
 
     })
-    .catch(error=> {
-      document.getElementById("loading").style.display = "none"
-      alert("Server not running. Please start server located here: File_path")
-      throw new Error("Server not running")
+    .catch(error => {
+      loading.style.display = "none"
+      //alert("Server not running. Please start server located here: File_path")
+      throw new Error(error)
     })
 }
 
 function pullUpUser(row) {
   const username = row.children[1].innerHTML
-  console.log(username)
   localStorage.setItem("username", username)
   window.location.href = "../pages/user.html"
 }
 
 function displayTable(page) {
-  document.getElementById("loading").style.display = "none"
+  localStorage.setItem("usersCurrentPage", String(currentPage))
+  loading.style.display = "none"
   const tableBody = document.getElementById("users");
   tableBody.innerHTML = "";
 
@@ -48,6 +58,7 @@ function displayTable(page) {
   
   
   if (pagingdata == null) {
+    document.getElementById("page-info").textContent = `Page 1 of 1`;
     tableBody.innerHTML += `
       <tr>
         <td data-label="Name">No Users Found</td>
@@ -57,30 +68,32 @@ function displayTable(page) {
       `
     return
   }  
+
   const paginatedData = pagingdata.slice(start, end);
 
 
-  paginatedData.forEach(element => {
-    splitdata = element.split("|")
+  paginatedData.forEach(user => {
 
-    document.getElementById("users").innerHTML += `
+    tableBody.innerHTML += `
       <tr onclick="pullUpUser(this)">
-        <td data-label="Name">${splitdata[1]}</td>
-        <td data-label="Username">${splitdata[0]}</td>
-        <td data-label="OU">${splitdata[2]}</td>
+        <td data-label="Name">${user.name}</td>
+        <td data-label="Username">${user.username}</td>
+        <td data-label="OU">${user.ou}</td>
       </tr>
       `
   });
 
-  // Update page info
+  // For paging
   document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(pagingdata.length / rowsPerPage)}`;
-
-  // Enable/Disable buttons based on page number
-  document.getElementById("prevBtn").disabled = currentPage === 1;
-  document.getElementById("nextBtn").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
+  document.getElementById("prev-button").disabled = currentPage === 1;
+  document.getElementById("next-button").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
 }
 
 function prevPage() {
+  if (pagingdata == null) {
+    document.getElementById("name").style.outline = "1px solid red"
+    return
+  }
   if (currentPage > 1) {
       currentPage--;
       displayTable(currentPage);
@@ -88,9 +101,14 @@ function prevPage() {
 }
 
 function nextPage() {
+  if (pagingdata == null) {
+    document.getElementById("name").style.outline = "1px solid red"
+    return
+  }
   if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
       currentPage++;
       displayTable(currentPage);
   }
 }
+
 

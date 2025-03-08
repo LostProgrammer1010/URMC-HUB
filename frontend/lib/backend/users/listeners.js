@@ -4,8 +4,14 @@ const input = document.getElementById('name');
 document.getElementById('name').addEventListener('keydown', async function(event) {
 
     if (event.key == 'Enter') {
-        
+      
+      if (document.getElementById("name").value == ""){
+        document.getElementById("name").style.outline = "1px solid red"
+        return
+      }
+
       try {
+        document.getElementById("name").style.outline = "none"
         await lookUpUsers(input.value);
       } 
         catch (error) {
@@ -13,3 +19,20 @@ document.getElementById('name').addEventListener('keydown', async function(event
       }
     }
 });
+
+
+
+function searchButton() {
+  const inputField = document.getElementById("name")
+
+  if (inputField.value != "" ){
+    lookUpUsers(inputField.value)
+  }
+  else {
+    document.getElementById("name").style.outline = "1px solid red"
+    return
+
+  }
+
+
+}

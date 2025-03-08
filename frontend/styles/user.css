@@ -102,9 +102,30 @@
 }
 
 #bad-passwords {
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: fit-content;
     background: rgba(255,255,255,0.2);
     flex-basis: 100%;
     border-radius: 20px;
+    min-height: 400px;
+}
+
+#lockoutResults {
+    position: relative;
+}
+
+#bad-passwords button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
 }
 

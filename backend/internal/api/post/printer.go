@@ -1,4 +1,4 @@
-package get
+package post
 
 import (
 	"backend/internal/api/option"
@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"time"
 )
 
 type Printer struct {
@@ -23,38 +22,50 @@ type Printer struct {
 
 // Request to return all printers that match the search
 func PrinterSearch(w http.ResponseWriter, r *http.Request) {
+	var input Input
 	option.EnableCORS(w, r)
 
 	if !checkMethod(r) {
+		http.Error(w, "Incorrect Method", http.StatusBadRequest)
 		return
 	}
 
-	time.Sleep(1 * time.Second)
-	search := strings.Split(r.URL.Path, "/")[3]
+	fmt.Println(r.URL.Path)
 
-	printers := MatchPrinter(search)
+	err := json.NewDecoder(r.Body).Decode(&input)
 
-	// Set the response header to application/json
+	if err != nil {
+		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Log the received message
+	fmt.Printf("Searching for:  %s\n", input.Value)
+
+	if input.Value == "" {
+		return
+	}
+
+	printers := matchPrinter(input.Value)
+
+	fmt.Printf("Number of Printers Found: %d", len(printers))
+
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
+	w.WriteHeader(http.StatusOK)
 
-	if search == "" {
-		jsonData, _ := json.Marshal(printers)
+	jsonData, _ := json.MarshalIndent(printers, "", "  ")
 
-		// Write the response to the client
-		w.Write(jsonData)
-		return
-	}
+	w.Write(jsonData)
 
 }
 
 // Matches printer to the search
-func MatchPrinter(input string) (printers []Printer) {
+func matchPrinter(input string) (printers []Printer) {
 	printersList := fetchPrinters()
 
 	for _, printer := range printersList {
 		build := fmt.Sprintf("\\\\%s\\%s %s %s %s %s %s", printer.Server, printer.Queue, printer.Model, printer.IP, printer.PrintProccessor, printer.Location, printer.Notes)
-		if strings.Contains(build, input) {
+		if strings.Contains(strings.ToLower(build), strings.ToLower(input)) {
 			printers = append(printers, printer)
 		}
 	}

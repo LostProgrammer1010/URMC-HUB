@@ -77,7 +77,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	dataArray := strings.Split(string(data), "\n")
 
 	for _, sharedrive := range dataArray {
-		if strings.Contains(sharedrive, input) {
+		if strings.Contains(strings.ToLower(sharedrive), strings.ToLower(input)) {
 			parse := strings.Split(sharedrive, "|")
 			sharedrive := new(ShareDrive)
 			sharedrive.Group = strings.Split(parse[0], "\\")[1]

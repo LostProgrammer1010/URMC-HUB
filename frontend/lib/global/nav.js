@@ -13,7 +13,8 @@ document.body.insertAdjacentHTML('afterbegin',
                                 <a href="./searchusers.html">Users</a>
                                 <a href="./searchcomputers.html">Computers</a>
                                 <a href="#">Group</a>
-                                <a href="./sharedrive.html">Share Drives</a>
+                                <a href="./searchsharedrive.html">Share Drives</a>
+                                <a href="./searchprinters.html">Printers</a>
                         </div>
                     </div>
                 <hr>
