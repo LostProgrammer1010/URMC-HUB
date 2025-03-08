@@ -35,7 +35,9 @@ async function lookUpUsers(input) {
     })
     .catch(error => {
       loading.style.display = "none"
-      //alert("Server not running. Please start server located here: File_path")
+      if (error.message == "Failed to fetch") {
+        alert("Server not running. Please start server located here: File_path")
+      }
       throw new Error(error)
     })
 }

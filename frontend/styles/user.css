@@ -129,3 +129,39 @@
     padding: 10px;
 }
 
+/* User information */
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+  }
+
+  table thead {
+    text-align: left;
+    font-weight: bolder;
+    font-size: 25px;
+  }
+
+  table tbody .label {
+    font-weight: bold;
+    width: fit-content;
+    word-break: normal;
+    text-align: right;
+  }
+
+  table tbody .info {
+    word-break: break-all;
+    width: 50%;
+  }
+
+  table tbody {
+    font-size: 18px;
+  }
+  
+  table td {
+    padding: 8px;
+  }
+  
+  table tr {
+    width: 100%;
+  }
