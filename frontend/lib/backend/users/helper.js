@@ -1,7 +1,7 @@
 const inputField = document.getElementById('name');
 const form = document.getElementById('search-form');
 
-
+// Form submit function
 function search(event) {
   event.preventDefault();
   if (inputField.value == ""){
@@ -14,6 +14,8 @@ function search(event) {
   form.reset()
 } 
 
+
+// Gets the previous search on that page
 async function getPreviousSearch() {
   if (localStorage.getItem("usersCurrentPage") == null) return
   currentPage = Number(localStorage.getItem("usersCurrentPage"))
@@ -22,6 +24,7 @@ async function getPreviousSearch() {
 
 }
 
+// Go back a page
 function prevPage() {
   if (pagingdata == null) {
     return
@@ -32,6 +35,7 @@ function prevPage() {
   }
 }
 
+// Go Forward a page
 function nextPage() {
   if (pagingdata == null) {
     return

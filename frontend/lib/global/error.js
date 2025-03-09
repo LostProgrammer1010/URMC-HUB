@@ -1,5 +1,6 @@
+/* Every that might have an error will need error.js and error.css in it */
 
-
+// Handling of all error that might be encounter in the fronend
 function handleError(error) {
   var message
   switch (error.message.toLowerCase()) {
@@ -15,10 +16,14 @@ function handleError(error) {
   }
 }
 
+
+// Removes the error message if the X is clicked
 function removeMessage() {
   document.body.removeChild(document.getElementById("error"))
 }
 
+
+// Error message will disappear after 6s
 function removeMessageAuto() {
   setInterval(() => {
     const error = document.getElementById("error")
@@ -29,6 +34,8 @@ function removeMessageAuto() {
   }, 6000)
 }
 
+
+// Create the error with the message that is is given
 function createErorr(message) {
 
   let errorPopUp = document.createElement("div")

@@ -3,6 +3,8 @@ const rowsPerPage = 10
 var pagingdata;
 
 
+
+// GET Request to server to get all of the users that match the search
 async function lookUpUsers(input) {
   console.log(input)
   localStorage.setItem("usersPreviousSearch", input)
@@ -27,12 +29,14 @@ async function lookUpUsers(input) {
     })
 }
 
+// Sends the user to user page when a user is pressed
 function pullUpUser(row) {
   const username = row.children[1].innerHTML
   localStorage.setItem("username", username)
   window.location.href = "../pages/user.html"
 }
 
+// Display the users in a paged format
 function displayTable(page) {
   localStorage.setItem("usersCurrentPage", String(currentPage))
   loading.style.display = "none"
