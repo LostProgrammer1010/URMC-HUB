@@ -1,29 +1,16 @@
-const inputField = document.getElementById('name');
-
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
 
-async function getPreviousSearch() {
-  if (localStorage.getItem("usersCurrentPage") == null) return
-  currentPage = Number(localStorage.getItem("usersCurrentPage"))
-  await lookUpUsers(localStorage.getItem("usersPreviousSearch"))
-  inputField.placeholder = `Previous Search "${localStorage.getItem("usersPreviousSearch")}"`
-
-}
-
-getPreviousSearch()
-
-
 async function lookUpUsers(input) {
+  console.log(input)
   localStorage.setItem("usersPreviousSearch", input)
 
   const loading = document.getElementById("loading")
 
   loading.style.display = "flex"
-
-  fetch(`http://localhost:8080/users/search/${input}`)
+    fetch(`http://localhost:8080/users/search/${input}`)
     .then(response => response.json()) 
     .then(data => {
       pagingdata = data
@@ -35,10 +22,8 @@ async function lookUpUsers(input) {
     })
     .catch(error => {
       loading.style.display = "none"
-      if (error.message == "Failed to fetch") {
-        alert("Server not running. Please start server located here: File_path")
-      }
-      throw new Error(error)
+      handleError(error)
+
     })
 }
 
@@ -91,26 +76,5 @@ function displayTable(page) {
   document.getElementById("next-button").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
 }
 
-function prevPage() {
-  if (pagingdata == null) {
-    document.getElementById("name").style.outline = "1px solid red"
-    return
-  }
-  if (currentPage > 1) {
-      currentPage--;
-      displayTable(currentPage);
-  }
-}
-
-function nextPage() {
-  if (pagingdata == null) {
-    document.getElementById("name").style.outline = "1px solid red"
-    return
-  }
-  if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
-      currentPage++;
-      displayTable(currentPage);
-  }
-}
 
 

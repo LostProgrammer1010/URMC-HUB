@@ -1,20 +1,30 @@
 <html>
     <head>
         <link rel="stylesheet" href="../styles/global/navbar.css">
+        <link rel="stylesheet" href="../styles/global/search.css">
+        <link rel="stylesheet" href="../styles/global/loading.css">
         <link rel="stylesheet" href="../styles/sharedrive.css">
-        <link rel="stylesheet" href="../styles/loading.css">
+        <link rel="stylesheet" href="../styles/global/error.css">
 
     </head>
     <body>
         <script src="../lib/global/nav.js"></script>
 
-        <label for="name">Search Share Drive:</label>
-        <input type="text" id="name" name="name">
-        <button onclick="prevPage()" id="prevBtn"><</button><span id="page-info"></span><button onclick="nextPage()" id="nextBtn">></button>
-
         <table>
             <caption>Share Drive Found</caption>
             <thead>
+              <tr id="form-row">
+                <td colspan="1" >
+                <form onsubmit="search(event)" id="search-form">
+                  <label for="name">Search:</label>
+                  <input type="text" id="name" name="name">
+                  <button type="submit" value="submit">Search</button>
+                </form>
+              </td>
+                <td colspan="1">
+                <button onclick="prevPage()" id="prev-button" disabled><</button><span id="page-info">Page 1 of 1</span><button onclick="nextPage()" id="next-button" disabled>></button>
+                </td>
+              </tr>
               <tr>
                 <th scope="col">AD Group</th>
                 <th scope="col">//Server//Name</th>
@@ -31,7 +41,7 @@
         </div>
 
     </body>
-
+    <script src="../lib/global/error.js"></script>
     <script src="../lib/backend/share drives/sharedrive.js"></script>
-    <script src="../lib/backend/share drives/listener.js"></script>
+    <script src="../lib/backend/share drives/helper.js"></script>
 </html>
