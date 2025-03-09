@@ -11,7 +11,7 @@ function handleError(error) {
       break
     default:
       var message = error.message
-      createErorr(message)
+      createErorr(error.stack)
       removeMessageAuto()
       console.error(error) // Unexpected errors will be printed to logs
   }
@@ -32,7 +32,7 @@ function removeMessageAuto() {
       document.body.removeChild(error)
     }
 
-  }, 6000)
+  }, 11000)
 }
 
 
@@ -41,6 +41,11 @@ function createErorr(message) {
 
   let errorPopUp = document.createElement("div")
   errorPopUp.id = "error"
+
+  let errorIcon = document.createElement("img")
+  errorIcon.src = "../assets/error_icon.png"
+
+  errorPopUp.appendChild(errorIcon)
 
   let exitButton = document.createElement("button")
   exitButton.id = "error-button"

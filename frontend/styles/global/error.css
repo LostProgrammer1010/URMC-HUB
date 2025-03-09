@@ -1,28 +1,37 @@
 #error {
   position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
   top: -150px;
-  left: 25%;
-  padding: 30px;
-  width: 400px;
-  text-align: center;
+  padding: 10px 10px 10px 10px;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  left: 250px; /* Move the div to the middle */
+  right: 0;
+  width: fit-content;
+  height: fit-content;
   color: black;
-  animation: 5s drop ease;
-  border-radius: 20px;
-  background: rgb(255, 100, 100, .3);
-  color: white;
-  left: 50%;
-  transform: translate(-25%, -25%);
+  animation: 10s drop ease;
+  border-radius: 10px;
+  background: rgb(18, 10, 10);
+  border: 2px solid red;
+  color: red;
   backdrop-filter: blur(20px);
   font-size: 25px;
-  font-weight: 400;
+  font-weight: 500;
+  gap: 10px;
 }
 
 #error-button {
-  position: absolute;
+  position: relative;
   text-align: center;
   line-height: none;
   color: white;
-  top: 5px;
   right: 5px;
   width: 25px;
   height: 25px;
@@ -33,24 +42,39 @@
   padding: 0px;
   font-size: 15px;
   font-weight: bold;
+}
 
+#error img {
+  width: 25px;
+  height: 25px;
+  transform: scale(1);
+  animation: 1.5s pulse infinite ease;
 }
 
 #error-button:hover {
   background-color: rgba(255,255,255,0.1);
 }
 
+@keyframes pulse {
+
+  0% {
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  
+}
 
 @keyframes drop {
 
-  25% {
-    top: 60px;
+  10% {
+    top: 40px;
   }
   50% {
-    top: 60px;
+    top: 40px;
   }
-  75% {
-    top: 60px;
+  90% {
+    top: 40px;
   }
   
 }

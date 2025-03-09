@@ -29,7 +29,7 @@ table tr {
 
 table th,
 table td {
-  padding: .625em;
+  padding: 1em;
   text-align: center;
   text-wrap: wrap;
   overflow-wrap: anywhere;
@@ -125,7 +125,7 @@ body table button:hover {
 }
 
 body table button:disabled {
-  background: rgba(255,0,0,0.5);
+  background: rgba(255,255,255,0.2);
 }
 
 
