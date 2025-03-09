@@ -78,8 +78,8 @@ async function lookUpShareDrive(input) {
     document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(pagingdata.length / rowsPerPage)}`;
 
     // Enable/Disable buttons based on page number
-    document.getElementById("prevBtn").disabled = currentPage === 1;
-    document.getElementById("nextBtn").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
+    document.getElementById("prev-button").disabled = currentPage === 1;
+    document.getElementById("next-button").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
   }
 
 

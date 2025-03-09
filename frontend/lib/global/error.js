@@ -10,9 +10,10 @@ function handleError(error) {
       removeMessageAuto()
       break
     default:
-      var message = "Something unexpected happened"
+      var message = error.message
       createErorr(message)
       removeMessageAuto()
+      console.error(error) // Unexpected errors will be printed to logs
   }
 }
 
