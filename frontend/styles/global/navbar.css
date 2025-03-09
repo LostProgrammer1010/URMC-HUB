@@ -130,3 +130,6 @@ nav .dropdown button span.rotate {
     transition: 0.5s ease;
 }
 
+body {
+    padding: 20px;
+}

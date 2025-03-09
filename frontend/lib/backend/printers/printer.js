@@ -1,18 +1,7 @@
-const inputField = document.getElementById('name');
-
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
 
-
-async function getPreviousSearch() {
-  currentPage = Number(localStorage.getItem("printerCurrentPage"))
-  await lookUpPrinter(localStorage.getItem("printerPreviousSearch"))
-  inputField.value = localStorage.getItem("printerPreviousSearch")
-
-}
-
-getPreviousSearch()
 
 async function lookUpPrinter(input) {
     localStorage.setItem("printerPreviousSearch", input)
@@ -49,9 +38,7 @@ async function lookUpPrinter(input) {
       })
       .catch(error=> {
         document.getElementById("loading").style.display = "none"
-        //alert("Server not running. Please start server located here: File_path")
-
-        throw new Error(error)
+        handleError(error)
       })
   }
 
@@ -99,17 +86,3 @@ async function lookUpPrinter(input) {
     document.getElementById("prevBtn").disabled = currentPage === 1;
     document.getElementById("nextBtn").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
   }
-
-  function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        displayTable(currentPage);
-    }
-}
-
-function nextPage() {
-    if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
-        currentPage++;
-        displayTable(currentPage);
-    }
-}

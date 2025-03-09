@@ -1,17 +1,6 @@
-const inputField = document.getElementById('name');
 let currentPage = 1
 const rowsPerPage = 10
 var pagingdata;
-
-
-async function getPreviousSearch() {
-  currentPage = Number(localStorage.getItem("computerCurrentPage"))
-  await lookUpComputers(localStorage.getItem("computerPreviousSearch"))
-  inputField.value = localStorage.getItem("computerPreviousSearch")
-
-}
-
-getPreviousSearch()
 
 async function lookUpComputers(input) {
 
@@ -36,8 +25,7 @@ async function lookUpComputers(input) {
     })
     .catch(error=> {
       document.getElementById("loading").style.display = "none"
-      alert("Server not running. Please start server located here: File_path")
-      throw new Error("Server not running")
+      handleError(error)
     })
 }
 
@@ -90,17 +78,4 @@ function displayTable(page) {
   document.getElementById("nextBtn").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
 }
 
-function prevPage() {
-  if (currentPage > 1) {
-      currentPage--;
-      displayTable(currentPage);
-  }
-}
-
-function nextPage() {
-  if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
-      currentPage++;
-      displayTable(currentPage);
-  }
-}
 
