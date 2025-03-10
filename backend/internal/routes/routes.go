@@ -43,6 +43,9 @@ func NewRouter() http.Handler {
 	mux.HandleFunc("/computers/search/", get.ComputersSearch)
 	mux.HandleFunc("/sharedrive/search/", post.ShareDriveSearch)
 	mux.HandleFunc("/printer/search/", post.PrinterSearch)
+	// computer tools
+	mux.HandleFunc("/restart/", post.Restart)
+	mux.HandleFunc("/ping/", post.Ping)
 
 	return mux
 }
