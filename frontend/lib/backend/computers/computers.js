@@ -20,6 +20,7 @@ async function lookUpComputers(input) {
     .then(data => {
       pagingdata = data
 
+      console.log(data)
       displayTable(currentPage)
 
     })
@@ -60,12 +61,11 @@ function displayTable(page) {
 
 
   paginatedData.forEach(element => {
-    splitdata = element.split("|")
-
+    
     document.getElementById("computers").innerHTML += `
       <tr onclick="pullUpComputer(this)">
-        <td data-label="Name">${splitdata[0]}</td>
-        <td data-label="OU">${splitdata[1]}</td>
+        <td data-label="Name">${element.name}</td>
+        <td data-label="OU">${element.ou}</td>
       </tr>
       `
   });
