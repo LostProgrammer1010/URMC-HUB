@@ -67,6 +67,11 @@ function getUserInfo() {
             element.innerHTML = data.lastPasswordSet
             var element = document.getElementById("relationship")
             element.innerHTML = data.relationship
+            var element = document.getElementById("member-of-results")
+            for (let index = 0; index < data.groups.length; index++) {
+                var group = data.groups[index].slice(3, data.groups[index].indexOf(","))
+                element.innerHTML += group + "<br>"
+            }
 
             // display lockout results
             var element = document.getElementById("lockoutResults")

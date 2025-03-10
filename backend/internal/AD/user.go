@@ -27,11 +27,12 @@ type UserResult struct {
 	Title           string         `json:"title"`
 	OU              string         `json:"ou"`
 	LastPasswordSet string         `json:"lastPasswordSet"`
-	Relationship    string         `json:"relationship"`
+	Relationship    []string       `json:"relationship"`
 	Description     string         `json:"description"`
 	Location        string         `json:"location"`
 	FirstName       string         `json:"firstname"`
 	SecondName      string         `json:"lastname"`
+	Groups          []string       `json:"groups"`
 	LockoutInfo     []ServerResult `json:"lockoutInfo"`
 }
 
@@ -52,7 +53,7 @@ func UserInfoSearch(username string) (user UserResult) {
 		0, // No timeout for search
 		false,
 		fmt.Sprintf("(&(objectClass=user)(SAMAccountName=%s))", username), //Filter
-		[]string{"cn", "samaccountname", "uid", "urid", "mail", "telephoneNumber", "department", "title", "distinguishedName", "pwdlastset", "urrolestatus", "description", "physicalDeliveryOfficeName", "givenName", "sn"}, // Attributes
+		[]string{"cn", "samaccountname", "uid", "urid", "mail", "telephoneNumber", "department", "title", "distinguishedName", "pwdlastset", "urrolestatus", "description", "physicalDeliveryOfficeName", "givenName", "sn", "memberOf"}, // Attributes
 		nil,
 	)
 
@@ -71,11 +72,12 @@ func UserInfoSearch(username string) (user UserResult) {
 	user.Title = entry.GetAttributeValue("title")
 	user.OU = entry.GetAttributeValue("distinguishedName")
 	user.LastPasswordSet = entry.GetAttributeValue("pwdLastSet")
-	user.Relationship = entry.GetAttributeValue("URRoleStatus")
+	user.Relationship = entry.GetAttributeValues("URRoleStatus")
 	user.Description = entry.GetAttributeValue("description")
 	user.Location = entry.GetAttributeValue("physicalDeliveryOfficeName")
 	user.FirstName = entry.GetAttributeValue("givenName")
 	user.SecondName = entry.GetAttributeValue("sn")
+	user.Groups = entry.GetAttributeValues("memberOf")
 	user.LockoutInfo = LockoutInfoData(username)
 
 	return
