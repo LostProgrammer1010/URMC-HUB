@@ -66,7 +66,9 @@ function getUserInfo() {
             var element = document.getElementById("lastpasswordset")
             element.innerHTML = data.lastPasswordSet
             var element = document.getElementById("relationship")
-            element.innerHTML = data.relationship
+            data.relationship.forEach((relationship) => {
+                element.innerHTML += relationship + "<br>"
+            })
             var element = document.getElementById("member-of-results")
             data.groups.forEach((group) => {
                 descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
