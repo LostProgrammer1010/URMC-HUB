@@ -44,9 +44,9 @@ type UserResult struct {
 	LockoutInfo     []ServerResult `json:"lockoutInfo"`
 }
 
-func UserInfoSearch(username string) (user UserResult) {
+func UserInfoSearch(username string, domain string) (user UserResult) {
 
-	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -54,7 +54,7 @@ func UserInfoSearch(username string) (user UserResult) {
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
+		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
 		1, // Max search size 1
@@ -89,21 +89,24 @@ func UserInfoSearch(username string) (user UserResult) {
 	sort.Strings(groups)
 	for _, value := range groups {		
 		// passing ldap connection as l into Group Info
-		user.Groups = append(user.Groups, GroupInfo(value, l))
+		user.Groups = append(user.Groups, GroupInfo(value, l, domain))
 	}
-	
-	user.LockoutInfo = LockoutInfoData(username)
+	if (domain == "urmc-sh") {
+		user.LockoutInfo = LockoutInfoData(username)
+	} else {
+		user.LockoutInfo = []ServerResult{}
+	}
 
 	return
 }
 
-func GroupInfo(group string, l *ldap.Conn) (result GroupResult) {
+func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
 	groupName := strings.Split(group[3:], ",")[0]
 	
 	fmt.Println(groupName)
 
 	searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
+		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
 		1, // Max search size 1
