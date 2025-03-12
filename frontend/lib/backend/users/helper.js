@@ -46,4 +46,10 @@ function nextPage() {
   }
 }
 
+if (localStorage.getItem("domain") == "urmc-sh") {
+  document.getElementById("URcheckbox").checked = false
+} else {
+  document.getElementById("URcheckbox").checked = true
+}
+
 getPreviousSearch()
