@@ -4,6 +4,7 @@ var pagingdata;
 
 
 async function lookUpShareDrive(input) {
+    currentPage = 1
     localStorage.setItem("sharedrivesPreviousSearch", input)
     document.getElementById("loading").style.display = "flex"
   
@@ -38,7 +39,6 @@ async function lookUpShareDrive(input) {
  
 
   function displayTable(page) {
-    localStorage.setItem("sharedrivesCurrentPage", String(currentPage))
     document.getElementById("loading").style.display = "none"
     const tableBody = document.getElementById("sharedrives");
     tableBody.innerHTML = "";

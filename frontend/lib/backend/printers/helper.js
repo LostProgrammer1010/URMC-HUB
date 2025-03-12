@@ -3,7 +3,6 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
-  currentPage = Number(localStorage.getItem("printerCurrentPage"))
   await lookUpPrinter(localStorage.getItem("printerPreviousSearch"))
   inputField.value = localStorage.getItem("printerPreviousSearch")
 

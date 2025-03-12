@@ -17,8 +17,6 @@ function search(event) {
 
 // Gets the previous search on that page
 async function getPreviousSearch() {
-  if (localStorage.getItem("usersCurrentPage") == null) return
-  currentPage = Number(localStorage.getItem("usersCurrentPage"))
   await lookUpUsers(localStorage.getItem("usersPreviousSearch")).catch(error => console.log(error.message))
   inputField.placeholder = `Previous Search "${localStorage.getItem("usersPreviousSearch")}"`
 
