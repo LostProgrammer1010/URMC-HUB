@@ -3,8 +3,9 @@
 // Handling of all error that might be encounter in the fronend
 function handleError(error) {
   var message
-  switch (error.message.toLowerCase()) {
-    case "failed to fetch":
+  console.log("Error:", error.name)
+  switch (error.name) {
+    case "TypeError":
       message = "Server not Started"
       createErorr(message)
       removeMessageAuto()
