@@ -3,6 +3,7 @@ const rowsPerPage = 10
 var pagingdata;
 
 async function lookUpComputers(input) {
+  currentPage = 1
 
   localStorage.setItem("computerPreviousSearch", input)
 
@@ -38,7 +39,6 @@ function pullUpComputer(row) {
 }
 
 function displayTable(page) {
-  localStorage.setItem("computerCurrentPage", String(currentPage))
   document.getElementById("loading").style.display = "none"
   const tableBody = document.getElementById("computers");
   tableBody.innerHTML = "";

@@ -4,6 +4,7 @@ var pagingdata;
 
 
 async function lookUpPrinter(input) {
+    currentPage = 1
     localStorage.setItem("printerPreviousSearch", input)
 
     console.log(localStorage.getItem("printerPreviousSearch"))
@@ -46,7 +47,6 @@ async function lookUpPrinter(input) {
  
 
   function displayTable(page) {
-    localStorage.setItem("printerCurrentPage", String(currentPage))
     document.getElementById("loading").style.display = "none"
     const tableBody = document.getElementById("printer");
     tableBody.innerHTML = "";
