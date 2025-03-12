@@ -3,7 +3,6 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
-  currentPage = Number(localStorage.getItem("computerCurrentPage"))
   await lookUpComputers(localStorage.getItem("computerPreviousSearch"))
   inputField.value = localStorage.getItem("computerPreviousSearch")
 

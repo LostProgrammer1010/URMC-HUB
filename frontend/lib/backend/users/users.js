@@ -6,7 +6,7 @@ var pagingdata;
 
 // GET Request to server to get all of the users that match the search
 async function lookUpUsers(input) {
-  console.log(input)
+  currentPage = 1
   localStorage.setItem("usersPreviousSearch", input)
 
   const loading = document.getElementById("loading")
@@ -37,13 +37,14 @@ async function lookUpUsers(input) {
 // Sends the user to user page when a user is pressed
 function pullUpUser(row) {
   const username = row.children[1].innerHTML
+  console.log("Username: ",username)
   localStorage.setItem("username", username)
   window.location.href = "../pages/user.html"
+  
 }
 
 // Display the users in a paged format
 function displayTable(page) {
-  localStorage.setItem("usersCurrentPage", String(currentPage))
   loading.style.display = "none"
   const tableBody = document.getElementById("users");
   tableBody.innerHTML = "";

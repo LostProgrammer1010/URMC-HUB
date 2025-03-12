@@ -1,5 +1,9 @@
 /*Main Page*/
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: #121212;
   color: white;
   font-family: "Open Sans", sans-serif;

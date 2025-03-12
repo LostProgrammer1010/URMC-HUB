@@ -30,6 +30,7 @@ function edit(button) {
 
 function getUserInfo() {
     const lodaing = document.getElementById("loading")
+    console.log("username")
     if (localStorage.getItem("username") == null) {
       alert("Please search for a user first")
       throw new Error("No username found")

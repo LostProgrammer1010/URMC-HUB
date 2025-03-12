@@ -3,7 +3,6 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
-  currentPage = Number(localStorage.getItem("sharedrivesCurrentPage"))
   await lookUpShareDrive(localStorage.getItem("sharedrivesPreviousSearch"))
   inputField.value = localStorage.getItem("sharedrivesPreviousSearch")
 
