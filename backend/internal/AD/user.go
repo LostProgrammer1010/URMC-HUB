@@ -3,7 +3,9 @@ package AD
 import (
 	"fmt"
 	"log"
+	"sort"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 
@@ -14,6 +16,12 @@ type ServerResult struct {
 	Name  string `json:"name"`
 	Count int    `json:"count"`
 	Time  string `json:"time"`
+}
+
+type GroupResult struct {
+	Name           string `json:"name"`
+	Description    string `json:"description"`
+	Info           string `json:"info"`
 }
 
 type UserResult struct {
@@ -32,7 +40,7 @@ type UserResult struct {
 	Location        string         `json:"location"`
 	FirstName       string         `json:"firstname"`
 	SecondName      string         `json:"lastname"`
-	Groups          []string       `json:"groups"`
+	Groups          []GroupResult  `json:"groups"`
 	LockoutInfo     []ServerResult `json:"lockoutInfo"`
 }
 
@@ -77,15 +85,51 @@ func UserInfoSearch(username string) (user UserResult) {
 	user.Location = entry.GetAttributeValue("physicalDeliveryOfficeName")
 	user.FirstName = entry.GetAttributeValue("givenName")
 	user.SecondName = entry.GetAttributeValue("sn")
-	user.Groups = entry.GetAttributeValues("memberOf")
+	groups := entry.GetAttributeValues("memberOf")
+	sort.Strings(groups)
+	for _, value := range groups {		
+		// passing ldap connection as l into Group Info
+		user.Groups = append(user.Groups, GroupInfo(value, l))
+	}
+	
 	user.LockoutInfo = LockoutInfoData(username)
 
 	return
 }
 
+func GroupInfo(group string, l *ldap.Conn) (result GroupResult) {
+	groupName := strings.Split(group[3:], ",")[0]
+	
+	fmt.Println(groupName)
+
+	searchRequest := ldap.NewSearchRequest(
+		"DC=urmc-sh,DC=rochester,DC=edu",
+		ldap.ScopeWholeSubtree,
+		ldap.NeverDerefAliases,
+		1, // Max search size 1
+		0, // No timeout for search
+		false,
+		fmt.Sprintf("(&(objectClass=group)(cn=%s))", groupName), //Filter
+		[]string{"cn", "description", "info"}, // Attributes
+		nil,
+	)
+
+	results, _ := l.Search(searchRequest)
+
+	if (results == nil) {
+		result.Name = groupName
+		return
+	}
+	entry := results.Entries[0]
+
+	result.Name = entry.GetAttributeValue("cn")
+	result.Description = entry.GetAttributeValue("description")
+	result.Info = entry.GetAttributeValue("info")
+
+	return
+}
+
 func LockoutInfoData(user string) (matches []ServerResult) {
-	fmt.Println(user)
-	// maybe implement channels, it's very fast in its current state
 	var servers = [...]string{"AD22PDC01", "AD22PDC02", "AD22PDC03", "AD22PDC04", "AD22PDC05", "AD22SDC01", "AD22SDC02", "AD22SDC03", "AD22SDC04", "AD22SDC05"}
 
 	var wg sync.WaitGroup // create a wait group

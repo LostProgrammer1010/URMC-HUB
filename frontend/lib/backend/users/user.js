@@ -68,10 +68,13 @@ function getUserInfo() {
             var element = document.getElementById("relationship")
             element.innerHTML = data.relationship
             var element = document.getElementById("member-of-results")
-            for (let index = 0; index < data.groups.length; index++) {
-                var group = data.groups[index].slice(3, data.groups[index].indexOf(","))
-                element.innerHTML += group + "<br>"
-            }
+            data.groups.forEach((group) => {
+                descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
+                infopad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Info: "
+                if (group.description == "") descpad = ""
+                if (group.info == "") infopad = ""
+                element.innerHTML += "\"" + group.name + "\"" + descpad + group.description + infopad + group.info + "<br><br>"
+            });
 
             // display lockout results
             var element = document.getElementById("lockoutResults")
