@@ -3,9 +3,9 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
+  if (localStorage.getItem("printerPreviousSearch") == null) return
   await lookUpPrinter(localStorage.getItem("printerPreviousSearch"))
-  inputField.value = localStorage.getItem("printerPreviousSearch")
-
+  inputField.placeholder = `Previous Search "${localStorage.getItem("printerPreviousSearch")}"`
 }
 
 function search(event) {

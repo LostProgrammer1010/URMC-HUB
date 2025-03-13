@@ -3,8 +3,9 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
+  if (localStorage.getItem("sharedrivesPreviousSearch") == null) return
   await lookUpShareDrive(localStorage.getItem("sharedrivesPreviousSearch"))
-  inputField.value = localStorage.getItem("sharedrivesPreviousSearch")
+  inputField.placeholder = `Previous Search "${localStorage.getItem("sharedrivesPreviousSearch")}"`
 
 }
 

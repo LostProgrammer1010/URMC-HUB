@@ -7,8 +7,6 @@ async function lookUpPrinter(input) {
     currentPage = 1
     localStorage.setItem("printerPreviousSearch", input)
 
-    console.log(localStorage.getItem("printerPreviousSearch"))
-
     document.getElementById("loading").style.display = "flex"
   
     document.getElementById("printer").innerHTML = ""
@@ -39,7 +37,6 @@ async function lookUpPrinter(input) {
       })
       .catch(error=> {
         document.getElementById("loading").style.display = "none"
-        console.log(error)
         handleError(error)
       })
   }

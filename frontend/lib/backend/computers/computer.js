@@ -1,7 +1,14 @@
 function ping() {
     document.getElementById("loading").style.display = "flex"
 
-    const input = localStorage.getItem("computername")
+    if (sessionStorage.getItem("computername") == null) {
+        document.location.href = "../pages/searchcomputers.html"
+        return
+    }
+
+    const input = sessionStorage.getItem("computername")
+
+    localStorage.setItem("computername", input)
 
     const response = fetch(`http://localhost:8080/ping/`, {
         method: "POST",
@@ -28,7 +35,13 @@ function ping() {
 function restart() {
     document.getElementById("loading").style.display = "flex"
 
-    const input = localStorage.getItem("computername")
+    if (sessionStorage.getItem("computername") == null) {
+        document.location.href = "../pages/searchcomputers.html"
+        return
+    }
+
+    const input = sessionStorage.getItem("computername")
+    localStorage.setItem("computername", input)
 
     const response = fetch(`http://localhost:8080/restart/`, {
         method: "POST",
