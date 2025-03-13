@@ -8,9 +8,13 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
+type Group struct {
+	Name string `json:"name"`
+	OU   string `json:"ou"`
+}
+
 // Finds all groups matching the search
-func GroupsSearch(search string) (matches []string) {
-	fmt.Println(search)
+func GroupsSearch(search string) (matches []Group) {
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
@@ -20,24 +24,25 @@ func GroupsSearch(search string) (matches []string) {
 		"DC=urmc-sh,DC=rochester,DC=edu",
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
-		0, // Max search size 1500
-		0, // No timeout for search
+		0,
+		0,
 		false,
 		fmt.Sprintf("(&(objectClass=group)(cn=%s*))", search), //Filter
-		[]string{"*"}, // Attributes
+		[]string{"distinguishedName", "sAMAccountName"},       // Attributes
 		nil,
 	)
 
 	results, _ := l.Search(searchRequest)
 
 	for _, entry := range results.Entries {
+		var group Group
 
-		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
-		ou = strings.ReplaceAll(ou, "DC=", "")
-		username := entry.GetAttributeValue("sAMAccountName")
-		fullName := entry.GetAttributeValue("name")
+		group.OU = strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
+		group.OU = strings.ReplaceAll(group.OU, "DC=", "")
+		group.OU = strings.ReplaceAll(group.OU, "CN=", "")
+		group.Name = entry.GetAttributeValue("sAMAccountName")
 
-		matches = append(matches, fmt.Sprintf("%s | %s | %s", username, fullName, ou))
+		matches = append(matches, group)
 	}
 
 	err = l.Unbind()

@@ -3,7 +3,7 @@
 // Handling of all error that might be encounter in the fronend
 function handleError(error) {
   var message
-  console.log("Error:", error.name)
+  console.log("Error:", error)
   switch (error.name) {
     case "TypeError":
       message = "Server not Started"
