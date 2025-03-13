@@ -33,8 +33,7 @@ async function lookUpComputers(input) {
 
 function pullUpComputer(row) {
   const computername = row.children[0].innerHTML
-  console.log(computername)
-  localStorage.setItem("computername", computername)
+  sessionStorage.setItem("computername", computername)
   window.location.href = "../pages/computer.html"
 }
 

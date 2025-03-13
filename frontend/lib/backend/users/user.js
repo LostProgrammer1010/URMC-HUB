@@ -30,11 +30,16 @@ function edit(button) {
 
 function getUserInfo() {
     const lodaing = document.getElementById("loading")
-    console.log("username")
-    if (localStorage.getItem("username") == null) {
-      alert("Please search for a user first")
-      throw new Error("No username found")
+
+    
+    if (sessionStorage.getItem("username") == null) {
+        window.location.href = "../pages/searchusers.html"
+        return
     }
+
+    const username = sessionStorage.getItem("username")
+    localStorage.setItem("username", username)
+
     const response = fetch(
         `http://localhost:8080/user/${localStorage.getItem("username")}`
     )
@@ -97,12 +102,7 @@ function getUserInfo() {
         })
         .catch((error) => {
             loading.style.display = "none"
-            /*alert(
-                "Server not running. Please start server located here: File_path"
-            )
-                */
-            alert(error)
-            throw new Error("Server not running")
+            handleError(error)
         })
 }
 

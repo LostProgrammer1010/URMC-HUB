@@ -3,9 +3,9 @@ const form = document.getElementById('search-form');
 
 
 async function getPreviousSearch() {
+  if (localStorage.getItem("computerPreviousSearch") == null) return
   await lookUpComputers(localStorage.getItem("computerPreviousSearch"))
-  inputField.value = localStorage.getItem("computerPreviousSearch")
-
+  inputField.placeholder = `Previous Search "${localStorage.getItem("computerPreviousSearch")}"`
 }
 
 
