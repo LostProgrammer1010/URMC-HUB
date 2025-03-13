@@ -19,12 +19,16 @@
                 <caption>Found Users</caption>
                 <thead>
                   <tr id="form-row">
-                    <td colspan="2" >
+                    <td colspan="2" id="search-row">
                     <form onsubmit="search(event)" id="search-form">
                       <label for="name">Search:</label>
                       <input type="text" id="name" name="name">
                       <button type="submit" value="submit">Search</button>
                     </form>
+                    <div>
+                      <span>UR search?</span>
+                      <input type="checkbox" id="URcheckbox"/>
+                    </div>
                   </td>
                     <td scope="1">
                     <button onclick="prevPage()" id="prev-button" disabled><</button><span id="page-info">Page 1 of 1</span><button onclick="nextPage()" id="next-button" disabled>></button>

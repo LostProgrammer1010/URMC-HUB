@@ -16,7 +16,8 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	search := strings.Split(r.URL.Path, "/")[3]
+	domain := strings.Split(r.URL.Path, "/")[3]
+	search := strings.Split(r.URL.Path, "/")[4]
 
 	if search == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -27,7 +28,7 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 	fmt.Printf("Searching for:  %s\n", search)
 
-	matches := AD.UsersSearch(search)
+	matches := AD.UsersSearch(search, domain)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	jsonData, _ := json.Marshal(matches)

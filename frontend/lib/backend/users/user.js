@@ -41,7 +41,7 @@ function getUserInfo() {
     localStorage.setItem("username", username)
 
     const response = fetch(
-        `http://localhost:8080/user/${localStorage.getItem("username")}`
+        `http://localhost:8080/user/${localStorage.getItem("domain")}/${localStorage.getItem("username")}`
     )
         .then((response) => response.json()) // Parse the JSON response from the server
         .then((data) => {

@@ -153,4 +153,18 @@ background: #2e2d2d;
 left: 10px;
 }
 
+#search-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+#search-row div,
+#search-row div input {
+  padding: 0;
+  width: fit-content;
+  margin: 0;
+}
 
+#search-form {
+  flex-basis: 80%;
+}

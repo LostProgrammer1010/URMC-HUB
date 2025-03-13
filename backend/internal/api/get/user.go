@@ -16,7 +16,8 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	username := strings.Split(r.URL.Path, "/")[2]
+	username := strings.Split(r.URL.Path, "/")[3]
+	domain := strings.Split(r.URL.Path, "/")[2]
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 
@@ -27,7 +28,7 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	matches := AD.UserInfoSearch(username)
+	matches := AD.UserInfoSearch(username, domain)
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status

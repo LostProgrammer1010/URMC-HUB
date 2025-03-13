@@ -9,9 +9,14 @@ async function lookUpUsers(input) {
   currentPage = 1
   localStorage.setItem("userPreviousSearch", input)
   const loading = document.getElementById("loading")
-
+  if (document.getElementById("URcheckbox").checked) {
+    domain = "ur"
+  } else {
+    domain = "urmc-sh"
+  }
+  localStorage.setItem("domain", domain)
   loading.style.display = "flex"
-    fetch(`http://localhost:8080/users/search/${input}`)
+    fetch(`http://localhost:8080/users/search/${domain}/${input}`)
     .then(response => response.json()) 
     .then(data => {
       pagingdata = data

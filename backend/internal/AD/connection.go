@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/go-ldap/ldap/v3"
@@ -22,7 +23,13 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	}
 
 	// Bind to the server (Allows for searching)
-	err = l.Bind(fmt.Sprintf("URMC-sh\\%s", Username), Password)
+	fmt.Println(URL)
+	if (URL[7] == 'A') { // checking if domain is an AD server
+		err = l.Bind(fmt.Sprintf("urmc-sh\\%s", Username), Password)
+		return
+	}
+
+	err = l.Bind(fmt.Sprintf("%s\\%s", strings.Split(URL[7:], ".")[0],  Username), Password)
 
 	return
 

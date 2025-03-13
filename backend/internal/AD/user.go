@@ -3,7 +3,6 @@ package AD
 import (
 	"fmt"
 	"log"
-	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -44,9 +43,9 @@ type UserResult struct {
 	LockoutInfo     []ServerResult `json:"lockoutInfo"`
 }
 
-func UserInfoSearch(username string) (user UserResult) {
+func UserInfoSearch(username string, domain string) (user UserResult) {
 
-	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -54,7 +53,7 @@ func UserInfoSearch(username string) (user UserResult) {
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
+		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
 		1, // Max search size 1
@@ -86,30 +85,39 @@ func UserInfoSearch(username string) (user UserResult) {
 	user.FirstName = entry.GetAttributeValue("givenName")
 	user.SecondName = entry.GetAttributeValue("sn")
 	groups := entry.GetAttributeValues("memberOf")
-	sort.Strings(groups)
-	for _, value := range groups {		
-		// passing ldap connection as l into Group Info
-		user.Groups = append(user.Groups, GroupInfo(value, l))
+
+	var wg sync.WaitGroup // create a wait group
+	for _, group := range groups { // loop through groups
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			groupName := strings.Split(group[3:], ",")[0]
+			user.Groups = append(user.Groups, GroupInfo(groupName, l, domain)) // append results
+		}()
 	}
+	wg.Wait()
 	
-	user.LockoutInfo = LockoutInfoData(username)
+	if (domain == "urmc-sh") {
+		user.LockoutInfo = LockoutInfoData(username)
+	} else {
+		user.LockoutInfo = []ServerResult{}
+	}
 
 	return
 }
 
-func GroupInfo(group string, l *ldap.Conn) (result GroupResult) {
-	groupName := strings.Split(group[3:], ",")[0]
+func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
 	
-	fmt.Println(groupName)
+	fmt.Println(group)
 
 	searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
+		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
 		1, // Max search size 1
 		0, // No timeout for search
 		false,
-		fmt.Sprintf("(&(objectClass=group)(cn=%s))", groupName), //Filter
+		fmt.Sprintf("(&(objectClass=group)(cn=%s))", group), //Filter
 		[]string{"cn", "description", "info"}, // Attributes
 		nil,
 	)
@@ -117,7 +125,7 @@ func GroupInfo(group string, l *ldap.Conn) (result GroupResult) {
 	results, _ := l.Search(searchRequest)
 
 	if (results == nil) {
-		result.Name = groupName
+		result.Name = group 
 		return
 	}
 	entry := results.Entries[0]

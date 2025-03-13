@@ -30,14 +30,13 @@ type Additon struct {
 }
 
 // Finds all users under the URMC domain that match the search
-func UsersSearch(search string) (matches []User) {
-
-	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+func UsersSearch(search string, domain string) (matches []User) {
+	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
 	fmt.Println(err)
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
+		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
 		0,
