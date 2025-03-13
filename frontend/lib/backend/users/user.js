@@ -76,7 +76,7 @@ function getUserInfo() {
                 element.innerHTML += relationship + "<br>"
             })
             var element = document.getElementById("member-of-results")
-            if (data.group != null )
+            if (data.groups != null )
             {
                 data.groups.forEach((group) => {
                     descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
