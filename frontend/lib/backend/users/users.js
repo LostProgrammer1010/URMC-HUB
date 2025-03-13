@@ -9,6 +9,7 @@ async function lookUpUsers(input) {
   currentPage = 1
   localStorage.setItem("userPreviousSearch", input)
   const loading = document.getElementById("loading")
+  domain = "urmc-sh"
   if (document.getElementById("URcheckbox").checked) {
     domain = "ur"
   } else {

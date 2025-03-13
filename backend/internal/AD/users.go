@@ -30,7 +30,7 @@ func UsersSearch(search string, domain string) (matches []User) {
 		0,
 		0,
 		false,
-		fmt.Sprintf("(&(objectClass=user)(|(SAMAccountName=%s*)(givenName=%s*)(sn=%s*)))", search, search, search), //Filter
+		fmt.Sprintf("(&(objectClass=user)(anr=%s))", search), //Filter
 		[]string{"cn", "distinguishedName", "name", "sAMAccountName"},                                              // Attributes
 		nil,
 	)
