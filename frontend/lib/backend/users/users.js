@@ -14,7 +14,7 @@ async function lookUpUsers(input) {
   } else {
     domain = "urmc-sh"
   }
-  localStorage.setItem("domain", domain)
+  sessionStorage.setItem("domain", domain)
   loading.style.display = "flex"
     fetch(`http://localhost:8080/users/search/${domain}/${input}`)
     .then(response => response.json()) 
@@ -69,8 +69,20 @@ function displayTable(page) {
 
   paginatedData.forEach(user => {
 
+    var className;
+    console.log(user.offboarded)
+    if (user.disabled) {
+      className = "disable"
+    }else if (user.offboarded) {
+      className = "offboarded"
+      
+    } else {
+      className = "normal"
+    }
+
+
     tableBody.innerHTML += `
-      <tr onclick="pullUpUser(this)">
+      <tr class="${className}" onclick="pullUpUser(this)">
         <td data-label="Name">${user.name}</td>
         <td data-label="Username">${user.username}</td>
         <td data-label="OU">${user.ou}</td>
