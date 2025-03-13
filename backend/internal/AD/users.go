@@ -10,23 +10,11 @@ import (
 
 // Object sent back to frontend to display of user
 type User struct {
-	Name     string `json:"name"`
-	Username string `json:"username"`
-	OU       string `json:"ou"`
-}
-
-// Addition information about a user
-type Additon struct {
-	User         User     `json:"user"`
-	NetID        string   `json:"netid"`
-	URID         string   `json:"urid"`
-	Email        string   `json:"email"`
-	Phone        string   `json:"phone"`
-	Title        string   `json:"title"`
-	Department   string   `json:"department"`
-	Location     string   `json:"location"`
-	Relationship string   `json:"relationship"`
-	MemberOf     []string `json:"memberof"`
+	Name       string `json:"name"`
+	Username   string `json:"username"`
+	OU         string `json:"ou"`
+	Disabled   bool   `json:"disabled"`
+	Offboarded bool   `json:"offboarded"`
 }
 
 // Finds all users under the URMC domain that match the search
@@ -54,9 +42,14 @@ func UsersSearch(search string, domain string) (matches []User) {
 		user.OU = strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
 		user.OU = strings.ReplaceAll(user.OU, "DC=", "")
 		user.OU = strings.ReplaceAll(user.OU, "CN=", "")
+
+		user.Disabled = strings.Contains(strings.ToLower(user.OU), "disabled accounts")
+		user.Offboarded = strings.Contains(strings.ToLower(user.OU), "offboarded")
 		user.Username = entry.GetAttributeValue("sAMAccountName")
 		user.Name = entry.GetAttributeValue("name")
 		matches = append(matches, user)
+
+		fmt.Println(user.Disabled)
 	}
 
 	err = l.Unbind()

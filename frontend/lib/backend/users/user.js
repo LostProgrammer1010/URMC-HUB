@@ -41,7 +41,7 @@ function getUserInfo() {
     localStorage.setItem("username", username)
 
     const response = fetch(
-        `http://localhost:8080/user/${localStorage.getItem("domain")}/${localStorage.getItem("username")}`
+        `http://localhost:8080/user/${sessionStorage.getItem("domain")}/${localStorage.getItem("username")}`
     )
         .then((response) => response.json()) // Parse the JSON response from the server
         .then((data) => {
@@ -76,13 +76,16 @@ function getUserInfo() {
                 element.innerHTML += relationship + "<br>"
             })
             var element = document.getElementById("member-of-results")
-            data.groups.forEach((group) => {
-                descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
-                infopad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Info: "
-                if (group.description == "") descpad = ""
-                if (group.info == "") infopad = ""
-                element.innerHTML += "\"" + group.name + "\"" + descpad + group.description + infopad + group.info + "<br><br>"
-            });
+            if (data.group != null )
+            {
+                data.groups.forEach((group) => {
+                    descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
+                    infopad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Info: "
+                    if (group.description == "") descpad = ""
+                    if (group.info == "") infopad = ""
+                    element.innerHTML += "\"" + group.name + "\"" + descpad + group.description + infopad + group.info + "<br><br>"
+                });
+            }
 
             // display lockout results
             var element = document.getElementById("lockoutResults")
@@ -102,6 +105,7 @@ function getUserInfo() {
         })
         .catch((error) => {
             loading.style.display = "none"
+            console.log(error)
             handleError(error)
         })
 }

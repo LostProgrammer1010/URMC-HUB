@@ -1,1 +1,9 @@
 /*Additon css for users page*/
+
+.disable {
+  background: rgba(255,0,0,0.2)
+}
+
+.offboarded {
+  background-color: rgba(255,255,0,0.2);
+}
