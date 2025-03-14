@@ -10,15 +10,16 @@ import (
 
 // Object sent back to frontend to display of user
 type User struct {
-	Name       string `json:"name"`
-	Username   string `json:"username"`
-	OU         string `json:"ou"`
-	Disabled   bool   `json:"disabled"`
-	Offboarded bool   `json:"offboarded"`
+	Type     string `json:"type"`
+	Name     string `json:"name"`
+	Username string `json:"username"`
+	OU       string `json:"ou"`
+	Disabled bool   `json:"disabled"`
 }
 
 // Finds all users under the URMC domain that match the search
 func UsersSearch(search string, domain string) (matches []User) {
+	matches = make([]User, 0)
 	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
 	fmt.Println(err)
 	defer l.Close()
@@ -30,8 +31,8 @@ func UsersSearch(search string, domain string) (matches []User) {
 		0,
 		0,
 		false,
-		fmt.Sprintf("(&(objectClass=user)(anr=%s))", search), //Filter
-		[]string{"cn", "distinguishedName", "name", "sAMAccountName"},                                              // Attributes
+		fmt.Sprintf("(&(objectClass=user)(anr=%s))", search),          //Filter
+		[]string{"cn", "distinguishedName", "name", "sAMAccountName"}, // Attributes
 		nil,
 	)
 
@@ -44,12 +45,11 @@ func UsersSearch(search string, domain string) (matches []User) {
 		user.OU = strings.ReplaceAll(user.OU, "CN=", "")
 
 		user.Disabled = strings.Contains(strings.ToLower(user.OU), "disabled accounts")
-		user.Offboarded = strings.Contains(strings.ToLower(user.OU), "offboarded")
 		user.Username = entry.GetAttributeValue("sAMAccountName")
 		user.Name = entry.GetAttributeValue("name")
+		user.Type = "user"
 		matches = append(matches, user)
 
-		fmt.Println(user.Disabled)
 	}
 
 	err = l.Unbind()

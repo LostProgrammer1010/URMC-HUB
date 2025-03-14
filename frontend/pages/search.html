@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../styles/search.css">
+        <link rel="stylesheet" href="../styles/global/navbar.css">
+        <link rel="stylesheet" href="../styles/global/loading.css">
+        <link rel="stylesheet" href="../styles/global/error.css">
+
+        <title>Service Desk HUB</title>
+        <link
+        rel="icon"
+        href="../assets/URMC.ico"
+        type="image/x-icon"
+      />
+
+    </head>
+    <body>
+        <script src="../lib/global/nav.js"></script>
+          <div class="header">
+            <form onsubmit="search(event)" id="search-form">
+              <label for="name">Search</label>
+              <input type="text" id="name" name="name">
+              <button type="submit" value="submit">Search</button>
+            </form>
+            <div class="paging-container">
+              <button onclick="prevPage()" id="prev-button" disabled>
+                <
+              </button>
+              <span id="page-info">Page 1 of 1</span>
+              <button onclick="nextPage()" id="next-button" disabled>
+                >
+              </button>
+          </div>
+          </div>
+          <div class="search-container">
+
+            <div  class="body" id="body">
+              <div class="loading" id="loading">
+                <div class="circle" id="one"></div>
+                <div class="circle" id="two"></div>
+                <div class="circle" id="three"></div>
+              </div>
+              
+            </div>
+
+          </div>
+
+
+            
+    </body>
+
+    <script src="../lib/backend/search.js"></script>
+    <script src="../lib/backend/requests.js"></script>
+    <script src="../lib/backend/users.js"></script>
+    <script src="../lib/backend/paging.js"></script>
+    <script src="../lib/backend/group.js"></script>
+    <script src="../lib/backend/compuer.js"></script>
+    <script src="../lib/backend/printer.js"></script>
+    <script src="../lib/backend/sharedrive.js"></script>
+    <script src="../lib/backend/all.js"></script>
+    <script src="../lib/global/error.js"></script>
+    
+
+
+</html>

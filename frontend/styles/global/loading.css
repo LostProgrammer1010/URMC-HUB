@@ -5,6 +5,7 @@
     position: relative;
     gap: 20px;
     justify-self: center;
+    align-self: center;
     margin-top: 50px;
   }
   

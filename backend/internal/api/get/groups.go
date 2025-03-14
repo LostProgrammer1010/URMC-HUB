@@ -18,9 +18,9 @@ func GroupsSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	search := strings.Split(r.URL.Path, "/")[3]
+	search := strings.Split(r.URL.Path, "/")[4]
 
-	fmt.Println(strings.Split(r.URL.Path, "/"))
+	fmt.Println(r.URL.Path)
 
 	// Log the received message
 	fmt.Printf("Searching for:  %s\n", search)
