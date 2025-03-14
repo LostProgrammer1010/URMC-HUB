@@ -9,6 +9,7 @@ import (
 )
 
 type Group struct {
+	Type string `json:"type"`
 	Name string `json:"name"`
 	OU   string `json:"ou"`
 }
@@ -41,6 +42,7 @@ func GroupsSearch(search string) (matches []Group) {
 		group.OU = strings.ReplaceAll(group.OU, "DC=", "")
 		group.OU = strings.ReplaceAll(group.OU, "CN=", "")
 		group.Name = entry.GetAttributeValue("sAMAccountName")
+		group.Type = "group"
 
 		matches = append(matches, group)
 	}

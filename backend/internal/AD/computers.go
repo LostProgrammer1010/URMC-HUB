@@ -8,13 +8,14 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-type ComputerResult struct {
+type Computer struct {
 	Name string `json:"name"`
-	OU string `json:"ou"`
+	OU   string `json:"ou"`
+	Type string `json:"type"`
 }
 
 // Finds all computers under the URMC domain that match the search
-func ComputersSearch(search string) (matches []ComputerResult) {
+func ComputersSearch(search string) (matches []Computer) {
 	fmt.Println(search)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
@@ -36,12 +37,14 @@ func ComputersSearch(search string) (matches []ComputerResult) {
 	results, _ := l.Search(searchRequest)
 
 	for _, entry := range results.Entries {
+		var computer Computer
 
-		ou := strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
-		ou = strings.ReplaceAll(ou, "DC=", "")
-		name := entry.GetAttributeValue("name")
+		computer.OU = strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
+		computer.OU = strings.ReplaceAll(computer.OU, "DC=", "")
+		computer.Name = entry.GetAttributeValue("name")
+		computer.Type = "computer"
 
-		matches = append(matches, ComputerResult{name, ou})
+		matches = append(matches, computer)
 	}
 
 	err = l.Unbind()

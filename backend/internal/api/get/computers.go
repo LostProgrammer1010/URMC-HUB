@@ -17,7 +17,7 @@ func ComputersSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	search := strings.Split(r.URL.Path, "/")[3]
+	search := strings.Split(r.URL.Path, "/")[4]
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 

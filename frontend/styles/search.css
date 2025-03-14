@@ -1,0 +1,186 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+  padding-top: 50px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-height: 100%;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-top: -10px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  flex-grow: 1;
+  scrollbar-width: 0px;
+}
+
+ .header {
+  background: rgb(11, 94, 218);;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0px 20px 20px 3px rgba(0,0,0,.5);
+  width: 100%;
+  height: 50px;
+  padding: 40px 30px;
+}
+
+ .header form {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+}
+
+.header button {
+  border-radius: 10px;
+  border: 1px solid rgb(255,255,255);
+  color: white;
+  padding: 10px;
+  background: transparent;
+}
+
+.header button:hover {
+  color: rgb(11, 94, 218);
+  background: white;
+}
+
+.header #name {
+  border: 1px solid rgba(255,255,255,1) ;
+  padding: 10px;
+  border-radius: 10px;
+  width: 300px;
+  color: white;
+  background: none;
+}
+
+.header label {
+  position: absolute;
+  background: rgb(11, 94, 218);
+  left: 20px;
+  top: -7px;
+  font-size: 15px;
+}
+
+.header #search:focus {
+  outline: none
+}
+
+.search-container .body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.search-container .body .row {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px 30px;
+  border: 1px solid rgba(11, 94, 218,0.4);
+  box-shadow: 0px 5px 5px 8px rgba(0,0,0,0.3);
+  transition: 0.5s ease;
+}
+
+.search-container .body .row span {
+  flex-basis: 20%;
+  flex-grow: 1;
+}
+
+
+
+.paging-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.search-container .body .row:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 2px rgba(11, 94, 218,0.3), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(11, 94, 218, 1);
+}
+
+.search-container #printer {
+  border: 1px solid rgba(201, 11, 218, 0.4);
+}
+
+.search-container .body #printer:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(201, 11, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(201, 11, 218, 1);;
+}
+
+.search-container #disabled {
+  border: 1px solid rgba(218, 11, 11, 0.4);
+}
+
+.search-container .body #disabled:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(218, 11, 11, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(218, 11, 11, 1);
+}
+
+.search-container #user {
+  border: 1px solid rgba(11, 94, 218, 0.4);
+}
+
+.search-container .body #user:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(11, 94, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(11, 94, 218, 1);
+}
+
+.search-container #computer {
+  border: 1px solid rgba(11, 218, 66, 0.4);
+}
+
+.search-container .body #computer:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(11, 218, 66, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(11, 218, 66, 1);
+}
+
+
+.search-container #group {
+  border: 1px solid rgba(218, 152, 11, 0.4);
+}
+
+.search-container .body #group:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(218, 152, 11, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(218, 152, 11, 1);
+}
+
+.search-container #sharedrive {
+  border: 1px solid rgba(128, 11, 218, 0.4);
+}
+
+.search-container .body #sharedrive:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px rgba(128, 11, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgba(128, 11, 218, 1);
+}
+
+
