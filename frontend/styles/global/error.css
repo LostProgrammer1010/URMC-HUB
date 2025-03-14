@@ -25,6 +25,7 @@
   font-size: 25px;
   font-weight: 500;
   gap: 10px;
+  z-index: 10;
 }
 
 #error-button {
