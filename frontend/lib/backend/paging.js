@@ -7,7 +7,6 @@ var pagingdata;
 
 // Display the users in a paged format
 function displayTable(page) {
-  loading.style.display = "none"
   body.innerHTML = "";
   const start = (page - 1) * rowsPerPage;
   const end = start + rowsPerPage;
@@ -29,7 +28,6 @@ function displayTable(page) {
 
 
   paginatedData.forEach(item => {
-    console.log(item.type)
 
     switch (item.type) {
       case "user":
@@ -47,6 +45,7 @@ function displayTable(page) {
       case "group":
         displayGroup(item, body)
         break
+      case "all":
       default:
         console.error("Not a correct item type")
     }

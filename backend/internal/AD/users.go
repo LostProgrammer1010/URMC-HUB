@@ -19,6 +19,7 @@ type User struct {
 
 // Finds all users under the URMC domain that match the search
 func UsersSearch(search string, domain string) (matches []User) {
+	matches = make([]User, 0)
 	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
 	fmt.Println(err)
 	defer l.Close()

@@ -7,16 +7,7 @@ document.body.insertAdjacentHTML('afterbegin',
                     URMC HUB
                 </a>
                 <hr>
-                <div class="dropdown">
-                    <button onClick="drop(this)">LDAP Search <span>></span></button>
-                        <div class="content">
-                                <a href="./searchusers.html">Users</a>
-                                <a href="./searchcomputers.html">Computers</a>
-                                <a href="./searchgroups.html">Group</a>
-                                <a href="./searchsharedrive.html">Share Drives</a>
-                                <a href="./searchprinters.html">Printers</a>
-                        </div>
-                    </div>
+                <a href="./search.html">LDAP Search</a>
                 <hr>
                 <a href="./systemsummary.html">System Summary</a>
                 <hr>

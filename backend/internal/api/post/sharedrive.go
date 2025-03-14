@@ -16,8 +16,9 @@ type Input struct {
 }
 
 type ShareDrive struct {
-	Group  string `json:"group"`
-	Drives []Drive
+	Group  string  `json:"group"`
+	Drives []Drive `json:"drives"`
+	Type   string  `json:"type"`
 }
 
 type Drive struct {
@@ -25,6 +26,7 @@ type Drive struct {
 }
 
 func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
+
 	var input Input
 	option.EnableCORS(w, r)
 
@@ -63,6 +65,7 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 }
 
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
+	shareDrives = make([]ShareDrive, 0)
 	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
 
 	file, err := os.Open(networkPath)
@@ -88,6 +91,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 			for _, path := range paths {
 				sharedrive.Drives = append(sharedrive.Drives, Drive{Path: path[1:]})
 			}
+			sharedrive.Type = "sharedrive"
 			shareDrives = append(shareDrives, *sharedrive)
 		}
 	}

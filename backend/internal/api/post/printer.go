@@ -18,6 +18,7 @@ type Printer struct {
 	PrintProccessor string `json:"printProccessor"`
 	Location        string `json:"location"`
 	Notes           string `json:"notes"`
+	Type            string `json:"type"`
 }
 
 // Request to return all printers that match the search
@@ -61,6 +62,7 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 
 // Matches printer to the search
 func MatchPrinter(input string) (printers []Printer) {
+	printers = make([]Printer, 0)
 	printersList := fetchPrinters()
 
 	for _, printer := range printersList {
@@ -73,7 +75,8 @@ func MatchPrinter(input string) (printers []Printer) {
 }
 
 // Retrieves the printer queue from the server
-func fetchPrinters() (printer []Printer) {
+func fetchPrinters() (printers []Printer) {
+	printers = make([]Printer, 0)
 	// Make a GET request
 	resp, err := http.Get("https://apps.mc.rochester.edu/ISD/SIG/PrintQueues/PrintQReport.csv")
 	if err != nil {
@@ -91,8 +94,17 @@ func fetchPrinters() (printer []Printer) {
 	records, _ := file.ReadAll()
 
 	for _, record := range records {
+		var printer Printer
+		printer.Server = record[0]
+		printer.Queue = record[1]
+		printer.Model = record[2]
+		printer.IP = record[3]
+		printer.PrintProccessor = record[4]
+		printer.Location = record[5]
+		printer.Notes = record[6]
+		printer.Type = "printer"
 
-		printer = append(printer, Printer{record[0], record[1], record[2], record[3], record[4], record[5], record[6]})
+		printers = append(printers, printer)
 
 	}
 

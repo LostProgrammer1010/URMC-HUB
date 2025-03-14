@@ -19,7 +19,7 @@ function search(event) {
       break;
     } 
     case 'p': {
-      getSearch(searchValue, "printers")
+      postSearch(searchValue, "printers")
       break;
     }
     case 'c': {
@@ -27,7 +27,7 @@ function search(event) {
       break;
     }
     case 's': {
-      getSearch(searchValue, "sharedrives")
+      postSearch(searchValue, "sharedrives")
       break;
     }
     case 'g': {
@@ -35,11 +35,11 @@ function search(event) {
       break;
     }
     case 'a': {
-      getSearch(searchValue, "all")
+      postSearchAll(searchValue, "all")
       break;
     }
     default: {
-      getSearch(searchValue, "all")
+      postSearchAll(searchValue, "all")
       break;
     }
   }

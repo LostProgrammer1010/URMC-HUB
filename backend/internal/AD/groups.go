@@ -16,7 +16,7 @@ type Group struct {
 
 // Finds all groups matching the search
 func GroupsSearch(search string) (matches []Group) {
-
+	matches = make([]Group, 0)
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
 	defer l.Close()
