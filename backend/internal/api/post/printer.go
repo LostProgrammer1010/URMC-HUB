@@ -25,7 +25,7 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 	var input Input
 	option.EnableCORS(w, r)
 
-	if !checkMethod(r) {
+	if !CheckMethod(r) {
 		http.Error(w, "Incorrect Method", http.StatusBadRequest)
 		return
 	}

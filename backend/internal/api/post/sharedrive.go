@@ -11,7 +11,8 @@ import (
 )
 
 type Input struct {
-	Value string `json:"value"`
+	Value  string `json:"value"`
+	Domain string `json:"domain"`
 }
 
 type ShareDrive struct {
@@ -27,7 +28,7 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 	var input Input
 	option.EnableCORS(w, r)
 
-	if !checkMethod(r) {
+	if !CheckMethod(r) {
 		http.Error(w, "Incorrect Method", http.StatusBadRequest)
 		return
 	}

@@ -12,7 +12,7 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 	var computerName Input
 	option.EnableCORS(w, r)
 
-	if !checkMethod(r) {
+	if !CheckMethod(r) {
 		http.Error(w, "Incorrect Method", http.StatusBadRequest)
 		return
 	}
@@ -35,11 +35,11 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 }
 
 func PingComputer(computerName string) (results []byte) {
-    cmd := exec.Command("ping", computerName)
+	cmd := exec.Command("ping", computerName)
 	results, err := cmd.CombinedOutput()
-    if err != nil {
-            fmt.Println(err)
-            return
-    }
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	return
 }

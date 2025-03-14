@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"backend/internal/api"
 	"backend/internal/api/get"
 	"backend/internal/api/post"
 	"net/http"
@@ -37,7 +38,7 @@ Input
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/search/all/", get.AllSearch)
+	mux.HandleFunc("/search/all/", api.AllSearch)
 	mux.HandleFunc("/search/groups/", get.GroupsSearch)
 	mux.HandleFunc("/search/users/", get.UsersSearch)
 	mux.HandleFunc("/user/", get.UserInfo)

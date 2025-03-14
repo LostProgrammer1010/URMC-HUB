@@ -1,8 +1,9 @@
-package get
+package api
 
 import (
 	"backend/internal/AD"
 	"backend/internal/api/option"
+	"backend/internal/api/post"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -10,26 +11,32 @@ import (
 )
 
 func AllSearch(w http.ResponseWriter, r *http.Request) {
+	var input post.Input
 
 	option.EnableCORS(w, r)
 
-	if !checkMethod(r) {
+	if !post.CheckMethod(r) {
 		return
 	}
 
-	search := strings.Split(r.URL.Path, "/")[4]
-	domain := strings.Split(r.URL.Path, "/")[3]
+	err := json.NewDecoder(r.Body).Decode(&input)
+
+	if err != nil {
+
+		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+		return
+	}
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 
 	// Log the received message
-	fmt.Printf("Searching for:  %s\n", search)
+	fmt.Printf("Searching for:  %s\n", input.Value)
 
-	if search == "" {
+	if input.Value == "" {
 		return
 	}
 
-	matches := AD.AllSearch(search, domain)
+	matches := AD.AllSearch(input.Value, input.Domain)
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status

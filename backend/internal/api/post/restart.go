@@ -12,7 +12,7 @@ func Restart(w http.ResponseWriter, r *http.Request) {
 	var computerName Input
 	option.EnableCORS(w, r)
 
-	if !checkMethod(r) {
+	if !CheckMethod(r) {
 		http.Error(w, "Incorrect Method", http.StatusBadRequest)
 		return
 	}
@@ -35,11 +35,11 @@ func Restart(w http.ResponseWriter, r *http.Request) {
 }
 
 func RestartComputer(computerName string) (results []byte) {
-    cmd := exec.Command("shutdown", "-r", "-t", "2", "-m", computerName)
+	cmd := exec.Command("shutdown", "-r", "-t", "2", "-m", computerName)
 	results, err := cmd.CombinedOutput()
-    if err != nil {
-            fmt.Println(err)
-            return
-    }
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	return
 }
