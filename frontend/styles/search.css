@@ -184,3 +184,20 @@ body {
 }
 
 
+form span {
+  position: absolute;
+  bottom: -20px;
+  left: 15px;
+  font-size: 12px;
+  color: red;
+  font-weight: bold;
+}
+
+form #name:focus {
+  outline: none;
+}
+
+form #name.error {
+  outline: red;
+  border: 1px solid red;
+}

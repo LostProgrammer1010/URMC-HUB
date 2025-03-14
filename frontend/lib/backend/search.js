@@ -5,9 +5,20 @@ const inputField = document.getElementById("name");
 function search(event) {
   event.preventDefault();
 
-  if (inputField.value == ""){
-    inputField.style.outline = "1px solid red"
+  if (inputField.value == "" || inputField.value == "a" || inputField.value == "c" || inputField.value == "g" || inputField.value == "s" || inputField.value == "p" || inputField.value == "u" ){
+    inputField.classList.toggle("error")
+    if (document.getElementById("error") == null){
+      err = document.createElement("span")
+      err.id = err
+      err.innerHTML = "Cannot use reseved letter for all search"
+      form.appendChild(err)
+    }
     form.reset()
+
+    setTimeout(function () {
+      inputField.classList.toggle("error")
+      form.removeChild(err)
+    }, 2000)
     return
   }
 
