@@ -18,7 +18,7 @@ A web application that provides useful information to service desk agents. Allow
     ```sh
     go build -o ..\..\bin\
     ```
-or just run the project
+    or just run the project (Skip Step 5)
     ```sh
     go run .
     ```
