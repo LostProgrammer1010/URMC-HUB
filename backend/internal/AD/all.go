@@ -6,8 +6,8 @@ import (
 
 type AllResult struct {
 	Users     []User            `json:"users"`
-	Computers []ComputerResult  `json:"computers"`
-	Groups    []string          `json:"groups"`
+	Computers []Computer        `json:"computers"`
+	Groups    []Group           `json:"groups"`
 	Printers  []post.Printer    `json:"printers"`
 	Shares    []post.ShareDrive `json:"shares"`
 }
