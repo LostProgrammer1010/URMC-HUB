@@ -29,7 +29,6 @@ function edit(button) {
 }
 
 function getUserInfo() {
-    const lodaing = document.getElementById("loading")
 
     
     if (sessionStorage.getItem("username") == null) {
@@ -101,10 +100,8 @@ function getUserInfo() {
                 element.innerHTML += data.lockoutInfo[index].time
                 element.innerHTML += "<br>"
             }
-            loading.style.display = "none"
         })
         .catch((error) => {
-            loading.style.display = "none"
             console.log(error)
             handleError(error)
         })

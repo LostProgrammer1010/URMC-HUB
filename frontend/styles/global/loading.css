@@ -1,7 +1,7 @@
   /* Loading */
 
   .loading {
-    display: none;
+    display: flex;
     position: relative;
     gap: 20px;
     justify-self: center;

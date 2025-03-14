@@ -1,4 +1,4 @@
-const body = document.getElementById("body");
+const content = document.getElementById("content");
 
 var currentPage = 1
 var rowsPerPage = 10
@@ -7,7 +7,7 @@ var pagingdata;
 
 // Display the users in a paged format
 function displayTable(page) {
-  body.innerHTML = "";
+  content.innerHTML = "";
   const start = (page - 1) * rowsPerPage;
   const end = start + rowsPerPage;
 
@@ -20,7 +20,7 @@ function displayTable(page) {
     span = document.createElement("span")
     span.innerHTML = "No Results Found"
     row.appendChild(span)
-    body.appendChild(row)
+    content.appendChild(row)
     return
   }  
 
@@ -31,19 +31,19 @@ function displayTable(page) {
 
     switch (item.type) {
       case "user":
-        displayUser(item, body)
+        displayUser(item, content)
         break
       case "computer":
-        displayComputer(item, body)
+        displayComputer(item, content)
         break
       case "printer":
-        displayPrinter(item, body)
+        displayPrinter(item, content)
         break
       case "sharedrive":
-        displayShareDrive(item, body)
+        displayShareDrive(item, content)
         break
       case "group":
-        displayGroup(item, body)
+        displayGroup(item, content)
         break
       case "all":
       default:
@@ -55,6 +55,7 @@ function displayTable(page) {
   document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(pagingdata.length / rowsPerPage)}`;
   document.getElementById("prev-button").disabled = currentPage === 1;
   document.getElementById("next-button").disabled = currentPage === Math.ceil(pagingdata.length / rowsPerPage);
+
 }
 
 // Go back a page
@@ -76,5 +77,22 @@ function nextPage() {
   if (currentPage < Math.ceil(pagingdata.length / rowsPerPage)) {
       currentPage++;
       displayTable(currentPage);
+  }
+}
+
+
+function getSearchCriteria(input) {
+  input = input.replace(/\s+/g, ' ').trim();
+
+  splitSearch = input.split(" ")
+
+  switch (splitSearch[0]) {
+    case 'u': return ['u', splitSearch.slice(1).join(" ")]
+    case 'p': return ['p', splitSearch.slice(1).join(" ")]
+    case 'c': return ['c', splitSearch.slice(1).join(" ")]
+    case 's': return ['s', splitSearch.slice(1).join(" ")]
+    case 'g': return ['g', splitSearch.slice(1).join(" ")]
+    case 'a': return ['a', splitSearch.slice(1).join(" ")]
+    default: return ['a', splitSearch.join(" ")]
   }
 }
