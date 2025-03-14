@@ -143,13 +143,13 @@ body {
 }
 
 .search-container #user {
-  border: 1px solid rgba(11, 94, 218, 0.4);
+  border: 1px solid rgba(11, 218, 218, 0.4);
 }
 
 .search-container .body #user:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(11, 94, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(11, 94, 218, 1);
+  box-shadow: inset 0px 0px 10px 4px rgba(11, 218, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid rgb(11, 218, 218);
 }
 
 .search-container #computer {
@@ -200,4 +200,57 @@ form #name:focus {
 form #name.error {
   outline: red;
   border: 1px solid red;
+}
+
+
+#color-codes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+  gap: 20px;
+}
+
+#color-codes span {
+  font-size:  15px;
+}
+
+#color-codes .color {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+}
+
+#color-codes .color div {
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+#color-codes #computer {
+  background: rgba(11, 218, 66, 1)
+}
+
+#color-codes #user {
+  background: rgb(11, 218, 218)
+}
+
+#color-codes #printer {
+  background: rgba(201, 11, 218, 1)
+}
+
+#color-codes #sharedrive {
+  background: rgba(128, 11, 218, 1)
+}
+
+#color-codes #group {
+  background: rgba(218, 152, 11, 1)
+}
+
+#color-codes #disabled {
+  background: rgba(218, 11, 11, 1)
 }
