@@ -37,6 +37,7 @@ Input
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
 
+	mux.HandleFunc("/search/all/", get.AllSearch)
 	mux.HandleFunc("/search/groups/", get.GroupsSearch)
 	mux.HandleFunc("/search/users/", get.UsersSearch)
 	mux.HandleFunc("/user/", get.UserInfo)

@@ -46,7 +46,7 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	printers := matchPrinter(input.Value)
+	printers := MatchPrinter(input.Value)
 
 	fmt.Printf("Number of Printers Found: %d", len(printers))
 
@@ -60,7 +60,7 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 }
 
 // Matches printer to the search
-func matchPrinter(input string) (printers []Printer) {
+func MatchPrinter(input string) (printers []Printer) {
 	printersList := fetchPrinters()
 
 	for _, printer := range printersList {
