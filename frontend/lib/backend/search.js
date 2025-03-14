@@ -23,7 +23,6 @@ async function search(event) {
 
   sessionStorage.setItem("previousSearch", inputField.value)
 
-<<<<<<< HEAD
   await determineSearch(inputField.value)
 
 
@@ -34,101 +33,52 @@ async function search(event) {
 
 } 
 
-async function determineSearch(input) {
 
+function determineSearch(input) {
   content.innerHTML = ""
   
   content.appendChild(loading)
-
-=======
-  determineSearch(inputField.value)
-
-
-  inputField.style.outline = "none"
-  //searchAll(inputField.value);
-  form.reset()
-} 
-
-function determineSearch(input) {
->>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
 
   let [filterValue, searchValue]= getSearchCriteria(input)
 
   switch (filterValue) {
     case 'u':{
-      await getSearch(searchValue, "users")
+      getSearch(searchValue, "users")
       break;
     } 
     case 'p': {
-      await postSearch(searchValue, "printers")
+      postSearch(searchValue, "printers")
       break;
     }
     case 'c': {
-      await getSearch(searchValue, "computers")
+      getSearch(searchValue, "computers")
       break;
     }
     case 's': {
-      await postSearch(searchValue, "sharedrives")
+      postSearch(searchValue, "sharedrives")
       break;
     }
     case 'g': {
-      await getSearch(searchValue, "groups")
+      getSearch(searchValue, "groups")
       break;
     }
     case 'a': {
-      await postSearchAll(searchValue, "all")
+      postSearchAll(searchValue, "all")
       break;
     }
     default: {
-      await postSearchAll(searchValue, "all")
+      postSearchAll(searchValue, "all")
       break;
     }
   }
 }
 
-<<<<<<< HEAD
-  inputField.style.outline = "none"
-  form.reset()
-
-} 
-
-=======
->>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
 
 function getPreviousSearch() {
   const input = sessionStorage.getItem("previousSearch")
   if (input == null ) return
   determineSearch(input)
 }
-
-<<<<<<< HEAD
 getPreviousSearch()
 
-function createLoading() {
-  let loading = document.createElement("div")
-  loading.classList = "loading"
-  loading.id = "loading"
 
-  circle1 = document.createElement("div")
-  circle1.classList = "circle"
-  circle1.id = "one"
-
-  circle2 = document.createElement("div")
-  circle2.classList = "circle"
-  circle2.id = "two"
-
-  circle3 = document.createElement("div")
-  circle3.classList = "circle"
-  circle3.id = "two"
-
-  loading.appendChild(circle1)
-  loading.appendChild(circle2)
-  loading.appendChild(circle3)
-
-  return loading
-}
-
-
-=======
-getPreviousSearch()
->>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
