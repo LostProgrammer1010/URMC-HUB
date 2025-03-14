@@ -22,7 +22,19 @@ function search(event) {
     return
   }
 
-  let [filterValue, searchValue]= getSearchCriteria(inputField.value)
+  sessionStorage.setItem("previousSearch", inputField.value)
+
+  determineSearch(inputField.value)
+
+
+  inputField.style.outline = "none"
+  //searchAll(inputField.value);
+  form.reset()
+} 
+
+function determineSearch(input) {
+
+  let [filterValue, searchValue]= getSearchCriteria(input)
 
   switch (filterValue) {
     case 'u':{
@@ -54,8 +66,13 @@ function search(event) {
       break;
     }
   }
+}
 
-  inputField.style.outline = "none"
-  //searchAll(inputField.value);
-  form.reset()
-} 
+
+function getPreviousSearch() {
+  const input = sessionStorage.getItem("previousSearch")
+  if (input == null ) return
+  determineSearch(input)
+}
+
+getPreviousSearch()
