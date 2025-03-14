@@ -18,6 +18,10 @@ A web application that provides useful information to service desk agents. Allow
     ```sh
     go build -o ..\..\bin\
     ```
+or just run the project
+    ```sh
+    go run .
+    ```
 5. Execute the hub.exe in backend/bin
 6. Put in the AD Credentials and Server will start
 ![URMC Banner](./README%20Photos/Terminal%20Instruction.png)
