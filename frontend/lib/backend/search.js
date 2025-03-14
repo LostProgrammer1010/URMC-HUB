@@ -23,6 +23,7 @@ async function search(event) {
 
   sessionStorage.setItem("previousSearch", inputField.value)
 
+<<<<<<< HEAD
   await determineSearch(inputField.value)
 
 
@@ -39,6 +40,17 @@ async function determineSearch(input) {
   
   content.appendChild(loading)
 
+=======
+  determineSearch(inputField.value)
+
+
+  inputField.style.outline = "none"
+  //searchAll(inputField.value);
+  form.reset()
+} 
+
+function determineSearch(input) {
+>>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
 
   let [filterValue, searchValue]= getSearchCriteria(input)
 
@@ -72,12 +84,16 @@ async function determineSearch(input) {
       break;
     }
   }
+}
 
+<<<<<<< HEAD
   inputField.style.outline = "none"
   form.reset()
 
 } 
 
+=======
+>>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
 
 function getPreviousSearch() {
   const input = sessionStorage.getItem("previousSearch")
@@ -85,6 +101,7 @@ function getPreviousSearch() {
   determineSearch(input)
 }
 
+<<<<<<< HEAD
 getPreviousSearch()
 
 function createLoading() {
@@ -112,3 +129,6 @@ function createLoading() {
 }
 
 
+=======
+getPreviousSearch()
+>>>>>>> 6c423b8993da2ba186fda6e83bb0baf68bc64cb3
