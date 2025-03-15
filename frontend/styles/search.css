@@ -3,7 +3,6 @@ body {
   flex-direction: column;
   height: 100%;
   overflow-y: hidden;
-  padding-top: 50px;
 }
 
 .search-container {
@@ -22,7 +21,7 @@ body {
 }
 
  .header {
-  background: rgb(11, 94, 218);;
+  background: var(--secondary-color);;
   z-index: 1;
   display: flex;
   flex-direction: row;
@@ -30,7 +29,7 @@ body {
   justify-content: space-between;
   box-sizing: border-box;
   border-radius: 20px;
-  box-shadow: 0px 20px 20px 3px rgba(0,0,0,.5);
+  box-shadow: 0px 20px 20px 3px var(--shadow-color);
   width: 100%;
   height: 50px;
   padding: 40px 30px;
@@ -45,14 +44,14 @@ body {
 .header button {
   border-radius: 10px;
   border: 1px solid rgb(255,255,255);
-  color: white;
+  color: var(--text-color);
   padding: 10px;
   background: transparent;
 }
 
 .header button:hover {
-  color: rgb(11, 94, 218);
-  background: white;
+  color: var(--secondary-color);
+  background: var(--text-color);
 }
 
 .header #name {
@@ -60,13 +59,13 @@ body {
   padding: 10px;
   border-radius: 10px;
   width: 300px;
-  color: white;
+  color: var(--text-color);
   background: none;
 }
 
 .header label {
   position: absolute;
-  background: rgb(11, 94, 218);
+  background: var(--secondary-color);
   left: 20px;
   top: -7px;
   font-size: 15px;
@@ -97,14 +96,14 @@ body {
   border-radius: 10px;
   width: 100%;
   padding: 20px 30px;
-  border: 1px solid rgba(11, 94, 218,0.4);
-  box-shadow: 0px 5px 5px 8px rgba(0,0,0,0.3);
-  transition: 0.5s ease;
+  border: 1px solid var(--secondary-color);
+  box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 10px 10px 0px var(--shadow-light-color);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; 
+
 }
 
 .search-container .body .row span {
   flex-basis: 20%;
-  flex-grow: 1;
 }
 
 
@@ -118,69 +117,70 @@ body {
 
 .search-container .body .row:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 2px rgba(11, 94, 218,0.3), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(11, 94, 218, 1);
+  box-shadow: inset 0px 0px 20px 3px var(--secondary-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--secondary-color);
 }
 
 .search-container #printer {
-  border: 1px solid rgba(201, 11, 218, 0.4);
+  transition: 0.5s ease;
+  border: 1px solid var(--printer-highlight-color);
 }
 
 .search-container .body #printer:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(201, 11, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(201, 11, 218, 1);;
+  box-shadow: inset 0px 0px 20px 3px var(--printer-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--printer-color);
 }
 
 .search-container #disabled {
-  border: 1px solid rgba(218, 11, 11, 0.4);
+  border: 1px solid var(--disable-highlight-color)
 }
 
 .search-container .body #disabled:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(218, 11, 11, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(218, 11, 11, 1);
+  box-shadow: inset 0px 0px 20px 3px var(--disable-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--disable-color);
 }
 
 .search-container #user {
-  border: 1px solid rgba(11, 218, 218, 0.4);
+    border: 1px solid var(--user-highlight-color);
 }
 
 .search-container .body #user:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(11, 218, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgb(11, 218, 218);
+  box-shadow: inset 0px 0px 20px 3px var(--user-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--user-color);
 }
 
 .search-container #computer {
-  border: 1px solid rgba(11, 218, 66, 0.4);
+  border: 1px solid var(--computer-highlight-color);
 }
 
 .search-container .body #computer:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(11, 218, 66, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(11, 218, 66, 1);
+  box-shadow: inset 0px 0px 20px 3px var(--computer-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--computer-color);
 }
 
 
 .search-container #group {
-  border: 1px solid rgba(218, 152, 11, 0.4);
+  border: 1px solid var(--group-highlight-color);
 }
 
 .search-container .body #group:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(218, 152, 11, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(218, 152, 11, 1);
+  box-shadow: inset 0px 0px 20px 3px var(--group-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--group-color);
 }
 
 .search-container #sharedrive {
-  border: 1px solid rgba(128, 11, 218, 0.4);
+  border: 1px solid var(--sharedrive-highlight-color);
 }
 
 .search-container .body #sharedrive:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(128, 11, 218, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(128, 11, 218, 1);
+  box-shadow: inset 0px 0px 20px 3px var(--sharedrive-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
+  border: 1px solid var(--sharedrive-color);
 }
 
 
@@ -232,25 +232,25 @@ form #name.error {
 }
 
 #color-codes #computer {
-  background: rgba(11, 218, 66, 1)
+  background: var(--computer-color)
 }
 
 #color-codes #user {
-  background: rgb(11, 218, 218)
+  background: var(--user-color)
 }
 
 #color-codes #printer {
-  background: rgba(201, 11, 218, 1)
+  background: var(--printer-color)
 }
 
 #color-codes #sharedrive {
-  background: rgba(128, 11, 218, 1)
+  background: var(--sharedrive-color)
 }
 
 #color-codes #group {
-  background: rgba(218, 152, 11, 1)
+  background: var(--group-color)
 }
 
 #color-codes #disabled {
-  background: rgba(218, 11, 11, 1)
+  background: var(--disable-color)
 }

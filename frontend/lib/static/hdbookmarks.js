@@ -1,4 +1,5 @@
 
+let input = document.getElementById("filter")
 
 // Items that would copy to clipboard
 const copyLink = new Map([
@@ -84,7 +85,7 @@ all_links = [
     ["MyURHR & Workday", "https://www.rochester.edu/human-resources/myurhr/", "myURHR.png", ""],
 ]
 
-document.getElementById("filter").focus()
+input.focus()
 
 filterSearch()
 
@@ -96,6 +97,7 @@ function filterSearch() {
     let links = document.getElementById("links");
 
     links.innerHTML = "";
+
 
     all_links.sort()
 
@@ -152,8 +154,8 @@ function filterSearch() {
         build += `No result match \"${filter.value}\"`;
     }
     links.innerHTML = build;
-       
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({top: 0, behavior: "smooth"})
+    
 }
 
 

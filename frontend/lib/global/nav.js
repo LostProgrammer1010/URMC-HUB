@@ -14,20 +14,9 @@ document.body.insertAdjacentHTML('afterbegin',
                     <img src="../assets/Summary Icon.png" alt="System Summary">
                 </a>
                 <hr>
-                <a href="./groupsadd.html">
+                <a href="./groupsadd.html" title="Common AD Groups">
                     <img src="../assets/Group Icon.png" alt="System Summary">
                 </a>
-                <hr>
-                <a href="#">eRecord Group Summaries</a>
-                </div>
             </nav>
     `
     );
-
-
-    // nextElementSibling
-function drop(element) {
-    const parent = element.parentElement
-    parent.classList.toggle('open')
-    element.children[0].classList.toggle('rotate')
-}
