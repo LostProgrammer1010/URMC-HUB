@@ -6,27 +6,30 @@
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    gap: 20px;
+    gap: 50px;
     padding: 0px 30px;
     flex-wrap: wrap;
     height: auto;
-
+    padding-top: 100px;
 }
 
 .container .header {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
     flex-basis: 100%;
     gap: 20px;
     width: 80%;
     height: 50px;
-    background: rgba(255,255,255,0.2);
+    top: 0px;
+    z-index: 1;
+    background: rgba(255,255,255,1);
     border-radius: 20px;
 }
 
 .container .header a {
-    color: white;
+  color: black;
     text-decoration: none;
     text-align: center;
     padding: 5px;
@@ -107,7 +110,6 @@
     position: relative;
     align-items: center;
     height: fit-content;
-    background: rgba(255,255,255,0.2);
     flex-basis: 100%;
     border-radius: 20px;
     min-height: 400px;
@@ -208,3 +210,53 @@ table {
  #member-of-results .group span {
   font-size: 18px;
  }
+
+ #lockout-results {
+  width: 100%;
+
+
+ }
+
+ #lockout-results thead{
+  text-align: center;
+ }
+
+ #lockout-results tbody{
+  text-align: center;
+ }
+
+ #lockout-results td {
+  border: 1px solid white;
+  width: 33%;
+ }
+
+
+ #customMenu {
+  position: absolute;
+  display: none;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.3);
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 8px 8px 8px;
+  z-index: 1000;
+  overflow: hidden;
+  width: 150px;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+}
+
+#customMenu button {
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: none;
+  color: white;
+
+}
+
+#customMenu button:hover {
+  background-color: #ddd;
+}
