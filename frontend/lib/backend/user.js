@@ -138,6 +138,7 @@ function createGroupElement(group) {
     name.innerHTML = group.name
     name.style.pointerEvents = "none"
     container.appendChild(name)
+    container.appendChild(document.createElement("hr"))
 
 
     if (group.description != "") {
@@ -145,8 +146,19 @@ function createGroupElement(group) {
         description.id = "description"
         let label = document.createElement("strong")
         label.innerHTML = "Description"
+        label.classList.add("label")
         container.appendChild(label)
         description.innerHTML += group.description
+        container.appendChild(description)
+    }
+    else {
+        let description = document.createElement("span")
+        description.id = "description"
+        let label = document.createElement("strong")
+        label.innerHTML = "Description"
+        label.classList.add("label")
+        container.appendChild(label)
+        description.innerHTML += "No Description In AD"
         container.appendChild(description)
     }
 
@@ -155,8 +167,19 @@ function createGroupElement(group) {
         information.id = "information"
         let label = document.createElement("strong")
         label.innerHTML = "Information"
+        label.classList.add("label")
         container.appendChild(label)
         information.innerHTML += group.info
+        container.appendChild(information)
+    }
+    else {
+        let information = document.createElement("span")
+        information.id = "information"
+        let label = document.createElement("strong")
+        label.innerHTML = "Information"
+        label.classList.add("label")
+        container.appendChild(label)
+        information.innerHTML += "No Information In AD"
         container.appendChild(information)
     }
 

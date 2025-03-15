@@ -11,7 +11,7 @@
   margin-right: auto;
   word-wrap: break-word;
   word-break: break-all;
-  left: 250px; /* Move the div to the middle */
+  left: 0px; /* Move the div to the middle */
   right: 0;
   width: fit-content;
   height: fit-content;

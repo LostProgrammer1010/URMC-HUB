@@ -171,14 +171,11 @@ table {
  #member-of-results .group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: fit-content;
   height: 300px;
-  flex-basis: 33%;
   flex-grow: 1;
+  flex-basis: 30%;
   gap: 10px;
-  text-align: center;
   box-shadow: 0px 10px 10px 8px rgba(0,0,0,0.3);
   border: 1px solid rgba(218, 152, 11, 0.4);
   border-radius: 20px;
@@ -195,13 +192,16 @@ table {
  #member-of-results {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
   gap: 20px;
  }
 
  #member-of-results .group h1 {
   font-size: 25px ;
   height: fit-content;
+  text-align: cneter;
   flex-basis: 0px;
   margin: 0px;
   padding: 0px;
@@ -209,12 +209,21 @@ table {
 
  #member-of-results .group span {
   font-size: 18px;
+  font-weight: 400;
+ }
+
+ #member-of-results .group .label {
+  margin-top: 20px;
+  font-weight: 500;
+ }
+
+ 
+ #member-of-results .group hr {
+  width: 100%;
  }
 
  #lockout-results {
   width: 100%;
-
-
  }
 
  #lockout-results thead{
@@ -234,7 +243,7 @@ table {
  #customMenu {
   position: absolute;
   display: none;
-  display: flex;
+
   flex-direction: column;
   background-color: rgba(0,0,0,0.3);
   border: 1px solid #ccc;

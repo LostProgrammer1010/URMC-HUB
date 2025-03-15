@@ -1,7 +1,7 @@
+row = document.createElement("div")
+row.classList.add("row")
+row.id = "printer"
 function displayPrinter(printer, body) {
-  row = document.createElement("div")
-  row.classList.add("row")
-  row.id = "printer"
 
 
   col1 = document.createElement("span")
