@@ -39,14 +39,13 @@ function getUserInfo() {
     const username = sessionStorage.getItem("username")
     localStorage.setItem("username", username)
 
-    const response = fetch(
+    fetch(
         `http://localhost:8080/user/${sessionStorage.getItem("domain")}/${localStorage.getItem("username")}`
     )
         .then((response) => response.json()) // Parse the JSON response from the server
         .then((data) => {
-            pagingdata = data
 
-            console.log(data)
+
 
             var element = document.getElementById("name")
             element.innerHTML = data.name
@@ -74,16 +73,18 @@ function getUserInfo() {
             data.relationship.forEach((relationship) => {
                 element.innerHTML += relationship + "<br>"
             })
-            var element = document.getElementById("member-of-results")
+            var members = document.getElementById("member-of-results")
             if (data.groups != null )
             {
+                data.groups.sort((a, b) => a.name.localeCompare(b.name))
+    
                 data.groups.forEach((group) => {
-                    descpad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: "
-                    infopad = "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Info: "
-                    if (group.description == "") descpad = ""
-                    if (group.info == "") infopad = ""
-                    element.innerHTML += "\"" + group.name + "\"" + descpad + group.description + infopad + group.info + "<br><br>"
+                    // group.name group.description group.info
+                    groupElement = createGroupElement(group)
+                    members.append(groupElement)
                 });
+            } else {
+
             }
 
             // display lockout results
@@ -108,3 +109,38 @@ function getUserInfo() {
 }
 
 getUserInfo()
+
+
+function createGroupElement(group) {
+    let container = document.createElement("div")
+    container.classList = "group"
+
+    let name = document.createElement("h1")
+    name.id = "name"
+    name.innerHTML = group.name
+    container.appendChild(name)
+
+
+    if (group.description != "") {
+        let description = document.createElement("span")
+        description.id = "description"
+        let label = document.createElement("strong")
+        label.innerHTML = "Description"
+        container.appendChild(label)
+        description.innerHTML += group.description
+        container.appendChild(description)
+    }
+
+    console.log(group.info)
+    if (group.info != "") {
+        let information = document.createElement("span")
+        information.id = "information"
+        let label = document.createElement("strong")
+        label.innerHTML = "Information"
+        container.appendChild(label)
+        information.innerHTML += group.info
+        container.appendChild(information)
+    }
+
+    return container
+}
