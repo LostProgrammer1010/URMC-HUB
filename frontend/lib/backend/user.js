@@ -32,7 +32,7 @@ function getUserInfo() {
 
     
     if (sessionStorage.getItem("username") == null) {
-        window.location.href = "../pages/searchusers.html"
+        window.location.href = "../pages/search.html"
         return
     }
 
@@ -81,6 +81,7 @@ function getUserInfo() {
                 data.groups.forEach((group) => {
                     // group.name group.description group.info
                     groupElement = createGroupElement(group)
+
                     members.append(groupElement)
                 });
             } else {
@@ -88,36 +89,54 @@ function getUserInfo() {
             }
 
             // display lockout results
-            var element = document.getElementById("lockoutResults")
-            element.innerHTML = ""
+            var head = document.getElementById("head")
+            head.innerHTML =
+             `
+            <tr>
+                <td>Name</td>
+                <td>Count</td>
+                <td>Time</td>
+            </tr>`
+            var info = document.getElementById("info")
+
             // Need to implement padding for heading section (may be fixed with user page)
-            element.innerHTML +=
-                "Name" + " | " + "Count" + " | " + "Time" + "<br>"
             for (let index = 0; index < data.lockoutInfo.length; index++) {
-                element.innerHTML += data.lockoutInfo[index].name
-                element.innerHTML += " | "
-                element.innerHTML += data.lockoutInfo[index].count
-                element.innerHTML += " | "
-                element.innerHTML += data.lockoutInfo[index].time
-                element.innerHTML += "<br>"
+                info.innerHTML += 
+                `
+                <tr >
+                    <td>${data.lockoutInfo[index].name}</td>
+                    <td>${data.lockoutInfo[index].count}</td>
+                    <td>${data.lockoutInfo[index].time}</td>
+                </tr>
+                `
             }
+            document.documentElement.scrollTop = 0;
         })
         .catch((error) => {
+            //window.location.href = "../pages/search.html"
             console.log(error)
             handleError(error)
         })
+
+
+
 }
 
 getUserInfo()
 
 
+
 function createGroupElement(group) {
     let container = document.createElement("div")
     container.classList = "group"
+    container.oncontextmenu = function(event) {
+        openMenu(event, this)
+    }
 
     let name = document.createElement("h1")
     name.id = "name"
     name.innerHTML = group.name
+    name.style.pointerEvents = "none"
     container.appendChild(name)
 
 
@@ -131,7 +150,6 @@ function createGroupElement(group) {
         container.appendChild(description)
     }
 
-    console.log(group.info)
     if (group.info != "") {
         let information = document.createElement("span")
         information.id = "information"
@@ -143,4 +161,38 @@ function createGroupElement(group) {
     }
 
     return container
+}
+
+function scrollToSection(event) {
+    event.preventDefault(); 
+    const targetId = event.target.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
+
+    window.scrollTo({
+      top: targetSection.offsetTop - 50,
+      behavior: 'smooth'
+    });
+  }
+
+function openMenu(event, group) {
+    event.preventDefault()
+    customMenu = document.getElementById('customMenu');
+    customMenu.style.display = 'block';  // Show the custom menu
+    customMenu.style.left = `${event.pageX}px`;  // Position the menu at mouse X
+    customMenu.style.top = `${event.pageY}px`;
+    customMenu.setAttribute("hidden", group.children[0].innerHTML)
+}
+
+
+document.addEventListener('click', function(event) {
+    if (!customMenu.contains(event.target)) {
+      customMenu.style.display = 'none';  // Hide the menu if the click is outside
+    }
+  });
+
+
+function copyGroupName() {
+    let menu = document.getElementById("customMenu")
+    group = menu.getAttribute("hidden")
+    console.log(group)
 }

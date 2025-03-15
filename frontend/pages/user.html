@@ -4,18 +4,33 @@
         <link rel="stylesheet" href="../styles/global/error.css">
         <link rel="stylesheet" href="../styles/user.css" />
         <link rel="stylesheet" href="../styles/global/loading.css">
+        <title>Service Desk HUB</title>
+        <link
+        rel="icon"
+        href="../assets/URMC.ico"
+        type="image/x-icon"
+      />
       
 
     </head>
     <!-- This will be re-worked when user page is made to be pretty -->
-    <body>
+    <body id="top">
         <script src="../lib/global/nav.js"></script>
+        <!--        
+            <div id="customMenu">
+            <button onclick="copyGroupName(this)">Copy Group</button>
+            <button onclick="alert('Option 2 selected')">Copy All</button>
+            <button onclick="alert('Option 3 selected')">About Group</button>
+        </div>
+        -->
+
 
         <div class="container">
             <div class="header">
-                <a href="#member-of">Groups Member of</a>
-                <a href="#share-drives">Share Drive</a>
-                <a href="#bad-passwords">Bad Passwords</a>
+                <a href="#top" onclick="scrollToSection(event)">Home</a>
+                <a href="#member-of" onclick="scrollToSection(event)">Groups Member of</a>
+                <a href="#share-drives" onclick="scrollToSection(event)">Share Drive</a>
+                <a href="#bad-passwords" onclick="scrollToSection(event)">Bad Passwords</a>
             </div>
             <div class="full-name">
                 <div class="field" id="name" contenteditable="false">Name</div>
@@ -89,13 +104,22 @@
             <div id="bad-passwords">
                 <h1>Bad Passwords</h1>
                 <button onclick="getLockoutInfo()">Refresh</button>
-                <p id="lockoutResults"></p>
+                <table id="lockout-results">
+                    <thead id="head">
+
+                    </thead>
+                    <tbody id="info">
+                        
+                    </tbody>
+                </table>
 
             </div>
 
-
+  
 
         </div>
+
+
 
     </body>
     <script src="../lib/global/error.js"></script>
@@ -103,8 +127,4 @@
 
 </html>
 
-
-<!--
-<div class="field" id="fieldName" contenteditable="false"></div>
--->
 
