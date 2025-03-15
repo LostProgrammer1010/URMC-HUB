@@ -9,7 +9,8 @@ body {
     flex-direction: column;
     align-items: center;
     letter-spacing: .05rem;
-    color: white
+    color: var(--text-color);
+    padding-top: 80px
 }
 
 /* Links*/
@@ -44,10 +45,14 @@ body {
     border-radius: 20px;
     align-items: center;
     text-decoration: none;
-    color: white;
-    background: #272727;
+    box-shadow: 0px 0px 10px 5px var(--shadow-color);
+    color: var(--text-color);
     margin-top: 4rem;
     padding: 10rem 1rem 0rem 1rem;
+}
+
+#links a {
+    transition: .5s ease;
 }
 
 #links a:visited {
@@ -56,14 +61,14 @@ body {
 }
 
 #links a:hover {
-    outline: 4px solid rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 10px 2px var(--secondary-color);
 }
 
 
 #links a:focus div,
 #links a:hover div {
     transform: translateY(-5px);
-    outline: 4px solid rgba(255,255,255,0.2);
+    box-shadow: 0px 5px 30px 10px var(--shadow-color);
 }
 
 
@@ -79,7 +84,7 @@ body {
     top: -70px;
     width: 80%;
     height: 200px;
-    box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.8);
+    box-shadow: 0px 0px 30px 10px var(--shadow-color);
     transition: ease .5s;
 }
 
@@ -93,6 +98,7 @@ body .link img {
 .link h1{
     order: 1;
     font-size: 25px;
+    margin-top: -30px;
     text-align: center;
 }
 
@@ -100,8 +106,6 @@ body .link img {
     order: 2;
     font-size: 15px;
     margin-top: -5px;
-
-
     text-align: center;
 }
 
@@ -109,29 +113,47 @@ body .link img {
 
 
 #search-container {
-    position: relative;
+    position: fixed;
+    width: 500px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    top: 0px;
+    align-items: flex-end;
+    left: calc(50% + 80px);; /* Move to the center horizontally */
+    transform: translateX(-50%); /* Offset by half the width of the div */
     margin-bottom: 1rem;
+    z-index: 1;
+    background-color: #191919e0;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 0px 0px 18px 18px;
 }
 
 #search-container input {
     padding: .7rem;
-    width: 250px;
+    width: 100%;
     background: none;
-    border: none;
-    color: white;
+    border: 1px solid var(--secondary-color);
+    color: var(--text-color);
     border-radius: 10px;
-    outline: 1px solid white;
+
+}
+
+#search-container input:focus {
+    outline: none;
 }
 
 
 #search-container label {
     position: absolute;
-    top: -10px;
+    top: 5px;
     left: 20px;
     pointer-events: none; /* Makes sure the label doesn't interfere with input focus */
     font-size: 14px;
-    color: white;
-    background: #121212;
+    padding: 1px;
+    font-weight: bold;
+    color: var(--secondary-color);
 }
 
 /*Copy button*/
@@ -148,15 +170,20 @@ body .link img {
     position: relative;
     overflow: hidden;
     border: none;
-    background: #121212;
-    box-shadow: 3px 3px 16px rgb(0,0,0,0.6), -3px -3px 16px rgba(0,0,0, 0.5);
-    color: white;
+    background: #191919;
+    box-shadow: 3px 3px 10px 1px var(--shadow-color), -3px -3px 10px 1px var(--shadow-color);
+    color: var(--text-color);
     height: 50px;
+    width: 200px;
     border-radius: 10px;
     padding: 5px;
     text-align: center;
 }
 
+#top-container button:hover {
+    box-shadow: inset 0px 0px 10px 3px var(--secondary-color);
+}
+
 #top-container button p {
     padding-top: 5px;
     margin: 0px;
@@ -168,30 +195,3 @@ body .link img {
     margin: 0px;
 }
 
-#top-container button:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-      to right, 
-      rgba(255, 255, 255, 0.13) 0%,
-      rgba(255, 255, 255, 0.13) 77%,
-      rgba(255, 255, 255, 0.5) 92%,
-      rgba(255, 255, 255, 0.3) 100%
-    );
-  }
-  
-  #top-container button:hover:after {
-    opacity: 1;
-    top: 0;
-    left: 0;
-    transform: translateX(0);
-    transition-property: transform, opacity;
-    transition-duration: 0.7s, 0.15s;
-    transition-timing-function: ease;
-  }

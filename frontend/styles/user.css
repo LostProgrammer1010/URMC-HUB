@@ -24,12 +24,12 @@
     height: 50px;
     top: 0px;
     z-index: 1;
-    background: rgba(255,255,255,1);
+    background: var(--text-color);
     border-radius: 20px;
 }
 
 .container .header a {
-  color: black;
+    color: black;
     text-decoration: none;
     text-align: center;
     padding: 5px;
@@ -125,7 +125,7 @@
     right: 20px;
     border: none;
     background: rgba(255,255,255,0.2);
-    color: white;
+    color: var(--text-color);
     border-radius: 5px;
     padding: 10px;
 }
@@ -171,16 +171,15 @@ table {
  #member-of-results .group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: fit-content;
   height: 300px;
-  flex-basis: 33%;
+  width: 40%;
   flex-grow: 1;
-  gap: 10px;
+  flex-basis: 40%;
   text-align: center;
-  box-shadow: 0px 10px 10px 8px rgba(0,0,0,0.3);
-  border: 1px solid rgba(218, 152, 11, 0.4);
+  gap: 10px;
+  box-shadow: 0px 10px 10px 8px var(--shadow-color);
+  border: 1px solid var(--group-highlight-color);
   border-radius: 20px;
   padding: 20px;
   transition: 1s ease
@@ -188,20 +187,23 @@ table {
 
  #member-of-results .group:hover {
   transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px rgba(218, 152, 11, 0.4), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid rgba(218, 152, 11, 1);
+  box-shadow: inset 0px 0px 10px 4px var(--group-highlight-color), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid var(--group-color);
 }
 
  #member-of-results {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
   gap: 20px;
  }
 
  #member-of-results .group h1 {
   font-size: 25px ;
   height: fit-content;
+  text-align: cneter;
   flex-basis: 0px;
   margin: 0px;
   padding: 0px;
@@ -209,12 +211,21 @@ table {
 
  #member-of-results .group span {
   font-size: 18px;
+  font-weight: 400;
+ }
+
+ #member-of-results .group .label {
+  margin-top: 20px;
+  font-weight: 500;
+ }
+
+ 
+ #member-of-results .group hr {
+  width: 100%;
  }
 
  #lockout-results {
   width: 100%;
-
-
  }
 
  #lockout-results thead{
@@ -226,7 +237,7 @@ table {
  }
 
  #lockout-results td {
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   width: 33%;
  }
 
@@ -234,7 +245,7 @@ table {
  #customMenu {
   position: absolute;
   display: none;
-  display: flex;
+
   flex-direction: column;
   background-color: rgba(0,0,0,0.3);
   border: 1px solid #ccc;
@@ -253,7 +264,7 @@ table {
   width: 100%;
   border: none;
   background: none;
-  color: white;
+  color: var(--text-color);
 
 }
 
