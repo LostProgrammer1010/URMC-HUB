@@ -21,6 +21,7 @@
     --sharedrive-color: rgba(128, 11, 218, 1);
     --sharedrive-highlight-color: rgba(128, 11, 218, 0.4);
     --text-color: white;
+    --search-bar-links-page: rgb(25, 25, 25, 0.8);
 
     font-family: Roboto;
     background: var(--primary-color);
@@ -29,6 +30,33 @@
     color: var(--text-color);
 
     /*font-family: "Open Sans", sans-serif;*/
+}
+
+:root.light-mode {
+    --primary-color: white;
+    --secondary-color: rgb(34, 66, 113);
+    --shadow-color: rgba(0,0,0,0.3);
+    --shadow-light-color: rgba(0,0,0,0.1);
+    --shadow-highlight-color: rgba(79, 150, 255, 1);
+    --printer-color: rgba(201, 11, 218, 1);
+    --printer-highlight-color: rgba(201, 11, 218, 0.4);
+    --disable-color: rgba(218, 11, 11, 1);
+    --disable-highlight-color: rgba(218, 11, 11, 0.4);
+    --user-color: rgb(11, 218, 218);
+    --user-highlight-color: rgba(11, 218, 218, 0.4);
+    --computer-color: rgba(11, 218, 66, 1);
+    --computer-highlight-color: rgba(11, 218, 218, 0.4);
+    --group-color: rgba(218, 152, 11, 1);
+    --group-highlight-color: rgba(218, 152, 11, 0.4);
+    --sharedrive-color: rgba(128, 11, 218, 1);
+    --sharedrive-highlight-color: rgba(128, 11, 218, 0.4);
+    --text-color: black;
+    --search-bar-links-page: rgb(255, 255,255, 0.8);
+    font-family: Roboto;
+    background: var(--primary-color);
+    font-size: 20px;
+    padding-left: 80px;
+    color: var(--text-color);
 }
 
 

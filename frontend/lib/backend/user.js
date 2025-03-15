@@ -1,35 +1,4 @@
-function allowDrop(ev) {
-    ev.preventDefault()
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id)
-    ev.target.classList.toggle("drag-animation")
-}
-
-function dropelement(ev) {
-    ev.preventDefault()
-    var data = ev.dataTransfer.getData("text")
-    ev.target.appendChild(document.getElementById(data))
-}
-
-function edit(button) {
-    let fields = document.getElementsByClassName("field")
-
-    for (let i = 0; i < fields.length; i++) {
-        if (fields[i].getAttribute("contenteditable") == "false") {
-            button.innerHTML = "Save"
-            fields[i].setAttribute("contenteditable", "true")
-        } else {
-            button.innerHTML = "Edit"
-            fields[i].setAttribute("contenteditable", "false")
-        }
-        fields[i].classList.toggle("edit")
-    }
-}
-
 function getUserInfo() {
-
     
     if (sessionStorage.getItem("username") == null) {
         window.location.href = "../pages/search.html"
@@ -138,50 +107,29 @@ function createGroupElement(group) {
     name.innerHTML = group.name
     name.style.pointerEvents = "none"
     container.appendChild(name)
+
     container.appendChild(document.createElement("hr"))
 
+    let description = document.createElement("span")
+    description.id = "description"
+    let label = document.createElement("strong")
+    label.innerHTML = "Description"
+    label.classList.add("label")
+    container.appendChild(label)
 
-    if (group.description != "") {
-        let description = document.createElement("span")
-        description.id = "description"
-        let label = document.createElement("strong")
-        label.innerHTML = "Description"
-        label.classList.add("label")
-        container.appendChild(label)
-        description.innerHTML += group.description
-        container.appendChild(description)
-    }
-    else {
-        let description = document.createElement("span")
-        description.id = "description"
-        let label = document.createElement("strong")
-        label.innerHTML = "Description"
-        label.classList.add("label")
-        container.appendChild(label)
-        description.innerHTML += "No Description In AD"
-        container.appendChild(description)
-    }
+    let information = document.createElement("span")
+    information.id = "information"
+    let label2 = document.createElement("strong")
+    label2.innerHTML = "Information"
+    label2.classList.add("label")
+    container.appendChild(label2)
 
-    if (group.info != "") {
-        let information = document.createElement("span")
-        information.id = "information"
-        let label = document.createElement("strong")
-        label.innerHTML = "Information"
-        label.classList.add("label")
-        container.appendChild(label)
-        information.innerHTML += group.info
-        container.appendChild(information)
-    }
-    else {
-        let information = document.createElement("span")
-        information.id = "information"
-        let label = document.createElement("strong")
-        label.innerHTML = "Information"
-        label.classList.add("label")
-        container.appendChild(label)
-        information.innerHTML += "No Information In AD"
-        container.appendChild(information)
-    }
+    description.innerHTML = group.description != "" ? group.description : "No Description In AD"
+    description.innerHTML = group.info != "" ? group.info : "No Information In AD"
+
+
+    container.appendChild(description)
+    container.appendChild(information)
 
     return container
 }
@@ -197,25 +145,3 @@ function scrollToSection(event) {
     });
   }
 
-function openMenu(event, group) {
-    event.preventDefault()
-    customMenu = document.getElementById('customMenu');
-    customMenu.style.display = 'block';  // Show the custom menu
-    customMenu.style.left = `${event.pageX}px`;  // Position the menu at mouse X
-    customMenu.style.top = `${event.pageY}px`;
-    customMenu.setAttribute("hidden", group.children[0].innerHTML)
-}
-
-
-document.addEventListener('click', function(event) {
-    if (!customMenu.contains(event.target)) {
-      customMenu.style.display = 'none';  // Hide the menu if the click is outside
-    }
-  });
-
-
-function copyGroupName() {
-    let menu = document.getElementById("customMenu")
-    group = menu.getAttribute("hidden")
-    console.log(group)
-}

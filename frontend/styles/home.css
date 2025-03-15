@@ -57,7 +57,7 @@ body {
 
 #links a:visited {
     text-decoration: none;
-    color: white
+    color: var(--text-color)
 }
 
 #links a:hover {
@@ -124,7 +124,7 @@ body .link img {
     transform: translateX(-50%); /* Offset by half the width of the div */
     margin-bottom: 1rem;
     z-index: 1;
-    background-color: #191919e0;
+    background-color: var(--search-bar-links-page);
     backdrop-filter: blur(10px);
     padding: 10px;
     border-radius: 0px 0px 18px 18px;
@@ -170,7 +170,7 @@ body .link img {
     position: relative;
     overflow: hidden;
     border: none;
-    background: #191919;
+    background: var(--primary-color);
     box-shadow: 3px 3px 10px 1px var(--shadow-color), -3px -3px 10px 1px var(--shadow-color);
     color: var(--text-color);
     height: 50px;

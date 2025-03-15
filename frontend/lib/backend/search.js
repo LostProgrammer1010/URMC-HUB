@@ -81,4 +81,3 @@ function getPreviousSearch() {
 }
 getPreviousSearch()
 
-
