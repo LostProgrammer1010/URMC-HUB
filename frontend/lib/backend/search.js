@@ -31,46 +31,44 @@ async function search(event) {
 
 
 
+
 } 
 
-
-function determineSearch(input) {
-  content.innerHTML = ""
-  
-  content.appendChild(loading)
+async function determineSearch(input) {
 
   let [filterValue, searchValue]= getSearchCriteria(input)
 
   switch (filterValue) {
     case 'u':{
-      getSearch(searchValue, "users")
+      await getSearch(searchValue, "users")
       break;
     } 
     case 'p': {
-      postSearch(searchValue, "printers")
+      await postSearch(searchValue, "printers")
       break;
     }
     case 'c': {
-      getSearch(searchValue, "computers")
+      await getSearch(searchValue, "computers")
       break;
     }
     case 's': {
-      postSearch(searchValue, "sharedrives")
+      await postSearch(searchValue, "sharedrives")
       break;
     }
     case 'g': {
-      getSearch(searchValue, "groups")
+      await getSearch(searchValue, "groups")
       break;
     }
     case 'a': {
-      postSearchAll(searchValue, "all")
+      await postSearchAll(searchValue, "all")
       break;
     }
     default: {
-      postSearchAll(searchValue, "all")
+      await postSearchAll(searchValue, "all")
       break;
     }
   }
+
 }
 
 

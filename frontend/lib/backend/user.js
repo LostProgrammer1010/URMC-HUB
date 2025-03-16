@@ -1,4 +1,5 @@
 function getUserInfo() {
+
     
     if (sessionStorage.getItem("username") == null) {
         window.location.href = "../pages/search.html"
@@ -99,6 +100,8 @@ function getUserInfo() {
         })
         .catch((error) => {
             //window.location.href = "../pages/search.html"
+        })
+        .catch((error) => {
             console.log(error)
             handleError(error)
         })

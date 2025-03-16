@@ -1,3 +1,25 @@
+<<<<<<< Updated upstream
+=======
+
+
+
+function getSearchCriteria(input) {
+  input = input.replace(/\s+/g, ' ').trim();
+
+  splitSearch = input.split(" ")
+
+  switch (splitSearch[0]) {
+    case 'u': return ['u', splitSearch.slice(1).join(" ")]
+    case 'p': return ['p', splitSearch.slice(1).join(" ")]
+    case 'c': return ['c', splitSearch.slice(1).join(" ")]
+    case 's': return ['s', splitSearch.slice(1).join(" ")]
+    case 'g': return ['g', splitSearch.slice(1).join(" ")]
+    case 'a': return ['a', splitSearch.slice(1).join(" ")]
+    default: return ['a', splitSearch.join(" ")]
+  }
+}
+
+>>>>>>> Stashed changes
 
 function getSearch(searchValue, filter) {
   currentPage = 1
