@@ -39,7 +39,7 @@ function displayTable(page) {
       case "printer":
         displayPrinter(item, content)
         break
-      case "sharedrive":
+      case "sharedrives":
         displayShareDrive(item, content)
         break
       case "group":

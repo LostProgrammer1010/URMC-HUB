@@ -23,7 +23,6 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	}
 
 	// Bind to the server (Allows for searching)
-	fmt.Println(URL)
 	if URL[7] == 'A' { // checking if domain is an AD server
 		err = l.Bind(fmt.Sprintf("urmc-sh\\%s", Username), Password)
 		return

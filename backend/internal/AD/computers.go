@@ -17,7 +17,6 @@ type Computer struct {
 // Finds all computers under the URMC domain that match the search
 func ComputersSearch(search string) (matches []Computer) {
 	matches = make([]Computer, 0)
-	fmt.Println(search)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)

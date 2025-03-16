@@ -102,12 +102,6 @@ body nav a {
     width: 100%;
     text-decoration: none;
     padding: 20px 5px;
-    color: white;
-}
-
-body nav a:visited {
-    text-decoration: none;
-    color: white
 }
 
 #nav-home {

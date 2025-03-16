@@ -7,10 +7,10 @@ function displayShareDrive(sharedrive, body) {
   col1 = document.createElement("span")
   col2 = document.createElement("span")
 
-  col1.innerHTML = sharedrive.group
+  col1.innerHTML = sharedrive.drive
   
-  sharedrive.drives.forEach(drive => {
-    col2.innerHTML += `${drive.path}<br>`
+  sharedrive.groups.forEach(group => {
+    col2.innerHTML += `${group}<br>`
   });
 
 

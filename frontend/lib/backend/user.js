@@ -57,6 +57,22 @@ function getUserInfo() {
 
             }
 
+            const shareContainer = document.getElementById("share-drives")
+
+            if (!data.sharedrives == null) {
+                data.sharedrives.forEach(share => {
+                    shareContainer.innerHTML += `
+                    <div>${share.drive}</div>
+                    <div>${share.groups}</div>
+                    <br>
+                    `
+                })
+            }
+            else {
+                shareContainer.innerHTML += "No Access to Share Drives"
+            }
+
+
             // display lockout results
             var head = document.getElementById("head")
             head.innerHTML =
