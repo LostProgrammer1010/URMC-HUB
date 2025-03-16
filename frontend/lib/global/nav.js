@@ -20,7 +20,7 @@ document.body.insertAdjacentHTML('afterbegin',
             </nav>
 
             <div id="menu" >
-                <button id="move-nav" onclick="moveNav()">Move Nav to Right side</button>
+                <button id="move-nav" onclick="moveNav()">Move Nav to other side</button>
             </div>
     `
     );
