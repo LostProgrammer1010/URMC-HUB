@@ -100,8 +100,6 @@ function getUserInfo() {
         })
         .catch((error) => {
             //window.location.href = "../pages/search.html"
-        })
-        .catch((error) => {
             console.log(error)
             handleError(error)
         })

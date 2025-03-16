@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 
 
 
@@ -19,7 +17,6 @@ function getSearchCriteria(input) {
   }
 }
 
->>>>>>> Stashed changes
 
 function getSearch(searchValue, filter) {
   currentPage = 1
