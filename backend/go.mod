@@ -4,10 +4,9 @@ go 1.24.0
 
 require (
 	github.com/go-ldap/ldap/v3 v3.4.10
+	github.com/joho/godotenv v1.5.1
 	golang.org/x/term v0.29.0
 )
-
-require github.com/joho/godotenv v1.5.1 // indirect
 
 require (
 	github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358 // indirect

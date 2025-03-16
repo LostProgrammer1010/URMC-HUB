@@ -6,7 +6,6 @@ function displayPrinter(printer, body) {
   row.classList.add("row")
   row.id = "printer"
 
-  console.log(printer)
 
 
   col1 = document.createElement("span")

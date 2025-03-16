@@ -16,13 +16,9 @@ type Input struct {
 }
 
 type ShareDrive struct {
-	Group  string  `json:"group"`
-	Drives []Drive `json:"drives"`
-	Type   string  `json:"type"`
-}
-
-type Drive struct {
-	Path string `json:"path"`
+	Group []string `json:"groups"`
+	Drive string   `json:"drive"`
+	Type  string   `json:"type"`
 }
 
 func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
@@ -54,13 +50,11 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 
 	matches := FindShareDrive(input.Value)
 
-	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
 	jsonData, _ := json.Marshal(matches)
 
-	// Write the response to the client
 	w.Write(jsonData)
 }
 
@@ -78,24 +72,38 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 
 	data, _ := io.ReadAll(file)
 
-	dataArray := strings.Split(string(data), "\n")
+	splitData := strings.Split(string(data), "\n")
+	splitData = splitData[:len(splitData)-1] // Removes last element which is blank space
 
-	for _, sharedrive := range dataArray {
-		if strings.Contains(strings.ToLower(sharedrive), strings.ToLower(input)) {
-			parse := strings.Split(sharedrive, "|")
-			sharedrive := new(ShareDrive)
-			sharedrive.Group = strings.Split(parse[0], "\\")[1]
+	all := make(map[string][]string)
 
-			paths := strings.Split(parse[1], ",")
+	for _, line := range splitData {
+		parse := strings.Split(line, "|")
+		group, drives := parse[0], strings.Split(parse[1], ",")
 
-			for _, path := range paths {
-				sharedrive.Drives = append(sharedrive.Drives, Drive{Path: path[1:]})
+		for _, drive := range drives {
+			if strings.Contains(strings.ToLower(drive), strings.ToLower(input)) || strings.Contains(strings.ToLower(group), strings.ToLower(input)) {
+				all[drive[1:]] = append(all[drive[1:]], group[8:])
 			}
-			sharedrive.Type = "sharedrive"
-			shareDrives = append(shareDrives, *sharedrive)
+
 		}
+
+	}
+
+	for key, value := range all {
+		shareDrives = append(shareDrives, ShareDrive{value, key, "sharedrives"})
 	}
 
 	return
 
+}
+
+func CheckGroupForShareDrive(group string) *ShareDrive {
+	shareDrive := FindShareDrive(group)
+
+	if len(shareDrive) != 0 {
+		return &ShareDrive{shareDrive[0].Group, shareDrive[0].Drive, shareDrive[0].Type}
+	}
+
+	return nil
 }
