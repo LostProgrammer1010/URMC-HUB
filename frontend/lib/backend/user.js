@@ -60,7 +60,9 @@ function getUserInfo() {
 
             const shareContainer = document.getElementById("share-drives")
 
-            if (!data.sharedrives == null) {
+            console.log(data.sharedrives)
+
+            if (data.sharedrives != null) {
                 data.sharedrives.forEach(share => {
                     shareContainer.innerHTML += `
                     <div>${share.drive}</div>
