@@ -154,7 +154,7 @@ function filterSearch() {
         build += `No result match \"${filter.value}\"`;
     }
     links.innerHTML = build;
-    window.scrollTo({top: 0, behavior: "smooth"})
+    document.getElementById("links").scrollTo({top: 0, behavior: "smooth"})
     
 }
 
@@ -205,7 +205,7 @@ function goToFirstLink(event) {
 
 buttonContainer = document.getElementById("top-container")
 for (const key of copyLink.keys()) {
-    buttonContainer.innerHTML += ` <button onclick="copyToClipboard(this)">${key}</button>`
+    buttonContainer.innerHTML += ` <button onclick="copyToClipboard(this)"  tabindex="-1">${key}</button>`
     
 
 }
