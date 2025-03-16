@@ -1,7 +1,7 @@
 // Inject the navbar into the page
 document.body.insertAdjacentHTML('afterbegin', 
     `
-            <nav>
+            <nav oncontextmenu="showNavMenu(event)" id="nav">
                 <a href="home.html" id="nav-home" title="Home">
                     <img src="../assets/URMC.ico" alt="URMC LOGO" >
                 </a>
@@ -18,5 +18,48 @@ document.body.insertAdjacentHTML('afterbegin',
                     <img src="../assets/Group Icon.png" alt="System Summary">
                 </a>
             </nav>
+
+            <div id="menu" >
+                <button id="move-nav" onclick="moveNav()">Move Nav to Right side</button>
+            </div>
     `
     );
+
+const menu = document.getElementById("menu")
+  
+  document.addEventListener('click', function(event) {
+    if (!menu.contains(event.target)) {
+      menu.style.display = 'none';  // Hide the menu if the click is outside
+    }
+  });
+
+function showNavMenu(event) {
+    event.preventDefault()
+    menu.style.display = 'block';  // Show the custom menu
+    menu.style.left = `${event.pageX}px`;  // Position the menu at mouse X
+    menu.style.top = `${event.pageY}px`;
+}
+
+
+function moveNav() {
+    menu.style.display = "none"
+    if (document.body.classList.toggle("nav-right")) {
+        sessionStorage.setItem("nav", "nav-right")
+        localStorage.setItem("nav", "nav-right")
+    }
+    else {
+        sessionStorage.setItem("nav", "")
+        localStorage.setItem("nav", "")
+    }
+}
+
+function setupNav() {
+    const nav = sessionStorage.getItem("nav")
+
+    if (nav == null || nav == ""){
+        return
+    }
+    moveNav()
+}
+
+setupNav()

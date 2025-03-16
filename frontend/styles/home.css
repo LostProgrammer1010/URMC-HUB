@@ -10,7 +10,7 @@ body {
     align-items: center;
     letter-spacing: .05rem;
     color: var(--text-color);
-    padding-top: 80px
+    overflow: hidden;
 }
 
 /* Links*/
@@ -18,16 +18,14 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    column-gap: 20px;
+    align-items: flex-start;
     row-gap: 30px;
+    height: 90vh;
+    width: 100%;
     flex-wrap: wrap;
-    padding-top: 20px;
     column-gap: 20px;
-    row-gap: 30px;
-    flex-wrap: wrap;
     padding-top: 20px;
-
+    overflow: scroll;
 }
 
 #links .link {
@@ -111,28 +109,21 @@ body .link img {
 
 /* Input */
 
-
 #search-container {
-    position: fixed;
-    width: 500px;
+    position:relative;
     height: 60px;
     display: flex;
     justify-content: center;
-    top: 0px;
     align-items: flex-end;
-    left: calc(50% + 80px);; /* Move to the center horizontally */
-    transform: translateX(-50%); /* Offset by half the width of the div */
     margin-bottom: 1rem;
     z-index: 1;
-    background-color: var(--search-bar-links-page);
-    backdrop-filter: blur(10px);
     padding: 10px;
     border-radius: 0px 0px 18px 18px;
 }
 
 #search-container input {
     padding: .7rem;
-    width: 100%;
+    width: 500px;
     background: none;
     border: 1px solid var(--secondary-color);
     color: var(--text-color);
@@ -164,6 +155,7 @@ body .link img {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    padding-bottom: 20px;
 }
 
 #top-container button {
