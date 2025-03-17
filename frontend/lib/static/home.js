@@ -198,8 +198,8 @@ function goToFirstLink(event) {
     }
 
     links.children[0].click();
-
     filter.value = "";
+    filter.focus()
     filterSearch();
 }
 

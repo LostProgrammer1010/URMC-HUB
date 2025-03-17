@@ -63,13 +63,13 @@ body.nav-right #nav {
 }
 
 body.nav-right {
-    padding-right: 100px;
+    padding-right: 90px;
     padding-left: 0px;
 }
 
 body {
     padding-right: 0px;
-    padding-left: 100px;
+    padding-left: 90px;
     
 }
 
@@ -136,7 +136,8 @@ body #menu {
     display: none;
     position: absolute;
     overflow: hidden;
+    width: 100px;
+    height: 100px;
     z-index: 1000;
-
 }
 

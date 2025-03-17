@@ -26,6 +26,7 @@ body {
     column-gap: 20px;
     padding-top: 20px;
     overflow: scroll;
+    scroll-behavior:smooth;
 }
 
 #links .link {

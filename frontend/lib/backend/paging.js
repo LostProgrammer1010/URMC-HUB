@@ -96,3 +96,4 @@ function getSearchCriteria(input) {
     default: return ['a', splitSearch.join(" ")]
   }
 }
+
