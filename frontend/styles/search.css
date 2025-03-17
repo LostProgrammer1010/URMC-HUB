@@ -1,34 +1,21 @@
 body {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: center;
+  max-height: 100vh;
   overflow-y: hidden;
+  gap: 10px;
 }
 
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-height: 100%;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  margin-top: -10px;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  flex-grow: 1;
-  scrollbar-width: 0px;
-}
 
  .header {
   background: var(--secondary-color);;
-  z-index: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 0px 0px 10px 10px;
   box-shadow: 0px 20px 20px 3px var(--shadow-color);
   width: 100%;
   height: 50px;
@@ -75,37 +62,56 @@ body {
   outline: none
 }
 
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  height: 100%;
+  min-height: 300px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  letter-spacing: 1..05px;
+}
+
+
 .search-container .body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
 }
 
-
 .search-container .body .row {
-  text-align: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: nowrap;
   box-sizing: border-box;
-  border-radius: 10px;
   width: 100%;
   padding: 20px 30px;
-  border: 1px solid var(--secondary-color);
-  box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 10px 10px 0px var(--shadow-light-color);
+  gap: 10px;
+  border-bottom: 1px solid white;
   transition: box-shadow 0.3s ease, transform 0.3s ease; 
-
 }
 
-.search-container .body .row span {
-  flex-basis: 30%;
+.search-container .body .labels {
+  width: 100px;
+  text-align: center;
+  display: block;
 }
 
+.search-container .body .items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  gap: 20px
+
+}
 
 
 .paging-container {
@@ -121,9 +127,9 @@ body {
   border: 1px solid var(--secondary-color);
 }
 
-.search-container #printer {
-  transition: 0.5s ease;
-  border: 1px solid var(--printer-highlight-color);
+
+.search-container #printer strong {
+  color: var(--printer-color)
 }
 
 .search-container .body #printer:hover {
@@ -132,19 +138,23 @@ body {
   border: 1px solid var(--printer-color);
 }
 
-.search-container #disabled {
-  border: 1px solid var(--disable-highlight-color)
+.search-container #disabled #main,
+.search-container #disabled strong {
+  color: var(--disable-color)
 }
 
+ 
 .search-container .body #disabled:hover {
   transform: translateY(-5px);
   box-shadow: inset 0px 0px 20px 3px var(--disable-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
   border: 1px solid var(--disable-color);
 }
 
-.search-container #user {
-    border: 1px solid var(--user-highlight-color);
-}
+.search-container #user #main,
+.search-container .body #user strong{
+  color: var(--user-color)
+} 
+
 
 .search-container .body #user:hover {
   transform: translateY(-5px);
@@ -152,8 +162,8 @@ body {
   border: 1px solid var(--user-color);
 }
 
-.search-container #computer {
-  border: 1px solid var(--computer-highlight-color);
+.search-container #computer strong {
+  color: var(--computer-color)
 }
 
 .search-container .body #computer:hover {
@@ -163,8 +173,8 @@ body {
 }
 
 
-.search-container #group {
-  border: 1px solid var(--group-highlight-color);
+.search-container #group strong {
+  color: var(--group-color);
 }
 
 .search-container .body #group:hover {
@@ -173,8 +183,9 @@ body {
   border: 1px solid var(--group-color);
 }
 
-.search-container #sharedrive {
-  border: 1px solid var(--sharedrive-highlight-color);
+
+.search-container #sharedrive strong {
+  color: var(--sharedrive-color)
 }
 
 .search-container .body #sharedrive:hover {

@@ -171,18 +171,11 @@ table {
  #member-of-results .group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 300px;
-  width: 40%;
+  align-items: flex-start;
   flex-grow: 1;
-  flex-basis: 40%;
-  text-align: center;
-  gap: 10px;
-  box-shadow: 0px 10px 10px 8px var(--shadow-color);
-  border: 1px solid var(--group-highlight-color);
-  border-radius: 20px;
+  border-bottom: 1px solid var(--group-highlight-color);
   padding: 20px;
-  transition: 1s ease
+  transition: .3s ease
  }
 
  #member-of-results .group:hover {
@@ -193,18 +186,17 @@ table {
 
  #member-of-results {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
  }
 
  #member-of-results .group h1 {
   font-size: 25px ;
   height: fit-content;
   text-align: cneter;
-  flex-basis: 0px;
   margin: 0px;
   padding: 0px;
  }
@@ -217,6 +209,7 @@ table {
  #member-of-results .group .label {
   margin-top: 20px;
   font-weight: 500;
+  color: var(--group-color)
  }
 
  

@@ -19,6 +19,8 @@ function getSearchCriteria(input) {
 
 
 function getSearch(searchValue, filter) {
+  content.innerHTML = ""
+  content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
   /*
@@ -34,6 +36,10 @@ function getSearch(searchValue, filter) {
     .then(data => {
       pagingdata = data
 
+      content.removeChild(loading)
+
+      console.log(pagingdata)
+
       displayTable(currentPage)
 
 
@@ -46,6 +52,8 @@ function getSearch(searchValue, filter) {
 
 
 function postSearch(searchValue, filter) {
+  content.innerHTML = ""
+  content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
   sessionStorage.setItem("domain", domain)
@@ -67,9 +75,10 @@ function postSearch(searchValue, filter) {
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
-
+      content.removeChild(loading)
 
       pagingdata = data
+      console.log(pagingdata)
 
       displayTable(currentPage)
 
@@ -81,6 +90,8 @@ function postSearch(searchValue, filter) {
 }
 
 function postSearchAll(searchValue, filter) {
+  content.innerHTML = ""
+  content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
   sessionStorage.setItem("domain", domain)
@@ -102,10 +113,12 @@ function postSearchAll(searchValue, filter) {
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
+      content.removeChild(loading)
 
       pagingdata = [...data.users, ...data.computers, ...data.groups, ...data.printers, ...data.shares]
 
       pagingdata = pagingdata.sort(() => Math.random() - 0.5);
+
 
       displayTable(currentPage) 
 

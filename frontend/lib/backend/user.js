@@ -2,7 +2,7 @@ function getUserInfo() {
 
     
     if (sessionStorage.getItem("username") == null) {
-        window.location.href = "../pages/search.html"
+        //window.location.href = "../pages/search.html"
         return
     }
 
@@ -127,7 +127,6 @@ function createGroupElement(group) {
     name.style.pointerEvents = "none"
     container.appendChild(name)
 
-    container.appendChild(document.createElement("hr"))
 
     let description = document.createElement("span")
     description.id = "description"
@@ -136,6 +135,10 @@ function createGroupElement(group) {
     label.classList.add("label")
     container.appendChild(label)
 
+        description.innerHTML = group.description != "" ? group.description : "No Description In AD"
+
+    container.appendChild(description)
+
     let information = document.createElement("span")
     information.id = "information"
     let label2 = document.createElement("strong")
@@ -143,11 +146,11 @@ function createGroupElement(group) {
     label2.classList.add("label")
     container.appendChild(label2)
 
-    description.innerHTML = group.description != "" ? group.description : "No Description In AD"
-    description.innerHTML = group.info != "" ? group.info : "No Information In AD"
+
+    information.innerHTML = group.info != "" ? group.info : "No Information In AD"
 
 
-    container.appendChild(description)
+
     container.appendChild(information)
 
     return container

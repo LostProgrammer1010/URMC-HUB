@@ -676,7 +676,4 @@ function summaryPageSetup() {
     getLinks()
 }
 
-
-
-
 summaryPageSetup()
