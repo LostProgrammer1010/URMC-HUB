@@ -85,9 +85,20 @@ all_links = [
     ["MyURHR & Workday", "https://www.rochester.edu/human-resources/myurhr/", "myURHR.png", ""],
 ]
 
-input.focus()
+homePageSetup()
 
-filterSearch()
+function homePageSetup() {
+    filterSearch()
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === 'f') {
+            event.preventDefault();
+            input.focus();
+        }
+    });
+    input.focus()
+}
+
+
 
 
 // Using the filter field to filter the links
@@ -198,14 +209,12 @@ function goToFirstLink(event) {
     }
 
     links.children[0].click();
-
     filter.value = "";
+    filter.focus()
     filterSearch();
 }
 
 buttonContainer = document.getElementById("top-container")
 for (const key of copyLink.keys()) {
     buttonContainer.innerHTML += ` <button onclick="copyToClipboard(this)"  tabindex="-1">${key}</button>`
-    
-
 }

@@ -35,9 +35,18 @@ const menu = document.getElementById("menu")
 
 function showNavMenu(event) {
     event.preventDefault()
+
+    if (document.body.classList.length >= 1) {
+        menu.style.display = 'block';  // Show the custom menu
+        menu.style.left = `${event.pageX - 100}px`;  // Position the menu at mouse X
+        menu.style.top = `${event.pageY}px`;
+        return
+    }
+
     menu.style.display = 'block';  // Show the custom menu
-    menu.style.left = `${event.pageX}px`;  // Position the menu at mouse X
+    menu.style.left = `${event.pageX }px`;  // Position the menu at mouse X
     menu.style.top = `${event.pageY}px`;
+
 }
 
 
