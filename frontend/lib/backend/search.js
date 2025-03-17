@@ -77,5 +77,17 @@ function getPreviousSearch() {
   if (input == null ) return
   determineSearch(input)
 }
-getPreviousSearch()
+
+function searchPageSetup() {
+  getPreviousSearch()
+  inputField.focus()
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'f') {
+        event.preventDefault();
+        inputField.focus();
+    }
+});
+}
+
+searchPageSetup()
 

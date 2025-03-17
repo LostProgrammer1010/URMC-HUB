@@ -666,8 +666,17 @@ function summaryPageSetup() {
     const inputField = document.getElementById("link-search")
     inputField.value = ""
     inputField.focus()
+
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === 'f') {
+            event.preventDefault();
+            inputField.focus();
+        }
+    });
     getLinks()
 }
+
+
 
 
 summaryPageSetup()
