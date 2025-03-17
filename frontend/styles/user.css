@@ -11,6 +11,7 @@
     flex-wrap: wrap;
     height: auto;
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .container .header {
@@ -45,7 +46,6 @@
     flex-basis: 100%;
     border-radius: 20px;
     height: fit-content;
-    background: rgba(255,255,255,0.2);
     box-sizing: border-box;
     padding: 20px;
     gap: 20px;
@@ -87,21 +87,8 @@
     align-items: center;
     flex-basis: 25%;
     height: fit-content;
-    background: rgba(255,255,255,0.2);
 }
 
-#member-of{
-    flex-basis: 100%;
-    border-radius: 20px;
-    padding: 20px;
-}
-
-#share-drives {
-    height: fit-content;
-    background: rgba(255,255,255,0.2);
-    flex-basis: 100%;
-    border-radius: 20px;
-}
 
 #bad-passwords {
     display: flex;
@@ -124,7 +111,6 @@
     top: 20px;
     right: 20px;
     border: none;
-    background: rgba(255,255,255,0.2);
     color: var(--text-color);
     border-radius: 5px;
     padding: 10px;
@@ -148,7 +134,7 @@ table {
     width: fit-content;
     word-break: normal;
 
-    text-align: right;
+    text-align: left;
   }
 
   table tbody .info {
@@ -168,6 +154,7 @@ table {
     width: 100%;
   }
 
+  #share-drives .group,
  #member-of-results .group {
   display: flex;
   flex-direction: column;
@@ -178,21 +165,46 @@ table {
   transition: .3s ease
  }
 
+ #share-drives .group {
+  border-bottom: 1px solid var(--sharedrive-highlight-color);
+ }
+
+
  #member-of-results .group:hover {
   transform: translateY(-5px);
   box-shadow: inset 0px 0px 10px 4px var(--group-highlight-color), 0px 10px 10px 8px rgba(0,0,0,0.3);;
   border: 1px solid var(--group-color);
 }
 
+#share-drives .group:hover {
+  transform: translateY(-5px);
+  box-shadow: inset 0px 0px 10px 4px var(--sharedrive-highlight-color), 0px 10px 10px 8px rgba(0,0,0,0.3);;
+  border: 1px solid var(--sharedrive-color);
+}
+
+#member-of {
+  flex-basis: 100%;
+}
+
  #member-of-results {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+
   width: 100%;
   gap: 10px;
  }
 
+ #share-drives {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+ }
+
+ #share-drives .group h1,
  #member-of-results .group h1 {
   font-size: 25px ;
   height: fit-content;
@@ -201,21 +213,25 @@ table {
   padding: 0px;
  }
 
+ #share-drives .group span,
  #member-of-results .group span {
   font-size: 18px;
   font-weight: 400;
  }
 
+ 
  #member-of-results .group .label {
   margin-top: 20px;
   font-weight: 500;
   color: var(--group-color)
  }
 
- 
- #member-of-results .group hr {
-  width: 100%;
+ #share-drives .group .label {
+  margin-top: 20px;
+  font-weight: 500;
+  color: var(--sharedrive-color)
  }
+
 
  #lockout-results {
   width: 100%;

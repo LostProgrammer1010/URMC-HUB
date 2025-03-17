@@ -64,11 +64,7 @@ function getUserInfo() {
 
             if (data.sharedrives != null) {
                 data.sharedrives.forEach(share => {
-                    shareContainer.innerHTML += `
-                    <div>${share.drive}</div>
-                    <div>${share.groups}</div>
-                    <br>
-                    `
+                    shareContainer.appendChild(createDriveElement(share))
                 })
             }
             else {
@@ -152,6 +148,37 @@ function createGroupElement(group) {
 
 
     container.appendChild(information)
+
+    return container
+}
+
+
+function createDriveElement(share) {
+    let container = document.createElement("div")
+    container.classList = "group"
+    container.oncontextmenu = function(event) {
+        openMenu(event, this)
+    }
+
+    let name = document.createElement("h1")
+    name.id = "name"
+    name.innerHTML = share.drive
+    name.style.pointerEvents = "none"
+    container.appendChild(name)
+    
+
+
+    let description = document.createElement("span")
+    description.id = "description"
+    let label = document.createElement("strong")
+    label.innerHTML = "Group"
+    label.classList.add("label")
+    container.appendChild(label)
+
+    description.innerHTML = share.groups
+
+    container.appendChild(description)
+
 
     return container
 }
