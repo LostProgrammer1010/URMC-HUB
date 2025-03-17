@@ -7,7 +7,7 @@ var pagingdata;
 
 // Display the users in a paged format
 function displayTable(page) {
-  content.innerHTML = "";
+  content.innerHTML = ""
   const start = (page - 1) * rowsPerPage;
   const end = start + rowsPerPage;
 

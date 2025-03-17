@@ -2,7 +2,7 @@ function getUserInfo() {
 
     
     if (sessionStorage.getItem("username") == null) {
-        window.location.href = "../pages/search.html"
+        //window.location.href = "../pages/search.html"
         return
     }
 
@@ -64,11 +64,7 @@ function getUserInfo() {
 
             if (data.sharedrives != null) {
                 data.sharedrives.forEach(share => {
-                    shareContainer.innerHTML += `
-                    <div>${share.drive}</div>
-                    <div>${share.groups}</div>
-                    <br>
-                    `
+                    shareContainer.appendChild(createDriveElement(share))
                 })
             }
             else {
@@ -127,7 +123,6 @@ function createGroupElement(group) {
     name.style.pointerEvents = "none"
     container.appendChild(name)
 
-    container.appendChild(document.createElement("hr"))
 
     let description = document.createElement("span")
     description.id = "description"
@@ -136,6 +131,10 @@ function createGroupElement(group) {
     label.classList.add("label")
     container.appendChild(label)
 
+        description.innerHTML = group.description != "" ? group.description : "No Description In AD"
+
+    container.appendChild(description)
+
     let information = document.createElement("span")
     information.id = "information"
     let label2 = document.createElement("strong")
@@ -143,12 +142,43 @@ function createGroupElement(group) {
     label2.classList.add("label")
     container.appendChild(label2)
 
-    description.innerHTML = group.description != "" ? group.description : "No Description In AD"
-    description.innerHTML = group.info != "" ? group.info : "No Information In AD"
 
+    information.innerHTML = group.info != "" ? group.info : "No Information In AD"
+
+
+
+    container.appendChild(information)
+
+    return container
+}
+
+
+function createDriveElement(share) {
+    let container = document.createElement("div")
+    container.classList = "group"
+    container.oncontextmenu = function(event) {
+        openMenu(event, this)
+    }
+
+    let name = document.createElement("h1")
+    name.id = "name"
+    name.innerHTML = share.drive
+    name.style.pointerEvents = "none"
+    container.appendChild(name)
+    
+
+
+    let description = document.createElement("span")
+    description.id = "description"
+    let label = document.createElement("strong")
+    label.innerHTML = "Group"
+    label.classList.add("label")
+    container.appendChild(label)
+
+    description.innerHTML = share.groups
 
     container.appendChild(description)
-    container.appendChild(information)
+
 
     return container
 }

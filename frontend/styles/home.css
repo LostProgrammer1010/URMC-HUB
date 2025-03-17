@@ -128,7 +128,7 @@ body .link img {
     padding: .7rem;
     width: 500px;
     background: none;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid rgba(79, 150, 255, .3);
     color: var(--text-color);
     border-radius: 10px;
 
@@ -141,8 +141,8 @@ body .link img {
 
 #search-container label {
     position: absolute;
-    top: 5px;
-    left: 20px;
+    top:0px;
+    left: 25px;
     pointer-events: none; /* Makes sure the label doesn't interfere with input focus */
     font-size: 14px;
     padding: 1px;
@@ -164,19 +164,20 @@ body .link img {
 #top-container button {
     position: relative;
     overflow: hidden;
-    border: none;
-    background: var(--primary-color);
-    box-shadow: 3px 3px 10px 1px var(--shadow-color), -3px -3px 10px 1px var(--shadow-color);
-    color: var(--text-color);
+    border: 1px solid rgba(79, 150, 255, .3);
+    color: var(--secondary-color);
+    background: none;
     height: 50px;
     width: 200px;
     border-radius: 10px;
     padding: 5px;
     text-align: center;
+    color: var(--text-color);
+    transition: .2s ease;
 }
 
 #top-container button:hover {
-    box-shadow: inset 0px 0px 10px 3px var(--secondary-color);
+    background: var(--secondary-color);
 }
 
 #top-container button p {

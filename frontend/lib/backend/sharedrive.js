@@ -3,19 +3,31 @@ function displayShareDrive(sharedrive, body) {
   row.classList.add("row")
   row.id = "sharedrive"
 
+  const items = Array.from({length: 2}, () => document.createElement("span"))
+  const labels = Array.from({length: 2}, () => document.createElement("span"))
+  const rows = Array.from({length: 2}, () => document.createElement("div"))
 
-  col1 = document.createElement("span")
-  col2 = document.createElement("span")
 
-  col1.innerHTML = sharedrive.drive
+  labels[0].innerHTML = "<strong>Drive:</strong>"
+
+  items[0].innerHTML =  sharedrive.drive
+
+  labels[1].innerHTML = "<strong>Groups:</strong>"
   
   sharedrive.groups.forEach(group => {
-    col2.innerHTML += `${group}<br>`
+    items[1].innerHTML += `${group}<br>`
   });
 
+  for (let i = 0; i < items.length; i++){
+    labels[i].classList.add("labels")
+    rows[i].appendChild(labels[i])
+    rows[i].classList.add("items")
+    rows[i].appendChild(items[i])
+    row.appendChild(rows[i])
 
-  row.appendChild(col1)
-  row.appendChild(col2)
+  }
 
   body.appendChild(row)
+
+
 }
