@@ -4,6 +4,7 @@ import (
 	"backend/internal/api/post"
 	"fmt"
 	"log"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -80,7 +81,7 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 	user.Department = entry.GetAttributeValue("department")
 	user.Title = entry.GetAttributeValue("title")
 	user.OU = entry.GetAttributeValue("distinguishedName")
-	user.LastPasswordSet = entry.GetAttributeValue("pwdLastSet")
+	user.LastPasswordSet = timeConvert(entry.GetAttributeValue("pwdLastSet"))
 	user.Relationship = entry.GetAttributeValues("URRoleStatus")
 	user.Description = entry.GetAttributeValue("description")
 	user.Location = entry.GetAttributeValue("physicalDeliveryOfficeName")
@@ -102,9 +103,7 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 		}()
 	}
 	wg.Wait()
-
-	fmt.Printf("%v\n", user.ShareDrive)
-
+	
 	if domain == "urmc-sh" {
 		user.LockoutInfo = LockoutInfoData(username)
 	} else {
@@ -158,6 +157,10 @@ func LockoutInfoData(user string) (matches []ServerResult) {
 
 	wg.Wait()
 
+	sort.Slice(matches, func(i, j int) bool {
+		return matches[i].Name < matches[j].Name
+	})
+
 	return
 }
 
@@ -185,31 +188,14 @@ func ServerLockout(server string, user string) ServerResult {
 	entry := results.Entries[0]
 
 	count, _ := strconv.Atoi(entry.GetAttributeValue("badPwdCount"))
-	badpwtime, _ := strconv.Atoi(entry.GetAttributeValue("badPasswordTime"))
-
-	// Nanoseconds since 1601-01-01
-	ticks := int64(badpwtime)
-
-	// Calculate seconds and nanoseconds offset from Unix epoch (1970)
-	seconds := ticks/10000000 - 11644473600
-	nanoseconds := (ticks % 10000000) * 100
-
-	// Create time.Time object
-	t := time.Unix(seconds, nanoseconds).Local()
-
-	// Format the time as a string
-	formattedTime := t.Format("Jan 02 2006 15:04:05")
+	formattedTime := timeConvert(entry.GetAttributeValue("badPasswordTime"))
 
 	err = l.Unbind()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if t.Format("2006") == "1600" {
-		return ServerResult{server, count, "No prior attempt"}
-	} else {
-		return ServerResult{server, count, formattedTime}
-	}
+	return ServerResult{server, count, formattedTime}
 }
 
 func CheckForDuplicate(sharedrive []post.ShareDrive, found post.ShareDrive, group string) bool {
@@ -222,4 +208,25 @@ func CheckForDuplicate(sharedrive []post.ShareDrive, found post.ShareDrive, grou
 	}
 
 	return false
+}
+
+func timeConvert(input string) (output string) {
+	ts, _ := strconv.Atoi(input)
+	// Nanoseconds since 1601-01-01
+	ticks := int64(ts)
+	// Calculate seconds and nanoseconds offset from Unix epoch (1970)
+	seconds := ticks/10000000 - 11644473600
+	nanoseconds := (ticks % 10000000) * 100
+	// Create time.Time object
+	t := time.Unix(seconds, nanoseconds)
+	if (!t.IsDST()) {
+		t = t.Add(time.Hour)
+	}
+	if t.Format("2006") == "1600" {
+		output = "None"
+	} else {
+		// Format the time as a string
+		output = t.Format("01/02/2006 15:04:05")
+	}
+	return
 }
