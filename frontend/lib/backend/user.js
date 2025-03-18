@@ -165,19 +165,29 @@ function createDriveElement(share) {
     name.innerHTML = share.drive
     name.style.pointerEvents = "none"
     container.appendChild(name)
-    
 
-
-    let description = document.createElement("span")
-    description.id = "description"
+    let localpath = document.createElement("span")
+    localpath.id = "local-path"
+    localpath.innerHTML = share.localpath
     let label = document.createElement("strong")
+    label.innerHTML = "Local Path: "
+    label.classList.add("label")
+    container.appendChild(label)
+
+
+    container.appendChild(localpath)
+
+
+    let group = document.createElement("span")
+    group.id = "group"
+    label = document.createElement("strong")
     label.innerHTML = "Group"
     label.classList.add("label")
     container.appendChild(label)
 
-    description.innerHTML = share.groups
+    group.innerHTML = share.groups
 
-    container.appendChild(description)
+    container.appendChild(group)
 
 
     return container
