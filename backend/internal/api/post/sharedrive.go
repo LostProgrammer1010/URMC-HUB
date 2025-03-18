@@ -18,6 +18,7 @@ type Input struct {
 type ShareDrive struct {
 	Group []string `json:"groups"`
 	Drive string   `json:"drive"`
+	LocalPath string `json:"localpath"`
 	Type  string   `json:"type"`
 }
 
@@ -60,6 +61,7 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
+	input = strings.ToLower(input)
 	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
 
 	file, err := os.Open(networkPath)
@@ -79,19 +81,35 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 
 	for _, line := range splitData {
 		parse := strings.Split(line, "|")
-		group, drives := parse[0], strings.Split(parse[1], ",")
+		group, drives := strings.ToLower(parse[0]), strings.Split(parse[1], ",")
 
 		for _, drive := range drives {
-			if strings.Contains(strings.ToLower(drive), strings.ToLower(input)) || strings.Contains(strings.ToLower(group), strings.ToLower(input)) {
-				all[drive[1:]] = append(all[drive[1:]], group[8:])
-			}
+			currentDrive := strings.ToLower(drive[1:])
+			if strings.Contains(currentDrive, input) || strings.Contains(group, input) {
+				all[currentDrive] = append(all[currentDrive], group[8:])
 
+			}
 		}
 
 	}
-
+	var localPath string
+	networkPath = "\\\\AD22PDC01\\netlogon\\SIG\\shares.dmd"
+	file, err = os.Open(networkPath)
+	if err != nil {
+		fmt.Println(err)
+	}
+	shares, _ := io.ReadAll(file)
+	sharesSplit := strings.Split(string(shares), "\n")
+	sharesSplit = sharesSplit[:len(sharesSplit)-1]
 	for key, value := range all {
-		shareDrives = append(shareDrives, ShareDrive{value, key, "sharedrives"})
+			for _, line1 := range sharesSplit{
+				parse := strings.Split(line1,"|")
+				if (strings.Contains(strings.ToLower(parse[0]), strings.TrimSpace(key[2:]))) {
+					localPath = parse[1]
+					break
+				}
+			}
+		shareDrives = append(shareDrives, ShareDrive{value, key, localPath, "sharedrives"})
 	}
 
 	return
@@ -102,7 +120,7 @@ func CheckGroupForShareDrive(group string) *ShareDrive {
 	shareDrive := FindShareDrive(group)
 
 	if len(shareDrive) != 0 {
-		return &ShareDrive{shareDrive[0].Group, shareDrive[0].Drive, shareDrive[0].Type}
+		return &ShareDrive{shareDrive[0].Group, shareDrive[0].Drive, shareDrive[0].LocalPath, shareDrive[0].Type}
 	}
 
 	return nil

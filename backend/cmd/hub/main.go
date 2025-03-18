@@ -18,9 +18,14 @@ func main() {
 	AD.Username = os.Getenv("username")
 	AD.Password = os.Getenv("password")
 
-	//post.FindShareDrive("test")
+
+
+
+
+
 
 	//AD.GroupsSearch("ISDG_CTX_eRecord2")
+
 
 	//AD.Login()
 	//AddToStartup() //once application is finished this can be turn on to put application in startup folder
