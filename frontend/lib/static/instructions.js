@@ -22,8 +22,6 @@ function search(input) {
     }
   })
 
-
-
 }
 
 function displayInstructions(instruction) {
