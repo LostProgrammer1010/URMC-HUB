@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#instructions-container {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: scroll;
+  padding: 30px;
+  box-sizing: border-box;
+
+}
+
+#instructions-container a {
+  color: white;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+#instructions-container a:hover {
+  color: var(--secondary-color);
+
+  text-decoration: none;
+}
+
+#instructions-container #link-container {
+  border-bottom: 1px solid white;
+  padding-left: 10px;
+}
+
+
