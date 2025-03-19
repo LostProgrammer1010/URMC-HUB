@@ -1,6 +1,7 @@
 package AD
 
 import (
+	"backend/internal/utils"
 	"fmt"
 	"log"
 	"strings"
@@ -15,10 +16,23 @@ type Group struct {
 }
 
 // Finds all groups matching the search
-func GroupsSearch(search string) (matches []Group) {
+func GroupsSearch(search string) (matches []Group, err error) {
+	var l *ldap.Conn
 	matches = make([]Group, 0)
-	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
-	fmt.Println(err)
+
+	l, err = ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+
+	if err != nil {
+		if strings.Contains(err.Error(), "Invalid") {
+			utils.ClearTerm()
+			fmt.Println("Server Shutting Down")
+			log.Fatal(err)
+			return
+		}
+		return
+
+	}
+
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
@@ -33,7 +47,11 @@ func GroupsSearch(search string) (matches []Group) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
+
+	if err != nil {
+		return
+	}
 
 	for _, entry := range results.Entries {
 		var group Group
@@ -49,7 +67,7 @@ func GroupsSearch(search string) (matches []Group) {
 
 	err = l.Unbind()
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	return

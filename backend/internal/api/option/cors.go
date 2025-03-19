@@ -12,7 +12,7 @@ When OPTION request is send first we send a status ok back to frontend.
 Then the frontend will send it POST request back to the server
 */
 func EnableCORS(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.Method)
+	fmt.Printf("\n%s\n", r.Method)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")

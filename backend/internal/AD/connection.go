@@ -19,7 +19,7 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 	// Connect to Server
 	l, err = ldap.DialURL(URL)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	// Bind to the server (Allows for searching)

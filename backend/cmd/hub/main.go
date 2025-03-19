@@ -3,7 +3,6 @@ package main
 import (
 	"backend/internal/AD"
 	"backend/internal/server"
-	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -13,22 +12,19 @@ func main() {
 
 	err := godotenv.Load()
 
-	fmt.Println(err)
+	if err != nil {
+		AD.Login()
+		server.Start()
+	}
 
 	AD.Username = os.Getenv("username")
 	AD.Password = os.Getenv("password")
 
-
-
-
-
-
-
-	//AD.GroupsSearch("ISDG_CTX_eRecord2")
-
-
-	//AD.Login()
-	//AddToStartup() //once application is finished this can be turn on to put application in startup folder
 	server.Start()
+
+
+
+	//AddToStartup() //once application is finished this can be turn on to put application in startup folder
+
 
 }

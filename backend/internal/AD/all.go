@@ -16,9 +16,9 @@ func AllSearch(search string, domain string) (result AllResult) {
 
 	result.Users = UsersSearch(search, domain)
 
-	result.Computers = ComputersSearch(search)
+	result.Computers, _ = ComputersSearch(search)
 
-	result.Groups = GroupsSearch(search)
+	result.Groups, _ = GroupsSearch(search)
 
 	result.Printers = post.MatchPrinter(search)
 

@@ -10,11 +10,15 @@ function handleError(error) {
       createErorr(message)
       removeMessageAuto()
       break
+    case "ServerError":
+      message = error.message
+      createErorr(message)
+      removeMessageAuto()
+      break
     default:
       var message = error.message
-      createErorr(error.stack)
+      createErorr(message)
       removeMessageAuto()
-      console.error(error) // Unexpected errors will be printed to logs
   }
 }
 
@@ -58,4 +62,13 @@ function createErorr(message) {
   errorPopUp.appendChild(exitButton)
 
   document.body.appendChild(errorPopUp)
+}
+
+
+class ServerError extends Error {
+  constructor(message) {
+    super(message); 
+    this.name = this.constructor.name; 
+    this.stack = (new Error()).stack;
+  }
 }

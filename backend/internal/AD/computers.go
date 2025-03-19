@@ -1,6 +1,7 @@
 package AD
 
 import (
+	"backend/internal/utils"
 	"fmt"
 	"log"
 	"strings"
@@ -15,11 +16,21 @@ type Computer struct {
 }
 
 // Finds all computers under the URMC domain that match the search
-func ComputersSearch(search string) (matches []Computer) {
+func ComputersSearch(search string) (matches []Computer, err error) {
 	matches = make([]Computer, 0)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
-	fmt.Println(err)
+
+	if err != nil {
+		if strings.Contains(err.Error(), "Invalid") {
+			utils.ClearTerm()
+			fmt.Println("Server Shutting Down")
+			log.Fatal(err)
+			return
+		}
+		return
+
+	}
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
@@ -34,7 +45,11 @@ func ComputersSearch(search string) (matches []Computer) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
+
+	if err != nil {
+		return
+	}
 
 	for _, entry := range results.Entries {
 		var computer Computer
@@ -48,8 +63,9 @@ func ComputersSearch(search string) (matches []Computer) {
 	}
 
 	err = l.Unbind()
+
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	return

@@ -32,13 +32,20 @@ function getSearch(searchValue, filter) {
   */
   sessionStorage.setItem("domain", domain)
     fetch(`http://localhost:8080/search/${filter}/${domain}/${searchValue}`)
-    .then(response => response.json()) 
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new ServerError("Server Error")
+
+
+    }) 
+
     .then(data => {
+
       pagingdata = data
 
       content.removeChild(loading)
-
-      console.log(pagingdata)
 
       displayTable(currentPage)
 
@@ -70,10 +77,14 @@ function postSearch(searchValue, filter) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => {
-
+  .then(response => {
+    if (response.ok) {
       return response.json()
-    }) // Parse the JSON response from the server
+    }
+    throw new ServerError("Server Error")
+
+
+    }) 
     .then(data => {
       content.removeChild(loading)
 
@@ -108,10 +119,14 @@ function postSearchAll(searchValue, filter) {
     },
     body: JSON.stringify(data)
   })
-    .then(response => {
-
+  .then(response => {
+    if (response.ok) {
       return response.json()
-    }) // Parse the JSON response from the server
+    }
+    throw new ServerError("Server Error")
+
+
+  }) 
     .then(data => {
       content.removeChild(loading)
 

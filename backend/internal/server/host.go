@@ -2,6 +2,7 @@ package server
 
 import (
 	"backend/internal/routes"
+	"backend/internal/AD"
 	"fmt"
 	"net/http"
 )
@@ -15,10 +16,17 @@ func Start() {
 	address := fmt.Sprintf("127.0.0.1:%d", port)
 
 	// Start a server on port 8080 (127.0.0.1 only allows connection from current device)
-	fmt.Println("Server is running on port 8080...")
+	fmt.Printf(
+`
+Contact Dustin or Joseph if any bug are encounter
+
+Succussfully logged in as %s
+Please Navigate to URMC-HUB in Browser
+Server is running ... 
+`, AD.Username)
 	err := http.ListenAndServe(address, router)
 
 	if err != nil {
-		panic(err)
+		panic("Server Failed to Start")
 	}
 }
