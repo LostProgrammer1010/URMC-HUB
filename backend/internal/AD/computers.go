@@ -41,6 +41,7 @@ func ComputersSearch(search string) (matches []Computer) {
 
 		computer.OU = strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
 		computer.OU = strings.ReplaceAll(computer.OU, "DC=", "")
+		computer.OU = strings.ReplaceAll(computer.OU, "CN=", "")
 		computer.Name = entry.GetAttributeValue("name")
 		computer.Type = "computer"
 

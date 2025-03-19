@@ -80,7 +80,9 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 	user.Phone = entry.GetAttributeValue("telephoneNumber")
 	user.Department = entry.GetAttributeValue("department")
 	user.Title = entry.GetAttributeValue("title")
-	user.OU = entry.GetAttributeValue("distinguishedName")
+	user.OU = strings.ReplaceAll(entry.GetAttributeValue("distinguishedName"), "OU=", "")
+	user.OU = strings.ReplaceAll(user.OU, "DC=", "")
+	user.OU = strings.ReplaceAll(user.OU, "CN=", "")
 	user.LastPasswordSet = timeConvert(entry.GetAttributeValue("pwdLastSet"))
 	user.Relationship = entry.GetAttributeValues("URRoleStatus")
 	user.Description = entry.GetAttributeValue("description")
@@ -103,7 +105,7 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 		}()
 	}
 	wg.Wait()
-	
+
 	if domain == "urmc-sh" {
 		user.LockoutInfo = LockoutInfoData(username)
 	} else {
@@ -219,7 +221,7 @@ func timeConvert(input string) (output string) {
 	nanoseconds := (ticks % 10000000) * 100
 	// Create time.Time object
 	t := time.Unix(seconds, nanoseconds)
-	if (!t.IsDST()) {
+	if !t.IsDST() {
 		t = t.Add(time.Hour)
 	}
 	if t.Format("2006") == "1600" {
