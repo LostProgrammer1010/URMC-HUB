@@ -27,7 +27,6 @@ body {
 #instructions-container a {
   color: white;
   text-decoration: none;
-  box-sizing: border-box;
 }
 
 #instructions-container a:hover {
@@ -37,8 +36,31 @@ body {
 }
 
 #instructions-container #link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   border-bottom: 1px solid white;
-  padding-left: 10px;
+  align-items: center;
 }
 
+#instructions-container #link-container a {
+  flex-grow: 1;
+}
 
+#link-container #tag-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 100%;
+}
+
+#tag-container span {
+  font-size: 12px;
+  height: fit-content;
+  width: fit-content;
+  background: var(--secondary-color);
+  padding: 10px;
+  border-radius: 10px;
+}

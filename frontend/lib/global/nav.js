@@ -6,24 +6,24 @@ console.log(path)
 document.body.insertAdjacentHTML('afterbegin', 
     `
             <nav oncontextmenu="showNavMenu(event)" id="nav">
-                <a href="${path}frontend/pages/home.html" id="nav-home" title="Home">
-                    <img src="${path}frontend/assets/URMC.ico" alt="URMC LOGO" >
+                <a href="${path}frontend/pages/home.html" id="nav-link" title="Home">
+                    <img src="${path}frontend/assets/URMC.ico" id="nav-img" alt="URMC LOGO" >
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/search.html" title="LDAP Search">
-                    <img src="${path}frontend/assets/Search Icon.png" alt="Search">
+                <a href="${path}frontend/pages/search.html"  id="nav-link" title="LDAP Search">
+                    <img src="${path}frontend/assets/Search Icon.png" id="nav-img" alt="Search">
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/systemsummary.html" title="System Summary">
-                    <img src="${path}frontend/assets/Summary Icon.png" alt="System Summary">
+                <a href="${path}frontend/pages/systemsummary.html" id="nav-link"  title="System Summary">
+                    <img src="${path}frontend/assets/Summary Icon.png" id="nav-img" alt="System Summary">
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/instructions.html" title="Instruction">
-                    <img src="${path}frontend/assets/Notes_Icon.png" alt="Instructions">
+                <a href="${path}frontend/pages/instructions.html" id="nav-link" title="Instruction">
+                    <img src="${path}frontend/assets/Notes_Icon.png" id="nav-img" alt="Instructions">
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/groupsadd.html" title="Common AD Groups">
-                    <img src="${path}frontend/assets/Group Icon.png" alt="System Summary">
+                <a href="${path}frontend/pages/groupsadd.html" id="nav-link" title="Common AD Groups">
+                    <img src="${path}frontend/assets/Group Icon.png" id="nav-img" alt="System Summary">
                 </a>
             </nav>
 
