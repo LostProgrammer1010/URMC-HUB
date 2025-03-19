@@ -1,15 +1,18 @@
-function getUserInfo() {
+async function getUserInfo() {
+    const loading = createLoading()
+    const content = document.getElementById("content")
+    document.body.appendChild(loading)
 
     
     if (sessionStorage.getItem("username") == null) {
-        //window.location.href = "../pages/search.html"
+        window.location.href = "../pages/search.html"
         return
     }
 
     const username = sessionStorage.getItem("username")
     localStorage.setItem("username", username)
 
-    fetch(
+    await fetch(
         `http://localhost:8080/user/${sessionStorage.getItem("domain")}/${localStorage.getItem("username")}`
     )
         .then((response) => response.json()) // Parse the JSON response from the server
@@ -97,10 +100,13 @@ function getUserInfo() {
             document.documentElement.scrollTop = 0;
         })
         .catch((error) => {
-            //window.location.href = "../pages/search.html"
+            window.location.href = "../pages/search.html"
             console.log(error)
             handleError(error)
         })
+
+    loading.remove()
+    content.style.display = "flex"
 
 
 
