@@ -123,7 +123,7 @@ function filterSearch() {
                     build += `
                     <a class="link" href="${element[1]}" target="_blank" tabindex="0">
                         <div>
-                            <img src="../assets/${element[2]}" loading="lazy"/>
+                            <img src="/assets/${element[2]}" loading="lazy"/>
                         </div>
                         <h1>${element[0]} </h1>
                         <p>${element[3]}</p>
@@ -134,7 +134,7 @@ function filterSearch() {
                     build += `
                     <a class="link" href="${element[1]}" target="_blank" tabindex="0">
                         <div>
-                            <img src="../assets/${element[2]}" loading="lazy"/>
+                            <img src="/assets/${element[2]}" loading="lazy"/>
                         </div>
                         <h1>${element[0]} </h1>
                     </a>

@@ -1,0 +1,66 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#instructions-container {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: scroll;
+  padding: 30px;
+  box-sizing: border-box;
+
+}
+
+#instructions-container a {
+  color: white;
+  text-decoration: none;
+}
+
+#instructions-container a:hover {
+  color: var(--secondary-color);
+
+  text-decoration: none;
+}
+
+#instructions-container #link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  align-items: center;
+}
+
+#instructions-container #link-container a {
+  flex-grow: 1;
+}
+
+#link-container #tag-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 100%;
+}
+
+#tag-container span {
+  font-size: 12px;
+  height: fit-content;
+  width: fit-content;
+  background: var(--secondary-color);
+  padding: 10px;
+  border-radius: 10px;
+}
