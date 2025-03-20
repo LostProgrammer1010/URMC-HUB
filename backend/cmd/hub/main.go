@@ -1,7 +1,7 @@
 package main
 
 import (
-	"backend/internal/AD"
+	"backend/internal/creds"
 	"backend/internal/server"
 	"fmt"
 	"os"
@@ -15,8 +15,8 @@ func main() {
 
 	fmt.Println(err)
 
-	AD.Username = os.Getenv("username")
-	AD.Password = os.Getenv("password")
+	creds.Username = os.Getenv("username")
+	creds.Password = os.Getenv("password")
 
 
 

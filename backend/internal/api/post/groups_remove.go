@@ -8,9 +8,14 @@ import (
 	"net/http"
 )
 
-func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
+type GroupInput struct {
+	Group string `json:"group"`
+	User string `json:"user"`
+}
 
-	var input AD.Input
+func GroupsRemove(w http.ResponseWriter, r *http.Request) {
+	var input GroupInput
+
 	option.EnableCORS(w, r)
 
 	if !CheckMethod(r) {
@@ -23,24 +28,20 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&input)
 
 	if err != nil {
-
 		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
 		return
 	}
 
-	// Log the received message
-	fmt.Printf("Searching for:  %s\n", input.Value)
-
-	if input.Value == "" {
+	if input.User == "" {
+		fmt.Println("Blank value")
 		return
 	}
 
-	matches := AD.FindShareDrive(input.Value)
-
+	response := AD.GroupsRemove(input.User, input.Group)	
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
-	jsonData, _ := json.Marshal(matches)
+	jsonData, _ := json.Marshal(response)
 
 	w.Write(jsonData)
 }
