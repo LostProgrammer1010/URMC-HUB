@@ -22,7 +22,7 @@
     --sharedrive-highlight-color: rgba(128, 11, 218, 0.4);
     --text-color: white;
     --search-bar-links-page: rgb(25, 25, 25, 0.8);
-
+    letter-spacing: 1.5px;
     font-family: Roboto;
     background: var(--primary-color);
     font-size: 20px;
