@@ -4,8 +4,7 @@ import (
 	"backend/internal/creds"
 	"fmt"
 	"os"
-  
-	"backend/internal/AD"
+
 	"backend/internal/server"
 
 	"github.com/getlantern/systray"
@@ -40,7 +39,7 @@ func onExit() {
 
 func setupTrayIcon() {
 
-	icon, _ := os.ReadFile("URMC.ico")
+	icon, _ := os.ReadFile("./URMC.ico")
 	systray.SetIcon(icon)
 	systray.SetTitle("URMC-HUB Server")
 	systray.SetTooltip("Options")

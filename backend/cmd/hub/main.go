@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/internal/AD"
 	"backend/internal/creds"
 	"backend/internal/server"
 	"os"
@@ -19,7 +20,7 @@ func main() {
 		creds.Username = os.Getenv("username")
 		creds.Password = os.Getenv("password")
 	}
-  
+
 	server.Start()
 	systray.Run(setupTrayIcon, onExit)
 

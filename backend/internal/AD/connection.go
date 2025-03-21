@@ -1,9 +1,7 @@
 package AD
 
 import (
-
 	"backend/internal/creds"
-	"backend/internal/utils"
 
 	"fmt"
 	"log"
@@ -12,7 +10,6 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 )
-
 
 func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 
@@ -38,7 +35,6 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 func Login() {
 
 	for invalidCredential := true; invalidCredential; {
-
 
 		output := prompt()
 
