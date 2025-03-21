@@ -1,6 +1,10 @@
 package AD
 
 import (
+
+	"backend/internal/creds"
+	"backend/internal/utils"
+
 	"fmt"
 	"log"
 	"os/exec"
@@ -9,7 +13,6 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-var Username, Password string
 
 func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 
@@ -21,11 +24,11 @@ func ConnectToServer(URL string) (l *ldap.Conn, err error) {
 
 	// Bind to the server (Allows for searching)
 	if URL[7] == 'A' { // checking if domain is an AD server
-		err = l.Bind(fmt.Sprintf("urmc-sh\\%s", Username), Password)
+		err = l.Bind(fmt.Sprintf("urmc-sh\\%s", creds.Username), creds.Password)
 		return
 	}
 
-	err = l.Bind(fmt.Sprintf("%s\\%s", strings.Split(URL[7:], ".")[0], Username), Password)
+	err = l.Bind(fmt.Sprintf("%s\\%s", strings.Split(URL[7:], ".")[0], creds.Username), creds.Password)
 
 	return
 
@@ -36,12 +39,13 @@ func Login() {
 
 	for invalidCredential := true; invalidCredential; {
 
+
 		output := prompt()
 
 		splitOutput := strings.Split(output, "\n")
 
-		Username = strings.TrimSpace(strings.Split(splitOutput[0], ":")[1])
-		Password = strings.TrimSpace(strings.Split(splitOutput[1], ":")[1])
+		creds.Username = strings.TrimSpace(strings.Split(splitOutput[0], ":")[1])
+		creds.Password = strings.TrimSpace(strings.Split(splitOutput[1], ":")[1])
 
 		l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 
@@ -49,7 +53,7 @@ func Login() {
 			continue
 		}
 
-		if Username == "" || Password == "" {
+		if creds.Username == "" || creds.Password == "" {
 			log.Fatal("Server will not start with out credentials")
 		}
 

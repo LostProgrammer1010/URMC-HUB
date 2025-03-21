@@ -1,6 +1,7 @@
 package post
 
 import (
+	"backend/internal/AD"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -9,7 +10,7 @@ import (
 )
 
 func Restart(w http.ResponseWriter, r *http.Request) {
-	var computerName Input
+	var computerName AD.Input
 	option.EnableCORS(w, r)
 
 	if !CheckMethod(r) {

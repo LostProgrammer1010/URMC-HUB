@@ -2,6 +2,7 @@ package api
 
 import (
 	"backend/internal/AD"
+	"backend/internal/all"
 	"backend/internal/api/option"
 	"backend/internal/api/post"
 	"encoding/json"
@@ -11,7 +12,7 @@ import (
 )
 
 func AllSearch(w http.ResponseWriter, r *http.Request) {
-	var input post.Input
+	var input AD.Input
 
 	option.EnableCORS(w, r)
 
@@ -36,7 +37,7 @@ func AllSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	matches := AD.AllSearch(input.Value, input.Domain)
+	matches := all.AllSearch(input.Value, input.Domain)
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status

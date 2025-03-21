@@ -41,6 +41,8 @@ func NewRouter() http.Handler {
 	mux.HandleFunc("/search/all/", api.AllSearch)
 	mux.HandleFunc("/search/groups/", get.GroupsSearch)
 	mux.HandleFunc("/search/users/", get.UsersSearch)
+	mux.HandleFunc("/user/group/remove/", post.GroupsRemove)
+	mux.HandleFunc("/user/group/add/", post.GroupsAdd)
 	mux.HandleFunc("/user/", get.UserInfo)
 	mux.HandleFunc("/search/computers/", get.ComputersSearch)
 	mux.HandleFunc("/search/sharedrives/", post.ShareDriveSearch)

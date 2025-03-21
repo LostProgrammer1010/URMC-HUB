@@ -1,7 +1,6 @@
 package AD
 
 import (
-	"backend/internal/api/post"
 	"fmt"
 	"log"
 	"sort"
@@ -43,7 +42,7 @@ type UserResult struct {
 	SecondName      string            `json:"lastname"`
 	Groups          []GroupResult     `json:"groups"`
 	LockoutInfo     []ServerResult    `json:"lockoutInfo"`
-	ShareDrive      []post.ShareDrive `json:"sharedrives"`
+	ShareDrive      []ShareDrive `json:"sharedrives"`
 }
 
 func UserInfoSearch(username string, domain string) (user UserResult) {
@@ -97,7 +96,7 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 		go func() {
 			defer wg.Done()
 			groupName := strings.Split(group[3:], ",")[0]
-			if share := post.CheckGroupForShareDrive(groupName); share != nil && !CheckForDuplicate(user.ShareDrive, *share, groupName) {
+			if share := CheckGroupForShareDrive(groupName); share != nil && !CheckForDuplicate(user.ShareDrive, *share, groupName) {
 				user.ShareDrive = append(user.ShareDrive, *share)
 			}
 
@@ -200,7 +199,7 @@ func ServerLockout(server string, user string) ServerResult {
 	return ServerResult{server, count, formattedTime}
 }
 
-func CheckForDuplicate(sharedrive []post.ShareDrive, found post.ShareDrive, group string) bool {
+func CheckForDuplicate(sharedrive []ShareDrive, found ShareDrive, group string) bool {
 
 	for _, share := range sharedrive {
 		if strings.EqualFold(share.Drive, found.Drive) {
