@@ -6,8 +6,14 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-func GroupsRemove(users []string, groups []string) (response string) {
+type GroupModifyResult struct {
+	Message string `json:"message"`
+	Successful bool `json:"successful"`
+}
 
+func GroupsRemove(users []string, groups []string) (response GroupModifyResult) {
+
+	response.Successful = true
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
@@ -26,8 +32,12 @@ func GroupsRemove(users []string, groups []string) (response string) {
 	    err = l.Modify(deleteRequest)
 	    if err != nil {
 	        fmt.Println(err)
+			response.Successful = false
 	    }
-		response = ""
+		
+	}
+	if response.Successful {
+		response.Message = "All changes completed"
 	}
 	return
 }

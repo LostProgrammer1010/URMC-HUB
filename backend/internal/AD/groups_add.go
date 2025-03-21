@@ -6,8 +6,9 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-func GroupsAdd(users []string, groups []string) (response string) {
+func GroupsAdd(users []string, groups []string) (response GroupModifyResult) {
 
+	response.Successful = true
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
@@ -26,8 +27,12 @@ func GroupsAdd(users []string, groups []string) (response string) {
 	    err = l.Modify(addRequest)
 	    if err != nil {
 	        fmt.Println(err)
+			response.Successful = false
 	    }
-		response = ""
+	}
+
+	if response.Successful {
+		response.Message = "All changes completed"
 	}
 	return
 }
