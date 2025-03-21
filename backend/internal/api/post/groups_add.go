@@ -27,12 +27,12 @@ func GroupsAdd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if input.User == "" {
+	if input.Users[0] == "" || input.Groups[0] == "" {
 		fmt.Println("Blank value")
 		return
 	}
 
-	response := AD.GroupsAdd(input.User, input.Group)	
+	response := AD.GroupsAdd(input.Users, input.Groups)	
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
