@@ -1,15 +1,12 @@
 package AD
 
 import (
-	"backend/internal/utils"
 	"fmt"
 	"log"
-	"os"
+	"os/exec"
 	"strings"
-	"time"
 
 	"github.com/go-ldap/ldap/v3"
-	"golang.org/x/term"
 )
 
 var Username, Password string
@@ -39,19 +36,16 @@ func Login() {
 
 	for invalidCredential := true; invalidCredential; {
 
-		fmt.Println("Enter AD Username: ")
-		fmt.Scan(&Username)
+		output := prompt()
 
-		fmt.Println("Enter Password: ")
-		temp, _ := term.ReadPassword(int(os.Stdin.Fd()))
-		Password = string(temp[:])
+		splitOutput := strings.Split(output, "\n")
+
+		Username = strings.TrimSpace(strings.Split(splitOutput[0], ":")[1])
+		Password = strings.TrimSpace(strings.Split(splitOutput[1], ":")[1])
 
 		l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 
 		if err != nil {
-			fmt.Println("Invaid Username or Password")
-			time.Sleep(1 * time.Second)
-			utils.ClearTerm()
 			continue
 		}
 
@@ -64,5 +58,59 @@ func Login() {
 		l.Close()
 
 	}
-	utils.ClearTerm()
+
+}
+
+func prompt() string {
+	psScript := `
+		Add-Type -AssemblyName System.Windows.Forms
+		$credForm = New-Object System.Windows.Forms.Form
+		$credForm.Text = "Login Prompt"
+		$credForm.Size = New-Object System.Drawing.Size(300,200)
+
+		$labelUser = New-Object System.Windows.Forms.Label
+		$labelUser.Text = "Username:"
+		$labelUser.Location = New-Object System.Drawing.Point(0,20)
+		$credForm.Controls.Add($labelUser)
+
+		$textUser = New-Object System.Windows.Forms.TextBox
+		$textUser.Location = New-Object System.Drawing.Point(100,20)
+		$credForm.Controls.Add($textUser)
+
+		$labelPass = New-Object System.Windows.Forms.Label
+		$labelPass.Text = "Password:"
+		$labelPass.Location = New-Object System.Drawing.Point(0,60)
+		$credForm.Controls.Add($labelPass)
+
+		$textPass = New-Object System.Windows.Forms.TextBox
+		$textPass.Location = New-Object System.Drawing.Point(100,60)
+		$textPass.PasswordChar = '*'
+		$credForm.Controls.Add($textPass)
+
+		$buttonOk = New-Object System.Windows.Forms.Button
+		$buttonOk.Text = "OK"
+		$buttonOk.Location = New-Object System.Drawing.Point(60,100)
+		$buttonOk.DialogResult = [System.Windows.Forms.DialogResult]::OK
+		$credForm.Controls.Add($buttonOk)
+
+		$buttonCancel = New-Object System.Windows.Forms.Button
+		$buttonCancel.Text = "Cancel"
+		$buttonCancel.Location = New-Object System.Drawing.Point(140,100)
+		$buttonCancel.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+		$credForm.Controls.Add($buttonCancel)
+
+		$credForm.AcceptButton = $buttonOk
+		$credForm.CancelButton = $buttonCancel
+
+		$result = $credForm.ShowDialog()
+		if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
+			Write-Output "Username: $($textUser.Text)"
+			Write-Output "Password: $($textPass.Text)"
+		}
+		`
+
+	cmd := exec.Command("powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", psScript)
+	output, _ := cmd.CombinedOutput()
+
+	return string(output)
 }
