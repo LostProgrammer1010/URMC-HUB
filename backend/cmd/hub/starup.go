@@ -4,7 +4,11 @@ import (
 	"backend/internal/creds"
 	"fmt"
 	"os"
+  
+	"backend/internal/AD"
+	"backend/internal/server"
 
+	"github.com/getlantern/systray"
 	"github.com/go-ole/go-ole"
 	shortcut "github.com/nyaosorg/go-windows-shortcut"
 )
@@ -28,4 +32,23 @@ func AddToStartup() {
 	shortcut.Make(binaryFile, startupLocation, "")
 	shortcut.Read(fmt.Sprintf(startupLocation, creds.Username))
 
+}
+
+func onExit() {
+	fmt.Println("Exiting application...")
+}
+
+func setupTrayIcon() {
+
+	icon, _ := os.ReadFile("URMC.ico")
+	systray.SetIcon(icon)
+	systray.SetTitle("URMC-HUB Server")
+	systray.SetTooltip("Options")
+	quitMenuItem := systray.AddMenuItem("Quit", "Exit the application")
+
+	go func() {
+		<-quitMenuItem.ClickedCh
+		systray.Quit()
+		server.Server.Close()
+	}()
 }
