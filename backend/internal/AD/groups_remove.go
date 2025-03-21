@@ -14,6 +14,7 @@ type GroupModifyResult struct {
 func GroupsRemove(users []string, groups []string) (response GroupModifyResult) {
 
 	response.Successful = true
+	response.Message = "All changes completed"
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
@@ -33,11 +34,8 @@ func GroupsRemove(users []string, groups []string) (response GroupModifyResult) 
 	    if err != nil {
 	        fmt.Println(err)
 			response.Successful = false
+			response.Message = err.Error()
 	    }
-		
-	}
-	if response.Successful {
-		response.Message = "All changes completed"
 	}
 	return
 }

@@ -9,6 +9,7 @@ import (
 func GroupsAdd(users []string, groups []string) (response GroupModifyResult) {
 
 	response.Successful = true
+	response.Message = "All changes completed"
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
@@ -28,6 +29,7 @@ func GroupsAdd(users []string, groups []string) (response GroupModifyResult) {
 	    if err != nil {
 	        fmt.Println(err)
 			response.Successful = false
+			response.Message = err.Error()
 	    }
 	}
 
