@@ -4,7 +4,6 @@ import (
 	"backend/internal/AD"
 	"fmt"
 	"sync"
-	"time"
 )
 
 type AllResult struct {
@@ -16,18 +15,15 @@ type AllResult struct {
 }
 
 func AllSearch(search string, domain string) (result AllResult) {
-
-	fmt.Println(time.Now())
-
 	var wg sync.WaitGroup
-	ch := make(chan interface{}, 5)
+	ch := make(chan any, 5)
 
 	wg.Add(5)
-	go thread(&wg, ch, func() interface{} { return AD.ComputersSearch(search) })
-	go thread(&wg, ch, func() interface{} { return AD.UsersSearch(search, domain) })
-	go thread(&wg, ch, func() interface{} { return AD.GroupsSearch(search) })
-	go thread(&wg, ch, func() interface{} { return AD.MatchPrinter(search) })
-	go thread(&wg, ch, func() interface{} { return AD.FindShareDrive(search) })
+	go thread(&wg, ch, func() any { return AD.ComputersSearch(search) })
+	go thread(&wg, ch, func() any { return AD.UsersSearch(search, domain) })
+	go thread(&wg, ch, func() any { return AD.GroupsSearch(search) })
+	go thread(&wg, ch, func() any { return AD.MatchPrinter(search) })
+	go thread(&wg, ch, func() any { return AD.FindShareDrive(search) })
 
 	wg.Wait()
 	close(ch)
@@ -49,8 +45,6 @@ func AllSearch(search string, domain string) (result AllResult) {
 		}
 
 	}
-
-	fmt.Println(time.Now())
 
 	return
 }
