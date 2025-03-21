@@ -9,8 +9,8 @@ import (
 )
 
 type GroupInput struct {
-	Group string `json:"group"`
-	User string `json:"user"`
+	Groups []string `json:"groups"`
+	Users []string `json:"users"`
 }
 
 func GroupsRemove(w http.ResponseWriter, r *http.Request) {
@@ -32,12 +32,12 @@ func GroupsRemove(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if input.User == "" {
+	if input.Users[0] == "" || input.Groups[0] == "" {
 		fmt.Println("Blank value")
 		return
 	}
 
-	response := AD.GroupsRemove(input.User, input.Group)	
+	response := AD.GroupsRemove(input.Users, input.Groups)	
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
