@@ -5,7 +5,8 @@ const instructions = [
   ["IP Adress Global Protect", "./instructions/Getting_IP_Address_Global_Protect.html", ["IP", "Remote", "URMC Computer"]],
   ["Clearing Cache Outlook Application", "./instructions/Clearing_Cache_Outlook.html", ["Outlook Application", "Slow Application"]],
   ["No Sleep on Lid Close", "./instructions/Sleep_Laptop_Keep_Monitor_On.html", ["Laptop", "Keep Monitors ON"]],
-  ["Missing eRecord Iocn", "./instructions/Missing_eRecord_Icon.html", ["eRecord icon", "Citrix"]]
+  ["Missing eRecord Iocn", "./instructions/Missing_eRecord_Icon.html", ["eRecord icon", "Citrix"]],
+  ["Check Status of eRecord account", "./instructions/Inactive_eRecord.html", ["eRecord Access", "LMS Trainings"]]
 ]
 
 const instructionContainer = document.getElementById("instructions-container")
