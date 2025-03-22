@@ -46,6 +46,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 		for _, drive := range drives {
 			currentDrive := strings.ToLower(drive[1:])
 			if strings.Contains(currentDrive, input) || strings.Contains(group, input) {
+				fmt.Println(currentDrive, group)
 				all[currentDrive] = append(all[currentDrive], group[8:])
 
 			}

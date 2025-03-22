@@ -1,37 +1,53 @@
-function displayShareDrive(sharedrive, body) {
-  row = document.createElement("div")
-  row.classList.add("row")
-  row.id = "sharedrive"
 
-  const items = Array.from({length: 3}, () => document.createElement("span"))
-  const labels = Array.from({length: 3}, () => document.createElement("span"))
-  const rows = Array.from({length: 3}, () => document.createElement("div"))
+var share;
+var currentShare;
+
+function sharedrivePageSetup() {
+    getCurrentShare()
+    getGroupsShareDrive()
+}
 
 
-  labels[0].innerHTML = "<strong>Drive:</strong>"
+function getGroupsShareDrive() {
 
-  items[0].innerHTML =  sharedrive.drive
+  console.log("share",share)
 
-  labels[1].innerHTML = "<strong>LocalPath: </strong>"
-
-  items[1].innerHTML = sharedrive.localpath
-
-  labels[2].innerHTML = "<strong>Groups:</strong>"
-  
-  sharedrive.groups.forEach(group => {
-    items[2].innerHTML += `${group}<br>`
-  });
-
-  for (let i = 0; i < items.length; i++){
-    labels[i].classList.add("labels")
-    rows[i].appendChild(labels[i])
-    rows[i].classList.add("items")
-    rows[i].appendChild(items[i])
-    row.appendChild(rows[i])
-
+  data = {
+    value: share.trim(),
   }
 
-  body.appendChild(row)
+  fetch(`http://localhost:8080/search/sharedrives/`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
 
+      return response.json()
+    }) // Parse the JSON response from the server
+    .then(data => {
+      if (data.length == 0) {
+        throw new Error("Failed to get share drive")
+      }
+      console.log(data)
 
+    })
+    .catch(error=> {
+      handleError(error)
+    })
 }
+
+
+function getCurrentShare() {
+  console.log(sessionStorage.getItem("current-share-drive"))
+  if (sessionStorage.getItem("current-share-drive") != null) {
+      share = sessionStorage.getItem("current-share-drive")
+      localStorage.setItem("current-share-drive", share)
+      return
+  } 
+    window.location.href = "../pages/user.html"
+}
+
+sharedrivePageSetup()
