@@ -1,6 +1,11 @@
 const instructions = [
   ["Adding Shared Mailbox", "./instructions/Adding_Shared_Mailbox.html", ["Outlook Web", "Outlook Application"]],
-  ["Providing Remote Access to Computer", "./instructions/RDP_Access.html", ["RDP Access"]]
+  ["Providing Remote Access to Computer", "./instructions/RDP_Access.html", ["RDP Access"]],
+  ["Email Access on Personal Computer", "./instructions/Email_Access_Personal_Computer.html", ["Email Access", "Personal Computer"]],
+  ["IP Adress Global Protect", "./instructions/Getting_IP_Address_Global_Protect.html", ["IP", "Remote", "URMC Computer"]],
+  ["Clearing Cache Outlook Application", "./instructions/Clearing_Cache_Outlook.html", ["Outlook Application", "Slow Application"]],
+  ["No Sleep on Lid Close", "./instructions/Sleep_Laptop_Keep_Monitor_On.html", ["Laptop", "Keep Monitors ON"]],
+  ["Missing eRecord Iocn", "./instructions/Missing_eRecord_Icon.html", ["eRecord icon", "Citrix"]]
 ]
 
 const instructionContainer = document.getElementById("instructions-container")
