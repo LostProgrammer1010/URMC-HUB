@@ -1,6 +1,7 @@
 const form = document.getElementById('search-form');
 const inputField = document.getElementById("name");
 let loading = createLoading()
+var value;
 // Form submit function
 async function search(event) {
   event.preventDefault();
@@ -12,6 +13,7 @@ async function search(event) {
       err.innerHTML = "Cannot use reseved letter for all search"
       form.appendChild(err)
     }
+
     form.reset()
 
     setTimeout(function () {
@@ -20,9 +22,9 @@ async function search(event) {
     }, 2000)
     return
   }
-
+  value = inputField.value
   sessionStorage.setItem("previousSearch", inputField.value)
-
+  localStorage.setItem("previousSearch", inputField.value)
   await determineSearch(inputField.value)
 
 
@@ -73,8 +75,9 @@ async function determineSearch(input) {
 
 
 function getPreviousSearch() {
-  const input = sessionStorage.getItem("previousSearch")
+  const input = localStorage.getItem("previousSearch")
   if (input == null ) return
+  value = localStorage.getItem("previousSearch")
   determineSearch(input)
 }
 
