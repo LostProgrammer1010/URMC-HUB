@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
 )
 
 func AllSearch(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +27,7 @@ func AllSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(strings.Split(r.URL.Path, "/"))
+	fmt.Println(r.URL.Path)
 
 	// Log the received message
 	fmt.Printf("Searching for:  %s\n", input.Value)

@@ -18,7 +18,9 @@ type Group struct {
 func GroupsSearch(search string) (matches []Group) {
 	matches = make([]Group, 0)
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
@@ -34,6 +36,10 @@ func GroupsSearch(search string) (matches []Group) {
 	)
 
 	results, _ := l.Search(searchRequest)
+
+	if results == nil {
+		return
+	}
 
 	for _, entry := range results.Entries {
 		var group Group

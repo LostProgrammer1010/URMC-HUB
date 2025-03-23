@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -17,7 +18,9 @@ func ComputersSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(r.URL.Path)
 	search := strings.Split(r.URL.Path, "/")[4]
+	search, _ = url.QueryUnescape(search)
 
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 

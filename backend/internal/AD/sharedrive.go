@@ -56,6 +56,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 }
 
 func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
+	shareDrives = make([]ShareDrive, 0)
 	var localPath string
 	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\shares.dmd"
 	file, err := os.Open(networkPath)

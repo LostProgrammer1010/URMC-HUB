@@ -13,7 +13,7 @@ function displayComputer(computer, body) {
 
 
   labels[0].innerHTML = `<strong>Name:</strong>`
-  labels[0].id = "username"
+  items[0].id = "computername"
   labels[1].innerHTML = `<strong>OU:</strong>`
 
   items[0].innerHTML = `${computer.name}`
@@ -34,7 +34,7 @@ function displayComputer(computer, body) {
 
 
 function pullUpComputer(row) {
-  const computer = row.querySelector("#username").innerHTML
+  const computer = row.querySelector("#computername").innerHTML
   sessionStorage.setItem("computername", computer)
   window.location.href = "../pages/computer.html"
 }
