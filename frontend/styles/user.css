@@ -168,7 +168,7 @@ table {
   flex-grow: 1;
   border-bottom: 1px solid var(--group-highlight-color);
   padding: 20px;
-  transition: .3s ease
+  box-sizing: border-box;
  }
 
  #share-drives .group {
@@ -177,15 +177,17 @@ table {
 
 
  #member-of-results .group:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px var(--group-highlight-color), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid var(--group-color);
+  border-bottom: none;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px 4px var(--group-highlight-color);
+  outline: 1px solid var(--group-color);
 }
 
 #share-drives .group:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 10px 4px var(--sharedrive-highlight-color), 0px 10px 10px 8px rgba(0,0,0,0.3);;
-  border: 1px solid var(--sharedrive-color);
+  border-bottom: none;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px 4px var(--sharedrive-highlight-color);
+  outline: 1px solid var(--sharedrive-color);
 }
 
 #member-of {
@@ -198,7 +200,6 @@ table {
   justify-content: center;
 
   width: 100%;
-  gap: 10px;
  }
 
  #share-drives {
@@ -207,7 +208,6 @@ table {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  gap: 10px;
  }
 
  #share-drives .group h1,

@@ -27,6 +27,7 @@ body {
 #instructions-container a {
   color: white;
   text-decoration: none;
+  font-size: 15px;
 }
 
 #instructions-container a:hover {
