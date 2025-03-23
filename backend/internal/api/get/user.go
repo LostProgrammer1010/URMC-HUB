@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -19,6 +20,7 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 	username := strings.Split(r.URL.Path, "/")[3]
 	domain := strings.Split(r.URL.Path, "/")[2]
 
+	username = url.QueryEscape(username)
 	fmt.Println(strings.Split(r.URL.Path, "/"))
 
 	// Log the received message

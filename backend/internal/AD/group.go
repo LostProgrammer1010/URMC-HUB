@@ -26,6 +26,7 @@ func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
 		result.Name = group
 		return
 	}
+
 	entry := results.Entries[0]
 
 	result.Name = entry.GetAttributeValue("cn")
