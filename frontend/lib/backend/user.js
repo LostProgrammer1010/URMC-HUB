@@ -210,3 +210,18 @@ function scrollToSection(event) {
     });
   }
 
+function searchGroups(inputField) {
+    const groups = document.getElementById("member-of-results").children
+
+    for (let i = 0; i < groups.length; i++) {
+        if (groups[i].classList.toggle("hide")){
+            groups[i].classList.toggle("hide")
+        }
+        const name = groups[i].firstChild.innerHTML.toLowerCase()
+        const other = groups[i].querySelectorAll("span")
+        if (!name.includes(inputField.value.toLowerCase()) && !other[0].innerHTML.toLowerCase().includes(inputField.value) && !other[1].innerHTML.toLowerCase().includes(inputField.value)){
+            groups[i].classList.toggle("hide")
+        }
+
+        }
+    }

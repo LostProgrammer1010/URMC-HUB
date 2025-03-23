@@ -192,6 +192,14 @@ table {
 
 #member-of {
   flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#member-of h1{
+  flex-basis: 100%;
 }
 
  #member-of-results {
@@ -231,6 +239,28 @@ table {
   font-weight: 500;
   color: var(--group-color)
  }
+
+
+ #member-of input {
+  position: relative;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--group-color);
+  border-radius: 5px;
+  height: 50px;
+  width: 20%;
+  color: white;
+  margin-bottom: 10px;
+ }
+
+
+ #member-of input:focus {
+  outline: none;
+ }
+
+#member-of-results .group.hide {
+  display: none;
+}
 
  #share-drives .group .label {
   margin-top: 20px;
