@@ -42,7 +42,7 @@ function displayShareDrive(sharedrive, body) {
 
 }
 
-function pullShareDrive() {
+function pullShareDrive(row) {
   const share = row.querySelector("#share-drive").innerHTML
   sessionStorage.setItem("current-share-drive", share)
   window.location.href = "../pages/share_drive.html"

@@ -10,28 +10,21 @@ function sharedrivePageSetup() {
 
 function getGroupsShareDrive() {
 
-  console.log("share",share)
+  share = share.trim()
 
-  data = {
-    value: share.trim(),
-  }
-
-  fetch(`http://localhost:8080/search/sharedrives/`, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+  encodeURI
+  
+  fetch(`http://localhost:8080/sharedrive/${encodeURI(share)}`, {
+    method: "GET",
   })
     .then(response => {
-
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
       if (data.length == 0) {
         throw new Error("Failed to get share drive")
       }
-      console.log(data)
+      buildPage(data)
 
     })
     .catch(error=> {
@@ -51,3 +44,45 @@ function getCurrentShare() {
 }
 
 sharedrivePageSetup()
+
+
+
+function buildPage(sharedrive) {
+
+  const name = document.getElementById("share-drive-name")
+  name.innerHTML = sharedrive.sharedrive
+
+  
+  const groups = document.getElementById("share-drive-groups")
+
+  
+
+  sharedrive.groups.sort()
+
+  sharedrive.groups.forEach(group => {
+    groups.appendChild(buildGroups(group))
+  });
+
+}
+
+function buildGroups(group) {
+  const items = Array.from({length: 3}, () => document.createElement("span"))
+  const labels = Array.from({length: 3}, () => document.createElement("label"))
+
+  const div = document.createElement("div")
+
+  items[0].innerHTML = group.name
+  items[0].id = "name"
+  div.appendChild(items[0])
+  div.id = "group"
+  labels[1].innerHTML = "Description: "
+  labels[2].innerHTML = "Information: "
+  items[1].innerHTML = group.description != "" ? group.description : "No Description In AD"
+  items[2].innerHTML = group.info != "" ? group.info : "No Information In AD"
+
+  for (let i=1; i < items.length; i++) {
+   div.appendChild(labels[i])
+   div.appendChild(items[i])
+  }
+  return div
+}

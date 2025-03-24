@@ -6,6 +6,7 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"sync"
 )
 
 type Input struct {
@@ -22,7 +23,7 @@ type ShareDrive struct {
 
 type ShareDrivePage struct {
 	Groups     []GroupResult `json:"groups"`
-	Sharedrive ShareDrive    `json:"sharedrive"`
+	Sharedrive string        `json:"sharedrive"`
 }
 
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
@@ -49,8 +50,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 			currentDrive := strings.ToLower(strings.TrimSpace(drive[1:]))
 			// Checks to see if the input is container in either the group or share drive
 			if strings.Contains(currentDrive, input) || strings.Contains(group, input) {
-				fmt.Println(currentDrive, group)
-				all[currentDrive] = append(all[currentDrive], group[8:])
+				foundDrives[currentDrive] = append(foundDrives[currentDrive], group[8:])
 
 			}
 		}
@@ -116,6 +116,9 @@ func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
 
 	groupsFound := make([]string, 0)
 	l, _ := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	shareDrive.Sharedrive = share
+
+	var wg sync.WaitGroup
 
 	for _, line := range lines {
 		parse := strings.Split(line, "|")
@@ -125,12 +128,18 @@ func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
 
 			drive = strings.ToLower(strings.TrimSpace(drive))[1:]
 			if drive == share {
-				shareDrive.Groups = append(shareDrive.Groups, GroupInfo(group, l, "urmc-sh"))
-				groupsFound = append(groupsFound, group)
+				fmt.Println(drive)
+				wg.Add(1)
+				go func() {
+					defer wg.Done()
+					shareDrive.Groups = append(shareDrive.Groups, GroupInfo(group, l, "urmc-sh"))
+					groupsFound = append(groupsFound, group)
+				}()
 			}
 		}
 
 	}
+	wg.Wait()
 
 	if len(groupsFound) == 0 {
 		return
