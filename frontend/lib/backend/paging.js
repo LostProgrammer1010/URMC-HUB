@@ -12,15 +12,15 @@ function displayTable(page) {
   const end = start + rowsPerPage;
 
   
-  
-  if (pagingdata == null) {
-    document.getElementById("page-info").textContent = `Page 1 of 1`;
-    row = document.createElement("div")
-    row.classList.add("row")
-    span = document.createElement("span")
-    span.innerHTML = "No Results Found"
-    row.appendChild(span)
-    content.appendChild(row)
+  console.log(value)
+  if (pagingdata == null || pagingdata.length == 0) {
+      document.getElementById("page-info").textContent = `Page 1 of 1`;
+      row = document.createElement("div")
+      row.classList.add("row")
+      span = document.createElement("span")
+      span.innerHTML = `No Results Found ${value}`
+      row.appendChild(span)
+      content.appendChild(row)
     return
   }  
 

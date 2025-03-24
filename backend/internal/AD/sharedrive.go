@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -23,7 +24,6 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	input = strings.ToLower(input)
 	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
-
 	file, err := os.Open(networkPath)
 
 	if err != nil {
@@ -33,48 +33,55 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	defer file.Close()
 
 	data, _ := io.ReadAll(file)
+	lines := strings.Split(string(data), "\n")
+	lines = lines[:len(lines)-1] // Removes last element which is blank space
+	foundDrives := make(map[string][]string)
 
-	splitData := strings.Split(string(data), "\n")
-	splitData = splitData[:len(splitData)-1] // Removes last element which is blank space
-
-	all := make(map[string][]string)
-
-	for _, line := range splitData {
+	for _, line := range lines {
 		parse := strings.Split(line, "|")
 		group, drives := strings.ToLower(parse[0]), strings.Split(parse[1], ",")
-
 		for _, drive := range drives {
-			currentDrive := strings.ToLower(drive[1:])
+			currentDrive := strings.ToLower(strings.TrimSpace(drive[1:]))
+			// Checks to see if the input is container in either the group or share drive
 			if strings.Contains(currentDrive, input) || strings.Contains(group, input) {
 				fmt.Println(currentDrive, group)
 				all[currentDrive] = append(all[currentDrive], group[8:])
 
 			}
 		}
-
 	}
+	shareDrives = findLocalPath(foundDrives)
+
+	return
+
+}
+
+func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
+	shareDrives = make([]ShareDrive, 0)
 	var localPath string
-	networkPath = "\\\\AD22PDC01\\netlogon\\SIG\\shares.dmd"
-	file, err = os.Open(networkPath)
+	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\shares.dmd"
+	file, err := os.Open(networkPath)
+
 	if err != nil {
 		fmt.Println(err)
 	}
-	shares, _ := io.ReadAll(file)
-	sharesSplit := strings.Split(string(shares), "\n")
-	sharesSplit = sharesSplit[:len(sharesSplit)-1]
-	for key, value := range all {
-		for _, line1 := range sharesSplit {
-			parse := strings.Split(line1, "|")
+
+	data, _ := io.ReadAll(file)
+	lines := strings.Split(string(data), "\n")
+	lines = lines[:len(lines)-1]
+
+	for key, value := range foundDrives {
+		for _, line := range lines {
+			parse := strings.Split(line, "|")
 			if strings.Contains(strings.ToLower(parse[0]), strings.TrimSpace(key[2:])) {
 				localPath = parse[1]
 				break
 			}
 		}
+		sort.Strings(value)
 		shareDrives = append(shareDrives, ShareDrive{value, key, localPath, "sharedrives"})
 	}
-
 	return
-
 }
 
 func CheckGroupForShareDrive(group string) *ShareDrive {

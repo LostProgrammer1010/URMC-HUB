@@ -19,7 +19,11 @@ func ComputersSearch(search string) (matches []Computer) {
 	matches = make([]Computer, 0)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
-	fmt.Println(err)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
@@ -35,6 +39,10 @@ func ComputersSearch(search string) (matches []Computer) {
 	)
 
 	results, _ := l.Search(searchRequest)
+
+	if results == nil {
+		return
+	}
 
 	for _, entry := range results.Entries {
 		var computer Computer

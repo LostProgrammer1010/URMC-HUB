@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -19,6 +20,8 @@ func GroupsSearch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	search := strings.Split(r.URL.Path, "/")[4]
+
+	search, _ = url.QueryUnescape(search)
 
 	fmt.Println(r.URL.Path)
 

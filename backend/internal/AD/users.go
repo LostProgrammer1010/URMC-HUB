@@ -21,7 +21,9 @@ type User struct {
 func UsersSearch(search string, domain string) (matches []User) {
 	matches = make([]User, 0)
 	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
-	fmt.Println(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 	defer l.Close()
 
 	searchRequest := ldap.NewSearchRequest(
@@ -37,6 +39,10 @@ func UsersSearch(search string, domain string) (matches []User) {
 	)
 
 	results, _ := l.Search(searchRequest)
+
+	if results == nil {
+		return
+	}
 
 	for _, entry := range results.Entries {
 		var user User

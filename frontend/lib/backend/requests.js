@@ -30,6 +30,8 @@ function getSearch(searchValue, filter) {
     domain = "urmc-sh"
   }
   */
+  searchValue = encodeURIComponent(searchValue)
+  console.log(searchValue)
   sessionStorage.setItem("domain", domain)
     fetch(`http://localhost:8080/search/${filter}/${domain}/${searchValue}`)
     .then(response => response.json()) 
@@ -37,8 +39,6 @@ function getSearch(searchValue, filter) {
       pagingdata = data
 
       content.removeChild(loading)
-
-      console.log(pagingdata)
 
       displayTable(currentPage)
 
@@ -115,6 +115,7 @@ function postSearchAll(searchValue, filter) {
     .then(data => {
       content.removeChild(loading)
 
+
       pagingdata = [...data.users, ...data.computers, ...data.groups, ...data.printers, ...data.shares]
 
       pagingdata = pagingdata.sort(() => Math.random() - 0.5);
@@ -124,6 +125,7 @@ function postSearchAll(searchValue, filter) {
 
     })
     .catch(error=> {
+      console.log(error)
       handleError(error)
     })
 }

@@ -69,6 +69,10 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
   height: 100%;
   min-height: 300px;
   flex-grow: 1;
@@ -80,10 +84,11 @@ body {
 .search-container .body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   padding: 20px;
   width: 100%;
+  gap: 5px;
   box-sizing: border-box;
+
 }
 
 .search-container .body .row {
@@ -95,14 +100,16 @@ body {
   width: 100%;
   padding: 20px 30px;
   gap: 10px;
+
   border-bottom: 1px solid white;
-  transition: box-shadow 0.3s ease, transform 0.3s ease; 
 }
 
 .search-container .body .labels {
   width: 150px;
+  align-self: flex-start;
   text-align: center;
   display: block;
+  pointer-events: none;
 }
 
 .search-container .body .items {
@@ -110,8 +117,8 @@ body {
   justify-content: center;
   align-items: center;
   text-align: left;
-  gap: 20px
-
+  gap: 20px;
+  pointer-events: none;
 }
 
 
@@ -123,9 +130,9 @@ body {
 }
 
 .search-container .body .row:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--secondary-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--secondary-color);
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 20px 3px var(--secondary-color);
 }
 
 
@@ -134,9 +141,8 @@ body {
 }
 
 .search-container .body #printer:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--printer-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--printer-color);
+  box-shadow: inset 0px 0px 20px 3px var(--printer-highlight-color);
+  outline: 1px solid var(--printer-color);
 }
 
 .search-container #disabled #main,
@@ -146,9 +152,8 @@ body {
 
  
 .search-container .body #disabled:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--disable-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--disable-color);
+  box-shadow: inset 0px 0px 10px 3px var(--disable-highlight-color);
+  outline: 1px solid var(--disable-color);
 }
 
 .search-container #user #main,
@@ -158,9 +163,8 @@ body {
 
 
 .search-container .body #user:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--user-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--user-color);
+  box-shadow: inset 0px 0px 10px 3px var(--user-highlight-color);
+  outline: 1px solid var(--user-color);
 }
 
 .search-container #computer strong {
@@ -168,9 +172,8 @@ body {
 }
 
 .search-container .body #computer:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--computer-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--computer-color);
+  box-shadow: inset 0px 0px 10px 3px var(--computer-highlight-color);
+  outline: 1px solid var(--computer-color);
 }
 
 
@@ -179,9 +182,8 @@ body {
 }
 
 .search-container .body #group:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--group-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--group-color);
+  box-shadow: inset 0px 0px 10px 3px var(--group-highlight-color);
+  outline: 1px solid var(--group-color);
 }
 
 
@@ -190,9 +192,8 @@ body {
 }
 
 .search-container .body #sharedrive:hover {
-  transform: translateY(-5px);
-  box-shadow: inset 0px 0px 20px 3px var(--sharedrive-highlight-color), 0px 10px 10px 3px var(--shadow-light-color);
-  border: 1px solid var(--sharedrive-color);
+  box-shadow: inset 0px 0px 10px 3px var(--sharedrive-highlight-color);
+  outline: 1px solid var(--sharedrive-color);
 }
 
 

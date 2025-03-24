@@ -15,6 +15,11 @@ type AllResult struct {
 }
 
 func AllSearch(search string, domain string) (result AllResult) {
+	result.Users = make([]AD.User, 0)
+	result.Computers = make([]AD.Computer, 0)
+	result.Groups = make([]AD.Group, 0)
+	result.Printers = make([]AD.Printer, 0)
+	result.Shares = make([]AD.ShareDrive, 0)
 	var wg sync.WaitGroup
 	ch := make(chan any, 5)
 

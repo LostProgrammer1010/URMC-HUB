@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -18,6 +19,7 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 
 	domain := strings.Split(r.URL.Path, "/")[3]
 	search := strings.Split(r.URL.Path, "/")[4]
+	search, _ = url.QueryUnescape(search)
 
 	if search == "" {
 		w.WriteHeader(http.StatusBadRequest)
