@@ -1,0 +1,17 @@
+#group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-bottom: 1px solid white;
+}
+
+#group #name {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#group label {
+  color: var(--group-color)
+}
