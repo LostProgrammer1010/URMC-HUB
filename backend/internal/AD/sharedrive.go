@@ -20,6 +20,11 @@ type ShareDrive struct {
 	Type      string   `json:"type"`
 }
 
+type ShareDrivePage struct {
+	Groups     []GroupResult `json:"groups"`
+	Sharedrive ShareDrive    `json:"sharedrive"`
+}
+
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	input = strings.ToLower(input)
@@ -91,4 +96,44 @@ func CheckGroupForShareDrive(group string) *ShareDrive {
 	}
 
 	return nil
+}
+
+func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
+	share = strings.ToLower(share)
+	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
+	file, err := os.Open(networkPath)
+
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	defer file.Close()
+
+	data, _ := io.ReadAll(file)
+	lines := strings.Split(string(data), "\n")
+	lines = lines[:len(lines)-1]
+
+	groupsFound := make([]string, 0)
+	l, _ := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+
+	for _, line := range lines {
+		parse := strings.Split(line, "|")
+		group, drives := parse[0][8:], strings.Split(parse[1], ",")
+
+		for _, drive := range drives {
+
+			drive = strings.ToLower(strings.TrimSpace(drive))[1:]
+			if drive == share {
+				shareDrive.Groups = append(shareDrive.Groups, GroupInfo(group, l, "urmc-sh"))
+				groupsFound = append(groupsFound, group)
+			}
+		}
+
+	}
+
+	if len(groupsFound) == 0 {
+		return
+	}
+
+	return
 }

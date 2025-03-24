@@ -21,6 +21,7 @@ func main() {
 		creds.Password = os.Getenv("password")
 	}
 
+	//AD.FindShareDriveInfo("\\\\ntsdrive06\\reiu")
 	server.Start()
 	systray.Run(setupTrayIcon, onExit)
 
