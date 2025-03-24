@@ -6,6 +6,12 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
+type GroupResult struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Info        string `json:"info"`
+}
+
 func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
 
 	searchRequest := ldap.NewSearchRequest(

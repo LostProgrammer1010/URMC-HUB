@@ -1,42 +1,37 @@
-package api
+package get
 
 import (
 	"backend/internal/AD"
-	"backend/internal/all"
 	"backend/internal/api/option"
-	"backend/internal/api/post"
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
+	"strings"
 )
 
-func AllSearch(w http.ResponseWriter, r *http.Request) {
-	var input AD.Input
-
+func GetShareDriveInfo(w http.ResponseWriter, r *http.Request) {
 	option.EnableCORS(w, r)
 
-	if !post.CheckMethod(r) {
+	if !checkMethod(r) {
 		return
 	}
 
-	err := json.NewDecoder(r.Body).Decode(&input)
+	share := strings.Split(r.URL.Path, "/")[2]
 
-	if err != nil {
-
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
-		return
-	}
+	share, _ = url.QueryUnescape(share)
 
 	fmt.Println(r.URL.Path)
 
 	// Log the received message
-	fmt.Printf("Searching for:  %s\n", input.Value)
+	fmt.Printf("Getting Info for:  %s\n", share)
 
-	if input.Value == "" {
+	if share == "" {
 		return
 	}
 
-	matches := all.AllSearch(input.Value, input.Domain)
+	matches := AD.FindShareDriveInfo(share)
+
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
@@ -45,5 +40,4 @@ func AllSearch(w http.ResponseWriter, r *http.Request) {
 
 	// Write the response to the client
 	w.Write(jsonData)
-
 }
