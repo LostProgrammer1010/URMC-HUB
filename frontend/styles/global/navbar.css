@@ -1,27 +1,27 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-/*Since navbar will be on every page styling for everypage will be on it*/
 :root {
-    --primary-color: #191919;
-    --secondary-color: rgba(79, 150, 255, 1);
-    --shadow-color: rgba(0,0,0,1);
-    --shadow-light-color: rgba(0,0,0,0.5);
-    --shadow-highlight-color: rgba(79, 150, 255, 1);
-    --printer-color: rgba(201, 11, 218, 1);
-    --printer-highlight-color: rgba(201, 11, 218, 0.4);
-    --disable-color: rgba(218, 11, 11, 1);
-    --disable-highlight-color: rgba(218, 11, 11, 0.4);
-    --user-color: rgb(11, 218, 218);
-    --user-highlight-color: rgba(11, 218, 218, 0.4);
-    --computer-color: rgba(11, 218, 66, 1);
-    --computer-highlight-color: rgba(11, 218, 218, 0.4);
-    --group-color: rgba(218, 152, 11, 1);
-    --group-highlight-color: rgba(218, 152, 11, 0.4);
-    --sharedrive-color: rgba(128, 11, 218, 1);
-    --sharedrive-highlight-color: rgba(128, 11, 218, 0.4);
-    --text-color: white;
-    --search-bar-links-page: rgb(25, 25, 25, 0.8);
+    --primary-color: #1e1e1e;
+    --secondary-color: rgba(68, 119, 206, 1);  
+    --shadow-color: rgba(0, 0, 0, 0.8);          
+    --shadow-light-color: rgba(0, 0, 0, 0.3);    
+    --shadow-highlight-color: rgba(68, 119, 206, 0.5); 
+    
+    --printer-color: rgba(187, 92, 229, 1);      
+    --printer-highlight-color: rgba(187, 92, 229, 0.4);
+    --disable-color: rgba(235, 87, 87, 1);       
+    --disable-highlight-color: rgba(235, 87, 87, 0.4);
+    --user-color: rgba(79, 209, 197, 1);       
+    --user-highlight-color: rgba(79, 209, 197, 0.4);
+    --computer-color: rgba(82, 196, 26, 1);     
+    --computer-highlight-color: rgba(82, 196, 26, 0.4);
+    --group-color: rgba(250, 176, 5, 1);         
+    --group-highlight-color: rgba(250, 176, 5, 0.4);
+    --sharedrive-color: rgba(255, 95, 31, 1);   
+    --sharedrive-highlight-color: rgba(255, 95, 31, 0.4);
+    --text-color: #e1e1e1;                       
+    --search-bar-links-page: rgba(35, 35, 35, 0.8);
 
     font-family: Roboto;
     background: var(--primary-color);
@@ -29,7 +29,6 @@
     color: var(--text-color);
 
 
-    /*font-family: "Open Sans", sans-serif;*/
 }
 
 :root.light-mode {
@@ -84,29 +83,22 @@ body #nav {
     flex-direction: column;
     justify-items: center;
     text-align: center;
-    backdrop-filter: blur(10px);
-    background: var(--primary-color);
+    backdrop-filter: blur(16px);
+    background: rgba(30, 30, 30, 0.8);
     height: fit-content;
     width: 70px;
     top: 50%;
     left: 20px;
     right: 0;
     transform: translateY(-50%);
-    padding: 0px 0px 0px 0px;
-    box-shadow: 0px 0px 50px 1px rgba(0, 0, 0, 0.5);
+    padding: 15px 0;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     box-sizing: border-box;
     color: white;
     z-index: 20;
-    border-radius: 20px;
-}
-
-body nav a:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-body nav img {
-    width: 30px;
-    height: 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: width 0.3s ease;
 }
 
 body nav a {
@@ -115,24 +107,42 @@ body nav a {
     box-sizing: border-box;
     justify-content: center;
     width: 100%;
-    height: 100px;
+    height: 70px;
     text-decoration: none;
-    padding: 20px 5px;
+    padding: 12px;
+    margin: 4px 0;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
-#nav-home {
-    display: flex;
-    gap: 10px;
-    justify-items: center;
-    align-items: center;
+body nav a:hover {
+    background: rgba(var(--secondary-color), 0.1);
+    transform: translateX(4px);
+}
+
+body nav img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+}
+
+body nav a:hover img {
+    transform: scale(1.1);
 }
 
 nav hr {
-    width: 100%;
-    color: var(--secondary-color); 
-    margin-top: 0px;
-    margin-bottom: 0px;
+    width: 80%;
+    margin: 8px auto;
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--secondary-color),
+        transparent
+    );
 }
+
 
 body #menu {
     display: none;

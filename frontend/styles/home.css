@@ -35,21 +35,19 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 325px;
-    height: 125px;
-    padding-top: 10rem;
-    border-radius: 20px;
-    align-items: center;
     width: 350px;
     height: 125px;
-    padding-top: 10rem;
+    padding: 10rem 1rem 0rem 1rem;
     border-radius: 20px;
     align-items: center;
     text-decoration: none;
-    box-shadow: 0px 0px 10px 5px var(--shadow-color);
+    background: rgba(39, 39, 39, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     color: var(--text-color);
     margin-top: 4rem;
-    padding: 10rem 1rem 0rem 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #links a {
@@ -62,14 +60,14 @@ body {
 }
 
 #links a:hover {
-    box-shadow: 0px 0px 10px 2px var(--secondary-color);
+    box-shadow: 0 15px 45px 0 rgba(var(--secondary-color-rgb), 0.3);
 }
 
 
 #links a:focus div,
 #links a:hover div {
-    transform: translateY(-5px);
-    box-shadow: 0px 5px 30px 10px var(--shadow-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(var(--secondary-color-rgb), 0.2);
 }
 
 
@@ -85,8 +83,8 @@ body {
     top: -70px;
     width: 80%;
     height: 200px;
-    box-shadow: 0px 0px 30px 10px var(--shadow-color);
-    transition: ease .5s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 body .link img {
@@ -164,25 +162,36 @@ body .link img {
 #top-container button {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(79, 150, 255, .3);
+    border: 1px solid rgba(79, 150, 255, 0.2);
     color: var(--secondary-color);
-    background: none;
+    background: rgba(79, 150, 255, 0.05);
+    backdrop-filter: blur(5px);
     height: 50px;
     width: 200px;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 5px;
     text-align: center;
     color: var(--text-color);
-    transition: .2s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79, 150, 255, 0.1);
 }
 
 #top-container button:hover {
-    background: var(--secondary-color);
+    background: rgba(79, 150, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 150, 255, 0.2);
+}
+
+#top-container button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(79, 150, 255, 0.1);
 }
 
 #top-container button p {
     padding-top: 5px;
     margin: 0px;
+    font-weight: 500;
 }
 
 

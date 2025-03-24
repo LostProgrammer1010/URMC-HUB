@@ -17,36 +17,22 @@
         <script src="../lib/global/nav.js"></script>
           <div class="header">
             <form onsubmit="search(event)" id="search-form">
+              <img id="info" src="../assets/info.png"/>
+              <div id="Information">
+                <ul>
+                  <li id="all">{Search} - Searches all</li>
+                  <li id="group">g {Search} - Search groups</li>
+                  <li id="share-drive">s {Search} - Search share drives</li>
+                  <li id="computer">c {Search} - Search computers</li>
+                  <li id="printer">p {Search} - Search printers</li>
+                  <li id="user">u {Search} - Search users</li>
+                </ul>
+              </div>
               <label for="name">Search</label>
               <input type="text" id="name" name="name">
               <button type="submit" value="submit">Search</button>
             </form>
-            <div id="color-codes">
-              <div class="color">
-                <div id="computer"></div>
-                <span>Computer</span>
-              </div>
-              <div class="color">
-                <div id="user"></div>
-                <span>Users</span>
-              </div>
-              <div class="color">
-                <div id="printer"></div>
-                <span>Printer</span>
-              </div>
-              <div class="color">
-                <div id="group"></div>
-                <span>Group</span>
-              </div>
-              <div class="color">
-                <div id="sharedrive"></div>
-                <span>Share Drive</span>
-              </div>
-              <div class="color">
-                <div id="disabled"></div>
-                <span>Disabled Account</span>
-              </div>
-            </div>
+
             <div class="paging-container">
               <button onclick="prevPage()" id="prev-button" disabled>
                 <
