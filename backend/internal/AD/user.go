@@ -18,12 +18,6 @@ type ServerResult struct {
 	Time  string `json:"time"`
 }
 
-type GroupResult struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Info        string `json:"info"`
-}
-
 type UserResult struct {
 	Name            string         `json:"name"`
 	Username        string         `json:"username"`

@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"backend/internal/api"
 	"backend/internal/api/get"
 	"backend/internal/api/post"
 	"net/http"
@@ -20,7 +19,7 @@ func NewRouter() http.Handler {
 	mux.HandleFunc("/user/group/add/", post.GroupsAdd)
 
 	//Search Endpoints
-	mux.HandleFunc("/search/all/", api.AllSearch)
+	mux.HandleFunc("/search/all/", post.AllSearch)
 	mux.HandleFunc("/search/groups/", get.GroupsSearch)
 	mux.HandleFunc("/search/users/", get.UsersSearch)
 	mux.HandleFunc("/search/computers/", get.ComputersSearch)
@@ -30,6 +29,9 @@ func NewRouter() http.Handler {
 	// Computers Endpoint
 	mux.HandleFunc("/restart/", post.Restart)
 	mux.HandleFunc("/ping/", post.Ping)
+
+	//ShareDrive
+	mux.HandleFunc("/sharedrive/", get.GetShareDriveInfo)
 
 	return mux
 }
