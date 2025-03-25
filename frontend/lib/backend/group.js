@@ -14,6 +14,11 @@ function displayGroup(group, body) {
   items[0].innerHTML = `${group.name}`
   items[1].innerHTML = `${group.ou}`
 
+  if (group.ou.includes("ISD SIG")){
+    row.classList.toggle("isd-sig")
+    items[1].classList.toggle("isd-sig")
+  }
+
 
   for (let i = 0; i < items.length; i++){
     labels[i].classList.add("labels")

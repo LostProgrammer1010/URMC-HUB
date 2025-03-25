@@ -22,7 +22,7 @@ body {
 
 .container .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     position: fixed;
     flex-basis: 100%;
@@ -31,12 +31,13 @@ body {
     height: 50px;
     top: 0px;
     z-index: 1;
-    background: var(--text-color);
+
+    background: var(--secondary-color);
     border-radius: 20px;
 }
 
 .container .header a {
-    color: black;
+    color: var(--text-color);
     text-decoration: none;
     text-align: center;
     padding: 5px;

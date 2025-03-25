@@ -8,13 +8,7 @@ function displayUser(user, body) {
   const labels = Array.from({length: 3}, () => document.createElement("span"))
   const items = Array.from({length: 3}, () => document.createElement("span"))
   const rows = Array.from({length: 3}, () => document.createElement("rows"))
-
-  if (user.disabled) {
-    row.id = "disabled"
-  } 
-  else {
-    row.id = "user"
-  }
+  row.id = "user"
   labels[0]. innerHTML = "<strong>Name:</strong>"
   items[0].innerHTML = user.name
   labels[1].innerHTML = "<strong>Username:</strong>"
@@ -22,6 +16,11 @@ function displayUser(user, body) {
   items[1].id = "username"
   labels[2].innerHTML = "<strong>OU:</strong>"
   items[2].innerHTML = user.ou
+
+  if (user.disabled == true){
+    items[2].classList.toggle("disabled")
+  }
+
 
 
   for (let i = 0; i < items.length; i++){

@@ -176,12 +176,16 @@ body {
   border-bottom: 1px solid white;
 }
 
+.search-container .body .row.isd-sig .isd-sig {
+  color: var(--disable-color)
+}
 .search-container .body .labels {
-  width: 150px;
+  min-width: 200px;
   align-self: flex-start;
   text-align: center;
   display: block;
   pointer-events: none;
+
 }
 
 .search-container .body .items {
@@ -191,6 +195,8 @@ body {
   text-align: left;
   gap: 20px;
   pointer-events: none;
+  word-break: break-all;
+  height: fit-content;
 }
 
 
@@ -217,21 +223,16 @@ body {
   outline: 1px solid var(--printer-color);
 }
 
-.search-container #disabled #main,
-.search-container #disabled strong {
-  color: var(--disable-color)
-}
-
  
-.search-container .body #disabled:hover {
-  box-shadow: inset 0px 0px 10px 3px var(--disable-highlight-color);
-  outline: 1px solid var(--disable-color);
-}
 
 .search-container #user #main,
 .search-container .body #user strong{
   color: var(--user-color)
 } 
+
+.search-container #user .disabled {
+  color: var(--disable-color);
+}
 
 
 .search-container .body #user:hover {
@@ -334,10 +335,6 @@ form #name.error {
 
 #color-codes #group {
   background: var(--group-color)
-}
-
-#color-codes #disabled {
-  background: var(--disable-color)
 }
 
 
