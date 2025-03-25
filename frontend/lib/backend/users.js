@@ -1,6 +1,7 @@
 function displayUser(user, body) {
-  row = document.createElement("div")
+  row = document.createElement("button")
   row.classList.add("row")
+  row.tabindex = "1"
 
   row.onclick = function() {
     pullUpUser(this)

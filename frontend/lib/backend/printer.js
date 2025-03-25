@@ -2,9 +2,10 @@
 
 function displayPrinter(printer, body) {
 
-  row = document.createElement("div")
+  row = document.createElement("button")
   row.classList.add("row")
   row.id = "printer"
+  row.tabindex = "1"
 
   row.onclick = function() {
     copyPrinter(this)

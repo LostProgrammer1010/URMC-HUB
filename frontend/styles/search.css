@@ -173,7 +173,12 @@ body {
   padding: 20px 30px;
   gap: 10px;
 
+  border: none;
+  background: none;
+  color: var(--text-color);
   border-bottom: 1px solid white;
+  font-family: roboto;
+  font-size: 20px;
 }
 
 .search-container .body .row.isd-sig .isd-sig {
@@ -185,7 +190,6 @@ body {
   text-align: center;
   display: block;
   pointer-events: none;
-
 }
 
 .search-container .body .items {
@@ -207,6 +211,7 @@ body {
   align-items: center;
 }
 
+.search-container .body .row:focus,
 .search-container .body .row:hover {
   border: none;
   border-radius: 10px;
@@ -218,6 +223,7 @@ body {
   color: var(--printer-color)
 }
 
+.search-container .body #printer:focus,
 .search-container .body #printer:hover {
   box-shadow: inset 0px 0px 20px 3px var(--printer-highlight-color);
   outline: 1px solid var(--printer-color);
@@ -235,6 +241,7 @@ body {
 }
 
 
+.search-container .body #user:focus,
 .search-container .body #user:hover {
   box-shadow: inset 0px 0px 10px 3px var(--user-highlight-color);
   outline: 1px solid var(--user-color);
@@ -243,7 +250,7 @@ body {
 .search-container #computer strong {
   color: var(--computer-color)
 }
-
+.search-container .body #computer:focus,
 .search-container .body #computer:hover {
   box-shadow: inset 0px 0px 10px 3px var(--computer-highlight-color);
   outline: 1px solid var(--computer-color);
@@ -253,7 +260,7 @@ body {
 .search-container #group strong {
   color: var(--group-color);
 }
-
+.search-container .body #group:focus,
 .search-container .body #group:hover {
   box-shadow: inset 0px 0px 10px 3px var(--group-highlight-color);
   outline: 1px solid var(--group-color);
@@ -263,7 +270,7 @@ body {
 .search-container #sharedrive strong {
   color: var(--sharedrive-color)
 }
-
+.search-container .body #sharedrive:focus,
 .search-container .body #sharedrive:hover {
   box-shadow: inset 0px 0px 10px 3px var(--sharedrive-highlight-color);
   outline: 1px solid var(--sharedrive-color);

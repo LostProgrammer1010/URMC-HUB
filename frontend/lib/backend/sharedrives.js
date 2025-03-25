@@ -1,7 +1,8 @@
 function displayShareDrive(sharedrive, body) {
-  row = document.createElement("div")
+  row = document.createElement("button")
   row.classList.add("row")
   row.id = "sharedrive"
+  row.tabindex = "1"
 
   row.onclick = function() {
     pullShareDrive(this)

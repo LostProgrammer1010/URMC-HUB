@@ -1,7 +1,8 @@
 function displayComputer(computer, body) {
-  row = document.createElement("div")
+  row = document.createElement("button")
   row.classList.add("row")
   row.id = "computer"
+  row.tabindex = "1"
 
   row.onclick = function() {
     pullUpComputer(this)

@@ -1,7 +1,8 @@
 function displayGroup(group, body) {
-  row = document.createElement("div")
+  row = document.createElement("button")
   row.classList.add("row")
   row.id = "group"
+  row.tabindex = "1"
 
   const items = Array.from({length: 2}, () => document.createElement("span"))
   const labels = Array.from({length: 2}, () => document.createElement("span"))

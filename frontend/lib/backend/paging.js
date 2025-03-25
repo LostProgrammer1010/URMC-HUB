@@ -11,8 +11,7 @@ function displayTable(page) {
   const start = (page - 1) * rowsPerPage;
   const end = start + rowsPerPage;
 
-  
-  console.log(value)
+
   if (pagingdata == null || pagingdata.length == 0) {
       document.getElementById("page-info").textContent = `Page 1 of 1`;
       row = document.createElement("div")
