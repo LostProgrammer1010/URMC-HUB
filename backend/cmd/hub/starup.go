@@ -3,8 +3,8 @@ package main
 import (
 	"backend/internal/creds"
 	"fmt"
+	"net"
 	"os"
-	"path/filepath"
 
 	"backend/internal/server"
 
@@ -61,14 +61,12 @@ func setupTrayIcon() {
 	}()
 }
 
-func checkRunning() bool {
-	lockFilePath = filepath.Join(os.TempDir(), "urmc-hub.lock")
-
-	var err error
-	lockFile, err = os.OpenFile(lockFilePath, os.O_CREATE|os.O_EXCL|os.O_RDWR, 0666)
+func checkRunning(port int) bool {
+	address := fmt.Sprintf("127.0.0.1:%d", port)
+	listener, err := net.Listen("tcp", address)
 	if err != nil {
-		return true // Another instance is running
+		return true
 	}
-
+	defer listener.Close()
 	return false
 }
