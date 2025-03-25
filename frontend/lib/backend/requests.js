@@ -113,7 +113,9 @@ function postSearchAll(searchValue, filter) {
     }) // Parse the JSON response from the server
     .then(data => {
       content.removeChild(loading)
+
       pagingdata = []
+      
       const maxLength = Math.max(
         data.users.length, 
         data.computers.length, 

@@ -1,7 +1,5 @@
 const path  = window.location.pathname.split("frontend")[0]
 
-console.log(path)
-
 // Inject the navbar into the page
 document.body.insertAdjacentHTML('afterbegin', 
     `

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+#results {
+  min-width: 90%;
+  min-height: 300px;
+  background-color: rgba(30, 30, 30, 0.8);
+  border: 1px solid var(--secondary-color);
+  border-radius: 16px;
+  padding: 25px;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+  overflow: auto;
+  backdrop-filter: blur(8px);
+}
+
+#results::before {
+  content: 'Results';
+  display: block;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 5px;
+}
+
+button {
+  color: var(--text-color);
+  cursor: pointer;
+  border: 1px solid var(--secondary-color);
+  background: rgba(68, 119, 206, 0.1);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background: rgba(68, 119, 206, 0.2);
+  box-shadow: 0 0 10px rgba(68, 119, 206, 0.3);
+}
+
+::selection {
+  background: rgba(68, 119, 206, 0.3);
+  color: var(--text-color);
+}
+
+#results span:last-child::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+  color: var(--secondary-color);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
