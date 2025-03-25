@@ -78,7 +78,6 @@ function postSearch(searchValue, filter) {
       content.removeChild(loading)
 
       pagingdata = data
-      console.log(pagingdata)
 
       displayTable(currentPage)
 
@@ -114,11 +113,22 @@ function postSearchAll(searchValue, filter) {
     }) // Parse the JSON response from the server
     .then(data => {
       content.removeChild(loading)
+      pagingdata = []
+      const maxLength = Math.max(
+        data.users.length, 
+        data.computers.length, 
+        data.groups.length, 
+        data.printers.length, 
+        data.shares.length
+      );
 
-
-      pagingdata = [...data.users, ...data.computers, ...data.groups, ...data.printers, ...data.shares]
-
-      pagingdata = pagingdata.sort(() => Math.random() - 0.5);
+      for (let i = 0; i < maxLength; i++) {
+        if (i < data.users.length) pagingdata.push(data.users[i]);
+        if (i < data.computers.length) pagingdata.push(data.computers[i]);
+        if (i < data.groups.length) pagingdata.push(data.groups[i]);
+        if (i < data.printers.length) pagingdata.push(data.printers[i]);
+        if (i < data.shares.length) pagingdata.push(data.shares[i]);
+      }
 
 
       displayTable(currentPage) 
