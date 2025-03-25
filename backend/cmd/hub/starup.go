@@ -51,10 +51,6 @@ func setupTrayIcon() {
 
 	go func() {
 		<-quitMenuItem.ClickedCh
-		if lockFile != nil {
-			lockFile.Close()
-			os.Remove(lockFilePath)
-		}
 		systray.Quit()
 		server.Server.Close()
 
