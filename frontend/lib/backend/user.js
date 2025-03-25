@@ -112,7 +112,7 @@ async function getUserInfo() {
 
 }
 
-getUserInfo()
+
 
 
 
@@ -225,3 +225,25 @@ function searchGroups(inputField) {
 
         }
     }
+
+function checkForIdleAccount() {
+    const memberof = document.getElementById("member-of-results")
+    for (let i = 0; i < memberof.children.length; i++) {
+        if (memberof.children[i].firstChild.innerHTML == "IDM_IdleAccounts_URMC") {
+            const idle = document.createElement("p")
+            idle.id = "idle"
+            idle.innerHTML = `This account is member of the IDM_IdleAccounts_URMC follow <a href="https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0017280">KB0017280</a> for next steps`
+            const nameContainer = document.getElementById("name")
+            nameContainer.appendChild(idle)
+            break
+        }
+    }
+    
+}
+
+async function setupUserPage() {
+    await getUserInfo()
+    checkForIdleAccount()
+}
+
+setupUserPage()
