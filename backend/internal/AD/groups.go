@@ -9,9 +9,11 @@ import (
 )
 
 type Group struct {
-	Type string `json:"type"`
-	Name string `json:"name"`
-	OU   string `json:"ou"`
+	Type        string `json:"type"`
+	Name        string `json:"name"`
+	OU          string `json:"ou"`
+	Info        string `json:"info"`
+	Description string `json:"description"`
 }
 
 // Finds all groups matching the search
@@ -30,8 +32,8 @@ func GroupsSearch(search string) (matches []Group) {
 		0,
 		0,
 		false,
-		fmt.Sprintf("(&(objectClass=group)(cn=%s*))", search), //Filter
-		[]string{"distinguishedName", "sAMAccountName"},       // Attributes
+		fmt.Sprintf("(&(objectClass=group)(cn=%s*))", search),                  //Filter
+		[]string{"distinguishedName", "sAMAccountName", "description", "info"}, // Attributes
 		nil,
 	)
 
@@ -48,6 +50,8 @@ func GroupsSearch(search string) (matches []Group) {
 		group.OU = strings.ReplaceAll(group.OU, "DC=", "")
 		group.OU = strings.ReplaceAll(group.OU, "CN=", "")
 		group.Name = entry.GetAttributeValue("sAMAccountName")
+		group.Info = entry.GetAttributeValue("info")
+		group.Description = entry.GetAttributeValue("description")
 		group.Type = "group"
 
 		matches = append(matches, group)
