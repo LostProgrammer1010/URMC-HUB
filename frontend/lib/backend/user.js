@@ -9,11 +9,11 @@ async function getUserInfo() {
         return
     }
 
-    const username = sessionStorage.getItem("username")
+    const username = encodeURI(sessionStorage.getItem("username"))
     localStorage.setItem("username", username)
 
     await fetch(
-        `http://localhost:8080/user/${sessionStorage.getItem("domain")}/${localStorage.getItem("username")}`
+        `http://localhost:8080/user/${sessionStorage.getItem("domain")}/${username}`
     )
         .then((response) => response.json()) // Parse the JSON response from the server
         .then((data) => {

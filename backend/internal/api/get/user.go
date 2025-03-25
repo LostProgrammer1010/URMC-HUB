@@ -16,12 +16,12 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 	if !checkMethod(r) {
 		return
 	}
-
+	fmt.Println(strings.Split(r.URL.Path, "/"))
 	username := strings.Split(r.URL.Path, "/")[3]
+	fmt.Println(username)
 	domain := strings.Split(r.URL.Path, "/")[2]
 
-	username = url.QueryEscape(username)
-	fmt.Println(strings.Split(r.URL.Path, "/"))
+	username, _ = url.QueryUnescape(username)
 
 	// Log the received message
 	fmt.Printf("Searching for:  %s\n", username)
