@@ -2,19 +2,19 @@
 var share;
 var currentShare;
 
-function sharedrivePageSetup() {
+async function sharedrivePageSetup() {
     getCurrentShare()
-    getGroupsShareDrive()
+    await getGroupsShareDrive()
 }
 
 
-function getGroupsShareDrive() {
+async function getGroupsShareDrive() {
 
   share = share.trim()
 
   encodeURI
   
-  fetch(`http://localhost:8080/sharedrive/${encodeURI(share)}`, {
+  await fetch(`http://localhost:8080/sharedrive/${encodeURI(share)}`, {
     method: "GET",
   })
     .then(response => {
@@ -57,7 +57,7 @@ function buildPage(sharedrive) {
 
   
 
-  sharedrive.groups.sort()
+  sharedrive.groups.sort((a, b) => a.name.localeCompare(b.name))
 
   sharedrive.groups.forEach(group => {
     groups.appendChild(buildGroups(group))
