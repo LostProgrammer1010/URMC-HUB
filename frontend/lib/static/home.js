@@ -29,7 +29,7 @@ all_links = [
     ["Exec Management Triage Sheet", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0011376", "Executive_Management.png", "Lists which techs are responsible for which Exec"],
     ["Help Desk SharePoint", "https://uofr.sharepoint.com/sites/ISDServiceDesk/SitePages/CollabHome.aspx", "ISD_SharePoint.png", ""],
     ["Major Incident Script/Level 1", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010422", "L1A.png", "Instructions to create L1A"],
-    ["SharePoint Owners", "https://appdev.mc.rochester.edu/isd/UrlSupport/Home/", "SharePoint_Owners.png", "Search Sharepoint URL to find owners"],
+    ["URL Support System (SharePoint Owners)", "https://appdev.mc.rochester.edu/isd/UrlSupport/Home/", "SharePoint_Owners.png", "Search Sharepoint URL to find owners"],
     ["Print Queue Report", "https://apps.mc.rochester.edu/ISD/SIG/PrintQueues/", "Print_Queue.png", "Full List of network printers"],
     ["Desktop Repair Matrix", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015483", "Destop_Repiar_Matrix.png", "Shows which models of computers can be replaced"],
     ["System Summary Index", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014512", "System_Summary_Index.png", "Gardner's List of KBs"],
