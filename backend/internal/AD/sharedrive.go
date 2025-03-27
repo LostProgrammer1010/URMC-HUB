@@ -30,7 +30,7 @@ type ShareDrivePage struct {
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	input = strings.ToLower(input)
-	networkPath := global.SHAREDRIVEPATH // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
+	networkPath := global.LOGON
 	file, err := os.Open(networkPath)
 
 	if err != nil {
@@ -65,7 +65,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	var localPath string
-	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\shares.dmd"
+	networkPath := global.LOGON
 	file, err := os.Open(networkPath)
 
 	if err != nil {

@@ -25,6 +25,7 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
 		return
+
 	}
 
 	// Log the received message
