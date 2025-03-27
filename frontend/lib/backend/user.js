@@ -149,12 +149,12 @@ function createGroupElement(group) {
 
     let remove = document.createElement("button")
     remove.id = "delete"
-    remove.innerHTML = "Remove"
+    remove.innerHTML = "Delete"
     remove.onclick = function() {
         container.classList.toggle("queued")
         if(container.classList.toggle("queued") == true) {
             container.classList.toggle("queued")
-            remove.innerHTML = "Remove"
+            remove.innerHTML = "Delete"
             addToRemoveQueue(this, group.name)
             return
         }
@@ -261,11 +261,9 @@ function checkForIdleAccount() {
 function addToRemoveQueue(button, groupName) {
 
     if (removeQueue.includes(groupName)) {
-        button.style.background = "green"
         removeQueue.splice(removeQueue.indexOf(groupName), 1)
     }
     else {
-        button.style.background = "red"
         removeQueue.push(groupName)
     }
     let updateButton = document.getElementById("group-update-button")
@@ -298,6 +296,8 @@ function updateGroups() {
         }) // Parse the JSON response from the server
         .then(data => {
             console.log(data)
+
+
             if (data.successful == true) {
                 document.getElementById("group-update-button").hidden = true
                 removeQueue = []

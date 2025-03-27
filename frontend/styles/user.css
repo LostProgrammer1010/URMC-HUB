@@ -84,7 +84,6 @@ body {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    text-align: center;
     box-sizing: border-box;
     gap: 20px;
     font-size: 50px;
@@ -196,22 +195,46 @@ table {
   color: var(--text-color);
   padding: 10px;
   top: 0px;
-  right: -10px;
+  right: -20px;
   height: 100%;
   width: 0px;
-  border-radius: 10px;
   overflow: hidden;
   border: none;
-  background-color: green;
+  background-color: rgb(212, 67, 67);
   transition: .2s ease-out;
  }
 
- #member-of-results .group:not(:hover) button {
-  transition: none
-}
 
- #member-of-results .group.queued {
+ #member-of-results .group.queued > *:not(button) {
   opacity: .5;
+ }
+
+ #member-of-results .group.queued button {
+  opacity:  1 !important;
+ }
+
+ #group-update-button {
+  position: fixed;
+  cursor: pointer;
+  bottom: 20px;
+  left: calc(50% + 60px);
+  padding: 10px;
+  width: 100px;
+  border-radius: 5px;
+  font-weight: bold;
+  background: rgba(37, 255, 45, 0.5);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+  border: 1px solid rgba(37, 255, 45, 0);
+  color: white;
+  z-index: 100;
+  transition: 0.2s ease-in-out;
+  box-sizing: border-box;
+ }
+
+ #group-update-button:hover {
+  background: rgba(37, 255, 45, 0);
+  border: 1px solid rgba(37, 255, 45, 1);
  }
 
 
@@ -241,6 +264,7 @@ table {
 }
 
 #member-of {
+  top: 0px;
   flex-basis: 100%;
   display: flex;
   padding: 10px;
@@ -254,6 +278,7 @@ table {
 }
 
  #member-of-results {
+
   display: flex;
   flex-direction: column;
   justify-content: center;

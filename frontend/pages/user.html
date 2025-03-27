@@ -17,6 +17,7 @@
     <body id="top">
         <script src="../lib/global/nav.js"></script>
         <div class="container" id="content">
+            <button id="group-update-button" onclick="updateGroups()" hidden>Update</button>
             <div class="header">
                 <a href="#top" onclick="scrollToSection(event)">Home</a>
                 <a href="#member-of" onclick="scrollToSection(event)">Groups Member of</a>
@@ -81,7 +82,7 @@
             <div id="member-of">
                 <h1>Member of </h1>
                 <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
-                <button id="group-update-button" onclick="updateGroups()" hidden>Update</button>
+
                 <div id="update-response"></div>
                 <div id="member-of-results">
 
