@@ -1,7 +1,7 @@
 package main
 
 import (
-	"backend/internal/creds"
+	"backend/internal/global"
 	"fmt"
 	"net"
 	"os"
@@ -13,15 +13,12 @@ import (
 	shortcut "github.com/nyaosorg/go-windows-shortcut"
 )
 
-var lockFile *os.File
-var lockFilePath string
-
 func AddToStartup() {
 
 	ole.CoInitialize(0)
 	defer ole.CoUninitialize()
 
-	startupLocation := fmt.Sprintf("C:/Users/%s/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hub.lnk", creds.Username)
+	startupLocation := fmt.Sprintf("C:/Users/%s/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hub.lnk", global.Username)
 	binaryFile := "//ntsdrive05/ISD_share/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/hub.exe"
 
 	_, e := os.Stat(startupLocation)
@@ -33,7 +30,7 @@ func AddToStartup() {
 
 	// Create the shortcut at the startup location on computer
 	shortcut.Make(binaryFile, startupLocation, "")
-	shortcut.Read(fmt.Sprintf(startupLocation, creds.Username))
+	shortcut.Read(fmt.Sprintf(startupLocation, global.Username))
 
 }
 

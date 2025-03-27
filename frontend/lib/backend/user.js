@@ -296,19 +296,24 @@ function updateGroups() {
         }) // Parse the JSON response from the server
         .then(data => {
             console.log(data)
+            document.getElementById("group-update-button").hidden = true
+            data.forEach((group) => {
+                if (group.successful == true) {
+                    removeQueue = []
+                    document.getElementById("update-response").innerHTML += `${group.group.split(",")[0].slice(3)} was removed from Suceessfuly</br>`
+                    
+                } else {
+                    removeQueue = []
+                    document.getElementById("update-response").innerHTML += `${group.group.split(",")[0].slice(3)} was not removed from Suceessfuly</br>`
+                }
+            })
 
 
-            if (data.successful == true) {
-                document.getElementById("group-update-button").hidden = true
-                removeQueue = []
-                document.getElementById("update-response").innerHTML = "Successfully Removed Groups Please Refresh the page to see the changes"
-                return
-            }
-            document.getElementById("update-response").innerHTML = `Failed to remove one or more of the following ${removeQueue} Please Refresh the page to see the changes`
         })
         .catch(error=> {
-          console.log(error)
-          handleError(error)
+            removeQueue = []
+            console.log(error)
+            handleError(error)
         })
           
     

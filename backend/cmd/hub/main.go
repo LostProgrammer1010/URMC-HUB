@@ -2,13 +2,12 @@ package main
 
 import (
 	"backend/internal/AD"
-	"backend/internal/creds"
+	"backend/internal/global"
 	"backend/internal/server"
 	"fmt"
 	"os"
 
 	"github.com/getlantern/systray"
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -18,14 +17,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	err := godotenv.Load()
-
-	if err != nil {
+	if !global.LoadCreds() {
 		AD.Login()
-	} else {
-		creds.Username = os.Getenv("username")
-		creds.Password = os.Getenv("password")
 	}
+
+	global.LoadEnv()
 
 	AddToStartup()
 	server.Start()

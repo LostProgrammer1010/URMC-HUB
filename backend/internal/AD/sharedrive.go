@@ -1,6 +1,7 @@
 package AD
 
 import (
+	"backend/internal/global"
 	"fmt"
 	"io"
 	"os"
@@ -29,7 +30,7 @@ type ShareDrivePage struct {
 func FindShareDrive(input string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	input = strings.ToLower(input)
-	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
+	networkPath := global.SHAREDRIVEPATH // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
 	file, err := os.Open(networkPath)
 
 	if err != nil {
