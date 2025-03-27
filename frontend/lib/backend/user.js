@@ -284,8 +284,6 @@ function updateGroups() {
         users: [sessionStorage.getItem("username")],
     }
 
-    console.log(data)
-
     
     fetch(`http://localhost:8080/user/group/remove/`, {
         method: "POST",
@@ -303,10 +301,10 @@ function updateGroups() {
             if (data.successful == true) {
                 document.getElementById("group-update-button").hidden = true
                 removeQueue = []
-                document.getElementById("update-response").innerHTML = "Successfully Removed Groups"
+                document.getElementById("update-response").innerHTML = "Successfully Removed Groups Please Refresh the page to see the changes"
                 return
             }
-            document.getElementById("update-response").innerHTML = `Failed to remove one of the following ${removeQueue}`
+            document.getElementById("update-response").innerHTML = `Failed to remove one or more of the following ${removeQueue} Please Refresh the page to see the changes`
         })
         .catch(error=> {
           console.log(error)
