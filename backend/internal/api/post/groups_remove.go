@@ -10,7 +10,7 @@ import (
 
 type GroupInput struct {
 	Groups []string `json:"groups"`
-	Users []string `json:"users"`
+	Users  []string `json:"users"`
 }
 
 func GroupsRemove(w http.ResponseWriter, r *http.Request) {
@@ -37,7 +37,7 @@ func GroupsRemove(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := AD.GroupsRemove(input.Users, input.Groups)	
+	response := AD.GroupsRemove(input.Users, input.Groups)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 

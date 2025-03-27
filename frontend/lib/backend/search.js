@@ -89,8 +89,20 @@ function searchPageSetup() {
         event.preventDefault();
         inputField.focus();
     }
+    else if (event.altKey && event.key === 'ArrowLeft') {
+      event.preventDefault();
+      prevPage();
+    }
+    else if (event.altKey && event.key === 'ArrowRight') {
+      event.preventDefault();
+      nextPage();
+    }
 });
 }
+
+document.addEventListener('keydown', function(event) {
+
+});
 
 searchPageSetup()
 

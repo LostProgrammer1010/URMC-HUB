@@ -1,3 +1,5 @@
+var removeQueue = []
+
 async function getUserInfo() {
     const loading = createLoading()
     const content = document.getElementById("content")
@@ -119,9 +121,6 @@ async function getUserInfo() {
 function createGroupElement(group) {
     let container = document.createElement("div")
     container.classList = "group"
-    container.oncontextmenu = function(event) {
-        openMenu(event, this)
-    }
 
     let name = document.createElement("h1")
     name.id = "name"
@@ -137,7 +136,7 @@ function createGroupElement(group) {
     label.classList.add("label")
     container.appendChild(label)
 
-        description.innerHTML = group.description != "" ? group.description : "No Description In AD"
+    description.innerHTML = group.description != "" ? group.description : "No Description In AD"
 
     container.appendChild(description)
 
@@ -148,8 +147,26 @@ function createGroupElement(group) {
     label2.classList.add("label")
     container.appendChild(label2)
 
+    let remove = document.createElement("button")
+    remove.id = "delete"
+    remove.innerHTML = "Remove"
+    remove.onclick = function() {
+        container.classList.toggle("queued")
+        if(container.classList.toggle("queued") == true) {
+            container.classList.toggle("queued")
+            remove.innerHTML = "Remove"
+            addToRemoveQueue(this, group.name)
+            return
+        }
+        container.classList.toggle("queued")
+        remove.innerHTML = "Cancel"
+
+        addToRemoveQueue(this, group.name)
+    }
+    container.appendChild(remove)
 
     information.innerHTML = group.info != "" ? group.info : "No Information In AD"
+
 
 
 
@@ -241,9 +258,68 @@ function checkForIdleAccount() {
     
 }
 
+function addToRemoveQueue(button, groupName) {
+
+    if (removeQueue.includes(groupName)) {
+        button.style.background = "green"
+        removeQueue.splice(removeQueue.indexOf(groupName), 1)
+    }
+    else {
+        button.style.background = "red"
+        removeQueue.push(groupName)
+    }
+    let updateButton = document.getElementById("group-update-button")
+
+    if (removeQueue.length > 0) {
+        updateButton.hidden = false
+        return
+    }
+    updateButton.hidden = true
+}
+
+function updateGroups() {
+
+    data = {
+        groups: removeQueue,
+        users: [sessionStorage.getItem("username")],
+    }
+
+    console.log(data)
+
+    
+    fetch(`http://localhost:8080/user/group/remove/`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+    
+          return response.json()
+        }) // Parse the JSON response from the server
+        .then(data => {
+            console.log(data)
+            if (data.successful == true) {
+                document.getElementById("group-update-button").hidden = true
+                removeQueue = []
+                document.getElementById("update-response").innerHTML = "Successfully Removed Groups"
+                return
+            }
+            document.getElementById("update-response").innerHTML = `Failed to remove one of the following ${removeQueue}`
+        })
+        .catch(error=> {
+          console.log(error)
+          handleError(error)
+        })
+          
+    
+}
+
 async function setupUserPage() {
     await getUserInfo()
     checkForIdleAccount()
 }
+
 
 setupUserPage()

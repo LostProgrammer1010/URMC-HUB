@@ -79,16 +79,7 @@ function nextPage() {
   }
 }
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'ArrowLeft') {
-    event.preventDefault();
-    prevPage();
-  }
-  else if (event.key === 'ArrowRight') {
-    event.preventDefault();
-    nextPage();
-  }
-});
+
 
 
 function getSearchCriteria(input) {

@@ -172,18 +172,56 @@ table {
     width: 100%;
   }
 
-  #share-drives .group,
+
  #member-of-results .group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
+  overflow: hidden;
   flex-grow: 1;
   border-bottom: 1px solid var(--group-highlight-color);
   padding: 20px;
   box-sizing: border-box;
  }
 
+ #member-of-results .group:hover button {
+  width: 200px;
+ }
+
+ #member-of-results .group button{
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 10px;
+  top: 0px;
+  right: -10px;
+  height: 100%;
+  width: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+  background-color: green;
+  transition: .2s ease-out;
+ }
+
+ #member-of-results .group:not(:hover) button {
+  transition: none
+}
+
+ #member-of-results .group.queued {
+  opacity: .5;
+ }
+
+
  #share-drives .group {
+  height: fit-content ;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
   border-bottom: 1px solid var(--sharedrive-highlight-color);
  }
 
@@ -205,6 +243,7 @@ table {
 #member-of {
   flex-basis: 100%;
   display: flex;
+  padding: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
