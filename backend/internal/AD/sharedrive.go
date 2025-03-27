@@ -102,7 +102,7 @@ func CheckGroupForShareDrive(group string) *ShareDrive {
 
 func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
 	share = strings.ToLower(share)
-	networkPath := "\\\\AD22PDC01\\netlogon\\SIG\\logon.dmd" // Computer: AD22PDC01 FilePath: netlogon\\SIG\\logon.dmd
+	networkPath := global.LOGON
 	file, err := os.Open(networkPath)
 
 	if err != nil {
