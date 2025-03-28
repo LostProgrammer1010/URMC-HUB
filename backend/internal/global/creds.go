@@ -12,7 +12,7 @@ var (
 )
 
 func LoadCreds() bool {
-	err := godotenv.Load()
+	err := godotenv.Load("./credentials.env")
 
 	if err != nil {
 		return false

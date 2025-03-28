@@ -90,6 +90,7 @@ body {
     flex-grow: 1;
     padding: 20px;
     font-weight: bold;
+    text-align: center;
     justify-content: center;
     align-items: center;
     flex-basis: 25%;
@@ -322,7 +323,7 @@ table {
  }
 
 
- #member-of input {
+ #member-of #group-search {
   position: relative;
   padding: 10px;
   background: transparent;
@@ -335,7 +336,7 @@ table {
  }
 
 
- #member-of input:focus {
+ #member-of #group-search:focus {
   outline: none;
  }
 
@@ -371,7 +372,7 @@ table {
  #add-groups {
   position: fixed;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -387,63 +388,71 @@ table {
   backdrop-filter: blur(10px);
   border: 1px solid var(--text-color);
   column-gap: 50px;
-  row-gap: 0px;
+  row-gap: 10px;
  }
- #add-groups #groups-on-account,
- #add-groups #groups-to-add {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
 
-  height: 600px;
-  width: 40%;
-  border-radius: 5px;
+ #add-groups #add-groups-button {
   border: 1px solid var(--text-color);
-  padding: 10px;
- }
-
- #add-groups #groups-to-add {
-  overflow: hidden;
- }
-
- #add-groups #groups-on-account {
-  overflow: auto;
- }
-
- #add-groups #group-search-add {
-  width: 100%;
- }
-
- #add-groups #groups-to-add-results {
-  width: 100%;
-  max-height: 100%;
-  overflow: scroll;
- }
-
- #add-groups button {
   background: none;
   color: white;
-  border: none;
-  text-align: left;
- }
-
- #add-groups #group {
-  font-size: 15px;
   padding: 10px;
-  width: 100%
+  border-radius: 5px;
+  font-weight: bold;
  }
 
- #add-groups  #group:hover {
+ #group-search-add {
+  width: 300px;
+  align-self: flex-start;
+ }
+
+ #groups-on-account,
+ #groups-to-add {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: none;
+  overflow-y: auto;
+  height: 400px;
+  flex-basis: 45%;
+  padding: 5px;
+  width: max-content;
+  border: 1px solid white;
+  border-radius: 5px;
+ }
+
+ #groups-to-add button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+ }
+
+ #groups-to-add button.selected {
   background: white;
   color: black;
  }
 
- #add-groups h1 {
-  flex-basis: 100%;
-  padding: 10px;
-  margin: 0px;
+ #groups-to-add button:hover {
+  background: white;
+  color: black;
  }
+
+ #groups-on-account button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+ }
+
+ .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+ }
+
 
  #overlay {
   position: fixed;

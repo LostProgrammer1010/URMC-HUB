@@ -90,14 +90,13 @@
                 </div>
                 <div id="overlay" hidden>
                     <div id="add-groups">
-                        <h1>Add Groups</h1>
-                        <div id="groups-to-add">
-                            <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
-                            <div id="groups-to-add-results">
-
-                            </div>
+                        <button id="add-groups-button" onclick="addGroupsRequest()">Add Groups</button>
+                        <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
+                        <div class="row">
+                             
+                             <div id="groups-to-add"></div>
+                            <div id="groups-on-account"></div>
                         </div>
-                        <div id="groups-on-account"></div>
                     </div>
                 </div>
             </div>

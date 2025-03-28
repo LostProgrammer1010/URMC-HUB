@@ -351,6 +351,7 @@ function hideAddGroups() {
     document.body.classList.remove("no-scroll")
 }
 
+var addGroups = []
 async function findGroups(inputField,event) {
     if (event.key == "Enter") {
         await fetch(
@@ -358,12 +359,38 @@ async function findGroups(inputField,event) {
         )
         .then((response) => response.json()) // Parse the JSON response from the server
         .then((data) => {
-            const container = document.getElementById("groups-to-add-results")
-            container.innerHTML = ""    
+            const container = document.getElementById("groups-to-add")
+            container.innerHTML = ""  
+            console.log(addGroups)
+            addGroups.forEach(group => {
+                const groupElement = document.createElement("button")
+                groupElement.id = "group"
+                groupElement.innerHTML = group
+                groupElement.classList.add("selected")
+                groupElement.onclick = function() {
+                    if (addGroups.includes(group)) {
+                        addGroups.splice(addGroups.indexOf(group), 1)
+                        groupElement.classList.remove("selected")
+                        return
+                    }
+                    addGroups.push(group)
+                    groupElement.classList.add("selected")
+                }
+                container.appendChild(groupElement)
+            })  
             data.forEach(group => {
 
                 const groupElement = document.createElement("button")
                 groupElement.id = "group"
+                groupElement.onclick = function() {
+                    if (addGroups.includes(group.name)) {
+                        addGroups.splice(addGroups.indexOf(group.name), 1)
+                        groupElement.classList.remove("selected")
+                        return
+                    }
+                    addGroups.push(group.name)
+                    groupElement.classList.add("selected")
+                }
                 groupElement.innerHTML = group.name
                 container.appendChild(groupElement)
             })
@@ -374,6 +401,26 @@ async function findGroups(inputField,event) {
             handleError(error)
         })
     }
+}
+
+async function addGroupsRequest() {
+
+    data = {
+        groups: addGroups,
+        users: [sessionStorage.getItem("username")],
+    }
+
+    await fetch(`http://localhost:8080/user/group/add/`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    .then((response) => response.json()) // Parse the JSON response from the server
+    .then((data) => {
+        console.log(data)
+    })
 }
 
 async function setupUserPage() {
