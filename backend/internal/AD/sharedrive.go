@@ -65,7 +65,7 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
 	shareDrives = make([]ShareDrive, 0)
 	var localPath string
-	networkPath := global.LOGON
+	networkPath := global.SHARES
 	file, err := os.Open(networkPath)
 
 	if err != nil {

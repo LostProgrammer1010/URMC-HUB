@@ -117,7 +117,11 @@ body {
     flex-basis: 100%;
     border-radius: 20px;
     min-height: 400px;
+    z-index: -1;
 }
+
+
+
 
 #lockoutResults {
     position: relative;
@@ -138,6 +142,7 @@ body {
 table {
     width: 90%;
     border-collapse: collapse;
+
   }
 
   table thead {
@@ -347,6 +352,7 @@ table {
 
  #lockout-results {
   width: 100%;
+
  }
 
  #lockout-results thead{
@@ -362,3 +368,93 @@ table {
   width: 33%;
  }
 
+ #add-groups {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  top: 50%;
+  left: calc(50% + 60px);
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  padding-top: 0px;
+  width: 60%;
+  height: fit-content;
+  border-radius: 5px;
+  background: var(--primary-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--text-color);
+  column-gap: 50px;
+  row-gap: 0px;
+ }
+ #add-groups #groups-on-account,
+ #add-groups #groups-to-add {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+
+  height: 600px;
+  width: 40%;
+  border-radius: 5px;
+  border: 1px solid var(--text-color);
+  padding: 10px;
+ }
+
+ #add-groups #groups-to-add {
+  overflow: hidden;
+ }
+
+ #add-groups #groups-on-account {
+  overflow: auto;
+ }
+
+ #add-groups #group-search-add {
+  width: 100%;
+ }
+
+ #add-groups #groups-to-add-results {
+  width: 100%;
+  max-height: 100%;
+  overflow: scroll;
+ }
+
+ #add-groups button {
+  background: none;
+  color: white;
+  border: none;
+  text-align: left;
+ }
+
+ #add-groups #group {
+  font-size: 15px;
+  padding: 10px;
+  width: 100%
+ }
+
+ #add-groups  #group:hover {
+  background: white;
+  color: black;
+ }
+
+ #add-groups h1 {
+  flex-basis: 100%;
+  padding: 10px;
+  margin: 0px;
+ }
+
+ #overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(10px);
+ }
+
+
+ body.no-scroll {
+  overflow: hidden;
+ }

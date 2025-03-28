@@ -1,4 +1,5 @@
 var removeQueue = []
+var currentGroups = []
 
 async function getUserInfo() {
     const loading = createLoading()
@@ -52,6 +53,8 @@ async function getUserInfo() {
             if (data.groups != null )
             {
                 data.groups.sort((a, b) => a.name.localeCompare(b.name))
+
+                currentGroups = data.groups
     
                 data.groups.forEach((group) => {
                     // group.name group.description group.info
@@ -65,7 +68,6 @@ async function getUserInfo() {
 
             const shareContainer = document.getElementById("share-drives")
 
-            console.log(data.sharedrives)
 
             if (data.sharedrives != null) {
                 data.sharedrives.forEach(share => {
@@ -317,6 +319,61 @@ function updateGroups() {
         })
           
     
+}
+
+function showAddGroups() {
+    const container = document.getElementById("overlay")
+    container.hidden = false
+    document.body.classList.add("no-scroll")
+
+    const clickHandler = container.addEventListener("click", function(event) {
+        if (event.target == container) {
+            hideAddGroups()
+            container.removeEventListener("click", clickHandler)
+        } 
+    })
+    fillGroups()
+}
+
+function fillGroups() {
+    currentGroups.forEach(group => {
+        const container = document.getElementById("groups-on-account")
+        const groupElement = document.createElement("button")
+        groupElement.id = "group"
+        groupElement.innerHTML = group.name
+        container.appendChild(groupElement)
+    })
+}
+
+function hideAddGroups() {
+    const container = document.getElementById("overlay")
+    container.hidden = true
+    document.body.classList.remove("no-scroll")
+}
+
+async function findGroups(inputField,event) {
+    if (event.key == "Enter") {
+        await fetch(
+            `http://localhost:8080/search/groups/URMC-sh/${inputField.value}`
+        )
+        .then((response) => response.json()) // Parse the JSON response from the server
+        .then((data) => {
+            const container = document.getElementById("groups-to-add-results")
+            container.innerHTML = ""    
+            data.forEach(group => {
+
+                const groupElement = document.createElement("button")
+                groupElement.id = "group"
+                groupElement.innerHTML = group.name
+                container.appendChild(groupElement)
+            })
+
+        })
+        .catch((error) => {
+            console.log(error)
+            handleError(error)
+        })
+    }
 }
 
 async function setupUserPage() {

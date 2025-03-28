@@ -82,12 +82,23 @@
             <div id="member-of">
                 <h1>Member of </h1>
                 <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
+                <button onclick="showAddGroups()">Add Groups</button>
 
                 <div id="update-response"></div>
                 <div id="member-of-results">
 
+                </div>
+                <div id="overlay" hidden>
+                    <div id="add-groups">
+                        <h1>Add Groups</h1>
+                        <div id="groups-to-add">
+                            <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
+                            <div id="groups-to-add-results">
 
-
+                            </div>
+                        </div>
+                        <div id="groups-on-account"></div>
+                    </div>
                 </div>
             </div>
 
@@ -98,7 +109,6 @@
 
             <div id="bad-passwords">
                 <h1>Bad Passwords</h1>
-                <button onclick="getLockoutInfo()">Refresh</button>
                 <table id="lockout-results">
                     <thead id="head">
 
