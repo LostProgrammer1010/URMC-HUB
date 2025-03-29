@@ -81,9 +81,10 @@
 
             <div id="member-of">
                 <h1>Member of </h1>
-                <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
-                <button onclick="showUpdateGroups()">Update Groups</button>
-
+                <div class="row">
+                    <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
+                    <button id="show-update-group-button" onclick="showUpdateGroups()">Update Groups</button>
+                 </div>
                 <div id="update-response"></div>
                 <div id="member-of-results">
 

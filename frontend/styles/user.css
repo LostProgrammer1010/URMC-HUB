@@ -188,6 +188,7 @@ table {
   border-bottom: 1px solid var(--group-highlight-color);
   padding: 20px;
   box-sizing: border-box;
+  margin-top: 10px;
  }
 
  #member-of-results .group:hover button {
@@ -330,7 +331,7 @@ table {
   border: 1px solid var(--group-color);
   border-radius: 5px;
   height: 50px;
-  width: 20%;
+  width: 400px;
   color: white;
   margin-bottom: 10px;
  }
@@ -468,6 +469,24 @@ table {
   padding: 5px;
   font-size: 15px;
   transition: .3s ease;
+ }
+
+ #show-update-group-button {
+  width: 300px;
+  height: 50px;
+  background: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+ }
+ 
+ #show-update-group-button:hover {
+  width: 300px;
+  background: white;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
  }
 
  #groups-on-account button {
