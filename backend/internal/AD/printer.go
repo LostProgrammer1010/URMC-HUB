@@ -3,7 +3,6 @@ package AD
 import (
 	"encoding/csv"
 	"fmt"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -20,9 +19,13 @@ type Printer struct {
 }
 
 // Matches printer to the search
-func MatchPrinter(input string) (printers []Printer) {
+func MatchPrinter(input string) (printers []Printer, err error) {
 	printers = make([]Printer, 0)
-	printersList := fetchPrinters()
+	printersList, err := fetchPrinters()
+
+	if err != nil {
+		return
+	}
 
 	for _, printer := range printersList {
 		build := fmt.Sprintf("\\\\%s\\%s %s %s %s %s %s", printer.Server, printer.Queue, printer.Model, printer.IP, printer.PrintProccessor, printer.Location, printer.Notes)
@@ -34,23 +37,23 @@ func MatchPrinter(input string) (printers []Printer) {
 }
 
 // Retrieves the printer queue from the server
-func fetchPrinters() (printers []Printer) {
+func fetchPrinters() (printers []Printer, err error) {
 	printers = make([]Printer, 0)
 	// Make a GET request
 	resp, err := http.Get("https://apps.mc.rochester.edu/ISD/SIG/PrintQueues/PrintQReport.csv")
+
 	if err != nil {
-		log.Fatalf("Error fetching URL: %v", err)
+		return
 	}
 	defer resp.Body.Close()
 
-	// Read the response body
-	if err != nil {
-		log.Fatalf("Error reading response body: %v", err)
-	}
-
 	file := csv.NewReader(resp.Body)
 
-	records, _ := file.ReadAll()
+	records, err := file.ReadAll()
+
+	if err != nil {
+		return
+	}
 
 	for _, record := range records {
 		var printer Printer

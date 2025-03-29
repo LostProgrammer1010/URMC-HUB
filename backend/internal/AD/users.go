@@ -2,7 +2,6 @@ package AD
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/go-ldap/ldap/v3"
@@ -18,13 +17,15 @@ type User struct {
 }
 
 // Finds all users under the URMC domain that match the search
-func UsersSearch(search string, domain string) (matches []User) {
+func UsersSearch(search string, domain string) (matches []User, err error) {
 	matches = make([]User, 0)
 	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
+
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
 	defer l.Close()
+	defer l.Unbind()
 
 	searchRequest := ldap.NewSearchRequest(
 		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
@@ -33,14 +34,14 @@ func UsersSearch(search string, domain string) (matches []User) {
 		0,
 		0,
 		false,
-		fmt.Sprintf("(&(objectClass=user)(|(anr=%s)(URID=%s)))", search, search),          //Filter
-		[]string{"cn", "distinguishedName", "name", "sAMAccountName"}, // Attributes
+		fmt.Sprintf("(&(objectClass=user)(|(anr=%s)(URID=%s)))", search, search), //Filter
+		[]string{"cn", "distinguishedName", "name", "sAMAccountName"},            // Attributes
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
 
-	if results == nil {
+	if results == nil || err != nil {
 		return
 	}
 
@@ -57,11 +58,5 @@ func UsersSearch(search string, domain string) (matches []User) {
 		matches = append(matches, user)
 
 	}
-
-	err = l.Unbind()
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	return
 }

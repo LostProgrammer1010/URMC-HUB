@@ -19,24 +19,36 @@ func GetShareDriveInfo(w http.ResponseWriter, r *http.Request) {
 
 	share := strings.Split(r.URL.Path, "/")[2]
 
-	share, _ = url.QueryUnescape(share)
+	share, err := url.QueryUnescape(share)
 
-	fmt.Println(r.URL.Path)
-
-	// Log the received message
-	fmt.Printf("Getting Info for:  %s\n", share)
-
-	if share == "" {
+	if err != nil || share == "" {
+		http.Error(w, "Invalid search string", http.StatusBadRequest)
 		return
+
 	}
 
-	matches := AD.FindShareDriveInfo(share)
+	// Log the received message
+	fmt.Println(r.URL.Path)
+	fmt.Printf("Getting Info for:  %s\n", share)
+
+	matches, err := AD.FindShareDriveInfo(share)
+
+	if err != nil {
+		http.Error(w, "Error Pulling Share Drive Information", http.StatusInternalServerError)
+		return
+	}
 
 	// Set the response header to application/json
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
-	jsonData, _ := json.Marshal(matches)
+	jsonData, err := json.Marshal(matches)
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error encoding JSON"))
+		return
+	}
 
 	// Write the response to the client
 	w.Write(jsonData)

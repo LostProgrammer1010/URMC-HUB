@@ -2,7 +2,6 @@ package AD
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/go-ldap/ldap/v3"
@@ -17,13 +16,16 @@ type Group struct {
 }
 
 // Finds all groups matching the search
-func GroupsSearch(search string) (matches []Group) {
+func GroupsSearch(search string) (matches []Group, err error) {
 	matches = make([]Group, 0)
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
+
 	defer l.Close()
+	defer l.Unbind()
 
 	searchRequest := ldap.NewSearchRequest(
 		"DC=urmc-sh,DC=rochester,DC=edu",
@@ -37,9 +39,9 @@ func GroupsSearch(search string) (matches []Group) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
 
-	if results == nil {
+	if results == nil || err != nil {
 		return
 	}
 
@@ -55,11 +57,6 @@ func GroupsSearch(search string) (matches []Group) {
 		group.Type = "group"
 
 		matches = append(matches, group)
-	}
-
-	err = l.Unbind()
-	if err != nil {
-		log.Fatal(err)
 	}
 
 	return

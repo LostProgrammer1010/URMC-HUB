@@ -6,17 +6,25 @@ import (
 	"github.com/go-ldap/ldap/v3"
 )
 
-func GroupsAdd(users []string, groups []string) (response []GroupModifyResult) {
+func GroupsAdd(users []string, groups []string) (response []GroupModifyResult, err error) {
 
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
-	defer l.Close()
 
-	usersDN := GetUsersDN(users, l)
-	groupsDN := GetGroupsDN(groups, l)
+	defer l.Close()
+	defer l.Unbind()
+
+	usersDN, err := GetUsersDN(users, l)
+	if err != nil {
+		return
+	}
+	groupsDN, err := GetGroupsDN(groups, l)
+	if err != nil {
+		return
+	}
 
 	// Log the action
 	fmt.Printf("Adding: %s\n%s", groupsDN, usersDN)
@@ -31,7 +39,7 @@ func GroupsAdd(users []string, groups []string) (response []GroupModifyResult) {
 		addRequest.Add("member", usersDN)
 		err = l.Modify(addRequest)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Printf("Failed to add user to %s\n", group)
 			groupResult.Successful = false
 			groupResult.Message = err.Error()
 			response = append(response, *groupResult)

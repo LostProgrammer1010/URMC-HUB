@@ -12,15 +12,26 @@ type GroupModifyResult struct {
 	Successful bool   `json:"successful"`
 }
 
-func GroupsRemove(users []string, groups []string) (response []GroupModifyResult) {
+func GroupsRemove(users []string, groups []string) (response []GroupModifyResult, err error) {
 
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
-	fmt.Println(err)
-	defer l.Close()
 
-	usersDN := GetUsersDN(users, l)
-	groupsDN := GetGroupsDN(groups, l)
+	if err != nil {
+		return
+	}
+
+	defer l.Close()
+	defer l.Unbind()
+
+	usersDN, err := GetUsersDN(users, l)
+	if err != nil {
+		return
+	}
+	groupsDN, err := GetGroupsDN(groups, l)
+	if err != nil {
+		return
+	}
 
 	// Log the action
 	fmt.Printf("Removing: %s\n%s", groupsDN, usersDN)
@@ -36,7 +47,7 @@ func GroupsRemove(users []string, groups []string) (response []GroupModifyResult
 		deleteRequest.Delete("member", usersDN)
 		err = l.Modify(deleteRequest)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Failed to remove user from " + group)
 			groupResult.Successful = false
 			groupResult.Message += err.Error()
 			response = append(response, *groupResult)
@@ -47,10 +58,10 @@ func GroupsRemove(users []string, groups []string) (response []GroupModifyResult
 	return
 }
 
-func GetUsersDN(users []string, l *ldap.Conn) (usersDN []string) {
+func GetUsersDN(users []string, l *ldap.Conn) (usersDN []string, err error) {
+
 	for _, user := range users {
 		// Create search request for user
-		fmt.Println(user)
 		searchRequest := ldap.NewSearchRequest(
 			"DC=urmc-sh,DC=rochester,DC=edu",
 			ldap.ScopeWholeSubtree,
@@ -63,15 +74,16 @@ func GetUsersDN(users []string, l *ldap.Conn) (usersDN []string) {
 			nil,
 		)
 		sr, err := l.Search(searchRequest)
+
 		if err != nil || len(sr.Entries) == 0 {
-			fmt.Println(err)
+			break
 		}
 		usersDN = append(usersDN, sr.Entries[0].DN)
 	}
 	return
 }
 
-func GetGroupsDN(groups []string, l *ldap.Conn) (groupsDN []string) {
+func GetGroupsDN(groups []string, l *ldap.Conn) (groupsDN []string, err error) {
 
 	for _, group := range groups {
 		// Create search request for group
@@ -88,7 +100,7 @@ func GetGroupsDN(groups []string, l *ldap.Conn) (groupsDN []string) {
 		)
 		sr, err := l.Search(searchRequest)
 		if err != nil || len(sr.Entries) == 0 {
-			fmt.Println(err)
+			break
 		}
 		groupsDN = append(groupsDN, sr.Entries[0].DN)
 	}

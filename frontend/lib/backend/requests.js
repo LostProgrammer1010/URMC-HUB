@@ -20,6 +20,7 @@ function getSearchCriteria(input) {
 
 function getSearch(searchValue, filter) {
   content.innerHTML = ""
+  const loading = createLoading()
   content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
@@ -36,9 +37,8 @@ function getSearch(searchValue, filter) {
     fetch(`http://localhost:8080/search/${filter}/${domain}/${searchValue}`)
     .then(response => response.json()) 
     .then(data => {
+      loading.remove()
       pagingdata = data
-
-      content.removeChild(loading)
 
       displayTable(currentPage)
 
@@ -53,6 +53,7 @@ function getSearch(searchValue, filter) {
 
 function postSearch(searchValue, filter) {
   content.innerHTML = ""
+  const loading = createLoading()
   content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
@@ -75,7 +76,7 @@ function postSearch(searchValue, filter) {
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
-      content.removeChild(loading)
+      loading.remove()
 
       pagingdata = data
 
@@ -90,6 +91,7 @@ function postSearch(searchValue, filter) {
 
 function postSearchAll(searchValue, filter) {
   content.innerHTML = ""
+  const loading = createLoading()
   content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
@@ -112,7 +114,8 @@ function postSearchAll(searchValue, filter) {
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
-      content.removeChild(loading)
+
+      loading.remove()
 
       pagingdata = []
       
@@ -137,7 +140,6 @@ function postSearchAll(searchValue, filter) {
 
     })
     .catch(error=> {
-      console.log(error)
       handleError(error)
     })
 }

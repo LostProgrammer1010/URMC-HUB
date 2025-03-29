@@ -9,6 +9,8 @@ import (
 )
 
 func GroupsAdd(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL.Path)
+
 	var input GroupInput
 
 	option.EnableCORS(w, r)
@@ -18,8 +20,6 @@ func GroupsAdd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(r.URL.Path)
-
 	err := json.NewDecoder(r.Body).Decode(&input)
 
 	if err != nil {
@@ -27,16 +27,27 @@ func GroupsAdd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if input.Users[0] == "" || input.Groups[0] == "" {
-		fmt.Println("Blank value")
+	if len(input.Users) == 0 || len(input.Groups) == 0 {
+		http.Error(w, "Either Users or Groups where not provided", http.StatusBadRequest)
 		return
 	}
 
-	response := AD.GroupsAdd(input.Users, input.Groups)	
+	response, err := AD.GroupsAdd(input.Users, input.Groups)
+
+	if err != nil {
+		http.Error(w, "Failed to add users to groups", http.StatusInternalServerError)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
-	jsonData, _ := json.Marshal(response)
+	jsonData, err := json.Marshal(response)
+
+	if err != nil {
+		http.Error(w, "Error Converting to JSON", http.StatusInternalServerError)
+		return
+	}
 
 	w.Write(jsonData)
 }

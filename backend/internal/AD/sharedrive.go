@@ -27,19 +27,24 @@ type ShareDrivePage struct {
 	Sharedrive string        `json:"sharedrive"`
 }
 
-func FindShareDrive(input string) (shareDrives []ShareDrive) {
+func FindShareDrive(input string) (shareDrives []ShareDrive, err error) {
 	shareDrives = make([]ShareDrive, 0)
 	input = strings.ToLower(input)
 	networkPath := global.LOGON
 	file, err := os.Open(networkPath)
 
 	if err != nil {
-		fmt.Println("Error opening file:", err)
 		return
 	}
+
 	defer file.Close()
 
-	data, _ := io.ReadAll(file)
+	data, err := io.ReadAll(file)
+
+	if err != nil {
+		return
+	}
+
 	lines := strings.Split(string(data), "\n")
 	lines = lines[:len(lines)-1] // Removes last element which is blank space
 	foundDrives := make(map[string][]string)
@@ -56,23 +61,28 @@ func FindShareDrive(input string) (shareDrives []ShareDrive) {
 			}
 		}
 	}
-	shareDrives = findLocalPath(foundDrives)
+	shareDrives, err = findLocalPath(foundDrives)
 
 	return
 
 }
 
-func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
+func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive, err error) {
 	shareDrives = make([]ShareDrive, 0)
 	var localPath string
 	networkPath := global.SHARES
 	file, err := os.Open(networkPath)
 
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
 
-	data, _ := io.ReadAll(file)
+	data, err := io.ReadAll(file)
+
+	if err != nil {
+		return
+	}
+
 	lines := strings.Split(string(data), "\n")
 	lines = lines[:len(lines)-1]
 
@@ -90,25 +100,29 @@ func findLocalPath(foundDrives map[string][]string) (shareDrives []ShareDrive) {
 	return
 }
 
-func CheckGroupForShareDrive(group string) *ShareDrive {
-	shareDrive := FindShareDrive(group)
+func CheckGroupForShareDrive(group string) (*ShareDrive, error) {
+	shareDrive, err := FindShareDrive(group)
 
-	if len(shareDrive) != 0 {
-		return &ShareDrive{shareDrive[0].Group, shareDrive[0].Drive, shareDrive[0].LocalPath, shareDrive[0].Type}
+	if err != nil {
+		return nil, err
 	}
 
-	return nil
+	if len(shareDrive) != 0 {
+		return &ShareDrive{shareDrive[0].Group, shareDrive[0].Drive, shareDrive[0].LocalPath, shareDrive[0].Type}, nil
+	}
+
+	return nil, nil
 }
 
-func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
+func FindShareDriveInfo(share string) (shareDrive ShareDrivePage, err error) {
 	share = strings.ToLower(share)
 	networkPath := global.LOGON
 	file, err := os.Open(networkPath)
 
 	if err != nil {
-		fmt.Println("Error opening file:", err)
 		return
 	}
+
 	defer file.Close()
 
 	data, _ := io.ReadAll(file)
@@ -116,7 +130,12 @@ func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
 	lines = lines[:len(lines)-1]
 
 	groupsFound := make([]string, 0)
-	l, _ := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
+
+	if err != nil {
+		return
+	}
+
 	shareDrive.Sharedrive = share
 
 	var wg sync.WaitGroup
@@ -133,7 +152,11 @@ func FindShareDriveInfo(share string) (shareDrive ShareDrivePage) {
 				wg.Add(1)
 				go func() {
 					defer wg.Done()
-					shareDrive.Groups = append(shareDrive.Groups, GroupInfo(group, l, "urmc-sh"))
+					results, err := GroupInfo(group, l, "urmc-sh")
+					if err != nil {
+						return
+					}
+					shareDrive.Groups = append(shareDrive.Groups, results)
 					groupsFound = append(groupsFound, group)
 				}()
 			}

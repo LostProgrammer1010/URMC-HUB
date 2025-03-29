@@ -3,7 +3,6 @@ package AD
 import (
 	"backend/internal/global"
 	"fmt"
-	"log"
 	"sort"
 	"strconv"
 	"strings"
@@ -40,14 +39,16 @@ type UserResult struct {
 	ShareDrive      []ShareDrive   `json:"sharedrives"`
 }
 
-func UserInfoSearch(username string, domain string) (user UserResult) {
+func UserInfoSearch(username string, domain string) (user UserResult, err error) {
 
 	l, err := ConnectToServer(fmt.Sprintf("LDAP://%s.rochester.edu/", domain))
+
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
 
 	defer l.Close()
+	defer l.Unbind()
 
 	searchRequest := ldap.NewSearchRequest(
 		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
@@ -61,7 +62,11 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
+
+	if results == nil || err != nil {
+		return
+	}
 
 	entry := results.Entries[0]
 
@@ -91,11 +96,18 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 		go func() {
 			defer wg.Done()
 			groupName := strings.Split(group[3:], ",")[0]
-			if share := CheckGroupForShareDrive(groupName); share != nil && !CheckForDuplicate(user.ShareDrive, *share, groupName) {
+			share, err := CheckGroupForShareDrive(groupName)
+			if err != nil {
+				return
+			}
+			if share != nil && !CheckForDuplicate(user.ShareDrive, *share, groupName) {
 				user.ShareDrive = append(user.ShareDrive, *share)
 			}
-
-			user.Groups = append(user.Groups, GroupInfo(groupName, l, domain)) // append results
+			info, err := GroupInfo(groupName, l, domain)
+			if err != nil {
+				return
+			}
+			user.Groups = append(user.Groups, info) // append results
 		}()
 	}
 	wg.Wait()
@@ -118,7 +130,11 @@ func LockoutInfoData(user string) (matches []ServerResult) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			matches = append(matches, ServerLockout(server, user)) // append results
+			result, err := ServerLockout(server, user)
+			if err != nil {
+				return
+			}
+			matches = append(matches, *result) // append results
 		}()
 	}
 
@@ -131,10 +147,11 @@ func LockoutInfoData(user string) (matches []ServerResult) {
 	return
 }
 
-func ServerLockout(server string, user string) ServerResult {
+func ServerLockout(server string, user string) (*ServerResult, error) {
 	l, err := ConnectToServer("LDAP://" + server)
+
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 	defer l.Close()
 
@@ -158,11 +175,15 @@ func ServerLockout(server string, user string) ServerResult {
 	formattedTime := timeConvert(entry.GetAttributeValue("badPasswordTime"))
 
 	err = l.Unbind()
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	return ServerResult{server, count, formattedTime}
+	if err != nil {
+		return nil, err
+	}
+	serverResult := new(ServerResult)
+	serverResult.Name = server
+	serverResult.Count = count
+	serverResult.Time = formattedTime
+	return serverResult, nil
 }
 
 func CheckForDuplicate(sharedrive []ShareDrive, found ShareDrive, group string) bool {

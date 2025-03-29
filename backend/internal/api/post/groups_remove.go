@@ -33,15 +33,26 @@ func GroupsRemove(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if input.Users[0] == "" || input.Groups[0] == "" {
-		fmt.Println("Blank value")
+		http.Error(w, "Either Users or Groups where not provided", http.StatusBadRequest)
 		return
 	}
 
-	response := AD.GroupsRemove(input.Users, input.Groups)
+	response, err := AD.GroupsRemove(input.Users, input.Groups)
+
+	if err != nil {
+		http.Error(w, "Failed to remove groups", http.StatusInternalServerError)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
-	jsonData, _ := json.Marshal(response)
+	jsonData, err := json.Marshal(response)
+
+	if err != nil {
+		http.Error(w, "Failed to convert JSON", http.StatusInternalServerError)
+		return
+	}
 
 	w.Write(jsonData)
 }

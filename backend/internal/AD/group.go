@@ -12,7 +12,7 @@ type GroupResult struct {
 	Info        string `json:"info"`
 }
 
-func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
+func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult, err error) {
 
 	searchRequest := ldap.NewSearchRequest(
 		fmt.Sprintf("DC=%s,DC=rochester,DC=edu", domain),
@@ -26,10 +26,9 @@ func GroupInfo(group string, l *ldap.Conn, domain string) (result GroupResult) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
 
-	if results == nil {
-		result.Name = group
+	if results == nil || err != nil {
 		return
 	}
 

@@ -15,16 +15,18 @@ type Computer struct {
 }
 
 // Finds all computers under the URMC domain that match the search
-func ComputersSearch(search string) (matches []Computer) {
+func ComputersSearch(search string) (matches []Computer, err error) {
 	matches = make([]Computer, 0)
 
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal("Failed to connect to LDAP server")
+		return
 	}
 
 	defer l.Close()
+	defer l.Unbind()
 
 	searchRequest := ldap.NewSearchRequest(
 		"DC=urmc-sh,DC=rochester,DC=edu",
@@ -38,9 +40,9 @@ func ComputersSearch(search string) (matches []Computer) {
 		nil,
 	)
 
-	results, _ := l.Search(searchRequest)
+	results, err := l.Search(searchRequest)
 
-	if results == nil {
+	if err != nil || results == nil {
 		return
 	}
 
@@ -54,11 +56,6 @@ func ComputersSearch(search string) (matches []Computer) {
 		computer.Type = "computer"
 
 		matches = append(matches, computer)
-	}
-
-	err = l.Unbind()
-	if err != nil {
-		log.Fatal(err)
 	}
 
 	return

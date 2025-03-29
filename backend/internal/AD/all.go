@@ -1,7 +1,7 @@
 package AD
 
 import (
-	"fmt"
+	"log"
 	"sync"
 )
 
@@ -23,11 +23,41 @@ func AllSearch(search string, domain string) (result AllResult) {
 	ch := make(chan any, 5)
 
 	wg.Add(5)
-	go thread(&wg, ch, func() any { return ComputersSearch(search) })
-	go thread(&wg, ch, func() any { return UsersSearch(search, domain) })
-	go thread(&wg, ch, func() any { return GroupsSearch(search) })
-	go thread(&wg, ch, func() any { return MatchPrinter(search) })
-	go thread(&wg, ch, func() any { return FindShareDrive(search) })
+	go thread(&wg, ch, func() any {
+		result, err := ComputersSearch(search)
+		if err != nil {
+			return make([]Computer, 0)
+		}
+		return result
+	})
+	go thread(&wg, ch, func() any {
+		result, err := UsersSearch(search, domain)
+		if err != nil {
+			return make([]User, 0)
+		}
+		return result
+	})
+	go thread(&wg, ch, func() any {
+		result, err := GroupsSearch(search)
+		if err != nil {
+			return make([]Group, 0)
+		}
+		return result
+	})
+	go thread(&wg, ch, func() any {
+		result, err := MatchPrinter(search)
+		if err != nil {
+			return make([]Printer, 0)
+		}
+		return result
+	})
+	go thread(&wg, ch, func() any {
+		result, err := MatchPrinter(search)
+		if err != nil {
+			return make([]Printer, 0)
+		}
+		return result
+	})
 
 	wg.Wait()
 	close(ch)
@@ -45,7 +75,7 @@ func AllSearch(search string, domain string) (result AllResult) {
 		case []Printer:
 			result.Printers = results
 		default:
-			fmt.Println(results)
+			log.Fatalf("Unknown type: %T", results)
 		}
 
 	}

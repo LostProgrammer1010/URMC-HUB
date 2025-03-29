@@ -35,14 +35,24 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	printers := AD.MatchPrinter(input.Value)
+	printers, err := AD.MatchPrinter(input.Value)
+
+	if err != nil {
+		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
+		return
+	}
 
 	fmt.Printf("Number of Printers Found: %d", len(printers))
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	jsonData, _ := json.MarshalIndent(printers, "", "  ")
+	jsonData, err := json.MarshalIndent(printers, "", "  ")
+
+	if err != nil {
+		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
+		return
+	}
 
 	w.Write(jsonData)
 
