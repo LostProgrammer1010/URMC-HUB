@@ -2,9 +2,9 @@ package post
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"os/exec"
 )
@@ -13,34 +13,71 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 	var computerName AD.Input
 	option.EnableCORS(w, r)
 
-	if !CheckMethod(r) {
-		http.Error(w, "Incorrect Method", http.StatusBadRequest)
+	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Computer Ping",
+				Request: "POST",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
 	err := json.NewDecoder(r.Body).Decode(&computerName)
 
 	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Computer Ping",
+				Request: "POST",
+				Message: "Invalid Body",
+				Code:    400,
+				Input:   computerName.Value,
+			})
 		return
 	}
 
-	results := string(PingComputer(computerName.Value))
+	results, err := pingComputer(computerName.Value)
+
+	if err != nil {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Computer Ping",
+				Request: "POST",
+				Message: "Server Failure Pinging Computer",
+				Code:    500,
+				Input:   computerName.Value,
+			})
+		return
+	}
+
+	jsonData, err := json.Marshal(string(results))
+
+	if err != nil {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Computer Ping",
+				Request: "POST",
+				Message: "Server Failure Parsing JSON",
+				Code:    500,
+				Input:   computerName.Value,
+			})
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-
-	jsonData, _ := json.Marshal(results)
-
 	w.Write(jsonData)
 }
 
-func PingComputer(computerName string) (results []byte) {
+func pingComputer(computerName string) (results []byte, err error) {
 	cmd := exec.Command("ping", computerName)
-	results, err := cmd.CombinedOutput()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	results, err = cmd.CombinedOutput()
 	return
 }

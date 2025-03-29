@@ -2,6 +2,7 @@ package post
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -13,35 +14,71 @@ func AllSearch(w http.ResponseWriter, r *http.Request) {
 
 	option.EnableCORS(w, r)
 
-	if !CheckMethod(r) {
+	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "All Search",
+				Request: "POST",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
 	err := json.NewDecoder(r.Body).Decode(&input)
 
-	if err != nil {
-
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+	if err != nil || input.Value == "" {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "All Search",
+				Request: "POST",
+				Message: "Invalid Search Value",
+				Code:    400,
+				Input:   input.Value,
+			})
 		return
+
 	}
 
 	fmt.Println(r.URL.Path)
-
-	// Log the received message
 	fmt.Printf("Searching for:  %s\n", input.Value)
 
-	if input.Value == "" {
+	matches, err := AD.AllSearch(input.Value, input.Domain)
+
+	if err != nil {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "All Search",
+				Request: "Post",
+				Message: "Server Failed while Searching",
+				Code:    500,
+				Input:   input.Value,
+			})
+
 		return
 	}
 
-	matches := AD.AllSearch(input.Value, input.Domain)
-	// Set the response header to application/json
+	jsonData, err := json.Marshal(matches)
+
+	if err != nil {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "All Search",
+				Request: "POST",
+				Message: "Sever Failure Parsing JSON",
+				Code:    500,
+				Input:   input.Value,
+			})
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
-
-	jsonData, _ := json.Marshal(matches)
-
-	// Write the response to the client
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 
 }

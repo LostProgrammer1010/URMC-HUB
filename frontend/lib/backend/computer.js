@@ -18,9 +18,21 @@ function ping() {
         },
         body: JSON.stringify({ value: computer }),
     })
-        .then((response) => {
-            return response.json()
-        }) 
+    .then(response => {
+      
+        if (!response.ok) {
+          response.text().then(message => {
+           if (response.status == 500) {
+             handleError(new InternalServerError(message))
+           }
+           if (response.status == 400) {
+             handleError(new BadRequestError(message))
+           }
+          }) 
+          return
+         }
+        return response.json()
+      }) 
         .then((data) => {
             document.getElementById("results").innerHTML = data
         })
@@ -45,9 +57,21 @@ function restart() {
         },
         body: JSON.stringify({ value: computer }),
     })
-        .then((response) => {
-            return response.json()
-        }) // Parse the JSON response from the server
+    .then(response => {
+      
+        if (!response.ok) {
+          response.text().then(message => {
+           if (response.status == 500) {
+             handleError(new InternalServerError(message))
+           }
+           if (response.status == 400) {
+             handleError(new BadRequestError(message))
+           }
+          }) 
+          return
+         }
+        return response.json()
+      }) // Parse the JSON response from the server
         .then((data) => {
             document.getElementById("results").innerHTML = data
         })
@@ -58,7 +82,7 @@ function restart() {
 
 function computerPageSetup() {
     if (sessionStorage.getItem("computername") == null) {
-        document.location.href = "../pages/searchcomputers.html"
+        document.location.href = "../pages/search.html"
         return
     }
     computer = sessionStorage.getItem("computername")

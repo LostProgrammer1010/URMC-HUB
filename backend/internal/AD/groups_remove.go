@@ -45,11 +45,11 @@ func GroupsRemove(users []string, groups []string) (response []GroupModifyResult
 		groupResult.Message = "All changes completed"
 		deleteRequest := ldap.NewModifyRequest(group, nil)
 		deleteRequest.Delete("member", usersDN)
-		err = l.Modify(deleteRequest)
-		if err != nil {
+		groupRemoveErr := l.Modify(deleteRequest)
+		if groupRemoveErr != nil {
 			fmt.Println("Failed to remove user from " + group)
 			groupResult.Successful = false
-			groupResult.Message += err.Error()
+			groupResult.Message += groupRemoveErr.Error()
 			response = append(response, *groupResult)
 			continue
 		}

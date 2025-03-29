@@ -2,6 +2,7 @@ package get
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -14,6 +15,15 @@ func GetShareDriveInfo(w http.ResponseWriter, r *http.Request) {
 	option.EnableCORS(w, r)
 
 	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive Info",
+				Request: "GET",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
@@ -22,34 +32,53 @@ func GetShareDriveInfo(w http.ResponseWriter, r *http.Request) {
 	share, err := url.QueryUnescape(share)
 
 	if err != nil || share == "" {
-		http.Error(w, "Invalid search string", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive",
+				Request: "GET",
+				Message: "Invalid Share Drive",
+				Code:    400,
+				Input:   share,
+			})
 		return
 
 	}
 
-	// Log the received message
 	fmt.Println(r.URL.Path)
 	fmt.Printf("Getting Info for:  %s\n", share)
 
 	matches, err := AD.FindShareDriveInfo(share)
 
 	if err != nil {
-		http.Error(w, "Error Pulling Share Drive Information", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive",
+				Request: "GET",
+				Message: "Server Failure Getting Information",
+				Code:    500,
+				Input:   share,
+			})
 		return
 	}
-
-	// Set the response header to application/json
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
 	jsonData, err := json.Marshal(matches)
 
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Error encoding JSON"))
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive",
+				Request: "GET",
+				Message: "Server Failed Parsing JSON",
+				Code:    500,
+				Input:   share,
+			})
 		return
 	}
 
-	// Write the response to the client
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 }

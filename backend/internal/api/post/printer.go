@@ -2,6 +2,7 @@ package post
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -13,47 +14,71 @@ func PrinterSearch(w http.ResponseWriter, r *http.Request) {
 	var input AD.Input
 	option.EnableCORS(w, r)
 
-	if !CheckMethod(r) {
-		http.Error(w, "Incorrect Method", http.StatusBadRequest)
+	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Printer Search",
+				Request: "POST",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
+		return
+	}
+
+	err := json.NewDecoder(r.Body).Decode(&input)
+
+	if err != nil || input.Value == "" {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Printer Search",
+				Request: "POST",
+				Message: "Invalid Body",
+				Code:    400,
+				Input:   input.Value,
+			})
 		return
 	}
 
 	fmt.Println(r.URL.Path)
-
-	err := json.NewDecoder(r.Body).Decode(&input)
-
-	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
-		return
-
-	}
-
-	// Log the received message
 	fmt.Printf("Searching for:  %s\n", input.Value)
-
-	if input.Value == "" {
-		return
-	}
 
 	printers, err := AD.MatchPrinter(input.Value)
 
 	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Printer Search",
+				Request: "POST",
+				Message: "Server Failure While Searching",
+				Code:    500,
+				Input:   input.Value,
+			})
 		return
 	}
 
 	fmt.Printf("Number of Printers Found: %d", len(printers))
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-
 	jsonData, err := json.MarshalIndent(printers, "", "  ")
 
 	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Printer Search",
+				Request: "POST",
+				Message: "Server Failure Parsing JSON",
+				Code:    500,
+				Input:   input.Value,
+			})
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 
 }

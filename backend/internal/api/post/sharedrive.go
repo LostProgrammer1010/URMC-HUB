@@ -2,6 +2,7 @@ package post
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -13,43 +14,69 @@ func ShareDriveSearch(w http.ResponseWriter, r *http.Request) {
 	var input AD.Input
 	option.EnableCORS(w, r)
 
-	if !CheckMethod(r) {
-		http.Error(w, "Incorrect Method", http.StatusBadRequest)
+	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive Search",
+				Request: "POST",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
-	fmt.Println(r.URL.Path)
-
 	err := json.NewDecoder(r.Body).Decode(&input)
 
-	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+	if err != nil || input.Value == "" {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive Search",
+				Request: "POST",
+				Message: "Invalid Body",
+				Code:    400,
+				Input:   input.Value,
+			})
 		return
 	}
 
 	// Log the received message
+	fmt.Println(r.URL.Path)
 	fmt.Printf("Searching for:  %s\n", input.Value)
-
-	if input.Value == "" {
-		http.Error(w, "Invalid search string", http.StatusBadRequest)
-		return
-	}
 
 	matches, err := AD.FindShareDrive(input.Value)
 
-	if err != nil {
-		http.Error(w, "Failed to search for user", http.StatusInternalServerError)
+	if err != nil || input.Value == "" {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Share Drive Search",
+				Request: "POST",
+				Message: "Server Failure While Searching",
+				Code:    500,
+				Input:   input.Value,
+			})
 		return
 	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
 	jsonData, err := json.Marshal(matches)
 
 	if err != nil {
-		http.Error(w, "Failed to convert to JSON", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Restart",
+				Request: "POST",
+				Message: "Server Failure Parsing JSON",
+				Code:    500,
+				Input:   input.Value,
+			})
+		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 }

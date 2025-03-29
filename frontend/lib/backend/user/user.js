@@ -234,15 +234,20 @@ async function findGroups(inputField,event) {
         await fetch(
             `http://localhost:8080/search/groups/URMC-sh/${inputField.value}`
         )
-        .then((response) => response.json()) // Parse the JSON response from the server
+        .then((response) => {
+
+            return response.json()
+        }
+            
+            ) // Parse the JSON response from the server
         .then((data) => {
             addContainer.innerHTML = ""  
-
             data.forEach(group => {
 
                 if (addQueue.includes(group.name)) {
                     return
                 }
+
 
                 const groupElement = document.createElement("div")
                 groupElement.id = "group"
@@ -252,7 +257,6 @@ async function findGroups(inputField,event) {
                 groupAddButton.innerHTML = "+"
                 groupElement.appendChild(groupAddButton)
                 groupAddButton.onclick = function() {
-                    console.log(addQueue)
                     if (addQueue.includes(group.name)) {
                         addContainer.appendChild(groupElement)
                         groupAddButton.innerHTML = "+"
@@ -273,7 +277,7 @@ async function findGroups(inputField,event) {
         })
         .catch((error) => {
             console.log(error)
-            handleError(error)
+            //handleError(error)
         })
     }
 }

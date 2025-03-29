@@ -2,6 +2,7 @@ package get
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -12,45 +13,72 @@ import (
 
 // Gets Request to Server to return the groups matching the request
 func GroupsSearch(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Path)
 
 	option.EnableCORS(w, r)
 
 	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Group Search",
+				Request: "GET",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
 	search := strings.Split(r.URL.Path, "/")[4]
-
 	search, err := url.QueryUnescape(search)
 
 	if err != nil || search == "" {
-		http.Error(w, "Invalid search string", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Group",
+				Request: "GET",
+				Message: "Invalid Search String",
+				Code:    400,
+				Input:   search,
+			})
 		return
 	}
 
-	// Log the received message
+	fmt.Println(r.URL.Path)
 	fmt.Printf("Searching for:  %s\n", search)
 
 	matches, err := AD.GroupsSearch(search)
 
 	if err != nil {
-		http.Error(w, "Error searching for computers", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Group",
+				Request: "GET",
+				Message: "Sever Failure While Searching",
+				Code:    500,
+				Input:   search,
+			})
 		return
 	}
-
-	// Set the response header to application/json
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
 	jsonData, err := json.Marshal(matches)
 
 	if err != nil {
-		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w, errorHandler.ErrorResponse{
+				Type:    "Group",
+				Request: "GET",
+				Message: "Server Failed Parsing JSON",
+				Code:    500,
+				Input:   search,
+			})
 		return
 	}
 
-	// Write the response to the client
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 
 }

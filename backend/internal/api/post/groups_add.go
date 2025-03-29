@@ -2,6 +2,7 @@ package post
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -15,39 +16,78 @@ func GroupsAdd(w http.ResponseWriter, r *http.Request) {
 
 	option.EnableCORS(w, r)
 
-	if !CheckMethod(r) {
-		http.Error(w, "Incorrect Method", http.StatusBadRequest)
+	if !checkMethod(r) {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "Group ADD",
+				Request: "POST",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
 	err := json.NewDecoder(r.Body).Decode(&input)
 
 	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "ADD Group",
+				Request: "POST",
+				Message: "Invalid Body",
+				Code:    400,
+				Input:   fmt.Sprintf("%v, %v", input.Groups, input.Users),
+			})
 		return
 	}
 
 	if len(input.Users) == 0 || len(input.Groups) == 0 {
-		http.Error(w, "Either Users or Groups where not provided", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "ADD Group",
+				Request: "POST",
+				Message: "User or Groups where empty",
+				Code:    400,
+				Input:   fmt.Sprintf("%v, %v", input.Groups, input.Users),
+			})
 		return
 	}
 
 	response, err := AD.GroupsAdd(input.Users, input.Groups)
 
 	if err != nil {
-		http.Error(w, "Failed to add users to groups", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "ADD Group",
+				Request: "POST",
+				Message: "Server Failure Adding Groups",
+				Code:    500,
+				Input:   fmt.Sprintf("%v, %v", input.Groups, input.Users),
+			})
 		return
 	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK) // Send 200 OK status
 
 	jsonData, err := json.Marshal(response)
 
 	if err != nil {
-		http.Error(w, "Error Converting to JSON", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "ADD Group",
+				Request: "POST",
+				Message: "Sever Failure Parsing JSON",
+				Code:    500,
+				Input:   fmt.Sprintf("%v, %v", input.Groups, input.Users),
+			})
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
 }
