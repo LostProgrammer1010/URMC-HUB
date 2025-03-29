@@ -18,11 +18,11 @@ function handleError(error) {
       createErorr(message)
       removeMessageAuto()
       break
-      case "BadRequestError":
-        message = `BadRequest: ${error.message}`
-        createErorr(message)
-        removeMessageAuto()
-        break
+    case "BadRequestError":
+      message = `BadRequest: ${error.message}`
+      createErorr(message)
+      removeMessageAuto()
+      break
     default:
       var message = error.message
       createErorr(error.stack)

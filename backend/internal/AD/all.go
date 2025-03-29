@@ -52,7 +52,7 @@ func AllSearch(search string, domain string) (result AllResult, err error) {
 		return result
 	})
 	go thread(&wg, ch, func() any {
-		result, err := MatchPrinter(search)
+		result, err := FindShareDrive(search)
 		if err != nil {
 			return make([]Printer, 0)
 		}

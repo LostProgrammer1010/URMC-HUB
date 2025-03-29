@@ -19,14 +19,16 @@ func AddToStartup() {
 	defer ole.CoUninitialize()
 
 	startupLocation := fmt.Sprintf("C:/Users/%s/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hub.lnk", global.Username)
-	binaryFile := "//ntsdrive05/ISD_share/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/hub.exe"
+	binaryFile := "//ntsdrive05/ISD_share/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/backend (DO NOT REMOVE)/hub.exe"
 
-	_, e := os.Stat(startupLocation)
+	//_, e := os.Stat(startupLocation)
 
-	if !os.IsNotExist(e) {
-		fmt.Println("File already in startup")
-		return
-	}
+	/*
+		if !os.IsNotExist(e) {
+			fmt.Println("File already in startup")
+			return
+		}
+	*/
 
 	// Create the shortcut at the startup location on computer
 	shortcut.Make(binaryFile, startupLocation, "")
@@ -40,7 +42,7 @@ func onExit() {
 
 func setupTrayIcon() {
 
-	icon, _ := os.ReadFile("//ntsdrive05/ISD_share/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/URMC.ico")
+	icon, _ := os.ReadFile("//ntsdrive05/ISD_share/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/backend (DO NOT REMOVE)/URMC.ico")
 	systray.SetIcon(icon)
 	systray.SetTitle("URMC-HUB Server")
 	systray.SetTooltip("Options")

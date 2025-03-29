@@ -149,6 +149,8 @@ function postSearchAll(searchValue, filter) {
       loading.remove()
 
       pagingdata = []
+
+      console.log(data)
       
       const maxLength = Math.max(
         data.users.length, 

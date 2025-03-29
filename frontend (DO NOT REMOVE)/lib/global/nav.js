@@ -1,28 +1,26 @@
 const path  = window.location.pathname.split("frontend")[0]
-
+console.log(path)
+//const path = "file:///S:/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/"
 // Inject the navbar into the page
 document.body.insertAdjacentHTML('afterbegin', 
     `
             <nav oncontextmenu="showNavMenu(event)" id="nav">
-                <a href="${path}frontend/pages/home.html" id="nav-link" title="Home">
-                    <img src="${path}frontend/assets/URMC.ico" id="nav-img" alt="URMC LOGO" >
+                <a href="${path}frontend (DO NOT REMOVE)/pages/home.html" id="nav-link" title="Home">
+                    <img src="${path}frontend (DO NOT REMOVE)/assets/URMC.ico" id="nav-img" alt="URMC LOGO" >
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/search.html"  id="nav-link" title="LDAP Search">
-                    <img src="${path}frontend/assets/Search Icon.png" id="nav-img" alt="Search">
+                <a href="${path}frontend (DO NOT REMOVE)/pages/search.html"  id="nav-link" title="LDAP Search">
+                    <img src="${path}frontend (DO NOT REMOVE)/assets/Search Icon.png" id="nav-img" alt="Search">
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/systemsummary.html" id="nav-link"  title="System Summary">
-                    <img src="${path}frontend/assets/Summary Icon.png" id="nav-img" alt="System Summary">
+                <a href="${path}frontend (DO NOT REMOVE)/pages/systemsummary.html" id="nav-link"  title="System Summary">
+                    <img src="${path}frontend (DO NOT REMOVE)/assets/Summary Icon.png" id="nav-img" alt="System Summary">
                 </a>
                 <hr>
-                <a href="${path}frontend/pages/instructions.html" id="nav-link" title="Instruction">
-                    <img src="${path}frontend/assets/Notes_Icon.png" id="nav-img" alt="Instructions">
+                <a href="${path}frontend (DO NOT REMOVE)/pages/instructions.html" id="nav-link" title="Instruction">
+                    <img src="${path}frontend (DO NOT REMOVE)/assets/Notes_Icon.png" id="nav-img" alt="Instructions">
                 </a>
-                <hr>
-                <a href="${path}frontend/pages/groupsadd.html" id="nav-link" title="Common AD Groups">
-                    <img src="${path}frontend/assets/Group Icon.png" id="nav-img" alt="System Summary">
-                </a>
+
             </nav>
 
             <div id="menu" >
@@ -30,8 +28,6 @@ document.body.insertAdjacentHTML('afterbegin',
             </div>
     `
     );
-
-    console.log()
 
 const menu = document.getElementById("menu")
   
@@ -80,3 +76,10 @@ function setupNav() {
 }
 
 setupNav()
+
+/*                
+<a href="${path}frontend (DO NOT REMOVE)/pages/groupsadd.html" id="nav-link" title="Common AD Groups">
+    <img src="${path}frontend (DO NOT REMOVE)/assets/Group Icon.png" id="nav-img" alt="System Summary">
+</a> 
+
+*/

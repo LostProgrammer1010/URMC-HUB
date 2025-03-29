@@ -255,6 +255,10 @@ table {
   border-bottom: 1px solid var(--sharedrive-highlight-color);
  }
 
+ #share-drives #group {
+  z-index: -1;
+ }
+
 
  #member-of-results .group:hover {
   border-bottom: none;
@@ -488,6 +492,9 @@ table {
   color: black;
   cursor: pointer;
  }
+
+
+
 
  #groups-on-account button {
   position: absolute;
