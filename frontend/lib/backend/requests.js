@@ -171,6 +171,7 @@ function postSearchAll(searchValue, filter) {
 
     })
     .catch(error=> {
+      console.log(error.message)
       handleError(error)
     })
 }

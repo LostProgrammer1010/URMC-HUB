@@ -5,9 +5,13 @@ function handleError(error) {
   var message
   switch (error.name) {
     case "TypeError":
-      message = "Server not Started"
-      createErorr(message)
-      removeMessageAuto()
+      if (error.message.includes("fetch")) {
+        message = "Server not Started"
+        createErorr(message)
+        removeMessageAuto()
+        break
+      }
+      console.log(error)
       break
     case "InternalServerError":
       message = `InternalServerError: ${error.message}`
