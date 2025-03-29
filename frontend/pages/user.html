@@ -17,6 +17,7 @@
     <body id="top">
         <script src="../lib/global/nav.js"></script>
         <div class="container" id="content">
+            <button id="group-update-button" onclick="updateGroups()" hidden>Update</button>
             <div class="header">
                 <a href="#top" onclick="scrollToSection(event)">Home</a>
                 <a href="#member-of" onclick="scrollToSection(event)">Groups Member of</a>
@@ -80,11 +81,25 @@
 
             <div id="member-of">
                 <h1>Member of </h1>
-                <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
+                <div class="row">
+                    <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
+                    <button id="show-update-group-button" onclick="showUpdateGroups()">Update Groups</button>
+                 </div>
+                <div id="update-response"></div>
                 <div id="member-of-results">
 
-
-
+                </div>
+                <div id="overlay" hidden>
+                    <div id="add-groups">
+                        <button id="add-groups-button" onclick="UpdateGroups()">Update Groups</button>
+                        <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
+                        <div class="row">
+                             
+                             <div id="groups-to-add"></div>
+                             <div id="change-groups"></div>
+                            <div id="groups-on-account"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -95,7 +110,6 @@
 
             <div id="bad-passwords">
                 <h1>Bad Passwords</h1>
-                <button onclick="getLockoutInfo()">Refresh</button>
                 <table id="lockout-results">
                     <thead id="head">
 
@@ -116,7 +130,11 @@
     </body>
     <script src="../lib/backend/loading.js"></script>
     <script src="../lib/global/error.js"></script>
-    <script src="../lib/backend/user.js"></script>
+    <script src="../lib/backend/user/element_creations.js"></script>
+    <script src="../lib/backend/user/update.js"></script>
+    <script src="../lib/backend/user/user.js"></script>
+
+    
 
 </html>
 

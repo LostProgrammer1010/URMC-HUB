@@ -1,6 +1,7 @@
 package AD
 
 import (
+	"backend/internal/global"
 	"fmt"
 	"log"
 	"sort"
@@ -109,7 +110,7 @@ func UserInfoSearch(username string, domain string) (user UserResult) {
 }
 
 func LockoutInfoData(user string) (matches []ServerResult) {
-	var servers = [...]string{"AD22PDC01", "AD22PDC02", "AD22PDC03", "AD22PDC04", "AD22PDC05", "AD22SDC01", "AD22SDC02", "AD22SDC03", "AD22SDC04", "AD22SDC05"}
+	var servers = [...]string{global.SERVER1, global.SERVER2, global.SERVER3, global.SERVER4, global.SERVER5, global.SERVER6, global.SERVER7, global.SERVER8, global.SERVER9, global.SERVER10}
 
 	var wg sync.WaitGroup // create a wait group
 

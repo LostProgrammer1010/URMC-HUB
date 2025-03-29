@@ -7,20 +7,19 @@ import (
 )
 
 type GroupModifyResult struct {
-	Message string `json:"message"`
-	Successful bool `json:"successful"`
+	Group      string `json:"group"`
+	Message    string `json:"message"`
+	Successful bool   `json:"successful"`
 }
 
-func GroupsRemove(users []string, groups []string) (response GroupModifyResult) {
+func GroupsRemove(users []string, groups []string) (response []GroupModifyResult) {
 
-	response.Successful = true
-	response.Message = "All changes completed"
 	// Connect to server
 	l, err := ConnectToServer("LDAP://urmc-sh.rochester.edu/")
 	fmt.Println(err)
 	defer l.Close()
 
-	usersDN := GetUsersDN(users, l)	
+	usersDN := GetUsersDN(users, l)
 	groupsDN := GetGroupsDN(groups, l)
 
 	// Log the action
@@ -28,14 +27,22 @@ func GroupsRemove(users []string, groups []string) (response GroupModifyResult) 
 
 	// Create delete request for each group
 	for _, group := range groupsDN {
+
+		groupResult := new(GroupModifyResult)
+		groupResult.Group = group
+		groupResult.Successful = true
+		groupResult.Message = "All changes completed"
 		deleteRequest := ldap.NewModifyRequest(group, nil)
-	    deleteRequest.Delete("member", usersDN)
-	    err = l.Modify(deleteRequest)
-	    if err != nil {
-	        fmt.Println(err)
-			response.Successful = false
-			response.Message = err.Error()
-	    }
+		deleteRequest.Delete("member", usersDN)
+		err = l.Modify(deleteRequest)
+		if err != nil {
+			fmt.Println(err)
+			groupResult.Successful = false
+			groupResult.Message += err.Error()
+			response = append(response, *groupResult)
+			continue
+		}
+		response = append(response, *groupResult)
 	}
 	return
 }
@@ -45,20 +52,20 @@ func GetUsersDN(users []string, l *ldap.Conn) (usersDN []string) {
 		// Create search request for user
 		fmt.Println(user)
 		searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
-	    ldap.ScopeWholeSubtree,
-		ldap.NeverDerefAliases,
-		0,
-		0,
-		false,
-	    "(&(objectClass=user)(SAMaccountName="+user+"))", // Filter
-	    []string{"dn"},
-	    nil,
-	    )
-	    sr, err := l.Search(searchRequest)
-	    if err != nil || len(sr.Entries) == 0 {
-	        fmt.Println(err)
-	    }
+			"DC=urmc-sh,DC=rochester,DC=edu",
+			ldap.ScopeWholeSubtree,
+			ldap.NeverDerefAliases,
+			0,
+			0,
+			false,
+			"(&(objectClass=user)(SAMaccountName="+user+"))", // Filter
+			[]string{"dn"},
+			nil,
+		)
+		sr, err := l.Search(searchRequest)
+		if err != nil || len(sr.Entries) == 0 {
+			fmt.Println(err)
+		}
 		usersDN = append(usersDN, sr.Entries[0].DN)
 	}
 	return
@@ -69,20 +76,20 @@ func GetGroupsDN(groups []string, l *ldap.Conn) (groupsDN []string) {
 	for _, group := range groups {
 		// Create search request for group
 		searchRequest := ldap.NewSearchRequest(
-		"DC=urmc-sh,DC=rochester,DC=edu",
-	    ldap.ScopeWholeSubtree,
-		ldap.NeverDerefAliases,
-		0,
-		0,
-		false,
-	    "(&(objectClass=group)(cn="+group+"))", // Filter
-	    []string{"dn"},
-	    nil,
-	    )
-	    sr, err := l.Search(searchRequest)
-	    if err != nil || len(sr.Entries) == 0 {
-	        fmt.Println(err)
-	    }
+			"DC=urmc-sh,DC=rochester,DC=edu",
+			ldap.ScopeWholeSubtree,
+			ldap.NeverDerefAliases,
+			0,
+			0,
+			false,
+			"(&(objectClass=group)(cn="+group+"))", // Filter
+			[]string{"dn"},
+			nil,
+		)
+		sr, err := l.Search(searchRequest)
+		if err != nil || len(sr.Entries) == 0 {
+			fmt.Println(err)
+		}
 		groupsDN = append(groupsDN, sr.Entries[0].DN)
 	}
 	return
