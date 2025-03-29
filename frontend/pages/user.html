@@ -82,7 +82,7 @@
             <div id="member-of">
                 <h1>Member of </h1>
                 <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
-                <button onclick="showAddGroups()">Add Groups</button>
+                <button onclick="showUpdateGroups()">Update Groups</button>
 
                 <div id="update-response"></div>
                 <div id="member-of-results">
@@ -90,11 +90,12 @@
                 </div>
                 <div id="overlay" hidden>
                     <div id="add-groups">
-                        <button id="add-groups-button" onclick="addGroupsRequest()">Add Groups</button>
+                        <button id="add-groups-button" onclick="UpdateGroups()">Update Groups</button>
                         <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
                         <div class="row">
                              
                              <div id="groups-to-add"></div>
+                             <div id="change-groups"></div>
                             <div id="groups-on-account"></div>
                         </div>
                     </div>
@@ -128,7 +129,11 @@
     </body>
     <script src="../lib/backend/loading.js"></script>
     <script src="../lib/global/error.js"></script>
-    <script src="../lib/backend/user.js"></script>
+    <script src="../lib/backend/user/element_creations.js"></script>
+    <script src="../lib/backend/user/update.js"></script>
+    <script src="../lib/backend/user/user.js"></script>
+
+    
 
 </html>
 

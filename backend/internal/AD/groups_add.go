@@ -33,7 +33,7 @@ func GroupsAdd(users []string, groups []string) (response []GroupModifyResult) {
 		if err != nil {
 			fmt.Println(err)
 			groupResult.Successful = false
-			groupResult.Message += err.Error()
+			groupResult.Message = err.Error()
 			response = append(response, *groupResult)
 			continue
 		}
