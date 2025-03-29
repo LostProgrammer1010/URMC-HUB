@@ -19,10 +19,13 @@ func GroupsAdd(users []string, groups []string) (response []GroupModifyResult, e
 
 	usersDN, err := GetUsersDN(users, l)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	groupsDN, err := GetGroupsDN(groups, l)
+
 	if err != nil {
+
 		return
 	}
 
@@ -37,11 +40,11 @@ func GroupsAdd(users []string, groups []string) (response []GroupModifyResult, e
 		groupResult.Message = "All changes completed"
 		addRequest := ldap.NewModifyRequest(group, nil)
 		addRequest.Add("member", usersDN)
-		err = l.Modify(addRequest)
-		if err != nil {
+		groupAddError := l.Modify(addRequest)
+		if groupAddError != nil {
 			fmt.Printf("Failed to add user to %s\n", group)
 			groupResult.Successful = false
-			groupResult.Message = err.Error()
+			groupResult.Message = groupAddError.Error()
 			response = append(response, *groupResult)
 			continue
 		}

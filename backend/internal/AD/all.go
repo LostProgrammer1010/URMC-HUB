@@ -1,7 +1,7 @@
 package AD
 
 import (
-	"log"
+	"fmt"
 	"sync"
 )
 
@@ -13,7 +13,7 @@ type AllResult struct {
 	Shares    []ShareDrive `json:"shares"`
 }
 
-func AllSearch(search string, domain string) (result AllResult) {
+func AllSearch(search string, domain string) (result AllResult, err error) {
 	result.Users = make([]User, 0)
 	result.Computers = make([]Computer, 0)
 	result.Groups = make([]Group, 0)
@@ -75,7 +75,7 @@ func AllSearch(search string, domain string) (result AllResult) {
 		case []Printer:
 			result.Printers = results
 		default:
-			log.Fatalf("Unknown type: %T", results)
+			err = fmt.Errorf("Unknown type: %T", results)
 		}
 
 	}

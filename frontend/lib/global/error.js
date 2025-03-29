@@ -3,13 +3,22 @@
 // Handling of all error that might be encounter in the fronend
 function handleError(error) {
   var message
-  console.log("Error:", error)
   switch (error.name) {
     case "TypeError":
       message = "Server not Started"
       createErorr(message)
       removeMessageAuto()
       break
+    case "InternalServerError":
+      message = `InternalServerError: ${error.message}`
+      createErorr(message)
+      removeMessageAuto()
+      break
+      case "BadRequestError":
+        message = `BadRequest: ${error.message}`
+        createErorr(message)
+        removeMessageAuto()
+        break
     default:
       var message = error.message
       createErorr(error.stack)
@@ -58,4 +67,19 @@ function createErorr(message) {
   errorPopUp.appendChild(exitButton)
 
   document.body.appendChild(errorPopUp)
+}
+
+
+class InternalServerError extends Error {
+  constructor(message) {
+    super(message)
+    this.name = "InternalServerError"
+  }
+}
+
+class BadRequestError extends Error {
+  constructor(message) {
+    super(message)
+    this.name = "BadRequestError"
+  }
 }

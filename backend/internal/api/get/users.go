@@ -2,6 +2,7 @@ package get
 
 import (
 	"backend/internal/AD"
+	"backend/internal/api/errorHandler"
 	"backend/internal/api/option"
 	"encoding/json"
 	"fmt"
@@ -14,7 +15,15 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	option.EnableCORS(w, r)
 
 	if !checkMethod(r) {
-		w.WriteHeader(http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "User Search",
+				Request: "GET",
+				Message: "Invalid Request Method",
+				Code:    400,
+				Input:   r.Method,
+			})
 		return
 	}
 
@@ -24,7 +33,15 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	search, err := url.QueryUnescape(search)
 
 	if err != nil || search == "" {
-		http.Error(w, "Invalid search string", http.StatusBadRequest)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "User",
+				Request: "GET",
+				Message: "Invalid Search Input",
+				Code:    400,
+				Input:   search,
+			})
 		return
 	}
 
@@ -35,19 +52,36 @@ func UsersSearch(w http.ResponseWriter, r *http.Request) {
 	matches, err := AD.UsersSearch(search, domain)
 
 	if err != nil {
-		http.Error(w, "Error Searching for Users", http.StatusInternalServerError)
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "User",
+				Request: "GET",
+				Message: "Sever Failure While Searching",
+				Code:    500,
+				Input:   search,
+			})
 
+		return
+	}
+
+	jsonData, err := json.Marshal(matches)
+
+	if err != nil {
+		errorHandler.CreateErrorResponse(
+			w,
+			errorHandler.ErrorResponse{
+				Type:    "User",
+				Request: "GET",
+				Message: "Sever Failure Parsing JSON",
+				Code:    500,
+				Input:   search,
+			})
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	jsonData, err := json.Marshal(matches)
-
-	if err != nil {
-		http.Error(w, "Error Converting to JSON", http.StatusInternalServerError)
-		return
-	}
 
 	w.Write(jsonData)
 

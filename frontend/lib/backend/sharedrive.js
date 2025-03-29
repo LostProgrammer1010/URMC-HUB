@@ -17,12 +17,24 @@ async function getGroupsShareDrive() {
   await fetch(`http://localhost:8080/sharedrive/${encodeURI(share)}`, {
     method: "GET",
   })
-    .then(response => {
-      return response.json()
-    }) // Parse the JSON response from the server
+  .then(response => {
+      
+    if (!response.ok) {
+      response.text().then(message => {
+       if (response.status == 500) {
+         handleError(new InternalServerError(message))
+       }
+       if (response.status == 400) {
+         handleError(new BadRequestError(message))
+       }
+      }) 
+      return
+     }
+    return response.json()
+  })// Parse the JSON response from the server
     .then(data => {
       if (data.length == 0) {
-        throw new Error("Failed to get share drive")
+        window.location.href = "../pages/search.html"
       }
       buildPage(data)
 
@@ -40,7 +52,7 @@ function getCurrentShare() {
       localStorage.setItem("current-share-drive", share)
       return
   } 
-    window.location.href = "../pages/user.html"
+    window.location.href = "../pages/search.html"
 }
 
 sharedrivePageSetup()

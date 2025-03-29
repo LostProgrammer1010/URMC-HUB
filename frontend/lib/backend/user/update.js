@@ -40,7 +40,9 @@ async function addGroupsRequest() {
       },
       body: JSON.stringify(data)
     })
-  .then((response) => response.json()) // Parse the JSON response from the server
+  .then((response) => {
+    return response.json()
+  })  // Parse the JSON response from the server
   .then((data) => {
     
     data.forEach(group => {
@@ -53,6 +55,7 @@ async function addGroupsRequest() {
     });
   }).catch(error=> {
     addQueue = []
+    console.log(error)
     handleError(error) 
   })
 }
@@ -74,7 +77,6 @@ function removeGroupsRequest() {
       body: JSON.stringify(data)
     })
       .then(response => {
-  
         return response.json()
       }) // Parse the JSON response from the server
       .then(data => {
@@ -89,6 +91,7 @@ function removeGroupsRequest() {
       })
       .catch(error=> {
           removeQueue = []
+          console.log(error)
           handleError(error)
       })
         

@@ -24,20 +24,28 @@ function getSearch(searchValue, filter) {
   content.appendChild(loading)
   currentPage = 1
   domain = "urmc-sh"
-  /*
-  if (document.getElementById("URcheckbox").checked) {
-    domain = "ur"
-  } else {
-    domain = "urmc-sh"
-  }
-  */
   searchValue = encodeURIComponent(searchValue)
   console.log(searchValue)
   sessionStorage.setItem("domain", domain)
     fetch(`http://localhost:8080/search/${filter}/${domain}/${searchValue}`)
-    .then(response => response.json()) 
+    .then(response => {
+
+      if (!response.ok) {
+       response.text().then(message => {
+        if (response.status == 500) {
+          handleError(new InternalServerError(message))
+        }
+        if (response.status == 400) {
+          handleError(new BadRequestError(message))
+        }
+       }) 
+
+       return
+      }
+    
+      return response.json()
+    }) 
     .then(data => {
-      loading.remove()
       pagingdata = data
 
       displayTable(currentPage)
@@ -48,6 +56,7 @@ function getSearch(searchValue, filter) {
       handleError(error)
 
     })
+    loading.remove()
 }
 
 
@@ -73,6 +82,17 @@ function postSearch(searchValue, filter) {
   })
     .then(response => {
 
+      if (!response.ok) {
+        response.text().then(message => {
+         if (response.status == 500) {
+           handleError(new InternalServerError(message))
+         }
+         if (response.status == 400) {
+           handleError(new BadRequestError(message))
+         }
+        }) 
+        return
+       }
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
@@ -110,7 +130,18 @@ function postSearchAll(searchValue, filter) {
     body: JSON.stringify(data)
   })
     .then(response => {
-
+      
+      if (!response.ok) {
+        response.text().then(message => {
+         if (response.status == 500) {
+           handleError(new InternalServerError(message))
+         }
+         if (response.status == 400) {
+           handleError(new BadRequestError(message))
+         }
+        }) 
+        return
+       }
       return response.json()
     }) // Parse the JSON response from the server
     .then(data => {
