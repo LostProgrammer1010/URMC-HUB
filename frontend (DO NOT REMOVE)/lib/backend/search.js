@@ -82,6 +82,7 @@ function getPreviousSearch() {
 }
 
 function searchPageSetup() {
+
   getPreviousSearch()
   inputField.focus()
   document.addEventListener('keydown', function(event) {

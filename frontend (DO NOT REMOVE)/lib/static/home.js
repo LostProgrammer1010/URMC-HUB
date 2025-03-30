@@ -42,7 +42,7 @@ all_links = [
     ["In Patient", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/erecord-clinical-leaders-list.pdf", "In_Patient.png", "eRecord Super Users"],
     ["AMB", "http://sharepoint.mc.rochester.edu/sites/eRecLibrary/Docs/Misc/ambulatory-lead-smes.xlsx", "AMB_Excel.png", "eRecord Super Users download"],
     ["Old LMS", "/s:/Cust_Serv/Help Desk Info/Training Daily Completions", "Old_lms.png", "Excel file containing all LMS prior 2024"],
-    ["eRecord Training", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
+    ["LMS", "https://urmc.sumtotal.host/", "LMS_page.png", "Also known as sumtotal"],
     ["Chart Correction Guide", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0014549", "eRecord_Corrections.png", ""],
     ["Gardner's Guide to eRecord", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0015320", "Common_eRecord_Issues.png", "Common eRecord issues"],
     ["Name Change Script", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0010766", "Name_Change_Script.png", "SN KB for Name changes"],
@@ -83,6 +83,7 @@ all_links = [
     ["Haiku", "https://urmcprod.service-now.com/kb_view.do?sysparm_article=KB0013535", "Haiku.png", "Server = ercd-sproxy.urmc.rochester.edu<br/>Path = soapproxies-haiku"],
     ["MyIdentity Template Viewer", "https://myidentity.rochester.edu/urmctemplateviewer/templates.jsp", "TemplateViewer.png", ""],
     ["MyURHR & Workday", "https://www.rochester.edu/human-resources/myurhr/", "myURHR.png", ""],
+    ["CyberArk", "https://mypam.rochester.edu/PasswordVault/v10/logon", "CyberArk.png", "For PAM Account passwords"],
 ]
 
 homePageSetup()
@@ -122,7 +123,7 @@ function filterSearch() {
                 if (element[3] != "") {
                     build += `
                     <a class="link" href="${element[1]}" target="_blank" tabindex="0">
-                        <div>
+                        <div >
                             <img src="../assets/${element[2]}" loading="lazy"/>
                         </div>
                         <h1>${element[0]} </h1>

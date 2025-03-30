@@ -2,10 +2,9 @@
 
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow-y: scroll !important;
 }
+
 
 .container {
     display: none;
@@ -19,6 +18,10 @@ body {
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+
+/* Header */
+
 
 .container .header {
     display: flex;
@@ -45,6 +48,36 @@ body {
     font-weight: bold;
 }
 
+
+/* User information */
+
+.container .full-name {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 20px;
+  font-size: var(--font-size-h1);
+  flex-grow: 1;
+  padding: 20px;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 25%;
+  height: fit-content;
+}
+
+.container .full-name p,
+.container .full-name p a {
+  font-size: 15px;
+  color: var(--disable-color);
+}
+
+.container .full-name p a:active {
+  color: var(--disable-color);
+}
+
 .container .information {
     display: flex;
     flex-direction: row;
@@ -58,17 +91,18 @@ body {
     gap: 20px;
 }
 
- h1 {
+ .container h1 {
     flex-basis: 100%;
     text-align: center;
     padding: 0px;
+    font-size: var(--font-size-h1);
 }
 
 .container .information div .label {
     font-weight: bold;
 }
 
-.all-info {
+.container .all-info {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -80,102 +114,46 @@ body {
     gap: 40px;
 }
 
-.container .full-name {
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    gap: 20px;
-    font-size: 50px;
-    flex-grow: 1;
-    padding: 20px;
-    font-weight: bold;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 25%;
-    height: fit-content;
-}
-
-.container .full-name p,
-.container .full-name p a {
-  font-size: 15px;
-  color: var(--disable-color);
-}
-
-.container .full-name p a:active {
-  color: var(--disable-color);
-}
-
-
-#bad-passwords {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    align-items: center;
-    height: fit-content;
-    flex-basis: 100%;
-    border-radius: 20px;
-    min-height: 400px;
-    z-index: -1;
-}
-
-
-
-
-#lockoutResults {
-    position: relative;
-}
-
-#bad-passwords button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    border: none;
-    color: var(--text-color);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* User information */
 
 table {
-    width: 90%;
-    border-collapse: collapse;
+  width: 90%;
+  border-collapse: collapse;
 
-  }
+}
 
-  table thead {
-    text-align: left;
-    font-weight: bolder;
-    font-size: 25px;
-  }
+table thead {
+  text-align: left;
+  font-weight: bolder;
+  font-size: var(--font-size-h2);
+}
 
-  table tbody .label {
-    font-weight: bold;
-    width: fit-content;
-    word-break: normal;
+table tbody .label {
+  font-weight: bold;
+  width: fit-content;
+  word-break: normal;
 
-    text-align: left;
-  }
+  text-align: left;
+}
 
-  table tbody .info {
-    word-break: break-all;
-    width: 50%;
-  }
+table tbody .info {
+  word-break: break-all;
+  width: 50%;
+}
 
-  table tbody {
-    font-size: 18px;
-  }
-  
-  table td {
-    padding: 8px;
-  }
-  
-  table tr {
-    width: 100%;
-  }
+table tbody {
+  font-size: 18px;
+}
+
+table td {
+  padding: 8px;
+}
+
+table tr {
+  width: 100%;
+}
+
+
+/* User Group */
 
 
  #member-of-results .group {
@@ -184,41 +162,20 @@ table {
   align-items: flex-start;
   position: relative;
   overflow: hidden;
+  background: none;
   flex-grow: 1;
-  border-bottom: 1px solid var(--group-highlight-color);
+  border: none;
+  border-bottom:  1px solid var(--group-highlight-color);
   padding: 20px;
+  color: var(--text-color);
   box-sizing: border-box;
   margin-top: 10px;
  }
 
- #member-of-results .group:hover button {
-  width: 200px;
+ #member-of-results .group button h2 {
+  font-size: var(--font-size-h2);
  }
 
- #member-of-results .group button{
-  position: absolute;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-color);
-  padding: 10px;
-  top: 0px;
-  right: -20px;
-  height: 100%;
-  width: 0px;
-  overflow: hidden;
-  border: none;
-  background-color: rgb(212, 67, 67);
-  transition: .2s ease-out;
- }
-
-
- #member-of-results .group.queued > *:not(button) {
-  opacity: .5;
- }
-
- #member-of-results .group.queued button {
-  opacity:  1 !important;
- }
 
  #group-update-button {
   position: fixed;
@@ -233,7 +190,7 @@ table {
   backdrop-filter: blur(10px);
   transform: translateX(-50%);
   border: 1px solid rgba(37, 255, 45, 0);
-  color: white;
+  color: var(--text-color);
   z-index: 100;
   transition: 0.2s ease-in-out;
   box-sizing: border-box;
@@ -244,21 +201,14 @@ table {
   border: 1px solid rgba(37, 255, 45, 1);
  }
 
+ #member-of-results {
 
- #share-drives .group {
-  height: fit-content ;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--sharedrive-highlight-color);
- }
+  justify-content: center;
 
- #share-drives #group {
-  z-index: -1;
+  width: 100%;
  }
-
 
  #member-of-results .group:hover {
   border-bottom: none;
@@ -284,47 +234,23 @@ table {
   align-items: center;
 }
 
-#member-of h1{
+#member-of > h1{
+  font-size: var(--font-size-h1);
   flex-basis: 100%;
 }
 
- #member-of-results {
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 100%;
- }
-
- #share-drives {
-  display: flex;
-  flex-basis: 100%;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
- }
-
- #share-drives .group h1,
- #member-of-results .group h1 {
-  font-size: 25px ;
-  height: fit-content;
-  text-align: cneter;
-  margin: 0px;
-  padding: 0px;
- }
-
- #share-drives .group span,
- #member-of-results .group span {
-  font-size: 18px;
-  font-weight: 400;
- }
-
- 
- #member-of-results .group .label {
+#member-of-results .group .label {
   margin-top: 20px;
   font-weight: 500;
+  font-size: var(--font-size-h3);
   color: var(--group-color)
+ }
+
+ #member-of-results .copied {
+  align-self: center;
+  margin-top: 20px;
+  font-size: var(--font-size-h3);
+   color: var(--group-color);
  }
 
 
@@ -336,10 +262,9 @@ table {
   border-radius: 5px;
   height: 50px;
   width: 400px;
-  color: white;
+  color: var(--text-color);
   margin-bottom: 10px;
  }
-
 
  #member-of #group-search:focus {
   outline: none;
@@ -349,32 +274,8 @@ table {
   display: none;
 }
 
- #share-drives .group .label {
-  margin-top: 20px;
-  font-weight: 500;
-  color: var(--sharedrive-color)
- }
 
-
- #lockout-results {
-  width: 100%;
-
- }
-
- #lockout-results thead{
-  text-align: center;
- }
-
- #lockout-results tbody{
-  text-align: center;
- }
-
- #lockout-results td {
-  border: 1px solid var(--text-color);
-  width: 33%;
- }
-
- #add-groups {
+#add-groups {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -399,11 +300,19 @@ table {
  #add-groups #add-groups-button {
   border: 1px solid var(--text-color);
   background: none;
-  color: white;
+  color: var(--text-color);
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
+  margin-top: 10px;
  }
+
+ 
+ #add-groups #add-groups-button:hover {
+  background: var(--text-color);
+  color: var(--primary-color);
+ }
+
 
  #group-search-add {
   width: 350px;
@@ -427,10 +336,11 @@ table {
   border: 1px solid white;
   border-radius: 5px;
   overflow-x: hidden;
+  font-weight: bold;
  }
 
  #group.added {
-  background: green;
+  background: var(--confirmation-add-color);
  }
 
  #group.added button {
@@ -440,8 +350,8 @@ table {
   width: 100px;
   background: none;
   border: none;
-  color: white;
-  background: red;
+  color: var(--text-color);
+  background: var(--confirmation-remove-color);
   padding: 5px;
   font-size: 15px;
   transition: .3s ease;
@@ -458,7 +368,7 @@ table {
  }
 
  #group.removed {
-  background: red;
+  background: var(--confirmation-remove-color);
  }
 
  #group.removed button {
@@ -469,7 +379,7 @@ table {
   background: none;
   border: none;
   color: white;
-  background: green;
+  background: var(--confirmation-add-color);
   padding: 5px;
   font-size: 15px;
   transition: .3s ease;
@@ -481,7 +391,7 @@ table {
   background: none;
   border: 1px solid white;
   border-radius: 5px;
-  color: white;
+  color: var(--text-color);
   cursor: pointer;
  }
  
@@ -493,9 +403,6 @@ table {
   cursor: pointer;
  }
 
-
-
-
  #groups-on-account button {
   position: absolute;
   right: -110px;
@@ -503,8 +410,8 @@ table {
   width: 100px;
   background: none;
   border: none;
-  color: white;
-  background: red;
+  color: var(--text-color);
+  background: var(--confirmation-remove-color);
   padding: 5px;
   font-size: 15px;
   transition: .3s ease;
@@ -549,5 +456,113 @@ table {
 
 
  body.no-scroll {
-  overflow: hidden;
+  overflow: hidden !important;
  }
+
+
+/* Share drives */
+
+ #share-drives.group.hide {
+  display: none;
+ }
+
+ #share-drives .group {
+  height: fit-content ;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: none;
+  padding: 20px;
+  box-sizing: border-box;
+  border: none;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--sharedrive-highlight-color);
+ }
+
+ #share-drives .group .label {
+  font-size: var(--font-size-h3);
+  margin-bottom: 5px;
+ }
+
+ #share-drives #group {
+  z-index: -1;
+ }
+
+
+ #share-drives {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+ }
+
+ #share-drives .group h1,
+ #member-of-results .group h1 {
+  font-size: var(--font-size-h2) ;
+  height: fit-content;
+  text-align: cneter;
+  margin: 0px;
+  padding: 0px;
+ }
+
+ #share-drives .group span,
+ #member-of-results .group span {
+  font-size: 18px;
+  font-weight: 400;
+ }
+
+
+
+ #share-drives .group .label {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: var(--font-size-h3);
+  color: var(--sharedrive-color)
+ }
+
+ /* Lockout */
+ #lockout-results {
+  width: 100%;
+
+ }
+
+ #lockout-results thead{
+  text-align: center;
+ }
+
+ #lockout-results tbody{
+  text-align: center;
+ }
+
+ #lockout-results td {
+  border: 1px solid var(--text-color);
+  width: 33%;
+ } 
+
+#bad-passwords {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  height: fit-content;
+  flex-basis: 100%;
+  border-radius: 20px;
+  min-height: 400px;
+  z-index: -1;
+}
+
+#lockoutResults {
+  position: relative;
+}
+
+#bad-passwords button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  color: var(--text-color);
+  border-radius: 5px;
+  padding: 10px;
+}

@@ -97,9 +97,11 @@ function buildGroupsSection(groups) {
 }
 
 function buildShareDriveSection(sharedrives) {
+    const sectionTitle = shareContainer.children[0]
     shareContainer.innerHTML = ""
+    shareContainer.appendChild(sectionTitle)
     if (sharedrives == null) {
-        shareContainer.innerHTML = "No Access to Share Drives"
+        shareContainer.innerHTML += "No Access to Share Drives"
         return
     }
     sharedrives.forEach(share => {
@@ -196,6 +198,10 @@ function hideUpdateGroups() {
     const container = document.getElementById("overlay")
     addQueue = []
     removeQueue = []
+    changesContainer.innerHTML = ""
+    removeContainer.innerHTML = ""
+    addContainer.innerHTML = ""
+    document.getElementById("group-search-add").value = ""
     container.hidden = true
     document.body.classList.remove("no-scroll")
 }
@@ -230,7 +236,9 @@ function fillGroups() {
 }
 
 async function findGroups(inputField,event) {
+    
     if (event.key == "Enter") {
+        inputField.value = inputField.value.trim()
         await fetch(
             `http://localhost:8080/search/groups/URMC-sh/${inputField.value}`
         )
@@ -277,7 +285,7 @@ async function findGroups(inputField,event) {
         })
         .catch((error) => {
             console.log(error)
-            //handleError(error)
+            handleError(error)
         })
     }
 }

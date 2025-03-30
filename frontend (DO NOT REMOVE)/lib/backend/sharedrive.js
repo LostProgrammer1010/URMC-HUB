@@ -81,20 +81,50 @@ function buildGroups(group) {
   const items = Array.from({length: 3}, () => document.createElement("span"))
   const labels = Array.from({length: 3}, () => document.createElement("label"))
 
-  const div = document.createElement("div")
+  const row = document.createElement("button")
 
   items[0].innerHTML = group.name
   items[0].id = "name"
-  div.appendChild(items[0])
-  div.id = "group"
+  row.appendChild(items[0])
+  row.id = "group"
+  row.onclick = function() {
+    copyGroup(this)
+  }
   labels[1].innerHTML = "Description: "
   labels[2].innerHTML = "Information: "
   items[1].innerHTML = group.description != "" ? group.description : "No Description In AD"
   items[2].innerHTML = group.info != "" ? group.info : "No Information In AD"
 
   for (let i=1; i < items.length; i++) {
-   div.appendChild(labels[i])
-   div.appendChild(items[i])
+   row.appendChild(labels[i])
+   row.appendChild(items[i])
   }
-  return div
+  return row
+}
+
+function copyGroup(button) {
+  button.disabled = true
+  copyString = ""
+  const values = button.querySelectorAll("span")
+
+  copyString = `
+Group: ${values[0].innerHTML}
+Description: ${values[1].innerHTML}
+Information: ${values[2].innerHTML}`
+const temp = button.innerHTML
+  navigator.clipboard
+  .writeText(copyString)
+  .then(function () {
+      button.innerHTML += `<strong class="copied">Copied</strong>`
+  })
+  .catch(function () {
+      button.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
+  });
+
+
+  setTimeout(() => {
+
+    button.innerHTML = temp
+    button.disabled = false
+  }, 1000);
 }

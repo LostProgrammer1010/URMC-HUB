@@ -1,6 +1,9 @@
 function createGroupElement(group) {
-  let container = document.createElement("div")
+  let container = document.createElement("button")
   container.classList = "group"
+  container.onclick = function() {
+      copyGroup(this)
+  }
 
   let name = document.createElement("h1")
   name.id = "name"
@@ -11,7 +14,7 @@ function createGroupElement(group) {
 
   let description = document.createElement("span")
   description.id = "description"
-  let label = document.createElement("strong")
+  let label = document.createElement("h2")
   label.innerHTML = "Description"
   label.classList.add("label")
   container.appendChild(label)
@@ -22,7 +25,7 @@ function createGroupElement(group) {
 
   let information = document.createElement("span")
   information.id = "information"
-  let label2 = document.createElement("strong")
+  let label2 = document.createElement("h2")
   label2.innerHTML = "Information"
   label2.classList.add("label")
   container.appendChild(label2)
@@ -36,10 +39,10 @@ function createGroupElement(group) {
 
 
 function createDriveElement(share) {
-  let container = document.createElement("div")
+  let container = document.createElement("button")
   container.classList = "group"
-  container.oncontextmenu = function(event) {
-      openMenu(event, this)
+  container.onclick = function() {
+      goToShareDrive(this)
   }
 
   let name = document.createElement("h1")
@@ -52,7 +55,7 @@ function createDriveElement(share) {
   localpath.id = "local-path"
   localpath.innerHTML = share.localpath
   let label = document.createElement("strong")
-  label.innerHTML = "Local Path: "
+  label.innerHTML = "Local Path"
   label.classList.add("label")
   container.appendChild(label)
 
@@ -70,7 +73,39 @@ function createDriveElement(share) {
   group.innerHTML = share.groups
 
   container.appendChild(group)
-
-
   return container
+}
+
+function copyGroup(button) {
+  button.disabled = true
+  copyString = ""
+  const temp = button.innerHTML
+  const group = button.querySelector("#name")
+  const description = button.querySelector("#description")
+  const information = button.querySelector("#information")
+
+  copyString += `
+Group: ${group.innerHTML}
+Description: ${description.innerHTML}
+Information: ${information.innerHTML}`
+
+  navigator.clipboard
+  .writeText(copyString)
+  .then(function () {
+      button.innerHTML += `<strong class="copied">Copied</strong>`
+  })
+  .catch(function () {
+      button.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
+  });
+
+  setTimeout(() => {
+    button.innerHTML = temp
+    button.disabled = false
+  }, 1000);
+}
+
+function goToShareDrive(button) {
+  const share = button.querySelector("#name").innerHTML
+  sessionStorage.setItem("current-share-drive", share)
+  window.location.href = "../pages/share_drive.html"
 }
