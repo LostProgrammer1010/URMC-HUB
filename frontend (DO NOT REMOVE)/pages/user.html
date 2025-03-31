@@ -24,11 +24,12 @@
                 <a href="#share-drives" onclick="scrollToSection(event)">Share Drive</a>
                 <a href="#bad-passwords" onclick="scrollToSection(event)">Bad Passwords</a>
             </div>
+            <div class="copied-container" style="display: none;">
+                Copied!
+            </div>
             <div class="full-name">
                 <div class="field" id="name" contenteditable="false">Name</div>
             </div>
-
-
             <div class="information">
                 <table id="info-table">
                     <thead>
@@ -40,39 +41,39 @@
                     <tbody>
                         <tr>
                             <td class="label">Username: </td>
-                            <td class="info" id="username"></td>
+                            <td class="info" id="username" onclick="copyAttr(this)"></td>
                             <td class="label">Department: </td>
-                            <td class="info" id="department"></td>
+                            <td class="info" id="department" onclick="copyAttr(this)"></td>
                         </tr>
                         <tr>
                             <td class="label">NetID: </td>
-                            <td class="info" id="netID"></td>
+                            <td class="info" id="netID" onclick="copyAttr(this)"></td>
                             <td class="label">Title: </td>
-                            <td class="info" id="title"></td>
+                            <td class="info" id="title" onclick="copyAttr(this)"></td>
                         </tr>
                         <tr>
                             <td class="label">URID:</td>
-                            <td class="info" id="urid"></td>
+                            <td class="info" id="urid" onclick="copyAttr(this)"></td>
                             <td class="label">Phone: </td>
-                            <td class="info" id="phone"></td>
+                            <td class="info" id="phone" onclick="copyAttr(this)"></td>
                         </tr>
                         <tr>
                             <td class="label">Email:</td>
-                            <td class="info" id="email"></td>
+                            <td class="info" id="email" onclick="copyAttr(this)"></td>
                             <td class="label">OU:</td>
-                            <td class="info" id="ou"></td>
+                            <td class="info" id="ou" onclick="copyAttr(this)"></td>
                         </tr>
                         <tr>
                             <td class="label">Relationship Status:</td>
-                            <td class="info" id="relationship"></td>
+                            <td class="info" id="relationship" onclick="copyAttr(this)"></td>
                             <td class="label">Location:</td>
-                            <td class="info" id="location"></td>
+                            <td class="info" id="location" onclick="copyAttr(this)"></td>
                         </tr>
                         <tr>
                             <td class="label"></td>
                             <td class="info" id=""></td>
                             <td class="label">Password Set:</td>
-                            <td class="info" id="lastpasswordset"></td>
+                            <td class="info" id="lastpasswordset" onclick="copyAttr(this)"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,6 +134,7 @@
     <script src="../lib/backend/user/element_creations.js"></script>
     <script src="../lib/backend/user/update.js"></script>
     <script src="../lib/backend/user/user.js"></script>
+    <script src="../lib/backend/copyAttr.js"></script>
 
     
 
