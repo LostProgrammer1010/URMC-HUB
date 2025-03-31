@@ -566,3 +566,9 @@ table tr {
   border-radius: 5px;
   padding: 10px;
 }
+
+.group-info-desc {
+  color: grey;
+  margin-left: 10px;
+  text-wrap: nowrap
+}
