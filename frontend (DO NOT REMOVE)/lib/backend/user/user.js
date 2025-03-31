@@ -211,7 +211,11 @@ function fillGroups() {
     currentGroups.forEach(group => {
         const groupElement = document.createElement("div")
         groupElement.id = "group"
-        groupElement.innerHTML = group.name
+        infoSection = ""
+        descSection = ""
+        if (group.info != "") infoSection = "Info: " + group.info + "<br>"
+        if (group.description != "") descSection = "Desc: " + group.description + "<br>"
+        groupElement.innerHTML = group.name + "<br><div style=\"color: grey; margin-left: 10px\">" + infoSection + descSection + "</div>"
         const groupRemoveButton = document.createElement("button")
         groupRemoveButton.id = "remove-group"
         groupRemoveButton.innerHTML = "-"
@@ -259,7 +263,11 @@ async function findGroups(inputField,event) {
 
                 const groupElement = document.createElement("div")
                 groupElement.id = "group"
-                groupElement.innerHTML = group.name
+                infoSection = ""
+                descSection = ""
+                if (group.info != "") infoSection = "Info: " + group.info + "<br>"
+                if (group.description != "") descSection = "Desc: " + group.description + "<br>"
+                groupElement.innerHTML = group.name + "<br><div style=\"color: grey; margin-left: 10px\">" + infoSection + descSection + "</div>"
                 const groupAddButton = document.createElement("button")
                 groupAddButton.id = "add-group"
                 groupAddButton.innerHTML = "+"
