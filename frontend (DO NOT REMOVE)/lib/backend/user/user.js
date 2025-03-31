@@ -11,6 +11,8 @@ const membersContainer = document.getElementById("member-of-results")
 async function setupUserPage() {
     await getUserInfo()
     checkForIdleAccount()
+    document.getElementById("group-search-add").value = ""
+    document.getElementById("member-of-search").value = ""
 }
 
 
@@ -202,6 +204,7 @@ function hideUpdateGroups() {
     removeContainer.innerHTML = ""
     addContainer.innerHTML = ""
     document.getElementById("group-search-add").value = ""
+    document.getElementById("member-of-search").value = ""
     container.hidden = true
     document.body.classList.remove("no-scroll")
 }
@@ -211,11 +214,16 @@ function fillGroups() {
     currentGroups.forEach(group => {
         const groupElement = document.createElement("div")
         groupElement.id = "group"
-        infoSection = ""
-        descSection = ""
-        if (group.info != "") infoSection = "Info: " + group.info + "\n"
-        if (group.description != "") descSection = "Desc: " + group.description + "\n"
-        groupElement.innerHTML = group.name + "<br><div title=\"" + infoSection + descSection + "\" class=\"group-info-desc\">" + infoSection.replace("\n", "<br>") + descSection + "</div>"
+        groupElement.innerHTML = group.name
+        groupElement.onclick = function() {
+           document.getElementById("info-member-of").innerHTML =  group.info != "" ? group.info : "No Information In AD" 
+           document.getElementById("description-member-of").innerHTML = group.description != "" ? group.description : "No Description In AD"
+           const alreadySelect = document.querySelector(".selected")
+           if (alreadySelect != null) {
+               alreadySelect.classList.toggle("selected")
+           }
+           groupElement.classList.toggle("selected")
+        }
         const groupRemoveButton = document.createElement("button")
         groupRemoveButton.id = "remove-group"
         groupRemoveButton.innerHTML = "-"
@@ -263,11 +271,16 @@ async function findGroups(inputField,event) {
 
                 const groupElement = document.createElement("div")
                 groupElement.id = "group"
-                infoSection = ""
-                descSection = ""
-                if (group.info != "") infoSection = "Info: " + group.info + "\n"
-                if (group.description != "") descSection = "Desc: " + group.description + "\n"
-                groupElement.innerHTML = group.name + "<br><div title=\"" + infoSection + descSection + "\" class=\"group-info-desc\">" + infoSection.replace("\n", "<br>") + descSection + "</div>"
+                groupElement.innerHTML = group.name
+                groupElement.onclick = function() {
+                    document.getElementById("info-add").innerHTML =  group.info != "" ? group.info : "No Information In AD" 
+                    document.getElementById("description-add").innerHTML = group.description != "" ? group.description : "No Description In AD"
+                    const alreadySelect = document.querySelector(".selected-add")
+                    if (alreadySelect != null) {
+                        alreadySelect.classList.toggle("selected-add")
+                    }
+                    groupElement.classList.toggle("selected-add")
+                }
                 const groupAddButton = document.createElement("button")
                 groupAddButton.id = "add-group"
                 groupAddButton.innerHTML = "+"
@@ -298,4 +311,25 @@ async function findGroups(inputField,event) {
     }
 }
 
+function searchMemberOf(inputField) {
+    const memberof = document.getElementById("groups-on-account").children
 
+
+    if (inputField.value == "") {
+        for (let i = 0; i < memberof.length; i++) {
+            memberof[i].style.display = "flex"
+        }
+        return
+    }
+
+    for (let i = 0; i < memberof.length; i++) {
+        console.log(memberof[i].hidden)
+        if (memberof[i].innerHTML.split("<")[0].toLowerCase().includes(inputField.value.toLowerCase())) {
+            memberof[i].style.display = "flex"
+        } 
+        else {
+            memberof[i].style.display = "none"
+        }
+    }
+
+}

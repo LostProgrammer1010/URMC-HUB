@@ -82,7 +82,7 @@
 
             <div id="member-of">
                 <h1>Member of </h1>
-                <div class="row">
+                <div class="row-container">
                     <input id="group-search" type="text" onkeyup="searchGroups(this)" placeholder="Search for group">
                     <button id="show-update-group-button" onclick="showUpdateGroups()">Update Groups</button>
                  </div>
@@ -93,12 +93,32 @@
                 <div id="overlay" hidden>
                     <div id="add-groups">
                         <button id="add-groups-button" onclick="UpdateGroups()">Update Groups</button>
-                        <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
                         <div class="row">
-                             
-                             <div id="groups-to-add"></div>
-                             <div id="change-groups"></div>
-                            <div id="groups-on-account"></div>
+                             <div id="add-container">
+                                <h3>Add Group</h3>
+                                <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
+                                <div id="groups-to-add"></div>
+
+                                <div class="information-add" id="add">
+                                    <span id="label">Information: </span><span id="info-add"></span>
+                                    <span id="label">Description: </span><span id="description-add"></span>
+                                </div>
+                             </div>
+                             <div id="change-container">
+                                <h3>Changes</h3>
+                                <div id="change-groups"></div>
+                             </div>
+                             <div id="member-of-container">
+                                <h3>Remove Group</h3>
+                                <input id="member-of-search" onkeyup="searchMemberOf(this)" placeholder="Search for Group"/>
+                                <div id="groups-on-account"></div>
+
+                                <div class="information-add" id="member-of-add">
+                                    <span id="label">Information: </span><span id="info-member-of"></span>
+                                    <span id="label">Description: </span><span id="description-member-of"></span>
+
+                                </div>
+                             </div>
                         </div>
                     </div>
                 </div>

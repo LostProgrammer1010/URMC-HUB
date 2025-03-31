@@ -37,8 +37,8 @@
   --sharedrive-highlight-color: rgba(255, 95, 31, 0.4);
 
   /* Confirmation */
-  --confirmation-remove-color: rgb(160, 39, 39);
-  --confirmation-add-color: rgba(56, 171, 48, 1);
+  --confirmation-remove-color: rgba(160, 39, 39, 0.8);
+  --confirmation-add-color: rgba(56, 171, 48, 0.8);
 
   /*Background */
 
