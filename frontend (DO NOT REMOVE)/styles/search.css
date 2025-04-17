@@ -340,3 +340,25 @@ form #name.error {
   position: relative;
   align-self: center;
 }
+
+
+.context-menu {
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1000;
+  user-select: none;
+}
+
+.context-menu-item {
+  padding: 8px 15px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.context-menu-item:hover {
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255,255,255,0.2);
+}

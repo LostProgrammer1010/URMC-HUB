@@ -5,7 +5,12 @@ function displayGroup(group, body) {
   row.tabindex = "1"
 
   row.onclick = function() {
-    copyGroup(this) 
+    copyGroupName(this, group.name) 
+  }
+
+  row.oncontextmenu = function(e) {
+    e.preventDefault(); // Prevent default context menu
+    openGroupContextMenu(e, row);
   }
 
   const items = Array.from({length: 4}, () => document.createElement("span"))
@@ -45,6 +50,11 @@ function displayGroup(group, body) {
 function copyGroup(group) {
   let copyString = ""
 
+  if (timeout == true) {
+    return
+  }
+
+  timeout = true;
   const children = group.children
 
   if (printer.getElementsByClassName("copied").length != 0){
@@ -53,8 +63,10 @@ function copyGroup(group) {
   }
   
   for (let i=0; i < children.length; i++){
+
+
+
     const value = children[i].getElementsByClassName("value")[0].innerHTML
-    console.log(value)
     const label = children[i].querySelector("strong").innerHTML
 
     if (value == ""){
@@ -70,7 +82,7 @@ function copyGroup(group) {
   navigator.clipboard
   .writeText(copyString)
   .then(function () {
-      group.innerHTML += `<strong class="copied">Copied</strong>`
+      group.innerHTML += `<strong class="copied">Copied Group Info</strong>`
   })
   .catch(function () {
       group.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
@@ -78,5 +90,75 @@ function copyGroup(group) {
 
   setTimeout(() => {
     group.innerHTML = temp
+    timeout = false;  
   }, 1000);
+}
+let timeout = false;
+function copyGroupName(group, groupName) {
+
+  if (timeout == true) {
+    return
+  }
+
+  timeout = true;
+
+  
+  const temp = group.innerHTML
+
+  navigator.clipboard
+  .writeText(groupName)
+  .then(function () {
+      group.innerHTML += `<strong class="copied">Copied Group Name</strong>`
+  })
+  .catch(function () {
+      group.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
+  });
+
+  setTimeout(() => {
+    group.innerHTML = temp
+    timeout = false;  
+  }, 1000);
+}
+
+
+function openGroupContextMenu(e, group) {
+  // Remove any existing context menus
+  const existingMenu = document.querySelector('.context-menu');
+  if (existingMenu) {
+      existingMenu.remove();
+  }
+
+  // Create context menu
+  const menu = document.createElement('div');
+  menu.classList.add('context-menu');
+  menu.style.position = 'absolute';
+  menu.style.left = e.clientX + 'px';
+  menu.style.top = e.clientY + 'px';
+
+  // Add menu items
+  const copyOption = document.createElement('div');
+  copyOption.classList.add('context-menu-item');
+  copyOption.textContent = 'Copy Group Info';
+  copyOption.onclick = () => {
+      copyGroup(e.target.closest('#group'));
+      menu.remove();
+  };
+
+  menu.appendChild(copyOption);
+  // Close menu when clicking outside or scrolling
+  function closeMenu() {
+      menu.remove();
+      document.removeEventListener('click', closeMenu);
+      document.querySelector(".search-container").removeEventListener('scroll', closeMenu);
+  }
+  
+  document.addEventListener('click', function(e) {
+      if (!menu.contains(e.target)) {
+          closeMenu();
+      }
+  });
+  
+  document.querySelector(".search-container").addEventListener('scroll', closeMenu);
+
+  document.body.appendChild(menu);
 }
