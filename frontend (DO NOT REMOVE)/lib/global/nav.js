@@ -1,5 +1,6 @@
+
 const path  = window.location.pathname.split("frontend")[0]
-console.log(path)
+console.log(window.location.origin)
 //const path = "file:///S:/Cust_Serv/Help Desk Info/Help Desk PC Setup Docs/Home Grown Tools/URMC-HUB/"
 // Inject the navbar into the page
 document.body.insertAdjacentHTML('afterbegin', 

@@ -3,6 +3,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: scroll !important;
+  height: fit-content !important; 
 }
 
 ol {

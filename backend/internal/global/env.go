@@ -11,7 +11,8 @@ var (
 )
 
 func LoadEnv() {
-	err := godotenv.Load("S:\\Cust_Serv\\Help Desk Info\\Help Desk PC Setup Docs\\Home Grown Tools\\URMC-HUB\\backend (DO NOT REMOVE)\\.env")
+	err := godotenv.Load("\\\\ntsdrive05\\ISD_share\\Cust_Serv\\Help Desk Info\\Help Desk PC Setup Docs\\Home Grown Tools\\URMC-HUB\\backend (DO NOT REMOVE)\\.env")
+
 	if err != nil {
 		panic("Couldn't find .env file to load variables")
 	}

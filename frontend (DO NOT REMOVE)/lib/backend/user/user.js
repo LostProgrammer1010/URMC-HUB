@@ -333,3 +333,19 @@ function searchMemberOf(inputField) {
     }
 
 }
+
+function copyAttr(attrField) {
+    
+    let temp = attrField.innerHTML
+    navigator.clipboard.writeText(attrField.innerHTML)
+    .then(function () {
+        attrField.innerHTML = "Copied"
+    })
+    .catch(function () {
+        attrField.innerHTML = "Copy Failed"
+    })
+
+    setTimeout(() => {
+        attrField.innerHTML = temp
+    }, 1000)
+}

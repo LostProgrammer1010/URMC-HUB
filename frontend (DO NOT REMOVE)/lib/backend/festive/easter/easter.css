@@ -1,0 +1,49 @@
+.egg {
+    position: absolute;
+    top: -300px;
+    font-size: 50px;
+    height: 100px;
+    width: 100px;
+    user-select: none;
+    pointer-events: none;
+    animation: fall 5s linear forwards;
+    transition: 1s;
+    z-index: 4;
+    background-size: cover;
+    opacity: 30%;
+  }
+
+
+  #bunny1 {
+    height: 150px;
+    width: auto;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: -95px;
+    left: -16px;
+    width: 100px;
+    rotate: 180deg;
+    z-index: -1;
+  }
+
+  #bunny1.moved {
+    top: auto;
+    bottom: -95px;
+    rotate: 0deg;
+}
+
+.toggle-button {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: 10px;
+    left: 10px;
+    cursor: pointer
+}
+
+  
+@keyframes fall {
+    to {
+      transform: translateY(80vh) rotate(360deg);
+    }
+  }

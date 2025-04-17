@@ -138,6 +138,7 @@ table tbody .label {
 table tbody .info {
   word-break: break-all;
   width: 50%;
+  cursor: pointer;
 }
 
 table tbody {

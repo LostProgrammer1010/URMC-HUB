@@ -60,6 +60,7 @@ func checkRunning(port int) bool {
 	address := fmt.Sprintf("127.0.0.1:%d", port)
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
+		fmt.Println("Port already in use")
 		return true
 	}
 	defer listener.Close()
