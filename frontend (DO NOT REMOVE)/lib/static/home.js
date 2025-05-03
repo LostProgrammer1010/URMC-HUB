@@ -84,6 +84,7 @@ all_links = [
     ["MyIdentity Template Viewer", "https://myidentity.rochester.edu/urmctemplateviewer/templates.jsp", "TemplateViewer.png", ""],
     ["MyURHR & Workday", "https://www.rochester.edu/human-resources/myurhr/", "myURHR.png", ""],
     ["CyberArk", "https://mypam.rochester.edu/PasswordVault/v10/logon", "CyberArk.png", "For PAM Account passwords"],
+    ["ePartner", "https://epartner.urmc.rochester.edu/ePartner/common/epic_login.asp", "", "Link to new ePartner"],
 ]
 
 homePageSetup()
