@@ -12,6 +12,10 @@ import (
 
 func main() {
 
+	users, _ := AD.UsersSearch("wigginsn", "")
+
+	fmt.Println(users)
+
 	if checkRunning(8080) {
 		fmt.Println("Server already running")
 		os.Exit(1)

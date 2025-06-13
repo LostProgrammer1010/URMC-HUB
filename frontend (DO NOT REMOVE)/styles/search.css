@@ -206,7 +206,7 @@
 .search-container .body .row:hover {
   border: none;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 20px 3px var(--secondary-color);
+  
 }
 
 
@@ -234,8 +234,7 @@
 
 .search-container .body #user:focus,
 .search-container .body #user:hover {
-  box-shadow: inset 0px 0px 10px 3px var(--user-highlight-color);
-  outline: 1px solid var(--user-color);
+  background: radial-gradient(ellipse at left top, var(--user-color) 0%,  var(--primary-color) 45%, var(--primary-color) 100%);;
 }
 
 .search-container #computer strong {
@@ -306,7 +305,6 @@ form #name.error {
   justify-content: center;
   align-items: center;
   gap: 5px;
-
 }
 
 #color-codes .color div {
@@ -342,23 +340,3 @@ form #name.error {
 }
 
 
-.context-menu {
-  background: rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  z-index: 1000;
-  user-select: none;
-}
-
-.context-menu-item {
-  padding: 8px 15px;
-  user-select: none;
-  cursor: pointer;
-}
-
-.context-menu-item:hover {
-  cursor: pointer;
-  user-select: none;
-  background: rgba(255,255,255,0.2);
-}

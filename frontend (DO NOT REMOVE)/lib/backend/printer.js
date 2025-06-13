@@ -7,8 +7,13 @@ function displayPrinter(printer, body) {
   row.id = "printer"
   row.tabindex = "1"
 
+  row.oncontextmenu = function(e) {
+    e.preventDefault(); // Prevent default context menu
+    openGroupContextMenu(e, row);
+  }
+
   row.onclick = function() {
-    copyPrinter(this)
+    copyPrinterName(this)
   }
 
   let items = Array.from({length: 6}, () => document.createElement("span"))
@@ -68,7 +73,7 @@ function copyPrinter(printer) {
   navigator.clipboard
   .writeText(copyString)
   .then(function () {
-      printer.innerHTML += `<strong class="copied">Copied</strong>`
+      printer.innerHTML += `<strong class="copied">Copied Printer Information</strong>`
   })
   .catch(function () {
       printer.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
@@ -78,6 +83,70 @@ function copyPrinter(printer) {
     printer.innerHTML = temp
   }, 1000);
 
+}
+
+function copyPrinterName(printer){
+  let copyString = ""
+
+  const children = printer.children 
+
+  copyString = children[0].getElementsByClassName("value")[0].innerHTML
+
+  const temp = printer.innerHTML
+
+  navigator.clipboard
+  .writeText(copyString)
+  .then(function () {
+      printer.innerHTML += `<strong class="copied">Copied Printer Name</strong>`
+  })
+  .catch(function () {
+      printer.innerHTML += `<strong class="copied">Failed to Copy</strong>`;
+  });
+
+  setTimeout(() => {
+    printer.innerHTML = temp
+  }, 1000);
+}
 
 
+function openGroupContextMenu(e) {
+  // Remove any existing context menus
+  const existingMenu = document.querySelector('.context-menu');
+  if (existingMenu) {
+      existingMenu.remove();
+  }
+
+  // Create context menu
+  const menu = document.createElement('div');
+  menu.classList.add('context-menu');
+  menu.style.position = 'absolute';
+  menu.style.left = e.clientX + 'px';
+  menu.style.top = e.clientY + 'px';
+
+  // Add menu items
+  const copyOption = document.createElement('div');
+  copyOption.classList.add('context-menu-item');
+  copyOption.textContent = 'Copy Printer Info';
+  copyOption.onclick = () => {
+      copyPrinter(e.target.closest('#printer'));
+      menu.remove();
+  };
+
+  menu.appendChild(copyOption);
+  // Close menu when clicking outside or scrolling
+  function closeMenu() {
+      menu.remove();
+      document.removeEventListener('click', closeMenu);
+      document.querySelector(".search-container").removeEventListener('scroll', closeMenu);
+  }
+  
+  document.addEventListener('click', function(e) {
+      if (!menu.contains(e.target)) {
+          closeMenu();
+      }
+  });
+  
+  document.querySelector(".search-container").addEventListener('scroll', closeMenu);
+
+  document.body.appendChild(menu);
 }

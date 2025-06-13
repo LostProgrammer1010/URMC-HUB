@@ -121,7 +121,7 @@ function copyGroupName(group, groupName) {
 }
 
 
-function openGroupContextMenu(e, group) {
+function openGroupContextMenu(e) {
   // Remove any existing context menus
   const existingMenu = document.querySelector('.context-menu');
   if (existingMenu) {

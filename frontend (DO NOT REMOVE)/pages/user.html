@@ -96,7 +96,7 @@
                         <div class="row">
                              <div id="add-container">
                                 <h3>Add Group</h3>
-                                <input id="group-search-add" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
+                                <input id="group-search-add" onclick="this.select()" type="text" placeholder="Search for group" onkeydown="findGroups(this,event)">
                                 <div id="groups-to-add"></div>
 
                                 <div class="information-add" id="add">
@@ -110,7 +110,7 @@
                              </div>
                              <div id="member-of-container">
                                 <h3>Remove Group</h3>
-                                <input id="member-of-search" onkeyup="searchMemberOf(this)" placeholder="Search for Group"/>
+                                <input id="member-of-search" onclick="this.select()" onkeyup="searchMemberOf(this)" placeholder="Search for Group"/>
                                 <div id="groups-on-account"></div>
 
                                 <div class="information-add" id="member-of-add">

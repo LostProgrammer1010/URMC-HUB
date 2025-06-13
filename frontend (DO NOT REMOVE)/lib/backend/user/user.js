@@ -307,8 +307,12 @@ async function findGroups(inputField,event) {
         .catch((error) => {
             console.log(error)
             handleError(error)
+        })        
+        .finally(() => {
+            inputField.focus();
+            inputField.select();
         })
-    }
+}
 }
 
 function searchMemberOf(inputField) {
