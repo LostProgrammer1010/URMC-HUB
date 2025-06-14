@@ -5,7 +5,7 @@ import "./UserCard.css";
 function UserCard() {
     
     useEffect(() => {
-        axios.get('http://localhost:8080/test')
+        axios.get('http://localhost:8080/search/users/dmeyer20')
         .then((res) => console.log(res.data))
         .catch(console.error);
     }, []);

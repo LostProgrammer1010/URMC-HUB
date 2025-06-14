@@ -2,11 +2,12 @@ package main
 
 import (
 	"embed"
-	"fmt"
 	"io/fs"
 	"log"
 	"net/http"
 	"path"
+
+	"github.com/LostProgrammer1010/URMC-HUB/internal/api/get"
 )
 
 //go:embed frontend/dist/*
@@ -21,10 +22,7 @@ func createRouter() *http.ServeMux {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", reactHandler)
-	mux.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Hello World")
-		w.Write([]byte("Hello World"))
-	})
+	mux.HandleFunc("/search/users/", get.UserSearch)
 
 	return mux
 
